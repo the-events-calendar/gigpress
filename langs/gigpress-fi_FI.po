@@ -1,0 +1,1185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GigPress 2.1.14 Finnish\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-20 13:17-0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Niilo Sirola <niilo@muualla.net>\n"
+"Language-Team: Niilo Sirola <niilo@greenrosefaire.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: FINLAND\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../gigpress.php:65
+#: ../admin/new.php:199
+msgid "Add a show"
+msgstr "Lisää keikka"
+
+#: ../gigpress.php:66
+#: ../admin/shows.php:126
+msgid "Shows"
+msgstr "Keikat"
+
+#: ../gigpress.php:67
+#: ../admin/artists.php:34
+msgid "Artists"
+msgstr "Artistit"
+
+#: ../gigpress.php:68
+#: ../admin/venues.php:29
+msgid "Venues"
+msgstr "Keikkapaikat"
+
+#: ../gigpress.php:69
+#: ../admin/tours.php:34
+msgid "Tours"
+msgstr "Kiertueet"
+
+#: ../gigpress.php:70
+#: ../admin/settings.php:15
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ../gigpress.php:71
+#: ../admin/import-export.php:12
+msgid "Import/Export"
+msgstr "Tuo/Vie"
+
+#: ../gigpress.php:102
+msgid "You're using"
+msgstr "Käytössäsi on"
+
+#: ../gigpress.php:102
+msgid "Like it?"
+msgstr "Pidätkö?"
+
+#: ../gigpress.php:102
+msgid "Make a donation"
+msgstr "Lahjoita"
+
+#: ../gigpress.php:242
+#: ../admin/handlers.php:910
+#: ../admin/handlers.php:919
+#: ../admin/handlers.php:928
+#: ../admin/new.php:241
+msgid "at"
+msgstr ","
+
+#: ../gigpress.php:245
+#: ../admin/new.php:496
+#: ../admin/shows.php:270
+msgid "Price"
+msgstr "Liput"
+
+#: ../gigpress.php:246
+#: ../admin/shows.php:274
+#: ../output/feed.php:73
+msgid "Box office"
+msgstr "Lippukauppa"
+
+#: ../gigpress.php:247
+#: ../admin/new.php:462
+#: ../admin/venues.php:139
+#: ../output/feed.php:59
+msgid "Venue phone"
+msgstr "Puhelin"
+
+#: ../gigpress.php:248
+#: ../admin/new.php:512
+#: ../admin/settings.php:136
+#: ../output/feed.php:80
+msgid "Notes"
+msgstr "Tietoja"
+
+#: ../gigpress.php:270
+msgid "Download iCal"
+msgstr "Lataa iCal-muodossa"
+
+#: ../gigpress.php:283
+msgid "Buy tickets"
+msgstr "Osta lippu"
+
+#: ../gigpress.php:285
+#: ../admin/new.php:473
+msgid "Sold Out"
+msgstr "Loppuunmyyty"
+
+#: ../gigpress.php:287
+#: ../admin/new.php:474
+msgid "Cancelled"
+msgstr "Peruttu"
+
+#: ../gigpress.php:308
+msgid "Add to Google Calendar"
+msgstr "Lisää Google-kalenteriin"
+
+#: ../gigpress.php:398
+#, php-format
+msgid "Displaying %s&#8211;%s of %s"
+msgstr "Näytetään %s&#8211;%s / %s"
+
+#: ../gigpress.php:496
+msgid "Artist order updated."
+msgstr "Artistien järjestys päivitetty."
+
+#: ../gigpress.php:547
+msgid "Nothing to export."
+msgstr "Ei mitään vietävää."
+
+#: ../gigpress.php:554
+msgid "You are not authorized to do that. Try logging-in first."
+msgstr "Oikeutesi eivät riitä tähän. Kirjaudu sisään ensin."
+
+#: ../admin/artists.php:44
+msgid "Update artist"
+msgstr "Päivitä artisti"
+
+#: ../admin/artists.php:44
+#: ../admin/new.php:596
+#: ../admin/tours.php:49
+#: ../admin/venues.php:147
+msgid "or"
+msgstr "tai"
+
+#: ../admin/artists.php:44
+#: ../admin/new.php:596
+#: ../admin/tours.php:49
+#: ../admin/venues.php:147
+msgid "cancel"
+msgstr "peru"
+
+#: ../admin/artists.php:46
+msgid "Edit this artist"
+msgstr "Muokkaa artistia"
+
+#: ../admin/artists.php:56
+msgid "Sorry, but we had trouble loading that artist for editing."
+msgstr "Artistia ei voitu avata muokkausta varten"
+
+#: ../admin/artists.php:58
+#: ../admin/artists.php:68
+msgid "Add an artist"
+msgstr "Lisää artisti"
+
+#: ../admin/artists.php:66
+msgid "Add artist"
+msgstr "Lisää artisti"
+
+#: ../admin/artists.php:79
+#: ../admin/artists.php:124
+#: ../admin/artists.php:169
+#: ../admin/new.php:383
+msgid "Artist name"
+msgstr "Artistini nimi"
+
+#: ../admin/artists.php:85
+#: ../admin/new.php:387
+msgid "Artist URL"
+msgstr "Artistin kotisivu"
+
+#: ../admin/artists.php:100
+msgid "All artists"
+msgstr "Kaikki artistit"
+
+#: ../admin/artists.php:103
+msgid "Note that you cannot delete an artist while they have shows in the database."
+msgstr "Huomaa ettet voi poistaa artisteja joilla on keikkoja tietokannassa."
+
+#: ../admin/artists.php:125
+#: ../admin/artists.php:170
+#: ../admin/tours.php:113
+#: ../admin/tours.php:151
+#: ../admin/venues.php:187
+#: ../admin/venues.php:240
+msgid "Number of shows"
+msgstr "Keikkoja"
+
+#: ../admin/artists.php:126
+#: ../admin/artists.php:171
+#: ../admin/shows.php:227
+#: ../admin/shows.php:239
+#: ../admin/tours.php:114
+#: ../admin/tours.php:152
+#: ../admin/venues.php:188
+#: ../admin/venues.php:241
+msgid "Actions"
+msgstr "Toiminnot"
+
+#: ../admin/artists.php:153
+#: ../admin/shows.php:263
+#: ../admin/tours.php:136
+#: ../admin/venues.php:220
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: ../admin/artists.php:154
+#: ../admin/tours.php:136
+#: ../admin/venues.php:221
+msgid "Delete"
+msgstr "Poista"
+
+#: ../admin/artists.php:162
+#: ../admin/import-export.php:64
+#: ../admin/new.php:372
+#: ../admin/shows.php:159
+msgid "No artists in the database"
+msgstr "Tietokannassa ei ole artisteja"
+
+#: ../admin/handlers.php:52
+msgid "We had trouble creating your new artist. Sorry."
+msgstr "Uuden artistin luominen ei onnistunut."
+
+#: ../admin/handlers.php:67
+msgid "We had trouble creating your new venue. Sorry."
+msgstr "Uuden keikkapaikan luominen ei onnistunut."
+
+#: ../admin/handlers.php:84
+msgid "We had trouble creating your new tour. Sorry."
+msgstr "Uuden kiertueen luominen ei onnistunut."
+
+#: ../admin/handlers.php:123
+msgid "We had trouble creating your Related Post. Sorry."
+msgstr "Keikka-artikkelin luominen ei onnistunut."
+
+#: ../admin/handlers.php:180
+msgid "You must select a venue."
+msgstr "Keikkapaikka täytyy olla valittuna."
+
+#: ../admin/handlers.php:182
+msgid "You must select an artist."
+msgstr "Artisti täytyy olla valittuna."
+
+#: ../admin/handlers.php:184
+#: ../admin/handlers.php:198
+msgid "You must enter an artist name."
+msgstr "Artistin nimi puuttuu."
+
+#: ../admin/handlers.php:186
+#: ../admin/handlers.php:206
+msgid "You must enter a venue name."
+msgstr "Keikkapaikan nimi puuttuu."
+
+#: ../admin/handlers.php:188
+#: ../admin/handlers.php:208
+msgid "You must enter a city."
+msgstr "Kaupunki puuttuu."
+
+#: ../admin/handlers.php:190
+#: ../admin/handlers.php:202
+msgid "You must enter a tour name."
+msgstr "Kiertueen nimi puuttuu."
+
+#: ../admin/handlers.php:192
+msgid "That's not a valid date."
+msgstr "Virheellinen päivämäärä."
+
+#: ../admin/handlers.php:194
+msgid "That's not a valid end date."
+msgstr "Virheellinen loppupäivämäärä."
+
+#: ../admin/handlers.php:248
+#: ../admin/handlers.php:309
+msgid "Your show  on"
+msgstr "Keikkasi"
+
+#: ../admin/handlers.php:248
+msgid "was successfully added."
+msgstr "lisätty."
+
+#: ../admin/handlers.php:249
+msgid "Add a similar show"
+msgstr "Lisää samanlainen keikka"
+
+#: ../admin/handlers.php:250
+#: ../admin/handlers.php:309
+msgid "Edit the related post"
+msgstr "Muokkaa keikka-artikkelia"
+
+#: ../admin/handlers.php:264
+#: ../admin/handlers.php:320
+#: ../admin/handlers.php:408
+#: ../admin/handlers.php:450
+#: ../admin/handlers.php:512
+#: ../admin/handlers.php:552
+#: ../admin/handlers.php:640
+#: ../admin/handlers.php:685
+msgid "Something ain't right - try again?"
+msgstr "Jotain meni pieleen - yritä uudestaan?"
+
+#: ../admin/handlers.php:309
+#: ../admin/handlers.php:448
+msgid "was successfully updated."
+msgstr "päivitetty."
+
+#: ../admin/handlers.php:359
+msgid "Show(s) successfully deleted."
+msgstr "Keikka/keikkoja poistettu."
+
+#: ../admin/handlers.php:360
+#: ../admin/handlers.php:593
+msgid "Undo"
+msgstr "Palauta"
+
+#: ../admin/handlers.php:366
+msgid "We ran into some trouble deleting the show(s). Sorry."
+msgstr "Keikkojen poistaminen ei onnistunut."
+
+#: ../admin/handlers.php:406
+#: ../admin/handlers.php:510
+#: ../admin/handlers.php:638
+msgid "was successfully added to the database."
+msgstr "lisätty tietokantaan."
+
+#: ../admin/handlers.php:472
+msgid "Venue successfully deleted."
+msgstr "Keikkapaikka poistettu."
+
+#: ../admin/handlers.php:474
+msgid "We ran into some trouble deleting the venue. Sorry."
+msgstr "Keikkapaikan poistaminen ei onnistunut."
+
+#: ../admin/handlers.php:550
+msgid "Tour name successfully changed to"
+msgstr "Kiertueen nimeksi vaihdettu"
+
+#: ../admin/handlers.php:593
+msgid "Tour successfully deleted."
+msgstr "Kiertue poistettu."
+
+#: ../admin/handlers.php:597
+msgid "We ran into some trouble deleting the tour. Sorry."
+msgstr "Kiertueen poistaminen ei onnistunut."
+
+#: ../admin/handlers.php:683
+msgid "successfully updated."
+msgstr "päivitetty."
+
+#: ../admin/handlers.php:708
+msgid "Artist successfully deleted."
+msgstr "Artisti poistettu."
+
+#: ../admin/handlers.php:711
+msgid "We ran into some trouble deleting the artist. Sorry."
+msgstr "Artistin poistaminen ei onnistunut."
+
+#: ../admin/handlers.php:748
+msgid "Show(s) successfully restored."
+msgstr "Keikka/keikat palautettu."
+
+#: ../admin/handlers.php:752
+msgid "We ran into some trouble restoring your show(s). Sorry."
+msgstr "Keikan/keikkojen palautus ei onnistunut."
+
+#: ../admin/handlers.php:770
+msgid "Tour successfully restored from the database."
+msgstr "Kiertue palautettu."
+
+#: ../admin/handlers.php:772
+msgid "We ran into some trouble restoring the tour. Sorry."
+msgstr "Kiertueen palautus ei onnistunut."
+
+#: ../admin/handlers.php:907
+msgid "shows were skipped due to errors"
+msgstr "keikkaa ei lisätty virheiden takia"
+
+#: ../admin/handlers.php:910
+#: ../admin/handlers.php:919
+#: ../admin/handlers.php:928
+#: ../output/feed.php:35
+msgid "in"
+msgstr ""
+
+#: ../admin/handlers.php:910
+#: ../admin/handlers.php:919
+#: ../admin/handlers.php:928
+#: ../output/feed.php:35
+msgid "on"
+msgstr ""
+
+#: ../admin/handlers.php:916
+msgid "shows were skipped as they were deemed duplicates"
+msgstr "keikkaa ei lisätty, koska ne löytyivät jo tietokannasta"
+
+#: ../admin/handlers.php:925
+msgid "shows were successfully imported"
+msgstr "keikkaa lisätty"
+
+#: ../admin/handlers.php:935
+msgid "Sorry, but there was an error parsing your file. Maybe double-check your formatting and file type?"
+msgstr "Tiedoston tulkkaaminen ei onnistunut. Tarkista että tiedosto on ohjeen mukainen."
+
+#: ../admin/handlers.php:944
+msgid "Sorry, but there was an error uploading"
+msgstr "Tiedoston siirrossa tuli joku ongelma."
+
+#: ../admin/handlers.php:963
+msgid "All shows and tours in the trash have been permanently deleted."
+msgstr "Kaikki roskiksessa olevat keikat ja kiertueet on tuhottu pysyvästi."
+
+#: ../admin/handlers.php:965
+msgid "We ran into some trouble emptying the trash. Sorry."
+msgstr "Roskiksen tyhjentyminen ei onnistunut."
+
+#: ../admin/handlers.php:987
+msgid "All tours have been migrated into artists."
+msgstr "Kaikki kiertueet saatiin päivitettyä artisteille."
+
+#: ../admin/handlers.php:989
+msgid "There was an error migrating tours to artists. Sorry."
+msgstr "Kiertueiden päivitys artisteille ei onnistunut."
+
+#: ../admin/handlers.php:993
+msgid "There were no tours to migrate."
+msgstr "Ei ollut kiertueita tuotavaksi."
+
+#: ../admin/import-export.php:18
+msgid "Upload a CSV (comma-separated values) file to import into your GigPress database."
+msgstr "Lähetä tiedot GigPressin tietokantaan CSV-tiedostostossa."
+
+#: ../admin/import-export.php:18
+msgid "Please review the formatting specifications to save yourself headaches!"
+msgstr "Huom. seuraa tiedoston muotoiluohjeita tarkasti niin säästyt monelta harmilta!"
+
+#: ../admin/import-export.php:27
+msgid "Include Related Post associations?"
+msgstr "sisältää linkit liittyviin artikkeleihin"
+
+#: ../admin/import-export.php:29
+msgid "Upload CSV"
+msgstr "Lähetä CSV"
+
+#: ../admin/import-export.php:48
+msgid "Download your complete show database as a CSV (comma-separated values) file, compatible with programs such as Microsoft Excel. This file is also suitable to import into another GigPress installation."
+msgstr "Lataa koko tietokanta CSV-tiedostona (comma-separated values). Tiedoston voi avata esim. Excelissä tai sillä voi siirtää tiedot toiseen GigPress-asennukseen."
+
+#: ../admin/import-export.php:57
+msgid "Export all artists"
+msgstr "Kaikki artistit"
+
+#: ../admin/import-export.php:71
+msgid "Export all tours"
+msgstr "Kaikki kiertueet"
+
+#: ../admin/import-export.php:78
+#: ../admin/new.php:535
+#: ../admin/shows.php:173
+#: ../admin/tours.php:144
+msgid "No tours in the database"
+msgstr "Ei kiertueita"
+
+#: ../admin/import-export.php:85
+msgid "Export all dates"
+msgstr "Kaikki keikat"
+
+#: ../admin/import-export.php:86
+msgid "Export upcoming dates"
+msgstr "Vain tulevat keikat"
+
+#: ../admin/import-export.php:87
+msgid "Export past dates"
+msgstr "Vain menneet keikat"
+
+#: ../admin/import-export.php:91
+msgid "Download CSV"
+msgstr "Lataa CSV"
+
+#: ../admin/new.php:32
+msgid "<strong>Welcome to GigPress!</strong> Get started by adding your first show below. To display your shows, simply add the"
+msgstr "<strong>Tervetuloa GigPressiin!</strong> Aloita lisäämällä ensimmäinen keikkasi alla. Tulosta keikkalista lisäämällä lyhytkoodi"
+
+#: ../admin/new.php:32
+msgid "shortcode to any page or post."
+msgstr "mille tahansa sivulle tai artikkeliin."
+
+#: ../admin/new.php:33
+msgid "Questions?  Please check out the"
+msgstr "Onko kysyttävää? Tutustu"
+
+#: ../admin/new.php:33
+msgid "documentation"
+msgstr "käyttöohjeeseen"
+
+#: ../admin/new.php:33
+#: ../admin/shows.php:303
+msgid "and"
+msgstr "ja"
+
+#: ../admin/new.php:33
+msgid "FAQ"
+msgstr "UKK:hon"
+
+#: ../admin/new.php:33
+msgid "on the GigPress website. Enjoy!"
+msgstr "GigPressin kotisivulla."
+
+#: ../admin/new.php:33
+msgid "Don't show this again"
+msgstr "Älä näytä uudestaan"
+
+#: ../admin/new.php:146
+msgid "Sorry, but we had trouble loading that show for editing."
+msgstr "Keikan lataaminen muokattavaksi ei onnistunut."
+
+#: ../admin/new.php:190
+msgid "Edit this show"
+msgstr "Muokkaa keikkaa"
+
+#: ../admin/new.php:213
+#: ../admin/settings.php:134
+#: ../admin/shows.php:221
+#: ../admin/shows.php:233
+#: ../output/feed.php:42
+msgid "Date"
+msgstr "Päivä"
+
+#: ../admin/new.php:273
+#: ../admin/new.php:555
+msgid "None"
+msgstr "Ei mitään"
+
+#: ../admin/new.php:322
+msgid "This is a multi-day event"
+msgstr "Tämä on monipäiväinen tapahtuma"
+
+#: ../admin/new.php:327
+msgid "End date"
+msgstr "Loppupäivä"
+
+#: ../admin/new.php:358
+#: ../admin/shows.php:222
+#: ../admin/shows.php:234
+msgid "Artist"
+msgstr "Artisti"
+
+#: ../admin/new.php:361
+msgid "Add a new artist"
+msgstr "Uusi artisti..."
+
+#: ../admin/new.php:396
+#: ../admin/shows.php:223
+#: ../admin/shows.php:235
+#: ../output/feed.php:52
+msgid "Venue"
+msgstr "Keikkapaikka"
+
+#: ../admin/new.php:399
+msgid "Add a new venue"
+msgstr "Uusi keikkapaikka..."
+
+#: ../admin/new.php:401
+msgid "Select a venue"
+msgstr "Valitse keikkapaikka"
+
+#: ../admin/new.php:414
+#: ../admin/shows.php:187
+#: ../admin/venues.php:229
+msgid "No venues in the database"
+msgstr "Tietokannassa ei ole keikkapaikkoja"
+
+#: ../admin/new.php:424
+#: ../admin/venues.php:103
+msgid "Venue name"
+msgstr "Keikkapaikan nimi"
+
+#: ../admin/new.php:429
+#: ../admin/venues.php:107
+msgid "Venue address"
+msgstr "Osoite"
+
+#: ../admin/new.php:433
+#: ../admin/venues.php:111
+msgid "Venue city"
+msgstr "Kaupunki"
+
+#: ../admin/new.php:437
+#: ../admin/venues.php:115
+msgid "Venue state/province"
+msgstr "Lääni"
+
+#: ../admin/new.php:441
+#: ../admin/venues.php:119
+msgid "Venue postal code"
+msgstr "Postinumero"
+
+#: ../admin/new.php:445
+#: ../admin/venues.php:123
+msgid "Venue country"
+msgstr "Maa"
+
+#: ../admin/new.php:458
+#: ../admin/venues.php:135
+msgid "Venue website"
+msgstr "Keikkapaikan nettisivu"
+
+#: ../admin/new.php:470
+msgid "Status"
+msgstr "Tila"
+
+#: ../admin/new.php:472
+msgid "Active"
+msgstr "Aktiivinen"
+
+#: ../admin/new.php:480
+msgid "Admittance"
+msgstr "Ikäraja"
+
+#: ../admin/new.php:482
+msgid "Not sure"
+msgstr "Ei tietoa"
+
+#: ../admin/new.php:497
+msgid "include currency symbol"
+msgstr "mukaanlukien valuuttasymboli"
+
+#: ../admin/new.php:500
+msgid "Ticket URL"
+msgstr "Lippukaupan nettiosoite"
+
+#: ../admin/new.php:504
+msgid "Ticket phone"
+msgstr "Lippukaupan puhelinnumero"
+
+#: ../admin/new.php:508
+msgid "External URL"
+msgstr "Ulkoinen URL"
+
+#: ../admin/new.php:515
+msgid "Use this space to list other bands, 'presented by' info, etc"
+msgstr "Lisää tähän muiden bändien tiedot, yms."
+
+#: ../admin/new.php:519
+msgid "Part of a tour?"
+msgstr "Osa kiertuetta?"
+
+#: ../admin/new.php:522
+msgid "No"
+msgstr "Ei"
+
+#: ../admin/new.php:524
+msgid "Add a new tour"
+msgstr "Uusi kiertue..."
+
+#: ../admin/new.php:545
+#: ../admin/tours.php:82
+#: ../admin/tours.php:112
+#: ../admin/tours.php:150
+msgid "Tour name"
+msgstr "Kiertueen nimi"
+
+#: ../admin/new.php:552
+msgid "Related post"
+msgstr "Keikka-artikkeli"
+
+#: ../admin/new.php:557
+msgid "Add a new post"
+msgstr "Lisää uusi artikkeli"
+
+#: ../admin/new.php:583
+msgid "Related post title"
+msgstr "Artikkelin otsikko"
+
+#: ../admin/new.php:585
+msgid "Available placeholders:"
+msgstr "Käytössä olevat tagit:"
+
+#: ../admin/new.php:586
+msgid "Publish now"
+msgstr "Julkaise nyt"
+
+#: ../admin/new.php:587
+msgid "Publish on show date"
+msgstr "Julkaise keikkapäivänä"
+
+#: ../admin/new.php:596
+msgid "Update show"
+msgstr "Tallenna"
+
+#: ../admin/new.php:600
+msgid "Add show"
+msgstr "Tallenna"
+
+#: ../admin/settings.php:22
+msgid "Full URL to your 'Upcoming Shows' page"
+msgstr "Täydellinen URL tulevien keikkojen sivullesi"
+
+#: ../admin/settings.php:27
+msgid "No upcoming shows message"
+msgstr "'Ei tulevia keikkoja' -viesti"
+
+#: ../admin/settings.php:33
+msgid "No past shows message"
+msgstr "'Ei menneitä keikkoja' -viesti"
+
+#: ../admin/settings.php:40
+msgid "User level required to use GigPress"
+msgstr "GigPressin käyttöön vaadittava käyttäjätaso"
+
+#: ../admin/settings.php:43
+msgid "Administrator"
+msgstr "Pääkäyttäjä"
+
+#: ../admin/settings.php:44
+msgid "Editor"
+msgstr "Päätoimittaja"
+
+#: ../admin/settings.php:45
+msgid "Author"
+msgstr "Kirjoittaja"
+
+#: ../admin/settings.php:46
+msgid "Contributor"
+msgstr "Avustaja"
+
+#: ../admin/settings.php:52
+msgid "Short date format"
+msgstr "Lyhyt päiväysformaatti"
+
+#: ../admin/settings.php:55
+#: ../admin/settings.php:62
+#: ../admin/settings.php:69
+msgid "Output"
+msgstr "Esikatselu"
+
+#: ../admin/settings.php:59
+msgid "Long date format"
+msgstr "Pitkä päiväysformaatti"
+
+#: ../admin/settings.php:66
+msgid "Time format"
+msgstr "Aikaformaatti"
+
+#: ../admin/settings.php:70
+msgid "Here's some documentation on date and time formatting"
+msgstr "Tästä löytyy ohjeita päivämäärän ja ajan muotoiluun"
+
+#: ../admin/settings.php:71
+msgid "I use a 24 hour clock"
+msgstr "Käytä 24-tuntista ajan esitystä"
+
+#: ../admin/settings.php:75
+msgid "Artist label"
+msgstr "Artistin otsikko"
+
+#: ../admin/settings.php:81
+msgid "Tour label"
+msgstr "Kiertueen otsikko"
+
+#: ../admin/settings.php:87
+msgid "External link label"
+msgstr "Ulkoisen linkin teksti"
+
+#: ../admin/settings.php:93
+#: ../output/feed.php:69
+msgid "Age restrictions"
+msgstr "Ikäraja"
+
+#: ../admin/settings.php:95
+msgid "A pipe-separated list of available age restrictions."
+msgstr "Lista ikärajoista "
+
+#: ../admin/settings.php:98
+msgid "Related posts"
+msgstr "Keikka-artikkeli"
+
+#: ../admin/settings.php:100
+msgid "Display gig info in related posts"
+msgstr "Näytä keikan tiedot keikka-artikkelissa"
+
+#: ../admin/settings.php:101
+msgid "before the post content"
+msgstr "artikkelin alussa"
+
+#: ../admin/settings.php:102
+msgid "after the post content"
+msgstr "artikkelin lopussa"
+
+#: ../admin/settings.php:103
+msgid "using <code>[gigpress_related_shows]</code>"
+msgstr "manuaalisesti koodilla <code>[gigpress_related_shows]</code>"
+
+#: ../admin/settings.php:104
+msgid "If a gig has a related post, that gig's details will appear at the specified position in that post."
+msgstr "Jos keikkaan on liitetty keikka-artikkeli, keikan tiedot tulevat näkyviin halutussa kohdassa artikkelia."
+
+#: ../admin/settings.php:108
+msgid "Related show heading"
+msgstr "Keikan tietojen otsikko"
+
+#: ../admin/settings.php:111
+msgid "This appears before the gig details in your related post."
+msgstr "Tämä tulostuu artikkeliin ennen keikan tietoja."
+
+#: ../admin/settings.php:115
+msgid "Related posts category"
+msgstr "Kategoria keikka-artikkeleille"
+
+#: ../admin/settings.php:117
+msgid "Automatically create a related post for every new show I enter."
+msgstr "Luo keikka-artikkeli automaattisesti joka keikalle."
+
+#: ../admin/settings.php:118
+msgid "When creating related posts, put them in this category"
+msgstr "Laita luodut artikkelit tähän kategoriaan."
+
+#: ../admin/settings.php:126
+msgid "Exclude this category from my normal post listings."
+msgstr "Älä näytä kategoriaa muissa artikkelilistauksissa."
+
+#: ../admin/settings.php:131
+msgid "Related posts linking"
+msgstr "Keikka-artikkelin linkitys"
+
+#: ../admin/settings.php:133
+msgid "Place a link to each show's related post in the following fields"
+msgstr "Luo linkki keikka-artikkeliin listan seuraaviin kenttiin"
+
+#: ../admin/settings.php:135
+#: ../admin/shows.php:224
+#: ../admin/shows.php:236
+#: ../admin/venues.php:183
+#: ../admin/venues.php:236
+#: ../output/feed.php:50
+msgid "City"
+msgstr "Kaupunki"
+
+#: ../admin/settings.php:140
+msgid "Related post phrase"
+msgstr "Keikka-artikkelin linkkisana"
+
+#: ../admin/settings.php:143
+msgid "This appears in your shows listing."
+msgstr "Tämä tulostuu keikkalistaukseen"
+
+#: ../admin/settings.php:147
+msgid "Artist URLs"
+msgstr "Artistien kotisivut"
+
+#: ../admin/settings.php:148
+msgid "Link artist names to their URLs."
+msgstr "Tee artistin nimestä linkki"
+
+#: ../admin/settings.php:152
+msgid "RSS/iCal"
+msgstr "RSS/iCal"
+
+#: ../admin/settings.php:154
+msgid "Make the GigPress RSS feed auto-discoverable."
+msgstr "RSS-syöte on 'auto-discoverable'"
+
+#: ../admin/settings.php:155
+msgid "Show RSS and iCal subscription links."
+msgstr "Näytä RSS ja iCal -linkit."
+
+#: ../admin/settings.php:156
+msgid "Note that the FeedBurner FeedSmith plugin will kill your GigPress RSS and iCal feeds, but the FD FeedBurner plugin will not."
+msgstr "Huom. GigPressin RSS- ja iCal-syötteet eivät toimi FeedBurner FeedSmith -lisäosan kanssa. FD FeedBurner -lisäosa toimii."
+
+#: ../admin/settings.php:160
+msgid "RSS/iCal feed title"
+msgstr "RSS/iCal-syötteen otsikko"
+
+#: ../admin/settings.php:166
+msgid "Country display"
+msgstr "Keikkamaan näyttäminen"
+
+#: ../admin/settings.php:168
+msgid "Display country column."
+msgstr "Näytä maa-sarake"
+
+#: ../admin/settings.php:168
+msgid "Use full country names."
+msgstr "Käytä täysiä maan nimiä"
+
+#: ../admin/settings.php:172
+msgid "Link behaviour"
+msgstr "Linkkien aukeaminen"
+
+#: ../admin/settings.php:173
+msgid "Open external links in new windows."
+msgstr "Avaa linkit uudessa ikkunassa."
+
+#: ../admin/settings.php:177
+msgid "jQuery"
+msgstr "jQuery"
+
+#: ../admin/settings.php:179
+msgid "Load jQuery into my theme."
+msgstr "Kirjoita teemaan jQueryn lataus"
+
+#: ../admin/settings.php:180
+msgid "Uncheck this if you have a hard-coded link to the jQuery library in your theme."
+msgstr "Älä valitse tätä jos teemassasi on jo jQuery kovakoodattuna."
+
+#: ../admin/settings.php:185
+msgid "Advanced"
+msgstr "Lisäasetukset"
+
+#: ../admin/settings.php:187
+msgid "Disable the default GigPress CSS."
+msgstr "Poista GigPressin oletus-CSS käytöstä"
+
+#: ../admin/settings.php:187
+msgid "Disable the default GigPress JavaScript."
+msgstr "Poista GigPressin oletus-JavaScript käytöstä"
+
+#: ../admin/settings.php:206
+msgid "Save Changes"
+msgstr "Talleta"
+
+#: ../admin/shows.php:135
+msgid "All"
+msgstr "Kaikki"
+
+#: ../admin/shows.php:138
+msgid "Upcoming"
+msgstr "Tulevat"
+
+#: ../admin/shows.php:141
+msgid "Past"
+msgstr "Menneet"
+
+#: ../admin/shows.php:151
+msgid "View all artists"
+msgstr "Kaikki artistit"
+
+#: ../admin/shows.php:165
+msgid "View all tours"
+msgstr "Kaikki kiertueet"
+
+#: ../admin/shows.php:179
+msgid "View all venues"
+msgstr "Kaikki keikkapaikat"
+
+#: ../admin/shows.php:193
+msgid "Descending"
+msgstr "Uusin ensin"
+
+#: ../admin/shows.php:194
+msgid "Ascending"
+msgstr "Vanhin ensin"
+
+#: ../admin/shows.php:225
+#: ../admin/shows.php:237
+#: ../admin/venues.php:185
+#: ../admin/venues.php:238
+#: ../output/feed.php:62
+msgid "Country"
+msgstr "Maa"
+
+#: ../admin/shows.php:226
+#: ../admin/shows.php:238
+msgid "Tour"
+msgstr "Kiertue"
+
+#: ../admin/shows.php:263
+msgid "Copy"
+msgstr "Kopioi"
+
+#: ../admin/shows.php:283
+msgid "Sorry, no shows to display based on your criteria."
+msgstr "Näillä valinnoilla ei löydy keikkoja."
+
+#: ../admin/shows.php:289
+msgid "Trash selected shows"
+msgstr "Poista valitut keikat"
+
+#: ../admin/shows.php:303
+msgid "You have"
+msgstr "Sinulla on"
+
+#: ../admin/shows.php:303
+msgid "shows"
+msgstr "keikkaa"
+
+#: ../admin/shows.php:303
+msgid "tours"
+msgstr "kiertuetta"
+
+#: ../admin/shows.php:303
+msgid "in your trash"
+msgstr "roskiksessa"
+
+#: ../admin/shows.php:305
+msgid "Take out the trash now"
+msgstr "Tyhjennä roskis"
+
+#: ../admin/tours.php:36
+msgid "A tour is simply a named collection of shows that you want to group together."
+msgstr "Kiertue on nimi joukolle keikkoja jotka haluat niputtaa yhteen."
+
+#: ../admin/tours.php:49
+msgid "Update tour"
+msgstr "Tallenna"
+
+#: ../admin/tours.php:51
+msgid "Edit this tour"
+msgstr "Muokkaa kiertuetta"
+
+#: ../admin/tours.php:60
+msgid "Sorry, but we had trouble loading that tour for editing."
+msgstr "Kiertueen lataaminen muokattavaksi ei onnistunut."
+
+#: ../admin/tours.php:62
+#: ../admin/tours.php:72
+msgid "Add a tour"
+msgstr "Lisää kiertue"
+
+#: ../admin/tours.php:70
+msgid "Add tour"
+msgstr "Lisää kiertue"
+
+#: ../admin/tours.php:88
+msgid "All tours"
+msgstr "Kaikki kiertueet"
+
+#: ../admin/tours.php:92
+msgid "Note that deleting a tour will <strong>NOT</strong> delete the shows associated with that tour."
+msgstr "Huom. kiertueen poistaminen <strong>EI</strong> poista siihen liitettyjä keikkoja."
+
+#: ../admin/venues.php:71
+msgid "Sorry, but we had trouble loading that venue for editing."
+msgstr "Keikkapaikan lataaminen muokkausta varten ei onnistunut."
+
+#: ../admin/venues.php:84
+msgid "Edit this venue"
+msgstr "Muokkaa keikkapaikkaa"
+
+#: ../admin/venues.php:94
+msgid "Add an venue"
+msgstr "Lisää keikkapaikka"
+
+#: ../admin/venues.php:147
+msgid "Update venue"
+msgstr "Tallenna"
+
+#: ../admin/venues.php:151
+msgid "Add venue"
+msgstr "Lisää keikkapaikka"
+
+#: ../admin/venues.php:160
+msgid "All venues"
+msgstr "Kaikki keikkapaikat"
+
+#: ../admin/venues.php:164
+msgid "Note that you cannot delete a venue while it has shows in the database."
+msgstr "Huom. keikkapaikkaa ei voi poistaa jos tietokannassa on siihen liitettyjä keikkoja."
+
+#: ../admin/venues.php:182
+#: ../admin/venues.php:235
+msgid "Name"
+msgstr "Nimi"
+
+#: ../admin/venues.php:184
+#: ../admin/venues.php:237
+#: ../output/feed.php:55
+msgid "Address"
+msgstr "Osoite"
+
+#: ../admin/venues.php:186
+#: ../admin/venues.php:239
+msgid "Phone"
+msgstr "Puhelin"
+
+#: ../output/feed.php:47
+msgid "Time"
+msgstr "Aika"
+
+#: ../output/feed.php:65
+msgid "Admission"
+msgstr "Liput"
+
+#: ../output/gigpress_shows.php:307
+msgid "Select Month"
+msgstr "Valitse kuukausi"
+
+#: ../output/gigpress_shows.php:312
+msgid "Select Year"
+msgstr "Valitse vuosi"
+
+#: ../output/gigpress_sidebar.php:8
+msgid "List upcoming GigPress shows"
+msgstr "Listaa tulevat keikat"
+
+#: ../output/gigpress_sidebar.php:79
+msgid "Title"
+msgstr "Otsikko"
+
+#: ../output/gigpress_sidebar.php:87
+msgid "Display upcoming shows"
+msgstr "Näytä tulevat keikat"
+
+#: ../output/gigpress_sidebar.php:90
+msgid "Display today's shows"
+msgstr "Näytä tämän päivän keikat"
+
+#: ../output/gigpress_sidebar.php:93
+msgid "Display past shows"
+msgstr "Näytä menneet keikat"
+
+#: ../output/gigpress_sidebar.php:99
+msgid "Number of shows to list"
+msgstr "Näytettävien keikkojen määrä"
+
+#: ../output/gigpress_sidebar.php:106
+msgid "Only display shows from this artist"
+msgstr "Vain tämän artistin keikat"
+
+#: ../output/gigpress_sidebar.php:121
+msgid "Only display shows from this tour"
+msgstr "Vain tämän kiertueen keikat"
+
+#: ../output/gigpress_sidebar.php:136
+msgid "Only display shows from this venue"
+msgstr "Vain tämän keikkapaikan keikat"
+
+#: ../output/gigpress_sidebar.php:152
+msgid "Group by artist"
+msgstr "Ryhmittele artistin mukaan"
+
+#: ../output/gigpress_sidebar.php:153
+msgid "Ignored when filtering by artist, tour, or venue."
+msgstr "Ei vaikutusta jos yllä valittu artisti, kiertue tai keikkapaikka."
+
+#: ../output/gigpress_sidebar.php:160
+msgid "Order artists alphabetically"
+msgstr "Aakkosjärjestyksessä"
+
+#: ../output/gigpress_sidebar.php:163
+msgid "Order artists by custom order"
+msgstr "Manuaalisessa järjestyksessä"
+
+#: ../output/gigpress_sidebar.php:166
+msgid "Ignored when not grouping by artist."
+msgstr "Ei vaikutusta jos ei ryhmitellä artistin mukaan"
+
+#: ../output/gigpress_sidebar.php:172
+msgid "Group by tour"
+msgstr "Ryhmittele kiertueen mukaan"
+
+#: ../output/gigpress_sidebar.php:179
+msgid "Show RSS and iCal feeds"
+msgstr "Näytä RSS ja iCal -syötteet"
+
+#: ../output/gigpress_sidebar.php:184
+msgid "Link text"
+msgstr "Linkin teksti"
+
+#: ../output/gigpress_sidebar.php:186
+msgid "This phrase is used to link to the page specified in your GigPress settings. (Leave blank to disable this link.)"
+msgstr "Tämä teksti näkyy linkissä tulevien keikkojen sivulle (asetettu GigPressin asetuksissa). Jätä tyhjäksi jos et halua linkkiä."
+
+#: ../templates/shows-list-footer.php:15
+#: ../templates/sidebar-list-footer.php:21
+msgid "Subscribe"
+msgstr "Tilaa"
+
+#~ msgid "opens in a new window"
+#~ msgstr "aukeaa uuteen ikkunaan"
+

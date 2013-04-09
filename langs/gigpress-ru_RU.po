@@ -1,0 +1,1360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GigPress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-18 21:02-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Derek Hogue <derek@amphibian.info>\n"
+"Language-Team: atmoravi <go@atmoravi.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../gigpress.php:66
+#: ../admin/new.php:189
+msgid "Add a show"
+msgstr "Добавить концерт"
+
+#: ../gigpress.php:67
+#: ../admin/shows.php:97
+msgid "Shows"
+msgstr "Концерты"
+
+#: ../gigpress.php:68
+#: ../admin/artists.php:34
+msgid "Artists"
+msgstr "Исполнители"
+
+#: ../gigpress.php:69
+#: ../admin/venues.php:31
+msgid "Venues"
+msgstr "Площадки"
+
+#: ../gigpress.php:70
+#: ../admin/tours.php:34
+msgid "Tours"
+msgstr "Туры"
+
+#: ../gigpress.php:71
+#: ../admin/settings.php:17
+msgid "Settings"
+msgstr "Настройки."
+
+#: ../gigpress.php:72
+#: ../admin/import-export.php:13
+msgid "Import/Export"
+msgstr "Импорт/Экспорт"
+
+#: ../gigpress.php:96
+msgid "You're using"
+msgstr "Вы используете"
+
+#: ../gigpress.php:96
+msgid "Like it?"
+msgstr "Нравится?"
+
+#: ../gigpress.php:96
+msgid "Make a donation"
+msgstr "Внесите свой вклад"
+
+#: ../gigpress.php:144
+msgid "opens in a new window"
+msgstr "открыть в новом окне"
+
+#: ../gigpress.php:160
+#: ../admin/handlers.php:819
+#: ../admin/handlers.php:828
+#: ../admin/handlers.php:837
+#: ../admin/new.php:238
+msgid "at"
+msgstr "в"
+
+#: ../gigpress.php:163
+#: ../admin/new.php:489
+#: ../admin/shows.php:224
+msgid "Price"
+msgstr "Цена"
+
+#: ../gigpress.php:164
+#: ../admin/shows.php:227
+#: ../output/feed.php:74
+msgid "Box office"
+msgstr "касса"
+
+#: ../gigpress.php:165
+#: ../admin/new.php:455
+#: ../admin/venues.php:132
+#: ../output/feed.php:60
+msgid "Venue phone"
+msgstr "телефон клуба"
+
+#: ../gigpress.php:166
+#: ../admin/new.php:501
+#: ../admin/settings.php:132
+#: ../output/feed.php:81
+msgid "Notes"
+msgstr "Заметки"
+
+#: ../gigpress.php:175
+msgid "Download iCal"
+msgstr "Скачать iCal"
+
+#: ../gigpress.php:187
+msgid "Buy tickets"
+msgstr "Купить билеты"
+
+#: ../gigpress.php:189
+#: ../admin/new.php:466
+msgid "Sold Out"
+msgstr "Все билеты проданы"
+
+#: ../gigpress.php:191
+#: ../admin/new.php:467
+msgid "Cancelled"
+msgstr "Отменено"
+
+#: ../gigpress.php:211
+msgid "Add to Google Calendar"
+msgstr "Добавить в Гугл Календарь"
+
+#: ../gigpress.php:302
+#, php-format
+msgid "Displaying %s&#8211;%s of %s"
+msgstr "Показано %s&#8211;% из %"
+
+#: ../gigpress.php:420
+msgid "Nothing to export."
+msgstr "Нечего экспортировать"
+
+#: ../gigpress.php:427
+msgid "You are not authorized to do that. Try logging-in first."
+msgstr "У вас недостаточно прав для этого действия. Попробуйте сперва залогиниться."
+
+#: ../admin/artists.php:44
+msgid "Update artist"
+msgstr "Обновить информацию об исполнителе"
+
+#: ../admin/artists.php:44
+#: ../admin/new.php:579
+#: ../admin/tours.php:49
+#: ../admin/venues.php:140
+msgid "or"
+msgstr "или"
+
+#: ../admin/artists.php:44
+#: ../admin/new.php:579
+#: ../admin/tours.php:49
+#: ../admin/venues.php:140
+msgid "cancel"
+msgstr "отменить"
+
+#: ../admin/artists.php:46
+msgid "Edit this artist"
+msgstr "Редактировать этого исполнителя"
+
+#: ../admin/artists.php:56
+msgid "Sorry, but we had trouble loading that artist for editing."
+msgstr "Извините, но у нас сложности с активацией редактирования этого исполнителя."
+
+#: ../admin/artists.php:58
+#: ../admin/artists.php:68
+msgid "Add an artist"
+msgstr "Добавить исполнителя"
+
+#: ../admin/artists.php:66
+msgid "Add artist"
+msgstr "Добавить исполнителя"
+
+#: ../admin/artists.php:79
+#: ../admin/artists.php:109
+#: ../admin/artists.php:151
+#: ../admin/new.php:388
+msgid "Artist name"
+msgstr "Название исполнителя"
+
+#: ../admin/artists.php:89
+msgid "All artists"
+msgstr "Все исполнители"
+
+#: ../admin/artists.php:92
+msgid "Note that you cannot delete an artist while they have shows in the database."
+msgstr "Не забывайте, что вы не можете удалить исполнителя пока в базе есть их концерты."
+
+#: ../admin/artists.php:110
+#: ../admin/artists.php:152
+msgid "Artist ID"
+msgstr "Идентификация исполнителя"
+
+#: ../admin/artists.php:111
+#: ../admin/artists.php:153
+#: ../admin/tours.php:113
+#: ../admin/tours.php:150
+#: ../admin/venues.php:181
+#: ../admin/venues.php:230
+msgid "Number of shows"
+msgstr "Номер концертов"
+
+#: ../admin/artists.php:112
+#: ../admin/artists.php:154
+#: ../admin/shows.php:192
+#: ../admin/shows.php:247
+#: ../admin/tours.php:114
+#: ../admin/tours.php:151
+#: ../admin/venues.php:182
+#: ../admin/venues.php:231
+msgid "Actions"
+msgstr "Аукционы"
+
+#: ../admin/artists.php:137
+#: ../admin/shows.php:215
+#: ../admin/tours.php:135
+#: ../admin/venues.php:211
+msgid "Edit"
+msgstr "Редактировать"
+
+#: ../admin/artists.php:138
+#: ../admin/shows.php:217
+#: ../admin/tours.php:135
+#: ../admin/venues.php:212
+msgid "Delete"
+msgstr "Удалить"
+
+#: ../admin/artists.php:146
+#: ../admin/import-export.php:62
+#: ../admin/new.php:378
+#: ../admin/shows.php:133
+msgid "No artists in the database"
+msgstr "В базе нет ни одного исполнителя"
+
+#: ../admin/handlers.php:45
+msgid "We had trouble creating your new artist. Sorry."
+msgstr "У нас не получилось создать Нового Исполнилея. Извините."
+
+#: ../admin/handlers.php:60
+msgid "We had trouble creating your new venue. Sorry."
+msgstr "У нас не получилось создать новую площадку. Извините."
+
+#: ../admin/handlers.php:77
+msgid "We had trouble creating your new tour. Sorry."
+msgstr "У нас не получилось создать новый тур. Извините."
+
+#: ../admin/handlers.php:114
+msgid "We had trouble creating your Related Post. Sorry."
+msgstr "У нас не получилось создать ваш Связанный Пост. Извините."
+
+#: ../admin/handlers.php:152
+msgid "You must select a venue."
+msgstr "Вы должны выбрать площадку"
+
+#: ../admin/handlers.php:154
+#: ../admin/handlers.php:168
+msgid "You must enter an artist name."
+msgstr "Вы должны внести название артиста"
+
+#: ../admin/handlers.php:156
+#: ../admin/handlers.php:176
+msgid "You must enter a venue name."
+msgstr "Вы должны внести название площадки"
+
+#: ../admin/handlers.php:158
+#: ../admin/handlers.php:178
+msgid "You must enter a city."
+msgstr "Вы должны внести название города"
+
+#: ../admin/handlers.php:160
+#: ../admin/handlers.php:172
+msgid "You must enter a tour name."
+msgstr "Вы должны внести название тура"
+
+#: ../admin/handlers.php:162
+msgid "That's not a valid date."
+msgstr "С этим числом что-то не то."
+
+#: ../admin/handlers.php:164
+msgid "That's not a valid end date."
+msgstr "Некорректная дата окончания."
+
+#: ../admin/handlers.php:223
+#: ../admin/handlers.php:279
+msgid "Your show  on"
+msgstr "Ваше выступление в"
+
+#: ../admin/handlers.php:223
+msgid "was successfully added."
+msgstr "добавлено в базу"
+
+#: ../admin/handlers.php:223
+#: ../admin/handlers.php:279
+msgid "Edit the related post"
+msgstr "редактировать пост по теме"
+
+#: ../admin/handlers.php:236
+#: ../admin/handlers.php:290
+#: ../admin/handlers.php:364
+#: ../admin/handlers.php:404
+#: ../admin/handlers.php:466
+#: ../admin/handlers.php:506
+#: ../admin/handlers.php:588
+#: ../admin/handlers.php:627
+msgid "Something ain't right - try again?"
+msgstr "что-то не так - попробовать снова?"
+
+#: ../admin/handlers.php:279
+#: ../admin/handlers.php:402
+msgid "was successfully updated."
+msgstr "с успехом обновлено."
+
+#: ../admin/handlers.php:319
+msgid "Show successfully deleted."
+msgstr "Концерт был удален без проблем."
+
+#: ../admin/handlers.php:319
+#: ../admin/handlers.php:547
+msgid "Undo"
+msgstr "Шаг назад"
+
+#: ../admin/handlers.php:323
+msgid "We ran into some trouble deleting the show. Sorry."
+msgstr "У нас возникли сложности при удалении концерта. Просим прощения."
+
+#: ../admin/handlers.php:362
+#: ../admin/handlers.php:464
+#: ../admin/handlers.php:586
+msgid "was successfully added to the database."
+msgstr "было без проблем добавлен в базу"
+
+#: ../admin/handlers.php:426
+msgid "Venue successfully deleted."
+msgstr "Площалка была успешно удалена"
+
+#: ../admin/handlers.php:428
+msgid "We ran into some trouble deleting the venue. Sorry."
+msgstr "У нас проблемы с удалением площадки. Приносим извинения."
+
+#: ../admin/handlers.php:504
+msgid "Tour name successfully changed to"
+msgstr "Название тура с успехом было изменено на"
+
+#: ../admin/handlers.php:547
+msgid "Tour successfully deleted."
+msgstr "Тур был без лишних сложностей удален"
+
+#: ../admin/handlers.php:551
+msgid "We ran into some trouble deleting the tour. Sorry."
+msgstr "У нас проблемы с удалением тура. Присим извинения."
+
+#: ../admin/handlers.php:625
+msgid "successfully updated."
+msgstr "с успехом обновлено."
+
+#: ../admin/handlers.php:650
+msgid "Artist successfully deleted."
+msgstr "Испонитель был без лишних сложностей удален."
+
+#: ../admin/handlers.php:653
+msgid "We ran into some trouble deleting the artist. Sorry."
+msgstr "У нас возникли сложности при удалении этого артиста. Просим прощения."
+
+#: ../admin/handlers.php:677
+msgid "Show successfully restored."
+msgstr "Концерт удалось восстановить."
+
+#: ../admin/handlers.php:679
+msgid "We ran into some trouble restoring that show. Sorry."
+msgstr "У нас трудности с восстановлением этого концерта. Извините."
+
+#: ../admin/handlers.php:697
+msgid "Tour successfully restored from the database."
+msgstr "Тур успешно восстановлен из базы."
+
+#: ../admin/handlers.php:699
+msgid "We ran into some trouble restoring the tour. Sorry."
+msgstr "У нас проблемы с восстановлением тура. Извините."
+
+#: ../admin/handlers.php:816
+msgid "shows were skipped due to errors"
+msgstr "выступления пропущены из-за ошибок"
+
+#: ../admin/handlers.php:819
+#: ../admin/handlers.php:828
+#: ../admin/handlers.php:837
+#: ../output/feed.php:36
+msgid "in"
+msgstr "в"
+
+#: ../admin/handlers.php:819
+#: ../admin/handlers.php:828
+#: ../admin/handlers.php:837
+#: ../output/feed.php:36
+msgid "on"
+msgstr "on"
+
+#: ../admin/handlers.php:825
+msgid "shows were skipped as they were deemed duplicates"
+msgstr "выступления были пропущены ибо показались дубликатами"
+
+#: ../admin/handlers.php:834
+msgid "shows were successfully imported"
+msgstr "выступление удалось импортировать."
+
+#: ../admin/handlers.php:871
+msgid "All shows and tours in the trash have been permanently deleted."
+msgstr "Все концерты в мусорной корзине удалены без следа."
+
+#: ../admin/handlers.php:873
+msgid "We ran into some trouble emptying the trash. Sorry."
+msgstr "У нас возникли сложности при опустошении мусора. Просим прощения."
+
+#: ../admin/handlers.php:895
+msgid "All tours have been migrated into artists."
+msgstr "Все туры были перенесены в разделы артистов."
+
+#: ../admin/handlers.php:897
+msgid "There was an error migrating tours to artists. Sorry."
+msgstr "При переносе туров произошла ошибка. Приносим извинения."
+
+#: ../admin/handlers.php:901
+msgid "There were no tours to migrate."
+msgstr "Для переноски не нашлось ни одного тура."
+
+#: ../admin/import-export.php:19
+msgid "Upload a CSV (comma-separated values) file to import into your GigPress database."
+msgstr "Залейте файл формата CSV (разделенные запятой данные) для пополнения базы ГигПреса."
+
+#: ../admin/import-export.php:19
+msgid "Please review the formatting specifications to save yourself headaches!"
+msgstr "Пожалуйста перечитайте указания по форматированию, чтобы избавить себя от лишнего гемора!"
+
+#: ../admin/import-export.php:27
+msgid "Upload CSV"
+msgstr "Закачайте CSV"
+
+#: ../admin/import-export.php:46
+msgid "Download your complete show database as a CSV (comma-separated values) file, compatible with programs such as Microsoft Excel. This file is also suitable to import into another GigPress installation."
+msgstr "Скачать полную базу ваших концертов как разделенный табами CSV файл (совместимый с программами вроде Microsoft Excel). Этот файл можно позже импортировать в другую инсталляцию ГигПресса"
+
+#: ../admin/import-export.php:55
+msgid "Export all artists"
+msgstr "Экспортировать всех исполнителей"
+
+#: ../admin/import-export.php:69
+msgid "Export all tours"
+msgstr "Экспортировать все туры"
+
+#: ../admin/import-export.php:76
+#: ../admin/new.php:526
+#: ../admin/shows.php:147
+#: ../admin/tours.php:143
+msgid "No tours in the database"
+msgstr "В базе нет ни одного тура"
+
+#: ../admin/import-export.php:83
+msgid "Export all dates"
+msgstr "Экспортировать все даты"
+
+#: ../admin/import-export.php:84
+msgid "Export upcoming dates"
+msgstr "Экспортировать будущие даты"
+
+#: ../admin/import-export.php:85
+msgid "Export past dates"
+msgstr "Экспортировать прошедшие даты"
+
+#: ../admin/import-export.php:89
+msgid "Download CSV"
+msgstr "Скачать CSV файл"
+
+#: ../admin/new.php:32
+msgid "<strong>Welcome to GigPress!</strong> Get started by adding your first show below. To display your shows, simply add the"
+msgstr "<strong>Добро пожаловать в ГигПресс!</string> Начните с добавления первого концерта чуть ниже. Чтобы увидеть ваши концерты, просто добавьте"
+
+#: ../admin/new.php:32
+msgid "shortcode to any page or post."
+msgstr "короткий код к любой странице или посту."
+
+#: ../admin/new.php:33
+msgid "Questions?  Please check out the"
+msgstr "Вопросы? Пожалуйста, сверьтесь"
+
+#: ../admin/new.php:33
+msgid "documentation"
+msgstr "документацией"
+
+#: ../admin/new.php:33
+#: ../admin/shows.php:265
+msgid "and"
+msgstr "и"
+
+#: ../admin/new.php:33
+msgid "FAQ"
+msgstr "Часто задаваемыми вопросами"
+
+#: ../admin/new.php:33
+msgid "on the GigPress website. Enjoy!"
+msgstr "на сайте GigPress. Приятного времени с GigPress!"
+
+#: ../admin/new.php:33
+msgid "Don't show this again"
+msgstr "Не показывать это окно снова"
+
+#: ../admin/new.php:138
+msgid "Sorry, but we had trouble loading that show for editing."
+msgstr "Извините, но у нас сложности с активацией редактирования этого концерта."
+
+#: ../admin/new.php:180
+msgid "Edit this show"
+msgstr "Редактировать этот концерт"
+
+#: ../admin/new.php:203
+#: ../admin/settings.php:130
+#: ../admin/shows.php:186
+#: ../admin/shows.php:241
+#: ../output/feed.php:43
+msgid "Date"
+msgstr "Число"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:207
+#: ../admin/new.php:328
+msgid "January"
+msgstr "Январь"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:208
+#: ../admin/new.php:329
+msgid "February"
+msgstr "Февраль"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:209
+#: ../admin/new.php:330
+msgid "March"
+msgstr "Март"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:210
+#: ../admin/new.php:331
+msgid "April"
+msgstr "Апрель"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:211
+#: ../admin/new.php:332
+msgid "May"
+msgstr "Май"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:212
+#: ../admin/new.php:333
+msgid "June"
+msgstr "Июнь"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:213
+#: ../admin/new.php:334
+msgid "July"
+msgstr "Июль"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:214
+#: ../admin/new.php:335
+msgid "August"
+msgstr "Август"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:215
+#: ../admin/new.php:336
+msgid "September"
+msgstr "Сентябрь"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:216
+#: ../admin/new.php:337
+msgid "October"
+msgstr "Октябрь"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:217
+#: ../admin/new.php:338
+msgid "November"
+msgstr "Ноябрь"
+
+# Doesn't need to be translated, as months are included in the core WordPress language files.
+#: ../admin/new.php:218
+#: ../admin/new.php:339
+msgid "December"
+msgstr "Декабрь"
+
+#: ../admin/new.php:270
+#: ../admin/new.php:546
+msgid "None"
+msgstr "Ничего"
+
+#: ../admin/new.php:319
+msgid "This is a multi-day event"
+msgstr "Это многодневное событие"
+
+#: ../admin/new.php:324
+msgid "End date"
+msgstr "Последняя дата"
+
+#: ../admin/new.php:362
+#: ../admin/shows.php:187
+#: ../admin/shows.php:242
+msgid "Artist"
+msgstr "Исполнитель"
+
+#: ../admin/new.php:365
+msgid "Add a new artist"
+msgstr "Добавьте нового исполнителя"
+
+#: ../admin/new.php:395
+#: ../admin/shows.php:189
+#: ../admin/shows.php:244
+#: ../output/feed.php:53
+msgid "Venue"
+msgstr "Площадка"
+
+#: ../admin/new.php:398
+msgid "Add a new venue"
+msgstr "Добавьте новую площадку"
+
+#: ../admin/new.php:400
+msgid "Select a venue"
+msgstr "Выбрать площадку"
+
+#: ../admin/new.php:414
+#: ../admin/shows.php:161
+#: ../admin/venues.php:220
+msgid "No venues in the database"
+msgstr "В базе нет ни одной площадки"
+
+#: ../admin/new.php:424
+#: ../admin/venues.php:104
+msgid "Venue name"
+msgstr "название площадки"
+
+#: ../admin/new.php:429
+#: ../admin/venues.php:108
+msgid "Venue city"
+msgstr "Город местонахождения площадки"
+
+#: ../admin/new.php:433
+#: ../admin/venues.php:112
+msgid "Venue address"
+msgstr "Адрес клуба"
+
+#: ../admin/new.php:438
+#: ../admin/venues.php:116
+msgid "Venue country"
+msgstr "Страна местонахождения площадки"
+
+#: ../admin/new.php:451
+#: ../admin/venues.php:128
+msgid "Venue website"
+msgstr "Сайт клуба"
+
+#: ../admin/new.php:463
+msgid "Status"
+msgstr "Статус"
+
+#: ../admin/new.php:465
+msgid "Active"
+msgstr "Актуально"
+
+#: ../admin/new.php:473
+msgid "Admittance"
+msgstr "Ограничение по возрасту"
+
+#: ../admin/new.php:475
+msgid "Not sure"
+msgstr "Нет"
+
+#: ../admin/new.php:490
+msgid "include currency symbol"
+msgstr "включить символ валюты"
+
+#: ../admin/new.php:493
+msgid "Ticket URL"
+msgstr "Ссылка на сайт, где купить билеты"
+
+#: ../admin/new.php:497
+msgid "Ticket phone"
+msgstr "Телефон для покупки билетов"
+
+#: ../admin/new.php:504
+msgid "Use this space to list other bands, 'presented by' info, etc"
+msgstr "Это место для указания открывающих (или главных) исполнителей, информация о спонсорах или чего-то еще"
+
+#: ../admin/new.php:508
+msgid "Part of a tour?"
+msgstr "Часть тура?"
+
+#: ../admin/new.php:511
+msgid "No"
+msgstr "Нет"
+
+#: ../admin/new.php:513
+msgid "Add a new tour"
+msgstr "Добавить тур"
+
+#: ../admin/new.php:536
+#: ../admin/tours.php:82
+#: ../admin/tours.php:111
+#: ../admin/tours.php:148
+msgid "Tour name"
+msgstr "Название тура"
+
+#: ../admin/new.php:543
+msgid "Related post"
+msgstr "Связанный пост"
+
+#: ../admin/new.php:548
+msgid "Add a new post"
+msgstr "Создать новый пост"
+
+#: ../admin/new.php:566
+msgid "Related post title"
+msgstr "Название поста по теме"
+
+#: ../admin/new.php:568
+msgid "Available placeholders:"
+msgstr "В наличии есть следующие заглушки:"
+
+#: ../admin/new.php:569
+msgid "Publish now"
+msgstr "Опубликовать прямо сейчас"
+
+#: ../admin/new.php:570
+msgid "Publish on show date"
+msgstr "Опубликовать в день концерта"
+
+#: ../admin/new.php:579
+msgid "Update show"
+msgstr "Обновить информацию о концерте"
+
+#: ../admin/new.php:583
+msgid "Add show"
+msgstr "Добавить дату концерта"
+
+#: ../admin/settings.php:24
+msgid "Full URL to your 'Upcoming Shows' page"
+msgstr "Полный URL к вашей странице с развернутым списком всех будущих концертов."
+
+#: ../admin/settings.php:29
+msgid "No upcoming shows message"
+msgstr "Текст сообщения  - Концертных планов пока нет -"
+
+#: ../admin/settings.php:35
+msgid "No past shows message"
+msgstr "Текст сообщения - В базе нет прошедших концертов -"
+
+#: ../admin/settings.php:42
+msgid "User level required to use GigPress"
+msgstr "Уровень пользователя для управления GigPress"
+
+#: ../admin/settings.php:45
+msgid "Administrator"
+msgstr "Администратор"
+
+#: ../admin/settings.php:46
+msgid "Editor"
+msgstr "Редактор"
+
+#: ../admin/settings.php:47
+msgid "Author"
+msgstr "Автор"
+
+#: ../admin/settings.php:48
+msgid "Contributor"
+msgstr "Фрилэнсер"
+
+#: ../admin/settings.php:54
+msgid "Short date format"
+msgstr "Короткий формат даты"
+
+#: ../admin/settings.php:57
+#: ../admin/settings.php:64
+#: ../admin/settings.php:71
+msgid "Output"
+msgstr "Вывод"
+
+#: ../admin/settings.php:61
+msgid "Long date format"
+msgstr "Развернутый формат дат"
+
+#: ../admin/settings.php:68
+msgid "Time format"
+msgstr "Формат времени"
+
+#: ../admin/settings.php:72
+msgid "Here's some documentation on date and time formatting"
+msgstr "Тут документация о форматировании времени и даты"
+
+#: ../admin/settings.php:73
+msgid "I use a 24 hour clock"
+msgstr "формат 24х часов"
+
+#: ../admin/settings.php:77
+msgid "Artist label"
+msgstr "Лэйбл исполнителя"
+
+#: ../admin/settings.php:83
+msgid "Tour label"
+msgstr "Метка тура"
+
+#: ../admin/settings.php:89
+#: ../output/feed.php:70
+msgid "Age restrictions"
+msgstr "ограничения по возрасту"
+
+#: ../admin/settings.php:91
+msgid "A pipe-separated list of available age restrictions."
+msgstr "Разделенный список ограничений по возрасту."
+
+#: ../admin/settings.php:94
+msgid "Related posts"
+msgstr "Посты по теме"
+
+#: ../admin/settings.php:96
+msgid "Display gig info in related posts"
+msgstr "Показывать инфо концерта в постах по теме"
+
+#: ../admin/settings.php:97
+msgid "before the post content"
+msgstr "до текста поста"
+
+#: ../admin/settings.php:98
+msgid "after the post content"
+msgstr "после текста поста"
+
+#: ../admin/settings.php:99
+msgid "nowhere at all"
+msgstr "нигде"
+
+#: ../admin/settings.php:100
+msgid "If a gig has a related post, that gig's details will appear at the specified position in that post."
+msgstr "если у концерта есть посты по теме, то его детали появятся в указанном месте этого поста"
+
+#: ../admin/settings.php:104
+msgid "Related show heading"
+msgstr "Заголовок Связанного Поста"
+
+#: ../admin/settings.php:107
+msgid "This appears before the gig details in your related post."
+msgstr "Это появится до деталей концерта в посте по теме"
+
+#: ../admin/settings.php:111
+msgid "Related posts category"
+msgstr "Категория постов по теме"
+
+#: ../admin/settings.php:113
+msgid "Automatically create a related post for every new show I enter."
+msgstr "Автоматически создать пост по теме для каждой новой даты концерта, вносимых мною"
+
+#: ../admin/settings.php:114
+msgid "When creating related posts, put them in this category"
+msgstr "При создании поста по теме определить их в эту категорию"
+
+#: ../admin/settings.php:122
+msgid "Exclude this category from my normal post listings."
+msgstr "Исключить эту категорию из списка моих обычных постов"
+
+#: ../admin/settings.php:127
+msgid "Related posts linking"
+msgstr "связка постов по теме"
+
+#: ../admin/settings.php:129
+msgid "Place a link to each show's related post in the following fields"
+msgstr "Разместить ссылку на каждый пост по теме концерта в следующие графы"
+
+#: ../admin/settings.php:131
+#: ../admin/shows.php:188
+#: ../admin/shows.php:243
+#: ../admin/venues.php:177
+#: ../admin/venues.php:226
+#: ../output/feed.php:51
+msgid "City"
+msgstr "Город"
+
+#: ../admin/settings.php:136
+msgid "Related post phrase"
+msgstr "Фраза Связанного Поста"
+
+#: ../admin/settings.php:139
+msgid "This appears in your shows listing."
+msgstr "Это появится в списке ваших концертов"
+
+#: ../admin/settings.php:143
+msgid "RSS/iCal"
+msgstr "RSS/iCal"
+
+#: ../admin/settings.php:145
+msgid "Make the GigPress RSS feed auto-discoverable."
+msgstr "Сделать RSS-поток ГигПресс открытым для поисковиков."
+
+#: ../admin/settings.php:146
+msgid "Show RSS and iCal subscription links."
+msgstr "Показать ссылки подписки для RSS и iCal"
+
+#: ../admin/settings.php:147
+msgid "Note that the FeedBurner FeedSmith plugin will kill your GigPress RSS and iCal feeds, but the FD FeedBurner plugin will not."
+msgstr "Отметьте, что FeedBurner FeedSmith плагин уничтожит ваши ГигПресс RSS и iCal потоки, а FD FeedBurner не убьет."
+
+#: ../admin/settings.php:151
+msgid "RSS/iCal feed title"
+msgstr "Заголовок потока RSS/iCal"
+
+#: ../admin/settings.php:157
+msgid "Country display"
+msgstr "Показ страны"
+
+#: ../admin/settings.php:159
+msgid "Display country column."
+msgstr "Показывать колонку СТРАНА"
+
+#: ../admin/settings.php:159
+msgid "Use full country names."
+msgstr "Вносите полные названия стран."
+
+#: ../admin/settings.php:163
+msgid "Link behaviour"
+msgstr "поведение ссылок"
+
+#: ../admin/settings.php:164
+msgid "Open external links in new windows."
+msgstr "Октрывать ссылки в новом окне"
+
+#: ../admin/settings.php:168
+msgid "jQuery"
+msgstr "jQuery"
+
+#: ../admin/settings.php:170
+msgid "Load jQuery into my theme."
+msgstr "Залить jQuery в мою тему."
+
+#: ../admin/settings.php:171
+msgid "Uncheck this if you have a hard-coded link to the jQuery library in your theme."
+msgstr "Уберите эту опцию, если вы вписали ссылку на jQuery библиотеку в вашу тему."
+
+#: ../admin/settings.php:209
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: ../admin/shows.php:106
+msgid "All"
+msgstr "Все"
+
+#: ../admin/shows.php:109
+msgid "Upcoming"
+msgstr "Будущие концерты"
+
+#: ../admin/shows.php:112
+msgid "Past"
+msgstr "Прошедшие концерты"
+
+#: ../admin/shows.php:125
+msgid "View all artists"
+msgstr "Показать всех исполнителей"
+
+#: ../admin/shows.php:139
+msgid "View all tours"
+msgstr "Показать все туры"
+
+#: ../admin/shows.php:153
+msgid "View all venues"
+msgstr "Показать все площадки"
+
+#: ../admin/shows.php:167
+msgid "Descending"
+msgstr "Нисходяще"
+
+#: ../admin/shows.php:168
+msgid "Ascending"
+msgstr "Восходяще"
+
+#: ../admin/shows.php:190
+#: ../admin/shows.php:245
+#: ../admin/venues.php:179
+#: ../admin/venues.php:228
+#: ../output/feed.php:63
+msgid "Country"
+msgstr "Страна"
+
+#: ../admin/shows.php:191
+#: ../admin/shows.php:246
+msgid "Tour"
+msgstr "Тур"
+
+#: ../admin/shows.php:216
+msgid "Copy"
+msgstr "Копировать"
+
+#: ../admin/shows.php:236
+msgid "Sorry, no shows to display based on your criteria."
+msgstr "Извините, по вашему запросу не найдено ни одного концерта."
+
+#: ../admin/shows.php:265
+msgid "You have"
+msgstr "В настоящий момент у вас занесено"
+
+#: ../admin/shows.php:265
+msgid "shows"
+msgstr "концертов"
+
+#: ../admin/shows.php:265
+msgid "tours"
+msgstr "туров"
+
+#: ../admin/shows.php:265
+msgid "in your trash"
+msgstr "в мусорной корзине"
+
+#: ../admin/shows.php:267
+msgid "Take out the trash now"
+msgstr "Выкинуть мусор"
+
+#: ../admin/tours.php:36
+msgid "A tour is simply a named collection of shows that you want to group together."
+msgstr "Тур это всего лишь несколько выступлений, которые вы хотите объединить под одним именем"
+
+#: ../admin/tours.php:49
+msgid "Update tour"
+msgstr "Обновить тур"
+
+#: ../admin/tours.php:51
+msgid "Edit this tour"
+msgstr "Редактировать этот тур"
+
+#: ../admin/tours.php:60
+msgid "Sorry, but we had trouble loading that tour for editing."
+msgstr "Извините у нас проблемы с активацией тура для редактирования"
+
+#: ../admin/tours.php:62
+#: ../admin/tours.php:72
+msgid "Add a tour"
+msgstr "Добавить тур"
+
+#: ../admin/tours.php:70
+msgid "Add tour"
+msgstr "Добавить тур"
+
+#: ../admin/tours.php:88
+msgid "All tours"
+msgstr "Все туры"
+
+#: ../admin/tours.php:92
+msgid "Note that deleting a tour will <strong>NOT</strong> delete the shows associated with that tour."
+msgstr "Заметьте, что удаление тура <strong>НЕ УДАЛИТ</strong> концерты связанные с ним."
+
+#: ../admin/tours.php:112
+#: ../admin/tours.php:149
+msgid "Tour ID"
+msgstr "ID тура"
+
+#: ../admin/venues.php:70
+msgid "Sorry, but we had trouble loading that venue for editing."
+msgstr "Извините у нас проблемы с активацией площадки для редактирования"
+
+#: ../admin/venues.php:85
+msgid "Edit this venue"
+msgstr "Редактировать эту площадку"
+
+#: ../admin/venues.php:95
+msgid "Add an venue"
+msgstr "Добавить площадку"
+
+#: ../admin/venues.php:140
+msgid "Update venue"
+msgstr "Обновить площадку"
+
+#: ../admin/venues.php:144
+msgid "Add venue"
+msgstr "Добавить площадку"
+
+#: ../admin/venues.php:153
+msgid "All venues"
+msgstr "Все площадки"
+
+#: ../admin/venues.php:157
+msgid "Note that you cannot delete a venue while it has shows in the database."
+msgstr "Заметьте, что вам не удастся удалить площадку, пока в базе есть концерты на ней."
+
+#: ../admin/venues.php:176
+#: ../admin/venues.php:225
+msgid "Name"
+msgstr "Название"
+
+#: ../admin/venues.php:178
+#: ../admin/venues.php:227
+#: ../output/feed.php:56
+msgid "Address"
+msgstr "Адрес"
+
+#: ../admin/venues.php:180
+#: ../admin/venues.php:229
+msgid "Phone"
+msgstr "Телефон"
+
+#: ../output/feed.php:48
+msgid "Time"
+msgstr "Время"
+
+#: ../output/feed.php:66
+msgid "Admission"
+msgstr "стоимость"
+
+#: ../output/gigpress_sidebar.php:41
+msgid "Title"
+msgstr "Название"
+
+#: ../output/gigpress_sidebar.php:43
+msgid "Number of shows to list"
+msgstr "Сколько концертов показывать?"
+
+#: ../output/gigpress_sidebar.php:47
+msgid "Group by artist"
+msgstr "Сгруппировать по исполнителю"
+
+#: ../output/gigpress_sidebar.php:51
+msgid "Group by tour"
+msgstr "Сгруппируйте концерты по турам"
+
+#: ../output/gigpress_sidebar.php:55
+msgid "Show RSS and iCal feeds"
+msgstr "Показать RSS и iCal потоки"
+
+#: ../output/gigpress_sidebar.php:59
+msgid "Show link to shows page"
+msgstr "Показать ссылку на страницу концертов"
+
+#: ../output/gigpress_sidebar.php:61
+msgid "Shows page link text"
+msgstr "Текст ссылки на страницу с концертами"
+
+#: ../templates/shows-list-footer.php:15
+#: ../templates/sidebar-list-footer.php:21
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#~ msgid "All Ages"
+#~ msgstr "Все возрасты"
+
+#~ msgid "All Ages/Licensed"
+#~ msgstr "Все возрасты/с родителями"
+
+#~ msgid "No minors"
+#~ msgstr "Только для совершеннолетних"
+
+#~ msgid "<strong>Welcome to GigPress!</strong> You should first"
+#~ msgstr "Добро пожаловать в панель управления GigPress! Сперва вы должны"
+
+#~ msgid "customize some of the options"
+#~ msgstr "подстроить некоторые из установок"
+
+#~ msgid "N/A"
+#~ msgstr "информации нет"
+
+#~ msgid ""
+#~ "I'd suggest a format along the lines of: <strong>Winnipeg, MB</strong>."
+#~ msgstr "Мы бы предложили следующую форму: <strong>Москва, Россия</strong>"
+
+#~ msgid "toggle venue info"
+#~ msgstr "включить детали клуба"
+
+#~ msgid ""
+#~ "This is a required field, so if you don't know, just put <strong>TBA</"
+#~ "strong>."
+#~ msgstr ""
+#~ "Это обязательная строка, так что если вы не знаете, что вписать, впишите "
+#~ "<strong>Детали скоро</strong>"
+
+#~ msgid ""
+#~ "If you enter a street address, it will enable auto-linkage to Google "
+#~ "Maps.  True that, double true."
+#~ msgstr ""
+#~ "Если вы внесете точный адрес, то станет возможной связь с картами Гугла. "
+#~ "Честное слово."
+
+#~ msgid ""
+#~ "Any value entered here will be added as a hyperlink attached to the name "
+#~ "of the venue."
+#~ msgstr ""
+#~ "Любой адрес внесенный в это поле будет добавлен как гипер-ссылка к имени "
+#~ "клуба"
+
+#~ msgid ""
+#~ "To accomodate various currency display formats, no auto-formatting will "
+#~ "be applied to what you enter here. Keep that in mind!"
+#~ msgstr ""
+#~ "Для того, чтобы не вышло чехарды с различными видами валюты, здесь нет "
+#~ "никакого автоформатинга. Помните это!"
+
+#~ msgid "This will enable the purchase link when displaying your tour dates."
+#~ msgstr "Это включит ссылку покупки билетов при показе дат тура."
+
+#~ msgid ""
+#~ "If this show is part of a tour you've already entered into GigPress, "
+#~ "select it here.<br />No tours yet?"
+#~ msgstr ""
+#~ "Если это выступление часть тура, который внеен в базу GigPress, то "
+#~ "выберете тур тут.<br /> Пока ни одного тура?"
+
+#~ msgid "Create them here."
+#~ msgstr "Создайте их тут."
+
+#~ msgid ""
+#~ "You can link any show to a WordPress post, useful for show recaps, tour "
+#~ "journals, uploading pictures, and allowing user comments."
+#~ msgstr ""
+#~ "Вы можете связать любой концерт с постом в WordPress, полезно для отчетов "
+#~ "о концертах, путевых заметок, закачивания фотографий и позволения "
+#~ "комментариев посетителей сайта."
+
+#~ msgid "You must enter a venue (perhaps it's TBA?)"
+#~ msgstr "Вам необходимо внести название клуба (или это ДЕТАЛИ СКОРО?)"
+
+#~ msgid ""
+#~ "You need to enter a name for the tour. It's the only field for crying out "
+#~ "loud!"
+#~ msgstr ""
+#~ "Вам нужно внести название тура. Это единственная графа, в конце концов!"
+
+#~ msgid "You need to enter a name for the tour!"
+#~ msgstr "Вам нужно внести название тура!"
+
+#~ msgid "Tours successfully reordered."
+#~ msgstr "Порядок в списке туров восстановлен."
+
+#~ msgid "We ran into some trouble deleting shows from the trash. Sorry."
+#~ msgstr ""
+#~ "Нам не удалось удалить концерты из мусорной корзины. Просим прощения."
+
+#~ msgid "All tours in the trash have been permanently deleted."
+#~ msgstr "Все туры в мусорной корзине удалены без следа."
+
+#~ msgid "We ran into some trouble deleting tours from the trash. Sorry."
+#~ msgstr "Нам не удалось удалить туры из мусорки. Извините."
+
+#~ msgid "Name of your band"
+#~ msgstr "Название вашей группы"
+
+#~ msgid "This is used in your RSS feed and hCalendar data."
+#~ msgstr "Это используется в вашем RSS потоке и hCalender."
+
+#~ msgid "Show a link to this page below my sidebar listing."
+#~ msgstr "Показать линк к этой странице под списком сайдбара"
+
+#~ msgid "Upcoming Shows link phrase"
+#~ msgstr "фраза ссылки на Будущие Концерты"
+
+#~ msgid "Used in the main show listings."
+#~ msgstr "для главного списка концертов"
+
+#~ msgid "Used in the Related Post entry."
+#~ msgstr "для Связанных Постов"
+
+#~ msgid "Click 'Update options' to update the sample output."
+#~ msgstr "Нажмите на ОБНОВИТЬ НАСТРОЙКИ для обновления вывода примера"
+
+#~ msgid "Related Posts"
+#~ msgstr "Связанные посты"
+
+#~ msgid "RSS Feed"
+#~ msgstr "RSS поток"
+
+#~ msgid "Please include a link to my upcoming shows RSS feed"
+#~ msgstr ""
+#~ "Пожалуйста присовокупите ссылку на RSS  поток моих будущих концертов"
+
+#~ msgid "below my upcoming shows table"
+#~ msgstr "под таблицей с моими будущими шоу"
+
+#~ msgid "below my sidebar listing"
+#~ msgstr "под списком в сайдбаре"
+
+#~ msgid "in the <code>head</code> portion of my page"
+#~ msgstr "в <code>head</code> части моей страницы"
+
+#~ msgid "Your RSS feed for upcoming shows is"
+#~ msgstr "Поток RSS ваших будущих концертов таков"
+
+#~ msgid ""
+#~ "Note that the FeedBurner FeedSmith plugin is not compatible with GigPress."
+#~ msgstr "Заметьте, что FeedBurner FeedSmith плагин не совместим с GigPress"
+
+#~ msgid "Tour grouping"
+#~ msgstr "Порядок туров"
+
+#~ msgid "display tours <b>before</b> non-tour shows"
+#~ msgstr "показать туры <b>до</b> отдельных выступлений"
+
+#~ msgid "display tours <b>after</b> non-tour shows"
+#~ msgstr "показать туры <b>после</b> отдельных выступлений"
+
+#~ msgid "Individual Shows heading"
+#~ msgstr "Заголовок отдельных выступлений"
+
+#~ msgid "Heading level of tour names"
+#~ msgstr "Уровень заголовка названий туров"
+
+#~ msgid ""
+#~ "Depending on the semantic structure of your page template, you may want "
+#~ "the headings which display the name of your tour(s) to be a different "
+#~ "level."
+#~ msgstr ""
+#~ "В зависимости от семантической структуры шаблонов вашей страницы вы "
+#~ "можете захотеть изменить величину заголовка."
+
+#~ msgid "More on HTML headings."
+#~ msgstr "Узнать больше о заголовках HTML."
+
+#~ msgid "This will add the"
+#~ msgstr "Это добавит опцию"
+
+#~ msgid ""
+#~ "attribute to all venue, ticket and Google Maps links. Keep in mind that "
+#~ "this behaviour can be annoying to users who like to control their own web "
+#~ "browser, and that this attribute does not validate under strict HTML "
+#~ "doctypes."
+#~ msgstr ""
+#~ "ко всем ссылкам - клуба, билетов и гугловых карт. Помните, что такое "
+#~ "поведение может не понравится тем посетителям, которые предпочитают "
+#~ "контролировать свой браузер, и что эта опция не утверждена строгим "
+#~ "регламентом HTML."
+
+#~ msgid "Past shows"
+#~ msgstr "Прошлые выступления"
+
+#~ msgid "Buy link"
+#~ msgstr "Ссылка на покупку"
+
+#~ msgid "Link"
+#~ msgstr "Ссылка"
+
+#~ msgid "Reorder tours"
+#~ msgstr "Изменить порядок туров"
+
+#~ msgid "Display order"
+#~ msgstr "Показать последовательность"
+
+#~ msgid "No tours in the database!"
+#~ msgstr "В базе нет ни одного тура!"
+
+#~ msgid "Save order"
+#~ msgstr "Сохранить порядок"
+
+#~ msgid "edit"
+#~ msgstr "редактировать"
+
+#~ msgid "Find this address using Google Maps."
+#~ msgstr "Найти адрес при помощи Google Maps"
+
+#~ msgid "Buy Tickets"
+#~ msgstr "Купить билеты"
+
+#~ msgid "Segment list into tours?"
+#~ msgstr "Разбить список на туры?"
