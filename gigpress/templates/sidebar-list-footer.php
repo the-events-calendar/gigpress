@@ -29,11 +29,11 @@ if($show_feeds) : ?>
 	<?php endif; ?>	
 		
 	<?php if($tour) : ?>
-		<a href="<?php echo GIGPRESS_RSS; ?>&amp;tour=<?php echo $showdata['tour_id']; ?>" title="<?php echo $showdata['tour']; ?> RSS" class="gigpress-rss">RSS</a> | <a href="<?php echo GIGPRESS_WEBCAL . '&amp;tour=' . $showdata['tour_id']; ?>" title="<?php echo $showdata['tour']; ?> iCalendar" class="gigpress-ical">iCal</a>
+		<a href="<?php echo GIGPRESS_RSS; ?>&amp;tour=<?php echo $showdata['tour_id']; ?>" title="<?php echo $showdata['tour_plain']; ?> RSS" class="gigpress-rss">RSS</a> | <a href="<?php echo GIGPRESS_WEBCAL . '&amp;tour=' . $showdata['tour_id']; ?>" title="<?php echo $showdata['tour']; ?> iCalendar" class="gigpress-ical">iCal</a>
 	<?php endif; ?>	
 
 	<?php if($venue) : ?>
-		<a href="<?php echo GIGPRESS_RSS; ?>&amp;venue=<?php echo $showdata['venue_id']; ?>" title="<?php echo $showdata['venue']; ?> RSS" class="gigpress-rss">RSS</a> | <a href="<?php echo GIGPRESS_WEBCAL . '&amp;venue=' . $showdata['venue_id']; ?>" title="<?php echo $showdata['venue']; ?> iCalendar" class="gigpress-ical">iCal</a>
+		<a href="<?php echo GIGPRESS_RSS; ?>&amp;venue=<?php echo $showdata['venue_id']; ?>" title="<?php echo $showdata['venue_plain']; ?> RSS" class="gigpress-rss">RSS</a> | <a href="<?php echo GIGPRESS_WEBCAL . '&amp;venue=' . $showdata['venue_id']; ?>" title="<?php echo $showdata['venue']; ?> iCalendar" class="gigpress-ical">iCal</a>
 	<?php endif; ?>	
 					
 	</p>
