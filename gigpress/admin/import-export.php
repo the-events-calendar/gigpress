@@ -34,8 +34,20 @@ function gigpress_import_export() {
 	
 		<?php	
 			if(isset($_POST['gpaction']) && $_POST['gpaction'] == "import") {
-				require_once('handlers.php');
-				gigpress_import();
+				// We've just uploaded a file to import
+				check_admin_referer('gigpress-action');
+				$upload = wp_upload_bits( $_FILES['gp_import']['name'], null, file_get_contents($_FILES['gp_import']['tmp_name']) );
+			
+				if (!$upload['error']) {
+					require_once('handlers.php');
+					gigpress_import($upload['file']);
+					// Bye-bye
+					unlink($upload['file']);
+				} else {
+					// The upload failed
+					echo('<div id="message" class="error fade"><p>' . __("Sorry, but there was an error uploading", "gigpress") . ' <strong>' . $_FILES['gp_import']['name'] . '</strong>: ' . $upload['error'] . '.</p></div>');
+				}
+
 			}
 		?>
 
