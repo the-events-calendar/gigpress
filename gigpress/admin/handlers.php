@@ -778,30 +778,27 @@ function gigpress_undo($type) {
 // HANDLER: IMPORT FROM CSV
 // ========================
 
-function gigpress_import() {
+function gigpress_import( $file_path ) {
 
 	// Deep breath
 	
-	global $wpdb, $gpo;
+	if( 0 == validate_file( $file_path )){
 	
-	// We've just uploaded a file to import
-	check_admin_referer('gigpress-action');
-	$upload = wp_upload_bits( $_FILES['gp_import']['name'], null, file_get_contents($_FILES['gp_import']['tmp_name']) );
+		global $wpdb, $gpo;
 	
-	if (!$upload['error']) {
 		// The file was uploaded, so let's try and parse the mofo
 		require_once(WP_PLUGIN_DIR . '/gigpress/lib/parsecsv.lib.php');
 		// This is under MIT license, which ain't GNU, but was else is new? Don't tell on me!
 		$csv = new parseCSV();
-		$csv->parse($upload['file']);
-		
+		$csv->parse( $file_path );
+	
 		if($csv->data) {
-				
+	
 			// Looks like we parsed something
 			$inserted = array(); $skipped = array(); $duplicates = array();
-			
+	
 			foreach($csv->data as $key => $show) {
-			
+	
 				// Check to see if we have this artist
 				$artist_exists = $wpdb->get_var("SELECT artist_id FROM " . GIGPRESS_ARTISTS . " WHERE artist_name = '" . mysql_real_escape_string($show['Artist']) . "'");
 				if(!$artist_exists) {
@@ -818,7 +815,7 @@ function gigpress_import() {
 				} else {
 					$show['artist_id'] = $artist_exists;
 				}
-				
+	
 				if($show['Tour']) {
 					// Check to see if we have this tour
 					$tour_exists = $wpdb->get_var("SELECT tour_id FROM " . GIGPRESS_TOURS . " WHERE tour_name = '" . mysql_real_escape_string($show['Tour']) . "' AND tour_status = 'active'");
@@ -834,8 +831,8 @@ function gigpress_import() {
 				else
 				{
 					$show['tour_id'] = 0;
-				}			
-
+				}
+	
 				// Check to see if we have this venue
 				$venue_exists = $wpdb->get_var("SELECT venue_id FROM " . GIGPRESS_VENUES . " WHERE venue_name = '" . mysql_real_escape_string($show['Venue']) . "' AND venue_city = '" . mysql_real_escape_string($show['City']) . "' AND venue_country = '" . mysql_real_escape_string($show['Country']) . "'");
 				if(!$venue_exists) {
@@ -856,9 +853,9 @@ function gigpress_import() {
 				} else {
 					$show['venue_id'] = $venue_exists;
 				}
-							
+	
 				if($show['Time'] == FALSE) $show['Time'] = '00:00:01';
-			
+	
 				if($wpdb->get_var("SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = " . $show['artist_id'] . " AND show_date = '" . $show['Date'] . "' AND show_time = '" . $show['Time'] . "' AND show_venue_id = " . $show['venue_id'] . " AND show_status != 'deleted'") > 0) {
 					// It's a duplicate, so log it and move on
 					$duplicates[] = $show;
@@ -868,7 +865,7 @@ function gigpress_import() {
 					} else {
 						$show['show_multi'] = 1;
 					}
-					
+	
 					$new_show = array(
 						'show_date' => $show['Date'],
 						'show_time' => $show['Time'],
@@ -885,16 +882,16 @@ function gigpress_import() {
 						'show_notes' => gigpress_db_in($show['Notes'], FALSE),
 						'show_related' => '0'
 					);
-					
+	
 					// Are we importing related post IDs?
 					if(isset($_POST['include_related']) && $_POST['include_related'] = 'y') {
 						$new_show['show_related'] = $show['Related ID'];
 					}
-					
+	
 					$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d');
-					
+	
 					$import = $wpdb->insert(GIGPRESS_SHOWS, $new_show, $format);
-					
+	
 					if($import != FALSE) {
 						$inserted[] = $show;
 					} else {
@@ -902,48 +899,40 @@ function gigpress_import() {
 					}
 				}
 			} // end foreach import
-
+	
 			if(!empty($skipped)) {
 				echo('<h4 class="error">' . count($skipped) . ' ' . __("shows were skipped due to errors", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($skipped as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>'); 
+					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
 				}
 				echo('</ul>');
 			}
-			
+	
 			if(!empty($duplicates)) {
 				echo('<h4 class="error">' . count($duplicates) . ' ' . __("shows were skipped as they were deemed duplicates", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($duplicates as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>'); 
+					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
 				}
 				echo('</ul>');
-			}	
-			
+			}
+	
 			if(!empty($inserted)) {
 				echo('<h4 class="updated">' . count($inserted) . ' ' . __("shows were successfully imported", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($inserted as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>'); 
+					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
 				}
 				echo('</ul>');
-			}								
-			
+			}
+	
 		} else {
 			// The file uploaded, but there were no results from the parse
 			echo('<div id="message" class="error fade"><p>' . __("Sorry, but there was an error parsing your file. Maybe double-check your formatting and file type?", "gigpress") . '.</p></div>');
-		
-		}
-		
-		// Bye-bye
-		unlink($upload['file']);
 	
-	} else {
-		// The upload failed
-		echo('<div id="message" class="error fade"><p>' . __("Sorry, but there was an error uploading", "gigpress") . ' <strong>' . $_FILES['gp_import']['name'] . '</strong>: ' . $upload['error'] . '.</p></div>');
+		}
 	}
-
 }
 
 
