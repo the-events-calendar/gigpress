@@ -20,6 +20,12 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.2.6 =
+
+* Fixes for artist and venue iCal links in default footer template (h/t Jeremiah Hester)
+* Added Finnish, Japanese, and Slovak translations (thanks Niilo Sirola, @takipone, and Branco Radenovich)
+* Various bug fixes
+
 = 2.2.5 =
 
 * Fixed glitch in shows list footer template when filtering by artist
@@ -410,5 +416,7 @@ GigPress is a powerful live performance listing and management plugin designed f
 Please check the [FAQ on the GigPress website](http://gigpress.com/faq/)
 
 == For more info... ==
+
+[Contribute on GitHub!](http://github.com/amphibian/gigpress)
 
 [Please visit the GigPress website](http://gigpress.com/) for screenshots, full documentation, and the latest news about plugin updates, or to report bugs, suggest features, and the like.
