@@ -23,7 +23,7 @@ GigPress is a powerful live performance listing and management plugin designed f
 = 2.2.7 =
 
 * Fixed bug with boolean (checkbox) settings not sticking
-* Improved logic for checking existence of boolean (checkbox) settings on admin sscreens and in templates
+* Improved logic for checking existence of boolean (checkbox) settings on admin screens and in templates
 * Updated country list
 
 
