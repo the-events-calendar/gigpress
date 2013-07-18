@@ -240,7 +240,7 @@ function gigpress_add() {
 				
 					&nbsp; <?php _e("at", "gigpress"); ?> &nbsp; 
 					
-					<?php if(isset($gpo['alternate_clock']) && $gpo['alternate_clock'] == 1 ) { ?>
+					<?php if(!empty($gpo['alternate_clock'])) { ?>
 					<select name="gp_hh" id="gp_hh" class="twentyfour">
 						<option value="na"<?php if($hh == "na") echo(' selected="selected"'); ?>>--</option>
 						<option value="00"<?php if($hh == "00") echo(' selected="selected"'); ?>>00</option>
@@ -319,7 +319,7 @@ function gigpress_add() {
 							<option value="55"<?php if($min == "55") echo(' selected="selected"'); ?>>55</option>
 					</select>
 						<span id="ampm">&nbsp;</span>
-						<p><span class="description">&nbsp;<label><input type="checkbox" value="1"<?php if(isset($show_multi) && $show_multi == 1) echo(' checked="checked"'); ?> id="show_multi" name="show_multi" />&nbsp;<?php _e("This is a multi-day event", "gigpress"); ?></label></span></p>
+						<p><span class="description">&nbsp;<label><input type="checkbox" value="1"<?php if(!empty($show_multi)) echo(' checked="checked"'); ?> id="show_multi" name="show_multi" />&nbsp;<?php _e("This is a multi-day event", "gigpress"); ?></label></span></p>
 						</td>
 					</tr>
 					<!-- For multiple-day events -->

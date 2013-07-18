@@ -68,7 +68,7 @@ function gigpress_settings() {
 				<input type="text" name="gigpress_settings[time_format]" value="<?php echo $gpo['time_format']; ?>" /> 
 				<span><?php _e("Output", "gigpress") ?>: <strong><?php echo gmdate($gpo['time_format'], current_time('timestamp')); ?></strong></span><br />
 				<a href="http://codex.wordpress.org/Formatting_Date_and_Time"><?php _e("Here's some documentation on date and time formatting", "gigpress") ?></a>.<br />
-				<label><input type="checkbox" name="gigpress_settings[alternate_clock]" value="1"<?php if(isset($gpo['alternate_clock']) && $gpo['alternate_clock'] == 1) echo(' checked="checked"'); ?> />&nbsp;<?php _e("I use a 24 hour clock", "gigpress"); ?></label><br />
+				<label><input type="checkbox" name="gigpress_settings[alternate_clock]" value="1"<?php if(!empty($gpo['alternate_clock'])) echo(' checked="checked"'); ?> />&nbsp;<?php _e("I use a 24 hour clock", "gigpress"); ?></label><br />
 			</td>
 		</tr>	
 		<tr>
@@ -114,7 +114,7 @@ function gigpress_settings() {
 		<tr>
 			<th scope="row"><?php _e("Related posts category", "gigpress") ?></th>
 			<td>
-				<p><label><input type="checkbox" name="gigpress_settings[autocreate_post]" value="1"<?php if(isset($gpo['autocreate_post']) && $gpo['autocreate_post'] == 1) echo(' checked="checked"'); ?> /> <?php _e("Automatically create a related post for every new show I enter.", "gigpress"); ?></label></p>
+				<p><label><input type="checkbox" name="gigpress_settings[autocreate_post]" value="1"<?php if(!empty($gpo['autocreate_post'])) echo(' checked="checked"'); ?> /> <?php _e("Automatically create a related post for every new show I enter.", "gigpress"); ?></label></p>
 				<p><label><?php _e("When creating related posts, put them in this category", "gigpress"); ?>: &nbsp; 
 				<select name="gigpress_settings[related_category]">
 					<?php $categories = get_categories('hide_empty=0');
@@ -123,7 +123,7 @@ function gigpress_settings() {
 						<option value="<?php echo $cat->cat_ID; ?>"<?php if(isset($gpo['related_category']) && $gpo['related_category'] == $cat->cat_ID) echo(' selected="selected"'); ?>><?php echo apply_filters("the_title", $title); ?></option>
 					<?php } ?> 
 				</select></label></p>
-				<p><label><input type="checkbox" name="gigpress_settings[category_exclude]" value="1"<?php if(isset($gpo['category_exclude']) && $gpo['category_exclude'] == 1) echo(' checked="checked"'); ?> /> <?php _e("Exclude this category from my normal post listings.", "gigpress"); ?></label></p>
+				<p><label><input type="checkbox" name="gigpress_settings[category_exclude]" value="1"<?php if(!empty($gpo['category_exclude'])) echo(' checked="checked"'); ?> /> <?php _e("Exclude this category from my normal post listings.", "gigpress"); ?></label></p>
 			</td>
 		</tr>
 		
@@ -145,14 +145,14 @@ function gigpress_settings() {
 		</tr>
 		<tr>
 			<th scope="row"><?php _e("Artist URLs", "gigpress") ?></th>
-			<td><p><label><input type="checkbox" name="gigpress_settings[artist_link]" value="1" <?php if(isset($gpo['artist_link']) && $gpo['artist_link'] == 1) echo('checked="checked"'); ?> /> <?php _e("Link artist names to their URLs.", "gigpress") ?></label>
+			<td><p><label><input type="checkbox" name="gigpress_settings[artist_link]" value="1" <?php if(!empty($gpo['artist_link'])) echo('checked="checked"'); ?> /> <?php _e("Link artist names to their URLs.", "gigpress") ?></label>
 			</td>
 		</tr>			
 		<tr>
 			<th scope="row"><?php _e("RSS/iCal", "gigpress") ?></th>
 			<td>
-				<p><label><input type="checkbox" name="gigpress_settings[rss_head]" value="1" <?php if(isset($gpo['rss_head']) && $gpo['rss_head'] == 1) echo('checked="checked"'); ?> /> <?php _e("Make the GigPress RSS feed auto-discoverable.", "gigpress"); ?></label></p>
-				<p><label><input type="checkbox" name="gigpress_settings[display_subscriptions]" value="1" <?php if(isset($gpo['display_subscriptions']) && $gpo['display_subscriptions'] == 1) echo('checked="checked"'); ?> /> <?php _e("Show RSS and iCal subscription links.", "gigpress"); ?></label></p>
+				<p><label><input type="checkbox" name="gigpress_settings[rss_head]" value="1" <?php if(!empty($gpo['rss_head'])) echo('checked="checked"'); ?> /> <?php _e("Make the GigPress RSS feed auto-discoverable.", "gigpress"); ?></label></p>
+				<p><label><input type="checkbox" name="gigpress_settings[display_subscriptions]" value="1" <?php if(!empty($gpo['display_subscriptions'])) echo('checked="checked"'); ?> /> <?php _e("Show RSS and iCal subscription links.", "gigpress"); ?></label></p>
 				<span class="description"><?php _e("Note that the FeedBurner FeedSmith plugin will kill your GigPress RSS and iCal feeds, but the FD FeedBurner plugin will not.", "gigpress"); ?></span>
 			</td>
 		</tr>
@@ -171,18 +171,18 @@ function gigpress_settings() {
 		<tr>
 			<th scope="row"><?php _e("Country display", "gigpress") ?></th>
 			<td>	
-				<p><label><input type="checkbox" name="gigpress_settings[display_country]" value="1" <?php if(isset($gpo['display_country']) && $gpo['display_country'] == 1) echo('checked="checked"'); ?> /> <?php _e("Display country column.", "gigpress") ?></label> &nbsp; <label><input type="checkbox" name="gigpress_settings[country_view]" value="long" <?php if(isset($gpo['country_view']) && $gpo['country_view'] == 'long') echo('checked="checked"'); ?> /> <?php _e("Use full country names.", "gigpress") ?></label></p>
+				<p><label><input type="checkbox" name="gigpress_settings[display_country]" value="1" <?php if(!empty($gpo['display_country'])) echo('checked="checked"'); ?> /> <?php _e("Display country column.", "gigpress") ?></label> &nbsp; <label><input type="checkbox" name="gigpress_settings[country_view]" value="long" <?php if(isset($gpo['country_view']) && $gpo['country_view'] == 'long') echo('checked="checked"'); ?> /> <?php _e("Use full country names.", "gigpress") ?></label></p>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><?php _e("Link behaviour", "gigpress") ?></th>
-			<td><p><label><input type="checkbox" name="gigpress_settings[target_blank]" value="1" <?php if(isset($gpo['target_blank']) && $gpo['target_blank'] == 1) echo('checked="checked"'); ?> /> <?php _e("Open external links in new windows.", "gigpress") ?></label>
+			<td><p><label><input type="checkbox" name="gigpress_settings[target_blank]" value="1" <?php if(!empty($gpo['target_blank'])) echo('checked="checked"'); ?> /> <?php _e("Open external links in new windows.", "gigpress") ?></label>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><?php _e("jQuery", "gigpress") ?></th>
 			<td>	
-				<p><label><input type="checkbox" name="gigpress_settings[load_jquery]" value="1" <?php if(isset($gpo['load_jquery']) && $gpo['load_jquery'] == 1) echo('checked="checked"'); ?> /> <?php _e("Load jQuery into my theme.", "gigpress") ?></label>
+				<p><label><input type="checkbox" name="gigpress_settings[load_jquery]" value="1" <?php if(!empty($gpo['load_jquery'])) echo('checked="checked"'); ?> /> <?php _e("Load jQuery into my theme.", "gigpress") ?></label>
 				<br /><span class="description"><?php _e("Uncheck this if you have a hard-coded link to the jQuery library in your theme.", "gigpress"); ?></span>
 				</p>
 			</td>
@@ -190,7 +190,7 @@ function gigpress_settings() {
 		<tr>
 			<th scope="row"><?php _e("Advanced", "gigpress"); ?></th>
 			<td>	
-				<p><label><input type="checkbox" name="gigpress_settings[disable_css]" value="1" <?php if(isset($gpo['disable_css']) && $gpo['disable_css'] == 1) echo('checked="checked"'); ?> /> <?php _e("Disable the default GigPress CSS.", "gigpress") ?></label> &nbsp; <label><input type="checkbox" name="gigpress_settings[disable_js]" value="1" <?php if(isset($gpo['disable_js']) && $gpo['disable_js'] == 1) echo('checked="checked"'); ?> /> <?php _e("Disable the default GigPress JavaScript.", "gigpress") ?></label></p>
+				<p><label><input type="checkbox" name="gigpress_settings[disable_css]" value="1" <?php if(!empty($gpo['disable_css'])) echo('checked="checked"'); ?> /> <?php _e("Disable the default GigPress CSS.", "gigpress") ?></label> &nbsp; <label><input type="checkbox" name="gigpress_settings[disable_js]" value="1" <?php if(!empty($gpo['disable_js'])) echo('checked="checked"'); ?> /> <?php _e("Disable the default GigPress JavaScript.", "gigpress") ?></label></p>
 			</td>
 		</tr>		
 		

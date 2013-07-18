@@ -11,7 +11,7 @@
 
 ?>
 
-<?php if($gpo['display_subscriptions'] == 1) : ?>
+<?php if(!empty($gpo['display_subscriptions'])) : ?>
 	<p class="gigpress-subscribe"><?php _e("Subscribe", "gigpress"); ?>: 
 	
 	<?php if(!$artist && !$tour && !$venue) : ?>

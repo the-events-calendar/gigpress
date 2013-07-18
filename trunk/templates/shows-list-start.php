@@ -17,7 +17,7 @@
 	// We don't use this variable in this template, but we do need it in subsequent templates
 	$cols = 3;
 	$cols = ($total_artists == 1 || $artist || $group_artists == 'yes') ? $cols : $cols + 1;
-	$cols = ($gpo['display_country'] == 1) ? $cols + 1 : $cols;
+	$cols = (!empty($gpo['display_country'])) ? $cols + 1 : $cols;
 ?>
 
 <table class="gigpress-table <?php echo $scope; ?>" cellspacing="0">
@@ -29,7 +29,7 @@
 		<?php endif; ?>
 			<th scope="col" class="gigpress-city"><?php _e("City", "gigpress"); ?></th>
 			<th scope="col" class="gigpress-venue<?php if($venue) : ?> hide<?php endif; ?>"><?php _e("Venue", "gigpress"); ?></th>
-		<?php if($gpo['display_country'] == 1) : ?>
+		<?php if(!empty($gpo['display_country'])) : ?>
 			<th scope="col" class="gigpress-country"><?php _e("Country", "gigpress"); ?></th>
 		<?php endif; ?>
 		</tr>

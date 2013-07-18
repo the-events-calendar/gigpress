@@ -41,7 +41,7 @@
 		
 		<td class="gigpress-venue location<?php if($venue) : ?> hide<?php endif; ?>"><?php echo $showdata['venue']; ?></td>
 		
-	<?php if($gpo['display_country'] == 1) : ?>
+	<?php if(!empty($gpo['display_country'])) : ?>
 		<td class="gigpress-country"><?php echo $showdata['country']; ?></td>
 	<?php endif; ?>
 	
@@ -95,7 +95,7 @@
 				<span class="gigpress-info-item"><?php echo $showdata['notes']; ?></span>
 			<?php endif; ?>
 			
-			<?php if($showdata['related_link'] && $gpo['relatedlink_notes'] == 1) : ?>
+			<?php if($showdata['related_link'] && !empty($gpo['relatedlink_notes'])) : ?>
 				<span class="gigpress-info-item"><?php echo $showdata['related_link']; ?></span> 
 			<?php endif; ?>
 			

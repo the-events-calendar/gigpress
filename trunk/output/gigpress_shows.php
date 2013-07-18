@@ -166,7 +166,7 @@ function gigpress_shows($filter = null, $content = null) {
 				$current_tour = '';
 				$i = 0;
 				$showdata = array(
-					'artist' => (!empty($artist_group->artist_url) && isset($gpo['artist_link']) && $gpo['artist_link'] == 1) ? '<a href="' . esc_url($artist_group->artist_url) . '"' . gigpress_target($artist_group->artist_url) . '>' . wptexturize($artist_group->artist_name) . '</a>' : wptexturize($artist_group->artist_name),
+					'artist' => (!empty($artist_group->artist_url) && !empty($gpo['artist_link'])) ? '<a href="' . esc_url($artist_group->artist_url) . '"' . gigpress_target($artist_group->artist_url) . '>' . wptexturize($artist_group->artist_name) . '</a>' : wptexturize($artist_group->artist_name),
 					'artist_plain' => wptexturize($artist_group->artist_name),
 					'artist_id' => $artist_group->artist_id,
 					'artist_url' => (!empty($artist_group->artist_url)) ? esc_url($artist_group->artist_url) : '',

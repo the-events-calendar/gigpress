@@ -119,7 +119,10 @@ $default_settings = array(
 );
 
 global $gpo;
-$gpo = array_merge($default_settings, get_option('gigpress_settings'));
+if( ! $gpo = get_option('gigpress_settings') )
+{
+	$gpo = $default_settings;
+}
 
 function gigpress_install() {
 
