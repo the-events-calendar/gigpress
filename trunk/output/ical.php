@@ -16,10 +16,11 @@ function gigpress_ical() {
 	if(isset($_GET['venue'])) {
 		$further_where .= $wpdb->prepare(' AND s.show_venue_id = %d', $_GET['venue']);
 	}
-
+	$limit = (!empty($gpo['rss_limit'])) ? $gpo['rss_limit'] : 100;
+	
 	$shows = $wpdb->get_results(
-		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id" . $further_where . " AND s.show_expire >= '" . GIGPRESS_NOW . "' ORDER BY s.show_date ASC, s.show_expire ASC, s.show_time ASC LIMIT ".$gpo['rss_limit']
-		);
+		$wpdb->prepare("SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id" . $further_where . " AND s.show_expire >= '" . GIGPRESS_NOW . "' ORDER BY s.show_date ASC, s.show_expire ASC, s.show_time ASC LIMIT %d", $limit)
+	);
 	if($shows) {
 		$count = 1;
 		$total = count($shows);

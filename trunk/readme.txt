@@ -20,6 +20,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.2.8 =
+
+* Fixed debug notices in iCal and RSS feeds (`$wpdb->prepare()` arguments missing)
+* Moved country list into /lib folder as external file for easier customization
+
 = 2.2.7 =
 
 * Fixed bug with boolean (checkbox) settings not sticking
