@@ -3,7 +3,7 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.2.9
+Version: 2.2.9.1
 Author: Derek Hogue
 Author URI: http://amphibian.info
 
@@ -27,7 +27,7 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.2.9');
+define('GIGPRESS_VERSION', '2.2.9.1');
 define('GIGPRESS_DB_VERSION', '1.6');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
@@ -125,7 +125,7 @@ function gigpress_head() {
 		// If there's a custom stylesheet, load it.
 		// First check the child theme.
 		if(file_exists(get_stylesheet_directory()."/gigpress.css")) {
-			wp_enqueue_style('gigpress-css-custom', get_stylesheet_directoty_uri().'/gigpress.css', 'gigpress-css');
+			wp_enqueue_style('gigpress-css-custom', get_stylesheet_directory_uri().'/gigpress.css', 'gigpress-css');
 		// If not, check the parent theme.
 		} elseif(file_exists(get_template_directory()."/gigpress.css")) {
 			wp_enqueue_style('gigpress-css-custom', get_template_directory_uri().'/gigpress.css', 'gigpress-css');
