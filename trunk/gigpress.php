@@ -3,7 +3,7 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.2.8
+Version: 2.2.9
 Author: Derek Hogue
 Author URI: http://amphibian.info
 
@@ -27,7 +27,7 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.2.8');
+define('GIGPRESS_VERSION', '2.2.9');
 define('GIGPRESS_DB_VERSION', '1.6');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
@@ -70,7 +70,7 @@ function gigpress_admin_menu() {
 	$settings = __("Settings", "gigpress");
 	$export = __("Import/Export", "gigpress");
 	
-	add_menu_page("GigPress &rsaquo; $add", "GigPress", $gpo['user_level'], __FILE__, "gigpress_add", WP_PLUGIN_URL . "/gigpress/images/gigpress-icon-16.png");
+	add_menu_page("GigPress &rsaquo; $add", "GigPress", $gpo['user_level'], __FILE__, "gigpress_add", plugins_url('images/gigpress-icon-16.png', __FILE__));
 	// By setting the unique identifier of the submenu page to be __FILE__,
 	// we let it be the first page to load when the top-level menu item is clicked
 	add_submenu_page(__FILE__, "GigPress &rsaquo; $add", $add, $gpo['user_level'], __FILE__, "gigpress_add");
@@ -92,8 +92,8 @@ function gigpress_admin_menu() {
 function gigpress_admin_head()	{
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquery-ui-sortable');
-	wp_enqueue_script('gigpress-admin-js', WP_PLUGIN_URL . '/gigpress/scripts/gigpress-admin.js', 'jquery');
-	wp_enqueue_style('gigpress-admin-css', WP_PLUGIN_URL . '/gigpress/css/gigpress-admin.css');
+	wp_enqueue_script('gigpress-admin-js', plugins_url('scripts/gigpress-admin.js', __FILE__), 'jquery');
+	wp_enqueue_style('gigpress-admin-css', plugins_url('css/gigpress-admin.css', __FILE__));
 }
 
 
@@ -110,7 +110,7 @@ function gigpress_js() {
 	}
 	if(empty($gpo['disable_js']))
 	{
-		wp_enqueue_script('gigpress-js', WP_PLUGIN_URL . '/gigpress/scripts/gigpress.js', 'jquery');
+		wp_enqueue_script('gigpress-js', plugins_url('scripts/gigpress.js', __FILE__), 'jquery');
 	}
 }
 
@@ -121,18 +121,14 @@ function gigpress_head() {
 	
 	if(empty($gpo['disable_css']))
 	{
-		// Default stylesheet
-		echo('<link type="text/css" rel="stylesheet" href="' . WP_PLUGIN_URL . '/gigpress/css/gigpress.css" media="all" />
-');	
+		wp_enqueue_style('gigpress-css', plugins_url('css/gigpress.css', __FILE__));
 		// If there's a custom stylesheet, load it.
 		// First check the child theme.
 		if(file_exists(get_stylesheet_directory()."/gigpress.css")) {
-			echo('<link type="text/css" rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/gigpress.css" media="all" />
-	');
+			wp_enqueue_style('gigpress-css-custom', get_stylesheet_directoty_uri().'/gigpress.css', 'gigpress-css');
 		// If not, check the parent theme.
 		} elseif(file_exists(get_template_directory()."/gigpress.css")) {
-			echo('<link type="text/css" rel="stylesheet" href="' . get_template_directory_uri() . '/gigpress.css" media="all" />
-	');
+			wp_enqueue_style('gigpress-css-custom', get_template_directory_uri().'/gigpress.css', 'gigpress-css');
 		}
 	}
 	
