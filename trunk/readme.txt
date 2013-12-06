@@ -20,6 +20,10 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.2.9 =
+
+	* Replaced all instances of `WP_PLUGIN_URL` with `plugins_url()` function for compatibility with SSL-enabled sites (hat-tip: Jonathan Eiseman)
+
 = 2.2.8 =
 
 * Fixed debug notices in iCal and RSS feeds (`$wpdb->prepare()` arguments missing)
