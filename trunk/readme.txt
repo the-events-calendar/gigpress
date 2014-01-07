@@ -3,7 +3,7 @@ Contributors: mrherbivore
 Donate link: http://gigpress.com/donate
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 3.0
-Tested up to: 3.5
+Tested up to: 3.8
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -19,6 +19,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 * No lock-in here. Import your shows from a CSV file, without fear of duplicate data. Export your shows database to CSV - filtered by artist, tour, and date.
 
 == Changelog ==
+
+= 2.2.9.2 =
+
+* Added setting for "Buy Tickets" language
+* Updated admin menu with new icon for WordPress 2.8
 
 = 2.2.9.1 = 
 

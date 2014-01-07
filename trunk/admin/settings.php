@@ -90,6 +90,12 @@ function gigpress_settings() {
 			</td>
 		</tr>
 		<tr>
+			<th scope="row"><?php _e("Buy tickets label", "gigpress") ?>:</th>
+			<td>
+				<input type="text" name="gigpress_settings[buy_tickets_label]" size="48" value="<?php echo $gpo['buy_tickets_label']; ?>" />
+			</td>
+		</tr>
+		<tr>
 			<th scope="row"><?php _e("Age restrictions", "gigpress") ?>:</th>
 			<td>
 				<input type="text" name="gigpress_settings[age_restrictions]" size="48" value="<?php echo $gpo['age_restrictions']; ?>" /> <span class="description"><?php _e("A pipe-separated list of available age restrictions.", "gigpress"); ?></span>

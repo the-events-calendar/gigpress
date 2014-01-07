@@ -3,7 +3,7 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.2.9.1
+Version: 2.2.9.2
 Author: Derek Hogue
 Author URI: http://amphibian.info
 
@@ -27,7 +27,7 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.2.9.1');
+define('GIGPRESS_VERSION', '2.2.9.2');
 define('GIGPRESS_DB_VERSION', '1.6');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
@@ -60,7 +60,7 @@ require('lib/countries.php');
 
 function gigpress_admin_menu() {
 	
-	global $gpo;
+	global $gpo, $wp_version;
 	
 	$add = __("Add a show", "gigpress");
 	$shows = __("Shows", "gigpress");
@@ -70,7 +70,9 @@ function gigpress_admin_menu() {
 	$settings = __("Settings", "gigpress");
 	$export = __("Import/Export", "gigpress");
 	
-	add_menu_page("GigPress &rsaquo; $add", "GigPress", $gpo['user_level'], __FILE__, "gigpress_add", plugins_url('images/gigpress-icon-16.png', __FILE__));
+	$icon = ($wp_version >= 3.8) ? 'dashicons-calendar' : plugins_url('images/gigpress-icon-16.png', __FILE__);
+	
+	add_menu_page("GigPress &rsaquo; $add", "GigPress", $gpo['user_level'], __FILE__, "gigpress_add", $icon);
 	// By setting the unique identifier of the submenu page to be __FILE__,
 	// we let it be the first page to load when the top-level menu item is clicked
 	add_submenu_page(__FILE__, "GigPress &rsaquo; $add", $add, $gpo['user_level'], __FILE__, "gigpress_add");
@@ -217,6 +219,7 @@ function gigpress_prepare($show, $scope = 'public') {
 	$showdata['address_url'] .= ','.urlencode($show->venue_country);
 	$showdata['address'] = (!empty($show->venue_address)) ? '<a href="' . $showdata['address_url'] . '" class="gigpress-address"' . gigpress_target($showdata['address_url']) . '>' . wptexturize($show->venue_address) . '</a>' : '';
 	$showdata['city'] = (!empty($show->show_related) && !empty($gpo['relatedlink_city']) && $scope == 'public') ? '<a href="' . gigpress_related_link($show->show_related, "url") . '">' . wptexturize($show->venue_city) . '</a>' : wptexturize($show->venue_city);	
+	$showdata['city_plain'] = wptexturize($show->venue_city);	
 	$showdata['state'] = (!empty($show->venue_state)) ? $show->venue_state : '';
 	$showdata['postal_code'] = (!empty($show->venue_postal_code)) ? $show->venue_postal_code : '';
 	$showdata['country'] = (!empty($gpo['country_view'])) ? wptexturize($gp_countries[$show->venue_country]) : $show->venue_country;
@@ -276,7 +279,7 @@ function gigpress_prepare($show, $scope = 'public') {
 		$showdata['rss_date'] = mysql2date('D, d M Y', $show->show_date, false). " ". $show->show_time." " . gigpress_get_O_offset(get_option('gmt_offset'));
 		$showdata['status'] = $show->show_status;
 		switch($showdata['status']) {
-			case 'active': $showdata['ticket_link'] = ($show->show_tix_url && $show->show_expire >= GIGPRESS_NOW) ? '<a href="' . esc_url($show->show_tix_url)  . '"' . gigpress_target($show->show_tix_url) . ' class="gigpress-tickets-link">' . __("Buy tickets", "gigpress") . '</a>' : '';
+			case 'active': $showdata['ticket_link'] = ($show->show_tix_url && $show->show_expire >= GIGPRESS_NOW) ? '<a href="' . esc_url($show->show_tix_url)  . '"' . gigpress_target($show->show_tix_url) . ' class="gigpress-tickets-link">' . wptexturize($gpo['buy_tickets_label']) . '</a>' : '';
 			break;
 			case 'soldout' : $showdata['ticket_link'] = '<strong class="gigpress-soldout">' . __("Sold Out", "gigpress") . '</strong>';
 			break;
@@ -391,7 +394,7 @@ function gigpress_admin_pagination($total_records, $records_per_page, $args) {
 			'add_args' => $args
 		) );
 		// Lifted from edit.php!
-		$r['output'] .= sprintf( '<span class="displaying-num">' . __( 'Displaying %s&#8211;%s of %s' ) . '</span>%s',
+		$r['output'] .= sprintf( '<span class="displaying-num">' . __( 'Displaying %s&#8211;%s of %s' ) . '</span> &nbsp; %s',
 		number_format_i18n( ( $current_page - 1 ) * $records_per_page + 1 ),
 		number_format_i18n( min( $current_page * $records_per_page, $total_records ) ),
 		number_format_i18n( $total_records ),

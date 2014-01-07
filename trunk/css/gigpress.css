@@ -268,14 +268,20 @@ span.gigpress-sidebar-date {
 }
 
 /* Sold Out shows in the sidebar */
-ul.gigpress-listing strong.gigpress-soldout {
+ul.gigpress-listing strong.gigpress-soldout, ul.gigpress-listing a.gigpress-tickets-link {
 	display: block;
 }
 
 
 /* These styles control the Related Show list that appears in the body of Related Posts */
 ul.gigpress-related-show {
-	margin-bottom: 2em;
+	margin: 0 0 2em;
+}
+
+ul.gigpress-related-show ul, ul.gigpress-related-show li {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
 }
 
 .gigpress-related-label {
