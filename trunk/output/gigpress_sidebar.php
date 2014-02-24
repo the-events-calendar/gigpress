@@ -263,7 +263,7 @@ function gigpress_sidebar($filter = null) {
 	
 	if($group_artists && !$tour && !$artist && !$venue && $total_artists > 1) { 
 		
-		$artists = $wpdb->get_results("SELECT * FROM " . GIGPRESS_ARTISTS . " ORDER BY " . $artist_order . "artist_name ASC");
+		$artists = $wpdb->get_results("SELECT * FROM " . GIGPRESS_ARTISTS . " ORDER BY " . $artist_order . "artist_alpha ASC");
 		
 		foreach($artists as $artist_group) {
 		

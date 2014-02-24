@@ -20,10 +20,15 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.2.9.3 =
+
+* Fixed alphabetical ordering of artists (ignoring definite/indefinite articles)
+* Updated German translation
+
 = 2.2.9.2 =
 
 * Added setting for "Buy Tickets" language
-* Updated admin menu with new icon for WordPress 2.8
+* Updated admin menu with new icon for WordPress 3.8
 
 = 2.2.9.1 = 
 
