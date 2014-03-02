@@ -149,6 +149,8 @@ function gigpress_shows($filter = null, $content = null) {
 		include gigpress_template('after-menu');
 	}
 	
+	$shows_markup = array();
+	
 	// If we're grouping by artist, we'll unfortunately have to first get all artists
 	// Then  make a query for each one. Looking for a better way to do this.
 	
@@ -195,6 +197,29 @@ function gigpress_shows($filter = null, $content = null) {
 					$class .= ($showdata['tour'] && !$tour) ? ' gigpress-tour' : '';
 					
 					include gigpress_template('shows-list');
+					
+					$show_markup = array("@context" => "http://schema.org", "@type" => "Event");
+					$show_markup['name'] = $showdata['artist_plain'];
+					$show_markup['startDate'] = $showdata['iso_date'];
+					//if(!empty($showdata['venue_url'])) { $show_markup['typicalAgeRange'] = $showdata['venue_url']; }
+					
+					
+					$location_markup = array("@type" => "Place");
+					$location_markup['name'] = $showdata['venue_plain'];
+					if(!empty($showdata['venue_url'])) { $location_markup['url'] = $showdata['venue_url']; }
+					if(!empty($showdata['venue_phone'])) { $location_markup['telephone'] = $showdata['venue_phone']; }
+					
+					$address_markup = array("@type" => "PostalAddress");
+					if(!empty($showdata['address_plain'])) { $address_markup['streetAddress'] = $showdata['address_plain']; }
+					$address_markup['addressLocality'] = $showdata['city'];
+					if(!empty($showdata['state'])) { $address_markup['addressRegion'] = $showdata['state']; }
+					if(!empty($showdata['postal_code'])) { $address_markup['postalCode'] = $showdata['postal_code']; }
+					if(!empty($showdata['country'])) { $address_markup['addressCountry'] = array("@type" => "Country", "name" => $showdata['country']); }
+					
+					$location_markup['address'] = $address_markup;
+					
+					$show_markup['location'] = $location_markup;
+					array_push($shows_markup,$show_markup);
 
 				}
 				
@@ -204,6 +229,8 @@ function gigpress_shows($filter = null, $content = null) {
 		
 		if($some_results) {
 		// After all artist groups
+			$shows_markup_json = json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+			
 			include gigpress_template('shows-list-footer');
 		} else {	
 			// No shows from any artist
