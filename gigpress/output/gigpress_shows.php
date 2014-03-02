@@ -198,7 +198,7 @@ function gigpress_shows($filter = null, $content = null) {
 					
 					include gigpress_template('shows-list');
 					
-					$show_markup = gigpress_json-ld($showdata);
+					$show_markup = gigpress_json_ld($showdata);
 					array_push($shows_markup,$show_markup);
 				}
 				
@@ -250,7 +250,7 @@ function gigpress_shows($filter = null, $content = null) {
 				
 				include gigpress_template('shows-list');
 				
-				$show_markup = gigpress_json-ld($showdata);
+				$show_markup = gigpress_json_ld($showdata);
 				array_push($shows_markup,$show_markup);
 			}
 			
@@ -382,12 +382,20 @@ function gigpress_has_upcoming($filter = null)
 	
 }
 
-function gigpress_json-ld($showdata) {
+function gigpress_json_ld($showdata) {
 	$show_markup = array("@context" => "http://schema.org", "@type" => "Event");
 	$show_markup['name'] = $showdata['artist_plain'];
 	$show_markup['startDate'] = $showdata['iso_date'];
-	//if(!empty($showdata['venue_url'])) { $show_markup['typicalAgeRange'] = $showdata['venue_url']; }
+	if(!empty($showdata['external_url'])) { $show_markup['url'] = $showdata['external_url']; }
+	if(!empty($showdata['iso_end_date']) && $showdata['iso_end_date'] != $showdata['iso_date']) { $show_markup['endDate'] = $showdata['iso_end_date']; }
+	if(!empty($showdata['notes'])) { $show_markup['description'] = $showdata['notes']; }
+	if(!empty($showdata['status']) && $showdata['status'] == "cancelled") { $show_markup['eventStatus'] = "http://schema.org/EventCancelled"; }
+	if(!empty($showdata['admittance'])) { $show_markup['typicalAgeRange'] = $showdata['admittance']; }
 
+	$performer_markup = array("@type" => "Organization");
+	$performer_markup['name'] = $showdata['artist_plain'];
+	if(!empty($showdata['artist_url'])) { $performer_markup['url'] = $showdata['artist_url']; }
+	$show_markup['performers'] = $performer_markup;
 
 	$location_markup = array("@type" => "Place");
 	$location_markup['name'] = $showdata['venue_plain'];
@@ -404,6 +412,15 @@ function gigpress_json-ld($showdata) {
 	$location_markup['address'] = $address_markup;
 
 	$show_markup['location'] = $location_markup;
+	
+	if(!empty($showdata['price'])) {
+		$offer_markup = array("@type" => "Offer");
+		if(!empty($showdata['price'])) { $offer_markup['price'] = $showdata['price']; }
+		if(!empty($showdata['ticket_url'])) { $offer_markup['url'] = $showdata['ticket_url']; }
+		if(!empty($showdata['ticket_phone'])) { $offer_markup['seller'] = array("@type" => "Organization", "telephone" => $showdata['ticket_phone']); }
+		if(!empty($showdata['status']) && $showdata['status'] == "soldout") { $offer_markup['availability'] = "http://schema.org/SoldOut"; }
+		$show_markup['offers'] = $offer_markup;
+	}
 	
 	return $show_markup;
 }
