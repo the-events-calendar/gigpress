@@ -382,9 +382,13 @@ function gigpress_has_upcoming($filter = null)
 	
 }
 
-function gigpress_json_ld($showdata) {
+function gigpress_json_ld($showdata)
+{
+	// Start array for single event
 	$show_markup = array("@context" => "http://schema.org", "@type" => "Event");
-	$show_markup['name'] = $showdata['artist_plain'];
+	
+	// Add show level attributes
+	if(!empty($showdata['tour'])) { $show_markup['name'] = $showdata['tour']; }
 	$show_markup['startDate'] = $showdata['iso_date'];
 	if(!empty($showdata['external_url'])) { $show_markup['url'] = $showdata['external_url']; }
 	if(!empty($showdata['iso_end_date']) && $showdata['iso_end_date'] != $showdata['iso_date']) { $show_markup['endDate'] = $showdata['iso_end_date']; }
@@ -392,33 +396,52 @@ function gigpress_json_ld($showdata) {
 	if(!empty($showdata['status']) && $showdata['status'] == "cancelled") { $show_markup['eventStatus'] = "http://schema.org/EventCancelled"; }
 	if(!empty($showdata['admittance'])) { $show_markup['typicalAgeRange'] = $showdata['admittance']; }
 
+	// Create performer
 	$performer_markup = array("@type" => "Organization");
+	
+	// Add performer attributes
 	$performer_markup['name'] = $showdata['artist_plain'];
 	if(!empty($showdata['artist_url'])) { $performer_markup['url'] = $showdata['artist_url']; }
+	
+	// Merge performer into show
 	$show_markup['performers'] = $performer_markup;
 
+	// Create venue
 	$location_markup = array("@type" => "Place");
+	
+	//Add venue attributes
 	$location_markup['name'] = $showdata['venue_plain'];
 	if(!empty($showdata['venue_url'])) { $location_markup['url'] = $showdata['venue_url']; }
 	if(!empty($showdata['venue_phone'])) { $location_markup['telephone'] = $showdata['venue_phone']; }
 
+	// Create venue address
 	$address_markup = array("@type" => "PostalAddress");
+	
+	//Add address attributes
 	if(!empty($showdata['address_plain'])) { $address_markup['streetAddress'] = $showdata['address_plain']; }
 	$address_markup['addressLocality'] = $showdata['city'];
 	if(!empty($showdata['state'])) { $address_markup['addressRegion'] = $showdata['state']; }
 	if(!empty($showdata['postal_code'])) { $address_markup['postalCode'] = $showdata['postal_code']; }
 	if(!empty($showdata['country'])) { $address_markup['addressCountry'] = array("@type" => "Country", "name" => $showdata['country']); }
 
+	// Merge address into venue
 	$location_markup['address'] = $address_markup;
 
+	// Merge venue into show
 	$show_markup['location'] = $location_markup;
 	
-	if(!empty($showdata['price'])) {
+	// Create offer (if price exists)
+	if(!empty($showdata['price']))
+	{
 		$offer_markup = array("@type" => "Offer");
+		
+		// Add offer attributes
 		if(!empty($showdata['price'])) { $offer_markup['price'] = $showdata['price']; }
 		if(!empty($showdata['ticket_url'])) { $offer_markup['url'] = $showdata['ticket_url']; }
 		if(!empty($showdata['ticket_phone'])) { $offer_markup['seller'] = array("@type" => "Organization", "telephone" => $showdata['ticket_phone']); }
 		if(!empty($showdata['status']) && $showdata['status'] == "soldout") { $offer_markup['availability'] = "http://schema.org/SoldOut"; }
+		
+		// Merge offer into show
 		$show_markup['offers'] = $offer_markup;
 	}
 	
