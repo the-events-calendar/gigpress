@@ -393,7 +393,7 @@ function gigpress_json_ld($showdata)
 	if(!empty($showdata['external_url'])) { $show_markup['url'] = $showdata['external_url']; }
 	if(!empty($showdata['iso_end_date']) && $showdata['iso_end_date'] != $showdata['iso_date']) { $show_markup['endDate'] = $showdata['iso_end_date']; }
 	if(!empty($showdata['notes'])) { $show_markup['description'] = $showdata['notes']; }
-	if(!empty($showdata['status']) && $showdata['status'] == "cancelled") { $show_markup['eventStatus'] = "http://schema.org/EventCancelled"; }
+	if(!empty($showdata['status']) && $showdata['status'] == "cancelled") { $show_markup['eventStatus'] = "EventCancelled"; }
 	if(!empty($showdata['admittance'])) { $show_markup['typicalAgeRange'] = $showdata['admittance']; }
 
 	// Create performer
@@ -422,7 +422,7 @@ function gigpress_json_ld($showdata)
 	$address_markup['addressLocality'] = $showdata['city'];
 	if(!empty($showdata['state'])) { $address_markup['addressRegion'] = $showdata['state']; }
 	if(!empty($showdata['postal_code'])) { $address_markup['postalCode'] = $showdata['postal_code']; }
-	if(!empty($showdata['country'])) { $address_markup['addressCountry'] = array("@type" => "Country", "name" => $showdata['country']); }
+	if(!empty($showdata['country'])) { $address_markup['addressCountry'] = $showdata['country']; }
 
 	// Merge address into venue
 	$location_markup['address'] = $address_markup;
@@ -439,7 +439,7 @@ function gigpress_json_ld($showdata)
 		if(!empty($showdata['price'])) { $offer_markup['price'] = $showdata['price']; }
 		if(!empty($showdata['ticket_url'])) { $offer_markup['url'] = $showdata['ticket_url']; }
 		if(!empty($showdata['ticket_phone'])) { $offer_markup['seller'] = array("@type" => "Organization", "telephone" => $showdata['ticket_phone']); }
-		if(!empty($showdata['status']) && $showdata['status'] == "soldout") { $offer_markup['availability'] = "http://schema.org/SoldOut"; }
+		if(!empty($showdata['status']) && $showdata['status'] == "soldout") { $offer_markup['availability'] = "SoldOut"; }
 		
 		// Merge offer into show
 		$show_markup['offers'] = $offer_markup;
