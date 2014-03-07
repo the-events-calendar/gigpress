@@ -14,7 +14,7 @@ function gigpress_archive($filter = null, $content = null) {
 
 
 function gigpress_shows($filter = null, $content = null) {
-	
+
 	global $wpdb, $gpo;
 	$further_where = $limit = '';
 	
@@ -198,8 +198,11 @@ function gigpress_shows($filter = null, $content = null) {
 					
 					include gigpress_template('shows-list');
 					
-					$show_markup = gigpress_json_ld($showdata);
-					array_push($shows_markup,$show_markup);
+					if(!empty($gpo['output_schema_json']))
+					{
+						$show_markup = gigpress_json_ld($showdata);
+						array_push($shows_markup,$show_markup);
+					}
 				}
 				
 				include gigpress_template('shows-list-end');						
@@ -207,10 +210,12 @@ function gigpress_shows($filter = null, $content = null) {
 		}
 		
 		if($some_results) {
-		// After all artist groups
-			$shows_markup_json = json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-			
+			// After all artist groups		
 			include gigpress_template('shows-list-footer');
+			if(!empty($shows_markup))
+			{
+				echo '<script type="application/ld+json">'.json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).'</script>';
+			}			
 		} else {	
 			// No shows from any artist
 			include gigpress_template('shows-list-empty');
@@ -250,14 +255,20 @@ function gigpress_shows($filter = null, $content = null) {
 				
 				include gigpress_template('shows-list');
 				
-				$show_markup = gigpress_json_ld($showdata);
-				array_push($shows_markup,$show_markup);
+				if(!empty($gpo['output_schema_json']))
+				{
+					$show_markup = gigpress_json_ld($showdata);
+					array_push($shows_markup,$show_markup);
+				}
 			}
 			
 			include gigpress_template('shows-list-end');
-			
-			$shows_markup_json = json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-			include gigpress_template('shows-list-footer');			
+			include gigpress_template('shows-list-footer');
+
+			if(!empty($shows_markup))
+			{
+				echo '<script type="application/ld+json">'.json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).'</script>';
+			}
 			
 		} else {
 			// No shows to display
@@ -390,7 +401,14 @@ function gigpress_json_ld($showdata)
 	// Add show level attributes
 	if(!empty($showdata['tour'])) { $show_markup['name'] = $showdata['tour']; }
 	$show_markup['startDate'] = $showdata['iso_date'];
-	if(!empty($showdata['external_url'])) { $show_markup['url'] = $showdata['external_url']; }
+	if(!empty($showdata['related_url']))
+	{
+		$show_markup['url'] = $showdata['related_url'];
+	}
+	elseif(!empty($showdata['external_url']))
+	{
+		$show_markup['url'] = $showdata['external_url'];
+	}
 	if(!empty($showdata['iso_end_date']) && $showdata['iso_end_date'] != $showdata['iso_date']) { $show_markup['endDate'] = $showdata['iso_end_date']; }
 	if(!empty($showdata['notes'])) { $show_markup['description'] = $showdata['notes']; }
 	if(!empty($showdata['status']) && $showdata['status'] == "cancelled") { $show_markup['eventStatus'] = "EventCancelled"; }

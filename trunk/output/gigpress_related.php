@@ -35,15 +35,21 @@ function gigpress_show_related($args = array(), $content = '') {
 	
 		if($shows != FALSE) {
 			
+			$shows_markup = array();
 			ob_start();
 				
-				$count = 1;
-				$total_shows = count($shows);
-				foreach ($shows as $show) {
-					$showdata = gigpress_prepare($show, 'related');						
-					include gigpress_template('related');
-					$count++;
+			$count = 1;
+			$total_shows = count($shows);
+			foreach ($shows as $show) {
+				$showdata = gigpress_prepare($show, 'related');						
+				include gigpress_template('related');
+				if(!empty($gpo['output_schema_json']))
+				{
+					$show_markup = gigpress_json_ld($showdata);
+					array_push($shows_markup,$show_markup);
 				}
+				$count++;
+			}
 			
 			$giginfo = ob_get_clean();
 			
@@ -51,6 +57,11 @@ function gigpress_show_related($args = array(), $content = '') {
 				$output = $giginfo . $content;
 			} else {
 				$output = $content . $giginfo;
+			}
+			
+			if(!empty($shows_markup))
+			{
+				$output .= '<script type="application/ld+json">'.json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).'</script>';
 			}
 			
 			return $output;

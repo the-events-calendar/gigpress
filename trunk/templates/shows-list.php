@@ -14,18 +14,12 @@
 
 ?>
 
-<tbody class="vevent">
+<tbody>
 	
 	<tr class="gigpress-row <?php echo $class; ?>">
 	
 		<td class="gigpress-date">
-			<abbr class="dtstart" title="<?php echo $showdata['iso_date']; ?>"><?php echo $showdata['date']; ?></abbr>
-		<?php if($showdata['end_date']) : ?>
-			- <abbr class="dtend" title="<?php echo $showdata['iso_end_date']; ?>">
-				<?php echo $showdata['end_date']; ?>
-			</abbr>
-		<?php endif; ?>
-			<span class="hide url"><?php echo ($showdata['related_url']) ? $showdata['related_url'] : GIGPRESS_URL; ?></span>
+			<?php echo $showdata['date']; ?><?php if($showdata['end_date']) : ?> - <?php echo $showdata['end_date']; ?><?php endif; ?>
 		</td>
 		
 	<?php if((!$artist && $group_artists == 'no') && $total_artists > 1) : ?>
@@ -34,12 +28,13 @@
 		</td>
 	<?php endif; ?>
 	
-		<td class="gigpress-city summary">
-			<span class="hide"><?php echo $showdata['artist_plain']; ?> <?php _e("in", "gigpress"); ?> </span>
+		<td class="gigpress-city" itemprop="summary">
 			<?php echo $showdata['city']; if(!empty($showdata['state'])) echo ', '.$showdata['state']; ?>
 		</td>
 		
-		<td class="gigpress-venue location<?php if($venue) : ?> hide<?php endif; ?>"><?php echo $showdata['venue']; ?></td>
+		<td class="gigpress-venue">
+			<span itemprop="name"><?php echo $showdata['venue']; ?></span>
+		</td>
 		
 	<?php if(!empty($gpo['display_country'])) : ?>
 		<td class="gigpress-country"><?php echo $showdata['country']; ?></td>
@@ -65,7 +60,7 @@
 			<?php endif; ?>
 		</td>
 		
-		<td colspan="<?php echo $cols - 1; ?>" class="description">
+		<td colspan="<?php echo $cols - 1; ?>">
 		
 			<?php if($showdata['time']) : ?>
 				<span class="gigpress-info-item"><span class="gigpress-info-label"><?php _e("Time", "gigpress"); ?>:</span> <?php echo $showdata['time']; ?>.</span>

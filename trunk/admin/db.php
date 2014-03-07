@@ -98,6 +98,7 @@ $default_settings = array(
 	'load_jquery' => 1,
 	'nopast' => 'No shows in the archive yet.',
 	'noupcoming' => 'No shows booked at the moment.',
+	'output_schema_json' => 1,
 	'related_category' => 1,
 	'related_heading' => 'Related show',
 	'related_position' => 'after',

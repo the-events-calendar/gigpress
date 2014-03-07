@@ -20,6 +20,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3 =
+
+* Added schema.org/Event structured data markup to support indexing of events by search engines (formatted with the new JSON-LD standard)
+* Removed hCalendar markup elements from default templates
+
 = 2.2.9.3 =
 
 * Fixed alphabetical ordering of artists (ignoring definite/indefinite articles)

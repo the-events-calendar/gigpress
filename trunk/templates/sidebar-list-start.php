@@ -9,4 +9,4 @@
 
 ?>
 
-<ul class="gigpress-listing vcalendar">
+<ul class="gigpress-listing">

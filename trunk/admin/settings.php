@@ -186,6 +186,14 @@ function gigpress_settings() {
 			</td>
 		</tr>
 		<tr>
+			<th scope="row"><?php _e("Microdata", "gigpress") ?></th>
+			<td>	
+				<p><label><input type="checkbox" name="gigpress_settings[output_schema_json]" value="1" <?php if(!empty($gpo['output_schema_json'])) echo('checked="checked"'); ?> /> <?php _e("
+				Include Schema.org/Event structured data as JSON-LD", "gigpress") ?></label>
+				</p>
+			</td>
+		</tr>
+		<tr>
 			<th scope="row"><?php _e("jQuery", "gigpress") ?></th>
 			<td>	
 				<p><label><input type="checkbox" name="gigpress_settings[load_jquery]" value="1" <?php if(!empty($gpo['load_jquery'])) echo('checked="checked"'); ?> /> <?php _e("Load jQuery into my theme.", "gigpress") ?></label>
