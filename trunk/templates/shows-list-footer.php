@@ -11,6 +11,10 @@
 
 ?>
 
+<script type="application/ld+json">
+<?php echo $shows_markup_json; ?>
+</script>
+
 <?php if(!empty($gpo['display_subscriptions'])) : ?>
 	<p class="gigpress-subscribe"><?php _e("Subscribe", "gigpress"); ?>: 
 	
