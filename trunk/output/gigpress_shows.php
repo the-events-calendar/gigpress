@@ -214,7 +214,17 @@ function gigpress_shows($filter = null, $content = null) {
 			include gigpress_template('shows-list-footer');
 			if(!empty($shows_markup))
 			{
-				echo '<script type="application/ld+json">'.json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).'</script>';
+				echo '<script type="application/ld+json">';
+				if (!defined("JSON_UNESCAPED_SLASHES"))
+				{
+					require_once(WP_PLUGIN_DIR . '/gigpress/lib/upgrade.php');
+					echo up_json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+				}
+				else
+				{
+					echo json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+				}
+				echo '</script>';
 			}			
 		} else {	
 			// No shows from any artist
@@ -267,7 +277,17 @@ function gigpress_shows($filter = null, $content = null) {
 
 			if(!empty($shows_markup))
 			{
-				echo '<script type="application/ld+json">'.json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).'</script>';
+				echo '<script type="application/ld+json">';
+				if (!defined("JSON_UNESCAPED_SLASHES"))
+				{
+					require_once(WP_PLUGIN_DIR . '/gigpress/lib/upgrade.php');
+					echo up_json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+				}
+				else
+				{
+					echo json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+				}
+				echo '</script>';
 			}
 			
 		} else {

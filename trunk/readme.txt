@@ -13,12 +13,16 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 * GigPress is intuitive and easy-to-use. Add artists, venues, tours, and related posts on-the-fly, all saved in your database for re-use, all seamlessly within the WordPress admin.
 * Manage multiple artists within GigPress, and display them either as a combined listing, or grouped by artist. Add an artist parameter to the shortcode and list only shows from a particular artist.
-* GigPress features RSS and iCalendar feeds for your upcoming shows and for individual artists and tours, plus Google Calendar and iCal download links for each individual show. Also: hCalendar markup!
+* GigPress features RSS and iCalendar feeds for your upcoming shows and for individual artists and tours, plus Google Calendar and iCal download links for each individual show. It can also output Schema.org/Event structured data for search engines.
 * Advanced users can fully-customize the HTML and CSS used by GigPress to display your shows without altering any plugin files, making all changes upgrade-safe.
 * Link up a related post for each show and your show's full details will appear within your post. Automatically create new related posts with customizable titles when entering new shows.
 * No lock-in here. Import your shows from a CSV file, without fear of duplicate data. Export your shows database to CSV - filtered by artist, tour, and date.
 
 == Changelog ==
+
+= 2.3.1 =
+
+* Added support for outputting schema.org/Event structured data under PHP < 5.4
 
 = 2.3 =
 
