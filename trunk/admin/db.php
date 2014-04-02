@@ -98,7 +98,7 @@ $default_settings = array(
 	'load_jquery' => 1,
 	'nopast' => 'No shows in the archive yet.',
 	'noupcoming' => 'No shows booked at the moment.',
-	'output_schema_json' => 1,
+	'output_schema_json' => 'y',
 	'related_category' => 1,
 	'related_heading' => 'Related show',
 	'related_position' => 'after',
@@ -130,6 +130,12 @@ if( ! $gpo = get_option('gigpress_settings') )
 if(empty($gpo['buy_tickets_label']))
 {
 	$gpo['buy_tickets_label'] = 'Buy Tickets';
+	update_option('gigpress_settings', $gpo);
+}
+
+if(empty($gpo['output_schema_json']) || (!empty($gpo['output_schema_json']) && $gpo['output_schema_json'] == 1))
+{
+	$gpo['output_schema_json'] = 'y';
 	update_option('gigpress_settings', $gpo);
 }
 

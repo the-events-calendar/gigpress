@@ -3,7 +3,7 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.3.1
+Version: 2.3.2
 Author: Derek Hogue
 Author URI: http://amphibian.info
 
@@ -27,7 +27,7 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.3.1');
+define('GIGPRESS_VERSION', '2.3.2');
 define('GIGPRESS_DB_VERSION', '1.6');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
@@ -441,35 +441,36 @@ function gigpress_favorites($actions) {
 }
 
 
-function enable_custom_menu_order($flag) {
-	return TRUE;
-}
-
 function custom_menu_order($menu_order) {
 	
-	// Add a new separator to the menu array
-	global $menu;
-	$menu[] = array('', 'read', 'separator-gp', '', 'wp-menu-separator');
-	
-	// Remove the current instance of GigPress
-	$current_position = array_search('gigpress/gigpress.php', $menu_order);
-	unset($menu_order[$current_position]);
-	
-	// Create a new array to hold the menu order
-	$new_menu_order = array();
-	
-	// Replicate the existing order,
-	// inserting GigPress and separator where desired
-	foreach($menu_order as $menu_item) {
-		$new_menu_order[] = $menu_item;
-		if($menu_item == 'edit-comments.php')
-		{
-			$new_menu_order[] =  'separator-gp';
-			$new_menu_order[] = 'gigpress/gigpress.php';		
+	if($current_position = array_search('gigpress/gigpress.php', $menu_order))
+	{
+		// Add a new separator to the menu array
+		global $menu;
+		$menu[] = array('', 'read', 'separator-gp', '', 'wp-menu-separator');
+		
+		// Remove the current instance of GigPress
+		unset($menu_order[$current_position]);
+		
+		// Create a new array to hold the menu order
+		$new_menu_order = array();
+		
+		// Replicate the existing order,
+		// inserting GigPress and separator where desired
+		foreach($menu_order as $menu_item) {
+			$new_menu_order[] = $menu_item;
+			if($menu_item == 'edit-comments.php')
+			{
+				$new_menu_order[] =  'separator-gp';
+				$new_menu_order[] = 'gigpress/gigpress.php';		
+			}
 		}
 	}
-
-	return $new_menu_order;
+	else
+	{
+		$new_menu_order = $menu_order;		
+	}
+	return $new_menu_order;		
 }
 
 
@@ -588,7 +589,7 @@ function fetch_gigpress_venues() {
 	global $wpdb;
 	$venues = $wpdb->get_results("
 		SELECT * FROM ". GIGPRESS_VENUES ." 
-		ORDER BY venue_name ASC");
+		ORDER BY venue_name ASC, venue_city ASC");
 	return ($venues !== FALSE) ? $venues : FALSE;
 }
 
@@ -614,7 +615,7 @@ add_action('admin_post_gigpress_export', 'gigpress_export');
 add_action('admin_post_nopriv_gigpress_export', 'gigpress_export_nopriv');
 add_action('wp_ajax_gigpress_reorder_artists', 'gigpress_reorder_artists');
 
-add_filter('custom_menu_order', 'enable_custom_menu_order');
+add_filter('custom_menu_order', '__return_true');
 add_filter('menu_order', 'custom_menu_order');
 add_filter('upload_mimes','add_upload_ext');
 add_filter('favorite_actions', 'gigpress_favorites');

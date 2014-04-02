@@ -20,6 +20,12 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.2 =
+
+* Now enabling JSON-LD output by default when upgrading
+* Removed some extraneous markup from default templates
+* Fixed PHP error related to custom menu order when inside Network Dashboard
+
 = 2.3.1 =
 
 * Added support for outputting schema.org/Event structured data under PHP < 5.4

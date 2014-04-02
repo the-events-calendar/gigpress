@@ -198,7 +198,7 @@ function gigpress_shows($filter = null, $content = null) {
 					
 					include gigpress_template('shows-list');
 					
-					if(!empty($gpo['output_schema_json']))
+					if($gpo['output_schema_json'] == 'y')
 					{
 						$show_markup = gigpress_json_ld($showdata);
 						array_push($shows_markup,$show_markup);
