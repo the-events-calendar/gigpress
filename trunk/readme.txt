@@ -20,6 +20,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.4 =
+
+* Now always setting an event name in the JSON-LD markup
+* Removed the requirement that a price be included to include offer information in the JSON-LD markup (h/t Alex Unger)
+
 = 2.3.3 =
 
 * Fix improper escaping of quotes in up_json_encode function (for PHP < 5.4) - h/t Alex Unger

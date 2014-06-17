@@ -419,7 +419,7 @@ function gigpress_json_ld($showdata)
 	$show_markup = array("@context" => "http://schema.org", "@type" => "Event");
 	
 	// Add show level attributes
-	if(!empty($showdata['tour'])) { $show_markup['name'] = $showdata['tour']; }
+	$show_markup['name'] = (!empty($showdata['tour'])) ? $showdata['tour'] : $showdata['artist_plain'];
 	$show_markup['startDate'] = $showdata['iso_date'];
 	if(!empty($showdata['related_url']))
 	{
