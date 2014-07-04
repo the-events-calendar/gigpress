@@ -57,6 +57,9 @@ function gigpress_add() {
 			
 			$hh = $_POST['gp_hh'];
 			$min = $_POST['gp_min'];
+
+			$hh_end = $_POST['gp_hh_end'];
+			$min_end = $_POST['gp_min_end'];
 				
 			$exp_mm = $_POST['exp_mm'];
 			$exp_dd = $_POST['exp_dd'];
@@ -116,6 +119,16 @@ function gigpress_add() {
 								$hh = "na";
 								$min = "na";
 							}
+
+						$show_endtime = explode(':', $show->show_endtime);
+							$hh_end = $show_endtime[0];
+							$min_end = $show_endtime[1];
+							$ss_end = $show_endtime[2];
+
+							if($ss_end == "01") {
+								$hh_end = "na";
+								$min_end = "na";
+							}
 							
 						$show_expire = explode('-', $show->show_expire);
 							$exp_mm = $show_expire[1];
@@ -166,6 +179,16 @@ function gigpress_add() {
 					$hh = "na";
 					$min = "na";
 				}
+
+			$show_endtime = explode(':', $gpo['default_endtime']);
+			$hh_end = $show_endtime[0];
+			$min_end = $show_endtime[1];
+			$ss_end = $show_endtime[2];
+
+			if($ss_end == "01") {
+				$hh_end = "na";
+				$min_end = "na";
+			}
 				
 			$show_expire = explode('-', $gpo['default_date']);
 				$exp_mm = $show_expire[1];
@@ -319,6 +342,89 @@ function gigpress_add() {
 							<option value="55"<?php if($min == "55") echo(' selected="selected"'); ?>>55</option>
 					</select>
 						<span id="ampm">&nbsp;</span>
+
+					<?php _e("until", "gigpress"); ?> &nbsp;
+
+					<?php if(!empty($gpo['alternate_clock'])) { ?>
+						<select name="gp_hh_end" id="gp_hh_end" class="twentyfour">
+							<option value="na"<?php if($hh_end == "na") echo(' selected="selected"'); ?>>--</option>
+							<option value="00"<?php if($hh_end == "00") echo(' selected="selected"'); ?>>00</option>
+							<option value="01"<?php if($hh_end == "01") echo(' selected="selected"'); ?>>01</option>
+							<option value="02"<?php if($hh_end == "02") echo(' selected="selected"'); ?>>02</option>
+							<option value="03"<?php if($hh_end == "03") echo(' selected="selected"'); ?>>03</option>
+							<option value="04"<?php if($hh_end == "04") echo(' selected="selected"'); ?>>04</option>
+							<option value="05"<?php if($hh_end == "05") echo(' selected="selected"'); ?>>05</option>
+							<option value="06"<?php if($hh_end == "06") echo(' selected="selected"'); ?>>06</option>
+							<option value="07"<?php if($hh_end == "07") echo(' selected="selected"'); ?>>07</option>
+							<option value="08"<?php if($hh_end == "08") echo(' selected="selected"'); ?>>08</option>
+							<option value="09"<?php if($hh_end == "09") echo(' selected="selected"'); ?>>09</option>
+							<option value="10"<?php if($hh_end == "10") echo(' selected="selected"'); ?>>10</option>
+							<option value="11"<?php if($hh_end == "11") echo(' selected="selected"'); ?>>11</option>
+							<option value="12"<?php if($hh_end == "12") echo(' selected="selected"'); ?>>12</option>
+							<option value="13"<?php if($hh_end == "13") echo(' selected="selected"'); ?>>13</option>
+							<option value="14"<?php if($hh_end == "14") echo(' selected="selected"'); ?>>14</option>
+							<option value="15"<?php if($hh_end == "15") echo(' selected="selected"'); ?>>15</option>
+							<option value="16"<?php if($hh_end == "16") echo(' selected="selected"'); ?>>16</option>
+							<option value="17"<?php if($hh_end == "17") echo(' selected="selected"'); ?>>17</option>
+							<option value="18"<?php if($hh_end == "18") echo(' selected="selected"'); ?>>18</option>
+							<option value="19"<?php if($hh_end == "19") echo(' selected="selected"'); ?>>19</option>
+							<option value="20"<?php if($hh_end == "20") echo(' selected="selected"'); ?>>20</option>
+							<option value="21"<?php if($hh_end == "21") echo(' selected="selected"'); ?>>21</option>
+							<option value="22"<?php if($hh_end == "22") echo(' selected="selected"'); ?>>22</option>
+							<option value="23"<?php if($hh_end == "23") echo(' selected="selected"'); ?>>23</option>
+						</select>
+					<?php } else { ?>
+						<select name="gp_hh_end" id="gp_hh_end" class="twelve">
+							<optgroup label="<?php _e("None", "gigpress"); ?>">
+								<option value="na"<?php if($hh_end == "na") echo(' selected="selected"'); ?>>--</option>
+							</optgroup>
+							<optgroup id="am" label="AM">
+								<option value="00"<?php if($hh_end == "00") echo(' selected="selected"'); ?>>12</option>
+								<option value="01"<?php if($hh_end == "01") echo(' selected="selected"'); ?>>01</option>
+								<option value="02"<?php if($hh_end == "02") echo(' selected="selected"'); ?>>02</option>
+								<option value="03"<?php if($hh_end == "03") echo(' selected="selected"'); ?>>03</option>
+								<option value="04"<?php if($hh_end == "04") echo(' selected="selected"'); ?>>04</option>
+								<option value="05"<?php if($hh_end == "05") echo(' selected="selected"'); ?>>05</option>
+								<option value="06"<?php if($hh_end == "06") echo(' selected="selected"'); ?>>06</option>
+								<option value="07"<?php if($hh_end == "07") echo(' selected="selected"'); ?>>07</option>
+								<option value="08"<?php if($hh_end == "08") echo(' selected="selected"'); ?>>08</option>
+								<option value="09"<?php if($hh_end == "09") echo(' selected="selected"'); ?>>09</option>
+								<option value="10"<?php if($hh_end == "10") echo(' selected="selected"'); ?>>10</option>
+								<option value="11"<?php if($hh_end == "11") echo(' selected="selected"'); ?>>11</option>
+							</optgroup>
+							<optgroup id="pm" label="PM">
+								<option value="12"<?php if($hh_end == "12") echo(' selected="selected"'); ?>>12</option>
+								<option value="13"<?php if($hh_end == "13") echo(' selected="selected"'); ?>>01</option>
+								<option value="14"<?php if($hh_end == "14") echo(' selected="selected"'); ?>>02</option>
+								<option value="15"<?php if($hh_end == "15") echo(' selected="selected"'); ?>>03</option>
+								<option value="16"<?php if($hh_end == "16") echo(' selected="selected"'); ?>>04</option>
+								<option value="17"<?php if($hh_end == "17") echo(' selected="selected"'); ?>>05</option>
+								<option value="18"<?php if($hh_end == "18") echo(' selected="selected"'); ?>>06</option>
+								<option value="19"<?php if($hh_end == "19") echo(' selected="selected"'); ?>>07</option>
+								<option value="20"<?php if($hh_end == "20") echo(' selected="selected"'); ?>>08</option>
+								<option value="21"<?php if($hh_end == "21") echo(' selected="selected"'); ?>>09</option>
+								<option value="22"<?php if($hh_end == "22") echo(' selected="selected"'); ?>>10</option>
+								<option value="23"<?php if($hh_end == "23") echo(' selected="selected"'); ?>>11</option>
+							</optgroup>
+						</select>
+					<?php } ?>
+					<select name="gp_min_end" id="gp_min_end">
+						<option value="na"<?php if($min_end == "na") echo(' selected="selected"'); ?>>--</option>
+						<option value="00"<?php if($min_end == "00") echo(' selected="selected"'); ?>>00</option>
+						<option value="05"<?php if($min_end == "05") echo(' selected="selected"'); ?>>05</option>
+						<option value="10"<?php if($min_end == "10") echo(' selected="selected"'); ?>>10</option>
+						<option value="15"<?php if($min_end == "15") echo(' selected="selected"'); ?>>15</option>
+						<option value="20"<?php if($min_end == "20") echo(' selected="selected"'); ?>>20</option>
+						<option value="25"<?php if($min_end == "25") echo(' selected="selected"'); ?>>25</option>
+						<option value="30"<?php if($min_end == "30") echo(' selected="selected"'); ?>>30</option>
+						<option value="35"<?php if($min_end == "35") echo(' selected="selected"'); ?>>35</option>
+						<option value="40"<?php if($min_end == "40") echo(' selected="selected"'); ?>>40</option>
+						<option value="45"<?php if($min_end == "45") echo(' selected="selected"'); ?>>45</option>
+						<option value="50"<?php if($min_end == "50") echo(' selected="selected"'); ?>>50</option>
+						<option value="55"<?php if($min_end == "55") echo(' selected="selected"'); ?>>55</option>
+					</select>
+					<span id="ampm_end">&nbsp;</span>
+
 						<p><span class="description">&nbsp;<label><input type="checkbox" value="1"<?php if(!empty($show_multi)) echo(' checked="checked"'); ?> id="show_multi" name="show_multi" />&nbsp;<?php _e("This is a multi-day event", "gigpress"); ?></label></span></p>
 						</td>
 					</tr>

@@ -14,6 +14,19 @@ $gp(document).ready(function()
 				}
 			);
 		}
+
+        // If we're using the 12-hour clock, then do this magic
+        if ( $gp('select#gp_hh_end.twelve').length > 0 ) {
+            var time = $gp('select#gp_hh_end option:selected').parent().attr('label');
+            $gp('span#ampm_end').text(time);
+
+            $gp('select#gp_hh_end.twelve').change(function()
+                {
+                    var time = $gp('select#gp_hh_end option:selected').parent().attr('label');
+                    $gp('span#ampm_end').text(time);
+                }
+            );
+        }
 		
 		$gp('tr.gigpress-inactive, tbody.gigpress-inactive').hide();
 		

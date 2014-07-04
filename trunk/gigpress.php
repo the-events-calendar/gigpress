@@ -232,6 +232,7 @@ function gigpress_prepare($show, $scope = 'public') {
 	// Shield these fields when we're calling this function from the venues admin screen
 	if($scope != 'venue') {
 		$timeparts = explode(':', $show->show_time);
+		$timeparts_end = explode(':', $show->show_endtime);
 		$showdata['admittance'] = (!empty($show->show_ages) && $show->show_ages != 'Not sure') ? wptexturize($show->show_ages) : '';
 		$showdata['artist'] = (!empty($show->artist_url) && !empty($gpo['artist_link']) && $scope != 'admin') ? '<a href="' . esc_url($show->artist_url) . '"' . gigpress_target($show->artist_url) . '>' . wptexturize($show->artist_name) . '</a>' : wptexturize($show->artist_name);
 		$showdata['artist_plain'] = wptexturize($show->artist_name);
@@ -289,6 +290,7 @@ function gigpress_prepare($show, $scope = 'public') {
 		$showdata['ticket_url'] = (!empty($show->show_tix_url)) ? esc_url($show->show_tix_url) : '';
 		$showdata['ticket_phone'] = wptexturize($show->show_tix_phone);
 		$showdata['time'] = ($timeparts[2] == '01') ? '' : date($gpo['time_format'], mktime($timeparts[0], $timeparts[1]));
+		$showdata['endtime'] = ($timeparts_end[2] == '01') ? '' : date($gpo['time_format'], mktime($timeparts_end[0], $timeparts_end[1]));
 		$showdata['tour'] = wptexturize($show->tour_name);
 		$showdata['tour_id'] = $show->tour_id;
 		if($showdata['related_url']) { $showdata['permalink'] = $showdata['related_url']; }
