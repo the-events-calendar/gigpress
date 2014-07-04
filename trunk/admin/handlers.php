@@ -872,7 +872,7 @@ function gigpress_import() {
 					// Match "16:00" or "16.00"
 					if (preg_match('/^([0-9]{2})[\.\:]([0-9]{2})$/', $show['Time'], $matches) == 1) {
 						$show['Time'] = $matches[1] . ':' . $matches[2] . ':' . '00';
-						$show['endtime'] = $matches[1] . ':' . $matches[2] . ':' . '00';
+						$show['endtime'] = '00:00:01';
 					// Match "16:00-17:00" or "16.00-17.00"
 					} elseif (preg_match('/^([0-9]{2})[\.\:]([0-9]{2})\-([0-9]{2})[\.\:]([0-9]{2})$/', $show['Time'], $matches) == 1) {
 						$show['Time'] = $matches[1] . ':' . $matches[2] . ':' . '00';
