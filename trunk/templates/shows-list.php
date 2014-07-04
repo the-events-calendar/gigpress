@@ -54,7 +54,7 @@
 		<td colspan="<?php echo $cols - 1; ?>">
 		
 			<?php if($showdata['time']) : ?>
-				<span class="gigpress-info-item"><span class="gigpress-info-label"><?php _e("Time", "gigpress"); ?>:</span> <?php echo $showdata['time']; ?>.</span>
+				<span class="gigpress-info-item"><span class="gigpress-info-label"><?php _e("Time", "gigpress"); ?>:</span> <?php echo $showdata['time']; ?><?php if($showdata['endtime']) : ?> &mdash; <?php echo $showdata['endtime']; ?><?php endif; ?>.</span>
 			<?php endif; ?>
 			
 			<?php if($showdata['price']) : ?>

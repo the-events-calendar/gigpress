@@ -40,7 +40,9 @@
 <?php if($showdata['time']) : ?>
 	<li>
 		<span class="gigpress-related-label"><?php _e("Time", "gigpress"); ?>:</span> 
-		<span class="gigpress-related-item"><?php echo $showdata['time']; ?></span>
+		<span class="gigpress-related-item">
+		    <?php echo $showdata['time']; ?><?php if($showdata['endtime']) : ?> &mdash; <?php echo $showdata['endtime']; ?><?php endif; ?>.
+		</span>
 	</li>
 <?php endif; ?>
 	
