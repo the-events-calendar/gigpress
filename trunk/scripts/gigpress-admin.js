@@ -68,15 +68,15 @@ $gp(document).ready(function()
 				
 		// Sortable artist table
 		$gp('img.gp-sort-handle').show();
-		$gp('.gigpress-artist-sort').sortable({
+		$gp('.gigpress-sort').sortable({
 			handle: '.gp-sort-handle', 
 			axis: 'y',
 			helper: fixHelper,
 			update : function () { 
-		      var order = $gp('.gigpress-artist-sort').sortable('serialize');
-		      $gp("#artist-sort-update").load(ajaxurl, order + '&action=gigpress_reorder_artists&cachebuster=' + Math.floor(Math.random()*99999), function()
+		      var order = $gp('.gigpress-sort').sortable('serialize');
+		      $gp("#sort-update").load(ajaxurl, order + '&action=gigpress_reorder&type='+ $gp(this).data('type') +'&cachebuster=' + Math.floor(Math.random()*99999), function()
 		      	{
-		   			$gp("#artist-sort-update").fadeIn(100, function(){$gp(this).fadeOut(1500)});  
+		   			$gp("#sort-update").fadeIn(100, function(){$gp(this).fadeOut(1500)});
 		      	}
 		      ); 
 		    } 

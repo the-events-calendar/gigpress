@@ -481,21 +481,33 @@ function add_upload_ext($mimes='') {
 	return $mimes;
 }
 
-function gigpress_reorder_artists() {
-	
+function gigpress_reorder() {
+
+    switch ($_REQUEST['type']) {
+        case 'artist':
+            $tbl = GIGPRESS_ARTISTS;
+            break;
+        case 'venue':
+            $tbl = GIGPRESS_VENUES;
+            break;
+        default:
+            die("Wrong entity type");
+    }
+    $type = $_REQUEST['type'];
+
 	global $wpdb;
 	$wpdb->show_errors();
-	
-	$sql = "UPDATE " . GIGPRESS_ARTISTS . " SET artist_order = CASE artist_id ";
-	foreach($_REQUEST['artist'] as $order => $artist) {
-		$sql .= $wpdb->prepare("WHEN %d THEN %d ", $artist, $order);
+
+	$sql = "UPDATE " . $tbl . " SET " . $type . "_order = CASE " . $type . "_id ";
+	foreach($_REQUEST[$type] as $order => $entity) {
+		$sql .= $wpdb->prepare("WHEN %d THEN %d ", $entity, $order);
 	}
 	$sql .= " END";
 	
 	$update_order = $wpdb->query($sql);
 	
 	if($update_order !== FALSE) {
-		_e("Artist order updated.", "gigpress");
+		_e(ucfirst($type) . " order updated.", "gigpress");
 	}
 	
 	die();
@@ -623,7 +635,7 @@ add_action('template_redirect', 'gigpress_js');
 add_action('wp_head', 'gigpress_head');
 add_action('admin_post_gigpress_export', 'gigpress_export');
 add_action('admin_post_nopriv_gigpress_export', 'gigpress_export_nopriv');
-add_action('wp_ajax_gigpress_reorder_artists', 'gigpress_reorder_artists');
+add_action('wp_ajax_gigpress_reorder', 'gigpress_reorder');
 
 add_filter('custom_menu_order', '__return_true');
 add_filter('menu_order', 'custom_menu_order');

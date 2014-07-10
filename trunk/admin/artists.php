@@ -126,7 +126,7 @@ function gigpress_artists() {
 				<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
 			</tr>
 		</thead>
-		<tbody class="gigpress-artist-sort">
+		<tbody class="gigpress-sort" data-type="artist">
 	<?php
 
 		if($artists) {
@@ -178,8 +178,8 @@ function gigpress_artists() {
 	<?php // echo $pagination['output']; ?>
 	</div>
 <?php endif; ?>
-	
-	<div id="artist-sort-update"></div>	
-	
-	</div>
+
+	<div id="sort-update"></div>
+
+    </div>
 <?php }
