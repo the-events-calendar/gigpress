@@ -28,7 +28,7 @@ define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
 define('GIGPRESS_VERSION', '2.3.4');
-define('GIGPRESS_DB_VERSION', '1.7');
+define('GIGPRESS_DB_VERSION', '1.8');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
 define('GIGPRESS_WEBCAL', str_replace('http://', 'webcal://', GIGPRESS_ICAL));
@@ -611,7 +611,7 @@ function fetch_gigpress_venues() {
 	global $wpdb;
 	$venues = $wpdb->get_results("
 		SELECT * FROM ". GIGPRESS_VENUES ." 
-		ORDER BY venue_name ASC, venue_city ASC");
+		ORDER BY venue_order ASC, venue_name ASC, venue_city ASC");
 	return ($venues !== FALSE) ? $venues : FALSE;
 }
 

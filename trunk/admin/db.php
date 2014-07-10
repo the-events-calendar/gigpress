@@ -61,6 +61,7 @@ venue_postal_code VARCHAR(32),
 venue_country VARCHAR(2) NOT NULL,	
 venue_url VARCHAR(255),
 venue_phone VARCHAR(255),	
+venue_order INTEGER(4) DEFAULT 0,
 PRIMARY KEY  (venue_id)
 ) $charset_collate";
 
