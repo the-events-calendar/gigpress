@@ -22,6 +22,7 @@ show_tour_id INTEGER(4) DEFAULT 0,
 show_date DATE NOT NULL,
 show_multi INTEGER(1),
 show_time TIME NOT NULL,
+show_endtime TIME NOT NULL,
 show_expire DATE NOT NULL,
 show_price VARCHAR(255),
 show_tix_url VARCHAR(255),
@@ -60,6 +61,7 @@ venue_postal_code VARCHAR(32),
 venue_country VARCHAR(2) NOT NULL,	
 venue_url VARCHAR(255),
 venue_phone VARCHAR(255),	
+venue_order INTEGER(4) DEFAULT 0,
 PRIMARY KEY  (venue_id)
 ) $charset_collate";
 

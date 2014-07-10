@@ -164,13 +164,13 @@ function gigpress_venues() {
 			<p><?php _e("Note that you cannot delete a venue while it has shows in the database.", "gigpress"); ?></p>
 		</div>
 	<?php
-		$venue_count = $wpdb->get_var("SELECT COUNT(*) FROM ". GIGPRESS_VENUES);
+		/*$venue_count = $wpdb->get_var("SELECT COUNT(*) FROM ". GIGPRESS_VENUES);
 		if($venue_count) {
 			$pagination_args['page'] = 'gigpress-venues';
 			$pagination = gigpress_admin_pagination($venue_count, 15, $pagination_args);
 			if(isset($pagination)) echo $pagination['output'];
 		}
-		$limit = (isset($_GET['gp-page'])) ? $pagination['offset'].','.$pagination['records_per_page'] : 15;	
+		$limit = (isset($_GET['gp-page'])) ? $pagination['offset'].','.$pagination['records_per_page'] : 15;	*/
 	?>
 		<div class="clear"></div>
 	</div>
@@ -178,6 +178,7 @@ function gigpress_venues() {
 	<table class="widefat">
 		<thead>
 			<tr>
+                <th scope="col" class="gp-tiny">&nbsp;</th>
 				<th scope="col" class="gp-tiny">ID</th>
 				<th scope="col"><?php _e("Name", "gigpress"); ?></th>
 				<th scope="col"><?php _e("City", "gigpress"); ?></th>
@@ -188,9 +189,9 @@ function gigpress_venues() {
 				<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="gigpress-sort" data-type="venue">
 	<?php
-		$venues = $wpdb->get_results("SELECT * FROM ". GIGPRESS_VENUES ." ORDER BY venue_name ASC LIMIT ". $limit);
+		$venues = fetch_gigpress_venues();
 		if($venues) {
 						
 			$i = 0;
@@ -208,7 +209,8 @@ function gigpress_venues() {
 				$style = ($i % 2) ? '' : ' class="alternate"';
 				// Print out our rows.
 				?>
-				<tr<?php echo $style; ?>>
+				<tr<?php echo $style; ?> id="venue_<?php echo $venue->venue_id; ?>">
+                    <td class="gp-tiny"><img src="<?php echo plugins_url('gigpress/images/sort.png'); ?>" alt="" class="gp-sort-handle" /></td>
 					<td class="gp-tiny"><?php echo $venuedata['venue_id']; ?></td>
 					<td><?php echo $venuedata['venue']; ?></td>
 					<td><?php echo $venuedata['city']; if(!empty($venuedata['state'])) echo ', '.$venuedata['state']; ?></td>
@@ -247,4 +249,7 @@ function gigpress_venues() {
 	<?php if(isset($pagination)) echo $pagination['output']; ?>
 	</div>
 </div>
+    <div id="sort-update"></div>
+
+    </div>
 <?php }

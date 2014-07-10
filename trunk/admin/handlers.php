@@ -19,6 +19,12 @@ function gigpress_prepare_show_fields($context = 'new') {
 		$min = ($_POST['gp_min'] == "na") ? '00' : $_POST['gp_min'];
 		$show['show_time'] = $_POST['gp_hh'] . ':' . $min . ':00';
 	}
+	if($_POST['gp_hh_end'] == "na") {
+		$show['show_endtime'] = "00:00:01";
+	} else {
+		$min = ($_POST['gp_min_end'] == "na") ? '00' : $_POST['gp_min_end'];
+		$show['show_endtime'] = $_POST['gp_hh_end'] . ':' . $min . ':00';
+	}
 	// If it's not a multi-day show, we need to set the expire date to match the show date
 	if(!isset($_POST['show_multi']) || (isset($_POST['show_multi']) && empty($_POST['show_multi']) ) ) {
 		$show['show_expire'] = $show['show_date'];
@@ -140,6 +146,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 		// Sticky stuff for the next entry
 		$gpo['default_date'] = $show['show_date'];
 		$gpo['default_time'] = $show['show_time'];
+		$gpo['default_endtime'] = $show['show_endtime'];
 		$gpo['default_ages'] = $show['show_ages'];
 		$gpo['default_artist'] = $show['show_artist_id'];
 		$gpo['default_venue'] = $show['show_venue_id'];
@@ -236,7 +243,7 @@ function gigpress_add_show() {
 		// Looks like we're all here, so let's add to the DB
 		
 		$show = gigpress_prepare_show_fields();
-		$format = array('%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d');
+		$format = array('%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d');
 		$addshow = $wpdb->insert(GIGPRESS_SHOWS, $show, $format);
 		
 		// Was the query successful?
@@ -297,7 +304,7 @@ function gigpress_update_show() {
 		// Looks like we're all here, so let's update the DB
 		$show = gigpress_prepare_show_fields('edit');
 		$where = array('show_id' => $_POST['show_id']);
-		$format = array('%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d');
+		$format = array('%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d');
 		$where_format = array('%d');
 		$updateshow = $wpdb->update(GIGPRESS_SHOWS, $show, $where, $format, $where_format);
 		
@@ -857,9 +864,27 @@ function gigpress_import() {
 					$show['venue_id'] = $venue_exists;
 				}
 							
-				if($show['Time'] == FALSE) $show['Time'] = '00:00:01';
+				if($show['Time'] == FALSE) {
+					$show['Time'] = '00:00:01';
+				} else {
+					$matches = array();
+
+					// Match "16:00" or "16.00"
+					if (preg_match('/^([0-9]{2})[\.\:]([0-9]{2})$/', $show['Time'], $matches) == 1) {
+						$show['Time'] = $matches[1] . ':' . $matches[2] . ':' . '00';
+						$show['endtime'] = '00:00:01';
+					// Match "16:00-17:00" or "16.00-17.00"
+					} elseif (preg_match('/^([0-9]{2})[\.\:]([0-9]{2})\-([0-9]{2})[\.\:]([0-9]{2})$/', $show['Time'], $matches) == 1) {
+						$show['Time'] = $matches[1] . ':' . $matches[2] . ':' . '00';
+						$show['endtime'] = $matches[3] . ':' . $matches[4] . ':' . '00';
+					} else {
+						// No endtime (continue as usual and assume ISO date format.)
+						$show['endtime'] = '00:00:01';
+					}
+				}
+
 			
-				if($wpdb->get_var("SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = " . $show['artist_id'] . " AND show_date = '" . $show['Date'] . "' AND show_time = '" . $show['Time'] . "' AND show_venue_id = " . $show['venue_id'] . " AND show_status != 'deleted'") > 0) {
+				if($wpdb->get_var("SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = " . $show['artist_id'] . " AND show_date = '" . $show['Date'] . "' AND show_time = '" . $show['Time'] . "' AND show_endtime = '". $show['endtime'] ."' AND show_venue_id = " . $show['venue_id'] . " AND show_status != 'deleted'") > 0) {
 					// It's a duplicate, so log it and move on
 					$duplicates[] = $show;
 				} else {
@@ -872,6 +897,7 @@ function gigpress_import() {
 					$new_show = array(
 						'show_date' => $show['Date'],
 						'show_time' => $show['Time'],
+						'show_endtime' => $show['endtime'],
 						'show_multi' => $show['show_multi'],
 						'show_expire' => $show['End date'],
 						'show_artist_id' => $show['artist_id'],
@@ -891,7 +917,7 @@ function gigpress_import() {
 						$new_show['show_related'] = $show['Related ID'];
 					}
 					
-					$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d');
+					$format = array('%s','%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d');
 					
 					$import = $wpdb->insert(GIGPRESS_SHOWS, $new_show, $format);
 					

@@ -266,7 +266,9 @@ function gigpress_admin_shows() {
 				<tr class="<?php echo 'alternate' . ' gigpress-' . $showdata['status']; ?>">
 					<td colspan="8"><small>
 					<?php
-						if($showdata['time']) echo $showdata['time'] . '. ';
+						if($showdata['time']) echo $showdata['time'];
+						if($showdata['endtime']) echo ' &ndash; '.$showdata['endtime'];
+						echo '. ';
 						if($showdata['price']) echo __("Price", "gigpress") . ': ' . $showdata['price'] . '. ';
 						if($showdata['admittance']) echo $showdata['admittance'] . '. ';
 						if($showdata['ticket_link']) echo $showdata['ticket_link'] . '. ';

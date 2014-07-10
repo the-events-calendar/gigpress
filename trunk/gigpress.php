@@ -28,7 +28,7 @@ define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
 define('GIGPRESS_VERSION', '2.3.4');
-define('GIGPRESS_DB_VERSION', '1.6');
+define('GIGPRESS_DB_VERSION', '1.8');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
 define('GIGPRESS_WEBCAL', str_replace('http://', 'webcal://', GIGPRESS_ICAL));
@@ -232,6 +232,7 @@ function gigpress_prepare($show, $scope = 'public') {
 	// Shield these fields when we're calling this function from the venues admin screen
 	if($scope != 'venue') {
 		$timeparts = explode(':', $show->show_time);
+		$timeparts_end = explode(':', $show->show_endtime);
 		$showdata['admittance'] = (!empty($show->show_ages) && $show->show_ages != 'Not sure') ? wptexturize($show->show_ages) : '';
 		$showdata['artist'] = (!empty($show->artist_url) && !empty($gpo['artist_link']) && $scope != 'admin') ? '<a href="' . esc_url($show->artist_url) . '"' . gigpress_target($show->artist_url) . '>' . wptexturize($show->artist_name) . '</a>' : wptexturize($show->artist_name);
 		$showdata['artist_plain'] = wptexturize($show->artist_name);
@@ -289,6 +290,7 @@ function gigpress_prepare($show, $scope = 'public') {
 		$showdata['ticket_url'] = (!empty($show->show_tix_url)) ? esc_url($show->show_tix_url) : '';
 		$showdata['ticket_phone'] = wptexturize($show->show_tix_phone);
 		$showdata['time'] = ($timeparts[2] == '01') ? '' : date($gpo['time_format'], mktime($timeparts[0], $timeparts[1]));
+		$showdata['endtime'] = ($timeparts_end[2] == '01') ? '' : date($gpo['time_format'], mktime($timeparts_end[0], $timeparts_end[1]));
 		$showdata['tour'] = wptexturize($show->tour_name);
 		$showdata['tour_id'] = $show->tour_id;
 		if($showdata['related_url']) { $showdata['permalink'] = $showdata['related_url']; }
@@ -479,21 +481,33 @@ function add_upload_ext($mimes='') {
 	return $mimes;
 }
 
-function gigpress_reorder_artists() {
-	
+function gigpress_reorder() {
+
+    switch ($_REQUEST['type']) {
+        case 'artist':
+            $tbl = GIGPRESS_ARTISTS;
+            break;
+        case 'venue':
+            $tbl = GIGPRESS_VENUES;
+            break;
+        default:
+            die("Wrong entity type");
+    }
+    $type = $_REQUEST['type'];
+
 	global $wpdb;
 	$wpdb->show_errors();
-	
-	$sql = "UPDATE " . GIGPRESS_ARTISTS . " SET artist_order = CASE artist_id ";
-	foreach($_REQUEST['artist'] as $order => $artist) {
-		$sql .= $wpdb->prepare("WHEN %d THEN %d ", $artist, $order);
+
+	$sql = "UPDATE " . $tbl . " SET " . $type . "_order = CASE " . $type . "_id ";
+	foreach($_REQUEST[$type] as $order => $entity) {
+		$sql .= $wpdb->prepare("WHEN %d THEN %d ", $entity, $order);
 	}
 	$sql .= " END";
 	
 	$update_order = $wpdb->query($sql);
 	
 	if($update_order !== FALSE) {
-		_e("Artist order updated.", "gigpress");
+		_e(ucfirst($type) . " order updated.", "gigpress");
 	}
 	
 	die();
@@ -529,13 +543,21 @@ function gigpress_export() {
 	);
 	
 	$shows = $wpdb->get_results("
-		SELECT show_date, show_time, show_expire, artist_name, artist_url, venue_name, venue_address, venue_city, venue_state, venue_postal_code, venue_country, venue_phone, venue_url, show_ages, show_price, show_tix_url, show_tix_phone, show_external_url, show_notes, tour_name, show_status, show_related FROM ". GIGPRESS_VENUES ." as v, " . GIGPRESS_ARTISTS . " as a, " . GIGPRESS_SHOWS . " as s LEFT JOIN " . GIGPRESS_TOURS . " as t ON s.show_tour_id = t.tour_id WHERE show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id" . $further_where . " ORDER BY show_date DESC,show_time DESC
+		SELECT show_date, show_time, show_endtime, show_expire, artist_name, artist_url, venue_name, venue_address, venue_city, venue_state, venue_postal_code, venue_country, venue_phone, venue_url, show_ages, show_price, show_tix_url, show_tix_phone, show_external_url, show_notes, tour_name, show_status, show_related FROM ". GIGPRESS_VENUES ." as v, " . GIGPRESS_ARTISTS . " as a, " . GIGPRESS_SHOWS . " as s LEFT JOIN " . GIGPRESS_TOURS . " as t ON s.show_tour_id = t.tour_id WHERE show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id" . $further_where . " ORDER BY show_date DESC,show_time DESC
 		", ARRAY_A);
 	
 	if($shows) {
 		$export_shows = array();
 		foreach ( $shows as $show ) {
 			$show['show_time'] = ( $show['show_time']{7} == 1 ) ? '' : $show['show_time'];
+			if ($show['show_time'] != '') {
+				if ($show['show_endtime']{7} != 1) {
+					$time = explode(':',$show['show_time']);
+					$end_time = explode(':',$show['show_endtime']);
+					// convert to "16:00-20:00"
+					$show['show_time'] = $time[0] . ':'. $time[1] . '-' . $end_time[0] . ':'. $end_time[1];
+				}
+			}
 			$show['show_expire'] = ( $show['show_date'] == $show['show_expire'] ) ? '' : $show['show_expire'];
 			$show['show_related_url'] = ( $show['show_related'] ) ? gigpress_related_link($show['show_related'], 'url') : '';
 			$export_shows[] = $show;
@@ -589,7 +611,7 @@ function fetch_gigpress_venues() {
 	global $wpdb;
 	$venues = $wpdb->get_results("
 		SELECT * FROM ". GIGPRESS_VENUES ." 
-		ORDER BY venue_name ASC, venue_city ASC");
+		ORDER BY venue_order ASC, venue_name ASC, venue_city ASC");
 	return ($venues !== FALSE) ? $venues : FALSE;
 }
 
@@ -613,7 +635,7 @@ add_action('template_redirect', 'gigpress_js');
 add_action('wp_head', 'gigpress_head');
 add_action('admin_post_gigpress_export', 'gigpress_export');
 add_action('admin_post_nopriv_gigpress_export', 'gigpress_export_nopriv');
-add_action('wp_ajax_gigpress_reorder_artists', 'gigpress_reorder_artists');
+add_action('wp_ajax_gigpress_reorder', 'gigpress_reorder');
 
 add_filter('custom_menu_order', '__return_true');
 add_filter('menu_order', 'custom_menu_order');
