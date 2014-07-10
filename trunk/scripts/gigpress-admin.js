@@ -39,6 +39,13 @@ $gp(document).ready(function()
 			}
 		);
 		
+        $gp('select.can-add-new').each(function(){
+            if ($gp(this).val() == "new") {
+                var target = $gp(this).attr('id') + '_new';
+                $gp('tbody#'+target).fadeIn();
+            }
+        });
+
 		$gp('select.can-add-new').change(function()
 			{
 				var scope = $gp(this);
