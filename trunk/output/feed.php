@@ -49,7 +49,7 @@ function gigpress_feed() {
 				<?php echo $showdata['time']; ?></li>
 			<?php } ?>
 				<li><strong><?php _e("City", "gigpress"); ?>:</strong> 
-				<?php echo $showdata['city']; ?></li>
+				<?php echo $showdata['city']; if(!empty($showdata['state'])) echo ', '.$showdata['state']; ?></li>
 				<li><strong><?php _e("Venue", "gigpress"); ?>:</strong> 
 				<?php echo $showdata['venue']; ?></li>
 			<?php if($showdata['address']) { ?>
@@ -77,6 +77,9 @@ function gigpress_feed() {
 			<?php if($showdata['ticket_link']) { ?>
 				<li><?php echo $showdata['ticket_link']; ?></li>
 			<?php } ?>
+			<?php if($showdata['external_link']) : ?>	
+				<li><?php echo $showdata['external_link']; ?></li>
+			<?php endif; ?>
 			<?php if($showdata['notes']) { ?>
 				<li><strong><?php _e("Notes", "gigpress"); ?>:</strong> 
 				<?php echo $showdata['notes']; ?></li>

@@ -20,6 +20,10 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.5 = 
+
+* Added the state and external link values to the RSS feed output
+
 = 2.3.4 =
 
 * Now always setting an event name in the JSON-LD markup
