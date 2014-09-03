@@ -788,7 +788,7 @@ function gigpress_import() {
 	check_admin_referer('gigpress-action');
 	$upload = wp_upload_bits( $_FILES['gp_import']['name'], null, file_get_contents($_FILES['gp_import']['tmp_name']) );
 	
-	if (!$upload['error']) {
+	if (empty($upload['error'])) {
 		// The file was uploaded, so let's try and parse the mofo
 		require_once(WP_PLUGIN_DIR . '/gigpress/lib/parsecsv.lib.php');
 		// This is under MIT license, which ain't GNU, but was else is new? Don't tell on me!
@@ -800,32 +800,35 @@ function gigpress_import() {
 			// Looks like we parsed something
 			$inserted = array(); $skipped = array(); $duplicates = array();
 			
-			foreach($csv->data as $key => $show) {
-			
+			foreach($csv->data as $key => $show) {				
 				// Check to see if we have this artist
-				$artist_exists = $wpdb->get_var("SELECT artist_id FROM " . GIGPRESS_ARTISTS . " WHERE artist_name = '" . mysql_real_escape_string($show['Artist']) . "'");
-				if(!$artist_exists) {
+				$artist_exists = $wpdb->get_var(
+					$wpdb->prepare("SELECT artist_id FROM " . GIGPRESS_ARTISTS . " WHERE artist_name = '%s'", $show['Artist'])
+				);
+								
+				if(empty($artist_exists)) {
 					// Can't find an artist with this name, so we'll have to create them
 					$alpha = preg_replace("/^the /uix", "", strtolower($show['Artist']));
 					$new_artist = array(
 						'artist_name' => gigpress_db_in($show['Artist']),
 						'artist_alpha' => gigpress_db_in($alpha),
-						'artist_url' => gigpress_db_in($show['Artist URL'], FALSE)
+						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE)
 					);
-					$format = array('%s', '%s', '%s');
-					$addartist = $wpdb->insert(GIGPRESS_ARTISTS, $new_artist, $format);
+					$addartist = $wpdb->insert(GIGPRESS_ARTISTS, $new_artist, '%s');
 					$show['artist_id'] = $wpdb->insert_id;
 				} else {
 					$show['artist_id'] = $artist_exists;
 				}
 				
-				if($show['Tour']) {
+				if(!empty($show['Tour'])) {
 					// Check to see if we have this tour
-					$tour_exists = $wpdb->get_var("SELECT tour_id FROM " . GIGPRESS_TOURS . " WHERE tour_name = '" . mysql_real_escape_string($show['Tour']) . "' AND tour_status = 'active'");
-					if(!$tour_exists) {
+					$tour_exists = $wpdb->get_var(
+						$wpdb->prepare("SELECT tour_id FROM " . GIGPRESS_TOURS . " WHERE tour_name = '%s' AND tour_status = 'active'", $show['Tour'])
+					);
+					if(empty($tour_exists)) {
 						// Can't find a tour with this name, so we'll have to create it
 						$new_tour = array('tour_name' => gigpress_db_in($show['Tour']));
-						$wpdb->insert(GIGPRESS_TOURS, $new_tour);
+						$wpdb->insert(GIGPRESS_TOURS, $new_tour, '%s');
 						$show['tour_id'] = $wpdb->insert_id;
 					} else {
 						$show['tour_id'] = $tour_exists;
@@ -837,21 +840,22 @@ function gigpress_import() {
 				}			
 
 				// Check to see if we have this venue
-				$venue_exists = $wpdb->get_var("SELECT venue_id FROM " . GIGPRESS_VENUES . " WHERE venue_name = '" . mysql_real_escape_string($show['Venue']) . "' AND venue_city = '" . mysql_real_escape_string($show['City']) . "' AND venue_country = '" . mysql_real_escape_string($show['Country']) . "'");
-				if(!$venue_exists) {
+				$venue_exists = $wpdb->get_var(
+					$wpdb->prepare("SELECT venue_id FROM " . GIGPRESS_VENUES . " WHERE venue_name = '%s' AND venue_city = '%s' AND venue_country = '%s'", $show['Venue'], $show['City'], $show['Country'])
+				);
+				if(empty($venue_exists)) {
 					// Can't find a venue with this name, so we'll have to create it
 					$new_venue = array(
-						'venue_name' => gigpress_db_in($show['Venue']),
-						'venue_address' => gigpress_db_in($show['Address']),
-						'venue_city' => gigpress_db_in($show['City']),
-						'venue_state' => gigpress_db_in($show['State']),
-						'venue_postal_code' => gigpress_db_in($show['Postal code']),
-						'venue_country' => gigpress_db_in($show['Country']),
-						'venue_url' => gigpress_db_in($show['Venue URL'], FALSE),
-						'venue_phone' => gigpress_db_in($show['Venue phone'])
+						'venue_name' => gigpress_db_in(@$show['Venue']),
+						'venue_address' => gigpress_db_in(@$show['Address']),
+						'venue_city' => gigpress_db_in(@$show['City']),
+						'venue_state' => gigpress_db_in(@$show['State']),
+						'venue_postal_code' => gigpress_db_in(@$show['Postal code']),
+						'venue_country' => gigpress_db_in(@$show['Country']),
+						'venue_url' => gigpress_db_in(@$show['Venue URL'], FALSE),
+						'venue_phone' => gigpress_db_in(@$show['Venue phone'])
 					);
-					$format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
-					$wpdb->insert(GIGPRESS_VENUES, $new_venue, $format);
+					$wpdb->insert(GIGPRESS_VENUES, $new_venue, '%s');
 					$show['venue_id'] = $wpdb->insert_id;
 				} else {
 					$show['venue_id'] = $venue_exists;
@@ -877,18 +881,18 @@ function gigpress_import() {
 						'show_artist_id' => $show['artist_id'],
 						'show_venue_id' => $show['venue_id'],
 						'show_tour_id' => $show['tour_id'],
-						'show_ages' => gigpress_db_in($show['Admittance']),
-						'show_price' => gigpress_db_in($show['Price']),
-						'show_tix_url' => gigpress_db_in($show['Ticket URL'], FALSE),
-						'show_tix_phone' => gigpress_db_in($show['Ticket phone']),
-						'show_external_url' => gigpress_db_in($show['External URL']),
-						'show_notes' => gigpress_db_in($show['Notes'], FALSE),
+						'show_ages' => gigpress_db_in(@$show['Admittance']),
+						'show_price' => gigpress_db_in(@$show['Price']),
+						'show_tix_url' => gigpress_db_in(@$show['Ticket URL'], FALSE),
+						'show_tix_phone' => gigpress_db_in(@$show['Ticket phone']),
+						'show_external_url' => gigpress_db_in(@$show['External URL']),
+						'show_notes' => gigpress_db_in(@$show['Notes'], FALSE),
 						'show_related' => '0'
 					);
 					
 					// Are we importing related post IDs?
 					if(isset($_POST['include_related']) && $_POST['include_related'] = 'y') {
-						$new_show['show_related'] = $show['Related ID'];
+						$new_show['show_related'] = @$show['Related ID'];
 					}
 					
 					$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d');
