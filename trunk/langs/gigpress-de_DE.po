@@ -1,0 +1,1135 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GigPress 2.2.9.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-20 13:17-0600\n"
+"PO-Revision-Date: 2014-02-11 12:41+0100\n"
+"Last-Translator: Stefan Meier <post@smeier.biz>\n"
+"Language-Team: Stefan Meier <meier@fetten-meier.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: /Clients/GigPress/Plugin/svn/trunk\n"
+
+#: ../gigpress.php:65 ../admin/new.php:199
+msgid "Add a show"
+msgstr "Show hinzufügen"
+
+#: ../gigpress.php:66 ../admin/shows.php:126
+msgid "Shows"
+msgstr "Shows"
+
+#: ../gigpress.php:67 ../admin/artists.php:34
+msgid "Artists"
+msgstr "Künstler"
+
+#: ../gigpress.php:68 ../admin/venues.php:29
+msgid "Venues"
+msgstr "Locations"
+
+#: ../gigpress.php:69 ../admin/tours.php:34
+msgid "Tours"
+msgstr "Tourneen"
+
+#: ../gigpress.php:70 ../admin/settings.php:15
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: ../gigpress.php:71 ../admin/import-export.php:12
+msgid "Import/Export"
+msgstr "Import/Export"
+
+#: ../gigpress.php:102
+msgid "You're using"
+msgstr "Du nutzt"
+
+#: ../gigpress.php:102
+msgid "Like it?"
+msgstr "Gefällts Dir?"
+
+#: ../gigpress.php:102
+msgid "Make a donation"
+msgstr "Spenden"
+
+#: ../gigpress.php:242 ../admin/handlers.php:910 ../admin/handlers.php:919
+#: ../admin/handlers.php:928 ../admin/new.php:241
+msgid "at"
+msgstr ","
+
+#: ../gigpress.php:245 ../admin/new.php:496 ../admin/shows.php:270
+msgid "Price"
+msgstr "Kosten"
+
+#: ../gigpress.php:246 ../admin/shows.php:274 ../output/feed.php:73
+msgid "Box office"
+msgstr "Abendkasse"
+
+#: ../gigpress.php:247 ../admin/new.php:462 ../admin/venues.php:139
+#: ../output/feed.php:59
+msgid "Venue phone"
+msgstr "Location Telefonnummer"
+
+#: ../gigpress.php:248 ../admin/new.php:512 ../admin/settings.php:136
+#: ../output/feed.php:80
+msgid "Notes"
+msgstr "Anmerkungen"
+
+#: ../gigpress.php:270
+msgid "Download iCal"
+msgstr "iCal herunterladen"
+
+#: ../gigpress.php:283
+msgid "Buy tickets"
+msgstr "Karten kaufen"
+
+#: ../gigpress.php:285 ../admin/new.php:473
+msgid "Sold Out"
+msgstr "ausverkauft"
+
+#: ../gigpress.php:287 ../admin/new.php:474
+msgid "Cancelled"
+msgstr "abgesagt"
+
+#: ../gigpress.php:308
+msgid "Add to Google Calendar"
+msgstr "zu Google Kalender hinzufügen"
+
+#: ../gigpress.php:398
+#, php-format
+msgid "Displaying %s&#8211;%s of %s"
+msgstr "zeige %s&#8211;%s von %s"
+
+#: ../gigpress.php:496
+msgid "Artist order updated."
+msgstr "Künstlersortierung aktualisiert"
+
+#: ../gigpress.php:547
+msgid "Nothing to export."
+msgstr "Es gibt nichts zu exportieren."
+
+#: ../gigpress.php:554
+msgid "You are not authorized to do that. Try logging-in first."
+msgstr "Du hast keine Rechte für diese Aktion. Logge dich bitte vorher ein."
+
+#: ../admin/artists.php:44
+msgid "Update artist"
+msgstr "Künstler bearbeiten"
+
+#: ../admin/artists.php:44 ../admin/new.php:596 ../admin/tours.php:49
+#: ../admin/venues.php:147
+msgid "or"
+msgstr "oder"
+
+#: ../admin/artists.php:44 ../admin/new.php:596 ../admin/tours.php:49
+#: ../admin/venues.php:147
+msgid "cancel"
+msgstr "absagen"
+
+#: ../admin/artists.php:46
+msgid "Edit this artist"
+msgstr "Künstler bearbeiten"
+
+#: ../admin/artists.php:56
+msgid "Sorry, but we had trouble loading that artist for editing."
+msgstr "Leider konnte der Künstler nicht geladen werden."
+
+#: ../admin/artists.php:58 ../admin/artists.php:68
+msgid "Add an artist"
+msgstr "Künstler hinzufügen"
+
+#: ../admin/artists.php:66
+msgid "Add artist"
+msgstr "Künstler hinzufügen"
+
+#: ../admin/artists.php:79 ../admin/artists.php:124 ../admin/artists.php:169
+#: ../admin/new.php:383
+msgid "Artist name"
+msgstr "Name des Künstlers"
+
+#: ../admin/artists.php:85 ../admin/new.php:387
+msgid "Artist URL"
+msgstr "Künstler URL"
+
+#: ../admin/artists.php:100
+msgid "All artists"
+msgstr "Alle Künstler"
+
+#: ../admin/artists.php:103
+msgid ""
+"Note that you cannot delete an artist while they have shows in the database."
+msgstr ""
+"Bitte beachte, dass du keinen Künstler löschen kannst, solange er Shows in "
+"der Datenbank hat."
+
+#: ../admin/artists.php:125 ../admin/artists.php:170 ../admin/tours.php:113
+#: ../admin/tours.php:151 ../admin/venues.php:187 ../admin/venues.php:240
+msgid "Number of shows"
+msgstr "Anzahl der Shows"
+
+#: ../admin/artists.php:126 ../admin/artists.php:171 ../admin/shows.php:227
+#: ../admin/shows.php:239 ../admin/tours.php:114 ../admin/tours.php:152
+#: ../admin/venues.php:188 ../admin/venues.php:241
+msgid "Actions"
+msgstr "Aktionen"
+
+#: ../admin/artists.php:153 ../admin/shows.php:263 ../admin/tours.php:136
+#: ../admin/venues.php:220
+msgid "Edit"
+msgstr "bearbeiten"
+
+#: ../admin/artists.php:154 ../admin/tours.php:136 ../admin/venues.php:221
+msgid "Delete"
+msgstr "löschen"
+
+#: ../admin/artists.php:162 ../admin/import-export.php:64 ../admin/new.php:372
+#: ../admin/shows.php:159
+msgid "No artists in the database"
+msgstr "Es gibt keine Künstler in der Datenbank."
+
+#: ../admin/handlers.php:52
+msgid "We had trouble creating your new artist. Sorry."
+msgstr "Leider konnte dein neuer Künstler nicht angelegt werden."
+
+#: ../admin/handlers.php:67
+msgid "We had trouble creating your new venue. Sorry."
+msgstr "Leider konnte deine neue Location nicht angelegt werden."
+
+#: ../admin/handlers.php:84
+msgid "We had trouble creating your new tour. Sorry."
+msgstr "Leider konnte deine neue Tour nicht angelegt werden."
+
+#: ../admin/handlers.php:123
+msgid "We had trouble creating your Related Post. Sorry."
+msgstr "Leider konnte der zugehörige Beitrag nicht angelegt werden."
+
+#: ../admin/handlers.php:180
+msgid "You must select a venue."
+msgstr "Du musst eine Location angeben."
+
+#: ../admin/handlers.php:182
+msgid "You must select an artist."
+msgstr "Du musst einen Künstlernamen eingeben."
+
+#: ../admin/handlers.php:184 ../admin/handlers.php:198
+msgid "You must enter an artist name."
+msgstr "Du musst einen Künstlernamen eingeben."
+
+#: ../admin/handlers.php:186 ../admin/handlers.php:206
+msgid "You must enter a venue name."
+msgstr "Du musst eine Location eingeben."
+
+#: ../admin/handlers.php:188 ../admin/handlers.php:208
+msgid "You must enter a city."
+msgstr "Du musst eine Stadt eingeben."
+
+#: ../admin/handlers.php:190 ../admin/handlers.php:202
+msgid "You must enter a tour name."
+msgstr "Du musst einen Tourneenamen eingeben."
+
+#: ../admin/handlers.php:192
+msgid "That's not a valid date."
+msgstr "Das ist kein gültiges Datum."
+
+#: ../admin/handlers.php:194
+msgid "That's not a valid end date."
+msgstr "Das Enddatum ist ungültig."
+
+#: ../admin/handlers.php:248 ../admin/handlers.php:309
+msgid "Your show  on"
+msgstr "Deine Show am"
+
+#: ../admin/handlers.php:248
+msgid "was successfully added."
+msgstr "wurde erfolgreich hinzugefügt."
+
+#: ../admin/handlers.php:249
+msgid "Add a similar show"
+msgstr "Ähnliche Show hinzufügen"
+
+#: ../admin/handlers.php:250 ../admin/handlers.php:309
+msgid "Edit the related post"
+msgstr "Zugehörigen Beitrag bearbeiten"
+
+#: ../admin/handlers.php:264 ../admin/handlers.php:320
+#: ../admin/handlers.php:408 ../admin/handlers.php:450
+#: ../admin/handlers.php:512 ../admin/handlers.php:552
+#: ../admin/handlers.php:640 ../admin/handlers.php:685
+msgid "Something ain't right - try again?"
+msgstr "Irgendwas stimmt nicht - Versuch es bitte noch mal!"
+
+#: ../admin/handlers.php:309 ../admin/handlers.php:448
+msgid "was successfully updated."
+msgstr "wurde erfolgreich bearbeitet"
+
+#: ../admin/handlers.php:359
+msgid "Show(s) successfully deleted."
+msgstr "Show(s) erfolgreich gelöscht."
+
+#: ../admin/handlers.php:360 ../admin/handlers.php:593
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: ../admin/handlers.php:366
+msgid "We ran into some trouble deleting the show(s). Sorry."
+msgstr "Leider konnte(n) deine Show(s) nicht gelöscht werden."
+
+#: ../admin/handlers.php:406 ../admin/handlers.php:510
+#: ../admin/handlers.php:638
+msgid "was successfully added to the database."
+msgstr "wurde erfolgreich zur Datenbank hinzugefügt."
+
+#: ../admin/handlers.php:472
+msgid "Venue successfully deleted."
+msgstr "Die Location wurde erfolgreich gelöscht."
+
+#: ../admin/handlers.php:474
+msgid "We ran into some trouble deleting the venue. Sorry."
+msgstr "Leider konnte die Location nicht gelöscht werden."
+
+#: ../admin/handlers.php:550
+msgid "Tour name successfully changed to"
+msgstr "Der Name der Tournee wurde erfolgreich geändert in"
+
+#: ../admin/handlers.php:593
+msgid "Tour successfully deleted."
+msgstr "Die Tournee erfolgreich gelöscht."
+
+#: ../admin/handlers.php:597
+msgid "We ran into some trouble deleting the tour. Sorry."
+msgstr "Leider konnte die Tournee nicht gelöscht werden"
+
+#: ../admin/handlers.php:683
+msgid "successfully updated."
+msgstr "wurde erfolgreich bearbeitet"
+
+#: ../admin/handlers.php:708
+msgid "Artist successfully deleted."
+msgstr "Der Künstler wurde erfolgreich gelöscht."
+
+#: ../admin/handlers.php:711
+msgid "We ran into some trouble deleting the artist. Sorry."
+msgstr "Leider konnte dein Künstler nicht gelöscht werden"
+
+#: ../admin/handlers.php:748
+msgid "Show(s) successfully restored."
+msgstr "Die Show(s) wurde(n) erfolgreich wiederhergestellt."
+
+#: ../admin/handlers.php:752
+msgid "We ran into some trouble restoring your show(s). Sorry."
+msgstr "Leider konnte die Show nicht wiederhergestellt werden."
+
+#: ../admin/handlers.php:770
+msgid "Tour successfully restored from the database."
+msgstr "Die Tournee wurde aus der Datenbank erfolgreich wiederhergestellt."
+
+#: ../admin/handlers.php:772
+msgid "We ran into some trouble restoring the tour. Sorry."
+msgstr "Leider konnte die Tournee nicht wiederhergestellt werden."
+
+#: ../admin/handlers.php:907
+msgid "shows were skipped due to errors"
+msgstr "Shows wurden aufgrund von Fehlern übersprungen"
+
+#: ../admin/handlers.php:910 ../admin/handlers.php:919
+#: ../admin/handlers.php:928 ../output/feed.php:35
+msgid "in"
+msgstr "in"
+
+#: ../admin/handlers.php:910 ../admin/handlers.php:919
+#: ../admin/handlers.php:928 ../output/feed.php:35
+msgid "on"
+msgstr ","
+
+#: ../admin/handlers.php:916
+msgid "shows were skipped as they were deemed duplicates"
+msgstr "Shows wurden übersprungen, weil sie doppelt vorhanden waren."
+
+#: ../admin/handlers.php:925
+msgid "shows were successfully imported"
+msgstr "Shows wurden erfolgreich importiert"
+
+#: ../admin/handlers.php:935
+msgid ""
+"Sorry, but there was an error parsing your file. Maybe double-check your "
+"formatting and file type?"
+msgstr ""
+"Beim Parsen der Datei ist ein Fehler aufgetreten. Bitte überprüfe die "
+"Formatierung und den Dateityp"
+
+#: ../admin/handlers.php:944
+msgid "Sorry, but there was an error uploading"
+msgstr "Beim Hochladen ist leider ein Fehler aufgetreten."
+
+#: ../admin/handlers.php:963
+msgid "All shows and tours in the trash have been permanently deleted."
+msgstr "Alle Shows und Tourneen im Papierkorb wurden unwiderruflich gelöscht."
+
+#: ../admin/handlers.php:965
+msgid "We ran into some trouble emptying the trash. Sorry."
+msgstr "Leider konnte der Papierkorb nicht entleert werden"
+
+#: ../admin/handlers.php:987
+msgid "All tours have been migrated into artists."
+msgstr "Alle Tourneen wurden den entsprechende Künstlern zugewiesen."
+
+#: ../admin/handlers.php:989
+msgid "There was an error migrating tours to artists. Sorry."
+msgstr "Leider gab es bei Zuweisung der Tourneen zu den Künstlern ein Fehler."
+
+#: ../admin/handlers.php:993
+msgid "There were no tours to migrate."
+msgstr "Es sind keine Tourneen zum Zuweisen vorhanden"
+
+#: ../admin/import-export.php:18
+msgid ""
+"Upload a CSV (comma-separated values) file to import into your GigPress "
+"database."
+msgstr ""
+"Lade eine CSV-Datei (comma-separated values) zum Import in deine GigPress "
+"Datenbank hoch."
+
+#: ../admin/import-export.php:18
+msgid "Please review the formatting specifications to save yourself headaches!"
+msgstr "Bitte überprüfe deine Formatierung."
+
+#: ../admin/import-export.php:27
+msgid "Include Related Post associations?"
+msgstr "Verbindungen zu zugehörigen Beiträgen einbeziehen?"
+
+#: ../admin/import-export.php:29
+msgid "Upload CSV"
+msgstr "CSV hochladen"
+
+#: ../admin/import-export.php:48
+msgid ""
+"Download your complete show database as a CSV (comma-separated values) file, "
+"compatible with programs such as Microsoft Excel. This file is also suitable "
+"to import into another GigPress installation."
+msgstr ""
+"Komplette Datenbank als tab-separated CSV-Datei herunterladen (mit Microsoft "
+"Excel kompatibel). Diese Datei kann auch in eine andere GigPress "
+"Installation importiert werden."
+
+#: ../admin/import-export.php:57
+msgid "Export all artists"
+msgstr "Alle Künstler exportieren"
+
+#: ../admin/import-export.php:71
+msgid "Export all tours"
+msgstr "Alle Tourneen exportieren"
+
+#: ../admin/import-export.php:78 ../admin/new.php:535 ../admin/shows.php:173
+#: ../admin/tours.php:144
+msgid "No tours in the database"
+msgstr "Es sind keine Tourneen in der Datenbank."
+
+#: ../admin/import-export.php:85
+msgid "Export all dates"
+msgstr "Alle Termine exportieren"
+
+#: ../admin/import-export.php:86
+msgid "Export upcoming dates"
+msgstr "Bevorstehende Termine exportieren"
+
+#: ../admin/import-export.php:87
+msgid "Export past dates"
+msgstr "Vergangene Termine exportieren"
+
+#: ../admin/import-export.php:91
+msgid "Download CSV"
+msgstr "CSV herunterladen"
+
+#: ../admin/new.php:32
+msgid ""
+"<strong>Welcome to GigPress!</strong> Get started by adding your first show "
+"below. To display your shows, simply add the"
+msgstr ""
+"<strong>Willkommen bei GigPress.</strong> Füge deine erste Show unten ein. "
+"Um die Shows anzuzeigen, füge einfach"
+
+#: ../admin/new.php:32
+msgid "shortcode to any page or post."
+msgstr "den Shortcode in eine Seite oder einen Beitrag ein. "
+
+#: ../admin/new.php:33
+msgid "Questions?  Please check out the"
+msgstr "Fragen? Bitte schaue dich auf der"
+
+#: ../admin/new.php:33
+msgid "documentation"
+msgstr "Dokumentation"
+
+#: ../admin/new.php:33 ../admin/shows.php:303
+msgid "and"
+msgstr "und den"
+
+#: ../admin/new.php:33
+msgid "FAQ"
+msgstr "FAQs"
+
+#: ../admin/new.php:33
+msgid "on the GigPress website. Enjoy!"
+msgstr "auf der GigPress Website um. Viel Spaß!"
+
+#: ../admin/new.php:33
+msgid "Don't show this again"
+msgstr "Nicht nochmal zeigen"
+
+#: ../admin/new.php:146
+msgid "Sorry, but we had trouble loading that show for editing."
+msgstr "Leider konnte die Show nicht geladen werden."
+
+#: ../admin/new.php:190
+msgid "Edit this show"
+msgstr "Show bearbeiten"
+
+#: ../admin/new.php:213 ../admin/settings.php:134 ../admin/shows.php:221
+#: ../admin/shows.php:233 ../output/feed.php:42
+msgid "Date"
+msgstr "Datum"
+
+#: ../admin/new.php:273 ../admin/new.php:555
+msgid "None"
+msgstr "keinen"
+
+#: ../admin/new.php:322
+msgid "This is a multi-day event"
+msgstr "Dieses Event geht über mehrere Tage"
+
+#: ../admin/new.php:327
+msgid "End date"
+msgstr "Enddatum"
+
+#: ../admin/new.php:358 ../admin/shows.php:222 ../admin/shows.php:234
+msgid "Artist"
+msgstr "Künstler"
+
+#: ../admin/new.php:361
+msgid "Add a new artist"
+msgstr "Neuen Künstler hinzufügen"
+
+#: ../admin/new.php:396 ../admin/shows.php:223 ../admin/shows.php:235
+#: ../output/feed.php:52
+msgid "Venue"
+msgstr "Location"
+
+#: ../admin/new.php:399
+msgid "Add a new venue"
+msgstr "Neue Location hinzufügen"
+
+#: ../admin/new.php:401
+msgid "Select a venue"
+msgstr "Location aussuchen"
+
+#: ../admin/new.php:414 ../admin/shows.php:187 ../admin/venues.php:229
+msgid "No venues in the database"
+msgstr "Es sind keine Locations in der Datenbank"
+
+#: ../admin/new.php:424 ../admin/venues.php:103
+msgid "Venue name"
+msgstr "Name der Location"
+
+#: ../admin/new.php:429 ../admin/venues.php:107
+msgid "Venue address"
+msgstr "Anschrift der Location"
+
+#: ../admin/new.php:433 ../admin/venues.php:111
+msgid "Venue city"
+msgstr "Stadt der Location"
+
+#: ../admin/new.php:437 ../admin/venues.php:115
+msgid "Venue state/province"
+msgstr "Location Staat/Bundesland"
+
+#: ../admin/new.php:441 ../admin/venues.php:119
+msgid "Venue postal code"
+msgstr "Location Postleitzahl"
+
+#: ../admin/new.php:445 ../admin/venues.php:123
+msgid "Venue country"
+msgstr "Location Land"
+
+#: ../admin/new.php:458 ../admin/venues.php:135
+msgid "Venue website"
+msgstr "Location Website"
+
+#: ../admin/new.php:470
+msgid "Status"
+msgstr "Status"
+
+#: ../admin/new.php:472
+msgid "Active"
+msgstr "aktiv"
+
+#: ../admin/new.php:480
+msgid "Admittance"
+msgstr "Altersbeschränkung"
+
+#: ../admin/new.php:482
+msgid "Not sure"
+msgstr "nicht sicher"
+
+#: ../admin/new.php:497
+msgid "include currency symbol"
+msgstr "Währungssymbol nicht vergessen"
+
+#: ../admin/new.php:500
+msgid "Ticket URL"
+msgstr "Webseite für Karten"
+
+#: ../admin/new.php:504
+msgid "Ticket phone"
+msgstr "Telefonnummer für Karten"
+
+#: ../admin/new.php:508
+msgid "External URL"
+msgstr "Externe URL"
+
+#: ../admin/new.php:515
+msgid "Use this space to list other bands, 'presented by' info, etc"
+msgstr ""
+"An diese Stelle kannst du Infos eintragen, z.B. Bands im Vorprogramm, "
+"'präsentiert von..' usw.. "
+
+#: ../admin/new.php:519
+msgid "Part of a tour?"
+msgstr "Teil einer Tournee?"
+
+#: ../admin/new.php:522
+msgid "No"
+msgstr "keine"
+
+#: ../admin/new.php:524
+msgid "Add a new tour"
+msgstr "Tournee hinzufügen"
+
+#: ../admin/new.php:545 ../admin/tours.php:82 ../admin/tours.php:112
+#: ../admin/tours.php:150
+msgid "Tour name"
+msgstr "Name der Tournee"
+
+#: ../admin/new.php:552
+msgid "Related post"
+msgstr "Zugehöriger Beitrag"
+
+#: ../admin/new.php:557
+msgid "Add a new post"
+msgstr "Neuen Beitrag anlegen"
+
+#: ../admin/new.php:583
+msgid "Related post title"
+msgstr "Titel des zugehörigen Beitrags"
+
+#: ../admin/new.php:585
+msgid "Available placeholders:"
+msgstr "Verfügbare Platzhalter"
+
+#: ../admin/new.php:586
+msgid "Publish now"
+msgstr "sofort veröffentlichen"
+
+#: ../admin/new.php:587
+msgid "Publish on show date"
+msgstr "am Datum der Show veröffentlichen"
+
+#: ../admin/new.php:596
+msgid "Update show"
+msgstr "Show bearbeiten"
+
+#: ../admin/new.php:600
+msgid "Add show"
+msgstr "Show hinzufügen"
+
+#: ../admin/settings.php:22
+msgid "Full URL to your 'Upcoming Shows' page"
+msgstr "Volle URL zur Seite mit den nächsten Shows"
+
+#: ../admin/settings.php:27
+msgid "No upcoming shows message"
+msgstr "Mitteilung, dass keine Shows bevorstehen"
+
+#: ../admin/settings.php:33
+msgid "No past shows message"
+msgstr "Mitteilung, dass noch kein Archiv vorhanden ist"
+
+#: ../admin/settings.php:40
+msgid "User level required to use GigPress"
+msgstr "Benötigter Benutzerlevel, um Gigpress zu benutzen"
+
+#: ../admin/settings.php:43
+msgid "Administrator"
+msgstr "Administrator"
+
+#: ../admin/settings.php:44
+msgid "Editor"
+msgstr "Redakteur"
+
+#: ../admin/settings.php:45
+msgid "Author"
+msgstr "Autor"
+
+#: ../admin/settings.php:46
+msgid "Contributor"
+msgstr "Mitarbeiter"
+
+#: ../admin/settings.php:52
+msgid "Short date format"
+msgstr "Kurzes Datumsformat"
+
+#: ../admin/settings.php:55 ../admin/settings.php:62 ../admin/settings.php:69
+msgid "Output"
+msgstr "Ausgabe"
+
+#: ../admin/settings.php:59
+msgid "Long date format"
+msgstr "Langes Datumsformat"
+
+#: ../admin/settings.php:66
+msgid "Time format"
+msgstr "Zeitformat"
+
+#: ../admin/settings.php:70
+msgid "Here's some documentation on date and time formatting"
+msgstr "Dokumentation über Datums- und Zeitformatierung"
+
+#: ../admin/settings.php:71
+msgid "I use a 24 hour clock"
+msgstr "Ich nutze das 24 Stunden-Format"
+
+#: ../admin/settings.php:75
+msgid "Artist label"
+msgstr "Label des Künstlers"
+
+#: ../admin/settings.php:81
+msgid "Tour label"
+msgstr "Tourneebezeichnung"
+
+#: ../admin/settings.php:87
+msgid "External link label"
+msgstr "Externer Link Label"
+
+#: ../admin/settings.php:93 ../output/feed.php:69
+msgid "Age restrictions"
+msgstr "Altersbeschränkungen"
+
+#: ../admin/settings.php:95
+msgid "A pipe-separated list of available age restrictions."
+msgstr ""
+"eine Liste der verfügbaren Altersbeschränkungen, (Punkte jeweils durch | "
+"getrennt)"
+
+#: ../admin/settings.php:98
+msgid "Related posts"
+msgstr "Zugehörige Beiträge"
+
+#: ../admin/settings.php:100
+msgid "Display gig info in related posts"
+msgstr "Gig-Infos in den zugehörigen Beiträgen anzeigen"
+
+#: ../admin/settings.php:101
+msgid "before the post content"
+msgstr "vor dem Inhalt des Beitrags"
+
+#: ../admin/settings.php:102
+msgid "after the post content"
+msgstr "nach dem Inhalt des Beitrags"
+
+#: ../admin/settings.php:103
+msgid "using <code>[gigpress_related_shows]</code>"
+msgstr "mittels <code>[gigpress_related_shows]</code>"
+
+#: ../admin/settings.php:104
+msgid ""
+"If a gig has a related post, that gig's details will appear at the specified "
+"position in that post."
+msgstr ""
+"Wenn der Gig einem Beitrag zugewiesen wurde, erscheinen die Gig-Infos an der "
+"festgelegten Stelle in diesem Beitrag."
+
+#: ../admin/settings.php:108
+msgid "Related show heading"
+msgstr "Überschrift der zugehörigen Show"
+
+#: ../admin/settings.php:111
+msgid "This appears before the gig details in your related post."
+msgstr "Erscheint im zugehörigen Beitrag vor den Gig-Details"
+
+#: ../admin/settings.php:115
+msgid "Related posts category"
+msgstr "Kategorie des zugehörigen Beitrags"
+
+#: ../admin/settings.php:117
+msgid "Automatically create a related post for every new show I enter."
+msgstr "Einen für jede neue Show einen zugehörigen Beitrag erstellen"
+
+#: ../admin/settings.php:118
+msgid "When creating related posts, put them in this category"
+msgstr "Neue zugehörige Beiträge in diese Kategorie ablegen"
+
+#: ../admin/settings.php:126
+msgid "Exclude this category from my normal post listings."
+msgstr "Diese Kategorie aus meinen normalen Beitragslisten ausschließen"
+
+#: ../admin/settings.php:131
+msgid "Related posts linking"
+msgstr "Verlinkung der zugehörigen Beiträge"
+
+#: ../admin/settings.php:133
+msgid "Place a link to each show's related post in the following fields"
+msgstr "Zugehörigen Beitrag für jede Show in den folgenden Feldern verlinken"
+
+#: ../admin/settings.php:135 ../admin/shows.php:224 ../admin/shows.php:236
+#: ../admin/venues.php:183 ../admin/venues.php:236 ../output/feed.php:50
+msgid "City"
+msgstr "Stadt"
+
+#: ../admin/settings.php:140
+msgid "Related post phrase"
+msgstr "Ausdruck 'zugehöriger Beitrag'"
+
+#: ../admin/settings.php:143
+msgid "This appears in your shows listing."
+msgstr "erscheint in deiner Show-Liste"
+
+#: ../admin/settings.php:147
+msgid "Artist URLs"
+msgstr "Künstler URLs"
+
+#: ../admin/settings.php:148
+msgid "Link artist names to their URLs."
+msgstr "Künsternamen mit ihrer URL verlinken"
+
+#: ../admin/settings.php:152
+msgid "RSS/iCal"
+msgstr "RSS/iCal"
+
+#: ../admin/settings.php:154
+msgid "Make the GigPress RSS feed auto-discoverable."
+msgstr "GigPress-RSS-Feed automatisch auffindbar machen"
+
+#: ../admin/settings.php:155
+msgid "Show RSS and iCal subscription links."
+msgstr "Links zu RSS- und iCal-Abonnements anzeigen"
+
+#: ../admin/settings.php:156
+msgid ""
+"Note that the FeedBurner FeedSmith plugin will kill your GigPress RSS and "
+"iCal feeds, but the FD FeedBurner plugin will not."
+msgstr ""
+"Das FeedBurner FeedSmith Plugin ist mit GigPress leider nicht kompatibel. "
+"Dafür kannst du das FD Feedburner Plugin verwenden"
+
+#: ../admin/settings.php:160
+msgid "RSS/iCal feed title"
+msgstr "Titel für den RSS/iCal Feed"
+
+#: ../admin/settings.php:166
+msgid "Country display"
+msgstr "Land anzeigen"
+
+#: ../admin/settings.php:168
+msgid "Display country column."
+msgstr "Spalte 'Land' anzeigen"
+
+#: ../admin/settings.php:168
+msgid "Use full country names."
+msgstr "Vollen Name des Landes verwenden"
+
+#: ../admin/settings.php:172
+msgid "Link behaviour"
+msgstr "Linkeigenschaften"
+
+#: ../admin/settings.php:173
+msgid "Open external links in new windows."
+msgstr "Externe Links in einem neuen Fenster öffnen"
+
+#: ../admin/settings.php:177
+msgid "jQuery"
+msgstr "jQuery"
+
+#: ../admin/settings.php:179
+msgid "Load jQuery into my theme."
+msgstr "jQuery in mein Theme laden"
+
+#: ../admin/settings.php:180
+msgid ""
+"Uncheck this if you have a hard-coded link to the jQuery library in your "
+"theme."
+msgstr ""
+"Häckchen entfernen, wenn in deinem Theme ein hardgecodeter Link zur jQuery-"
+"Bibliothek eingebaut ist"
+
+#: ../admin/settings.php:185
+msgid "Advanced"
+msgstr "Fortgeschritten"
+
+#: ../admin/settings.php:187
+msgid "Disable the default GigPress CSS."
+msgstr "Standard GigPress CSS deaktivieren"
+
+#: ../admin/settings.php:187
+msgid "Disable the default GigPress JavaScript."
+msgstr "Standard GigPress Javascript deaktivieren"
+
+#: ../admin/settings.php:206
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: ../admin/shows.php:135
+msgid "All"
+msgstr "alle"
+
+#: ../admin/shows.php:138
+msgid "Upcoming"
+msgstr "bevorstehende Shows"
+
+#: ../admin/shows.php:141
+msgid "Past"
+msgstr "vergangene Shows"
+
+#: ../admin/shows.php:151
+msgid "View all artists"
+msgstr "Alle Künstler ansehen"
+
+#: ../admin/shows.php:165
+msgid "View all tours"
+msgstr "Alle Tourneen ansehen"
+
+#: ../admin/shows.php:179
+msgid "View all venues"
+msgstr "Alle Locations ansehen"
+
+#: ../admin/shows.php:193
+msgid "Descending"
+msgstr "absteigend"
+
+#: ../admin/shows.php:194
+msgid "Ascending"
+msgstr "aufsteigend"
+
+#: ../admin/shows.php:225 ../admin/shows.php:237 ../admin/venues.php:185
+#: ../admin/venues.php:238 ../output/feed.php:62
+msgid "Country"
+msgstr "Land"
+
+#: ../admin/shows.php:226 ../admin/shows.php:238
+msgid "Tour"
+msgstr "Tournee"
+
+#: ../admin/shows.php:263
+msgid "Copy"
+msgstr "kopieren"
+
+#: ../admin/shows.php:283
+msgid "Sorry, no shows to display based on your criteria."
+msgstr "Leider entsprechen keine Shows deinen Suchkriterien"
+
+#: ../admin/shows.php:289
+msgid "Trash selected shows"
+msgstr "Ausgewählte Shows löschen"
+
+#: ../admin/shows.php:303
+msgid "You have"
+msgstr "Zur Zeit hast du"
+
+#: ../admin/shows.php:303
+msgid "shows"
+msgstr "Shows"
+
+#: ../admin/shows.php:303
+msgid "tours"
+msgstr "Tourneen"
+
+#: ../admin/shows.php:303
+msgid "in your trash"
+msgstr "in deinem Papierkorb"
+
+#: ../admin/shows.php:305
+msgid "Take out the trash now"
+msgstr "Papierkorb jetzt entleeren"
+
+#: ../admin/tours.php:36
+msgid ""
+"A tour is simply a named collection of shows that you want to group together."
+msgstr "Ein Tournee ist eine Reihe von Shows, die du zusammenfassen möchtest"
+
+#: ../admin/tours.php:49
+msgid "Update tour"
+msgstr "Tournee bearbeiten"
+
+#: ../admin/tours.php:51
+msgid "Edit this tour"
+msgstr "Tournee bearbeiten"
+
+#: ../admin/tours.php:60
+msgid "Sorry, but we had trouble loading that tour for editing."
+msgstr "Leider konnte die Tournee nicht bearbeitet werden"
+
+#: ../admin/tours.php:62 ../admin/tours.php:72
+msgid "Add a tour"
+msgstr "Tournee hinzufügen"
+
+#: ../admin/tours.php:70
+msgid "Add tour"
+msgstr "Tournee hinzufügen"
+
+#: ../admin/tours.php:88
+msgid "All tours"
+msgstr "Alle Tourneen"
+
+#: ../admin/tours.php:92
+msgid ""
+"Note that deleting a tour will <strong>NOT</strong> delete the shows "
+"associated with that tour."
+msgstr ""
+"Beachte: Wenn du Tourneen entfernst, löschst du <strong>NICHT</strong> die "
+"Shows, die mit dieser Tour verbunden sind."
+
+#: ../admin/venues.php:71
+msgid "Sorry, but we had trouble loading that venue for editing."
+msgstr "Leider konnte die Location nicht bearbeitet werden"
+
+#: ../admin/venues.php:84
+msgid "Edit this venue"
+msgstr "Location bearbeiten"
+
+#: ../admin/venues.php:94
+msgid "Add an venue"
+msgstr "Location hinzufügen"
+
+#: ../admin/venues.php:147
+msgid "Update venue"
+msgstr "Location bearbeiten"
+
+#: ../admin/venues.php:151
+msgid "Add venue"
+msgstr "Location hinzufügen"
+
+#: ../admin/venues.php:160
+msgid "All venues"
+msgstr "alle Locations"
+
+#: ../admin/venues.php:164
+msgid "Note that you cannot delete a venue while it has shows in the database."
+msgstr ""
+"Ein Location kann nicht gelöscht werden, solange zugehörige Shows in der "
+"Datenbank sind"
+
+#: ../admin/venues.php:182 ../admin/venues.php:235
+msgid "Name"
+msgstr "Name"
+
+#: ../admin/venues.php:184 ../admin/venues.php:237 ../output/feed.php:55
+msgid "Address"
+msgstr "Adresse"
+
+#: ../admin/venues.php:186 ../admin/venues.php:239
+msgid "Phone"
+msgstr "Telefon"
+
+#: ../output/feed.php:47
+msgid "Time"
+msgstr "Zeit"
+
+#: ../output/feed.php:65
+msgid "Admission"
+msgstr "Eintritt"
+
+#: ../output/gigpress_shows.php:307
+msgid "Select Month"
+msgstr "Monat auswählen"
+
+#: ../output/gigpress_shows.php:312
+msgid "Select Year"
+msgstr "Jahr auswählen"
+
+#: ../output/gigpress_sidebar.php:8
+msgid "List upcoming GigPress shows"
+msgstr "Anstehende GigPress Shows anzeigen"
+
+#: ../output/gigpress_sidebar.php:79
+msgid "Title"
+msgstr "Titel"
+
+#: ../output/gigpress_sidebar.php:87
+msgid "Display upcoming shows"
+msgstr "Anstehende Shows anzeigen"
+
+#: ../output/gigpress_sidebar.php:90
+msgid "Display today's shows"
+msgstr "Heutige Shows anzeigen"
+
+#: ../output/gigpress_sidebar.php:93
+msgid "Display past shows"
+msgstr "Vergangene Shows anzeigen"
+
+#: ../output/gigpress_sidebar.php:99
+msgid "Number of shows to list"
+msgstr "Anzahl der anzuzeigenden Shows"
+
+#: ../output/gigpress_sidebar.php:106
+msgid "Only display shows from this artist"
+msgstr "Nur Shows dieses Künstlers anzeigen"
+
+#: ../output/gigpress_sidebar.php:121
+msgid "Only display shows from this tour"
+msgstr "Nur Shows dieser Tour anzeigen"
+
+#: ../output/gigpress_sidebar.php:136
+msgid "Only display shows from this venue"
+msgstr "Nur Shows dieser Location anzeigen"
+
+#: ../output/gigpress_sidebar.php:152
+msgid "Group by artist"
+msgstr "Nach Künstler gruppieren"
+
+#: ../output/gigpress_sidebar.php:153
+msgid "Ignored when filtering by artist, tour, or venue."
+msgstr "Wird ignoriert, wenn nach Künstler, Tour oder Location gefiltert wird."
+
+#: ../output/gigpress_sidebar.php:160
+msgid "Order artists alphabetically"
+msgstr "Künstler alphabetisch sortieren"
+
+#: ../output/gigpress_sidebar.php:163
+msgid "Order artists by custom order"
+msgstr "Künstler individuell sortieren"
+
+#: ../output/gigpress_sidebar.php:166
+msgid "Ignored when not grouping by artist."
+msgstr "Wird ignoriert, wenn nicht nach Künstler gruppiert wird."
+
+#: ../output/gigpress_sidebar.php:172
+msgid "Group by tour"
+msgstr "Shows in Tournee zusammenfassen"
+
+#: ../output/gigpress_sidebar.php:179
+msgid "Show RSS and iCal feeds"
+msgstr "RSS und iCal Feeds anzeigen"
+
+#: ../output/gigpress_sidebar.php:184
+msgid "Link text"
+msgstr "Link Text"
+
+#: ../output/gigpress_sidebar.php:186
+msgid ""
+"This phrase is used to link to the page specified in your GigPress settings. "
+"(Leave blank to disable this link.)"
+msgstr ""
+"Die Phrase wird verwendet um auf die Seite zu verlinken, die in deinen "
+"GigPress Einstellungen festgelegt wurde (leer lassen um den Link zu "
+"deaktivieren)."
+
+#: ../templates/shows-list-footer.php:15
+#: ../templates/sidebar-list-footer.php:21
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+#~ msgid "opens in a new window"
+#~ msgstr "öffnet sich in einem neuen Fenster"

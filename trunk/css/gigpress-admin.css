@@ -1,0 +1,190 @@
+.gigpress {
+}
+
+#icon-gigpress {
+	background: transparent url(../images/gigpress-icon-32.png) no-repeat 3px 5px;
+}
+
+.gigpress .widefat, .gp-table {
+	margin: 1em 0;
+}
+
+#wpcontent .gigpress select {
+	max-width: 180px;
+}
+
+tr.gigpress-cancelled td, tr.gigpress-cancelled .gigpress-time {
+	color: #999;
+}
+
+strong.gigpress-cancelled, strong.gigpress-soldout {
+	text-transform: uppercase;
+}
+
+strong.gigpress-soldout {
+	color: red;
+}
+
+.gp-table th {
+	vertical-align: top;
+}
+
+.gp-table p {
+	margin-top: 0;
+}
+
+.gigpress-error {
+	background: #ffebe8 !important;
+	border: 1px solid #C00 !important;	
+}
+
+span.gigpress-error {
+	padding: 3px;
+	display: inline-block;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;	
+}
+
+tbody.gigpress-addition tr {
+	background: #f1f1f1;
+}
+
+th.gp-thead {
+	background-color: #eaf3fa;
+}
+
+th.gp-thead h3 {
+	margin: .2em 0;
+	font-size: 110%;
+}
+
+.gp-tiny {
+	width: 16px;
+}
+
+th.gp-centre, th.gp-tiny, td.gp-centre, td.gp-tiny {
+	text-align: center;
+}
+
+img.gp-sort-handle {
+	display: none;
+	cursor: move;
+}
+
+#artist-sort-update {
+	display: none;
+	background-color: #ffffe0;
+	border: 1px solid #e6db55;
+	padding: 0.6em 1em;
+	margin: 5px 0;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+span.gigpress-date {
+	font-weight: bold;
+}
+
+span.gigpress-time {
+	font-size: 90%;
+	color: #666;
+	padding: 3px 0;
+	display: block;	
+}
+
+
+td.gigpress-notes {
+	font-size: 90%;
+	color: #666;
+}
+
+span.gp-required {
+	font-weight: bold;
+	color: #d54e21;
+}
+
+.form-table p {
+	margin: 5px 0 0;
+}
+
+p.gigpress-download {
+	font-weight: bold;
+}
+
+p.gigpress-footer {
+	text-align: center;
+	margin: 240px 0px 20px;
+	font-size: 0.9em;
+	display: none;
+}
+
+p.gigpress-footer a {
+	color: #FFF;
+	border-bottom: none;
+	text-decoration: none;
+}
+
+p.gigpress-footer a:hover {
+	color: #000;
+}
+
+p.gp-trash {
+	padding: 10px;
+	background: #fffeeb;
+	border: 1px solid #CCC;
+	font-size: 0.9em;
+	margin: 2em 0;
+}
+
+.gp-trash a:hover {
+	color: #F00;
+}
+
+.gp-import-panel {
+	width: 48%;
+	float: left;
+}
+
+.gp-export-panel {
+	width: 48%;
+	float: right;
+}
+
+.optiontable th {
+	text-align: left;
+	width: 150px;
+}
+
+.optiontable td, .v25 .optiontable th {
+	padding: 10px;
+}
+
+span.submit {
+	border: none;
+	padding: 0;
+	margin: 0;	
+}
+
+
+
+
+.widefat td, .widefat th {
+	padding: 7px;
+}
+
+fieldset {
+	margin: 1em 0 0;
+	border: none;
+}
+
+legend {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
