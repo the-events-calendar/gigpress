@@ -158,6 +158,11 @@ function gigpress_shows($filter = null, $content = null) {
 		
 		$artists = $wpdb->get_results("SELECT * FROM " . GIGPRESS_ARTISTS . " ORDER BY " . $artist_order . "artist_alpha ASC");
 		
+		// BEGIN ARTIST ORDER HACK
+		
+		// prepare an array to store event output
+		$artist_order = array();
+		
 		foreach($artists as $artist_group) {
 			$shows = $wpdb->get_results("SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE " . $date_condition . " AND show_status != 'deleted' AND s.show_artist_id = " . $artist_group->artist_id . " AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id " . $further_where . " ORDER BY s.show_date " . $sort . ",s.show_expire " . $sort . ",s.show_time ". $sort . $limit);
 			
@@ -173,41 +178,69 @@ function gigpress_shows($filter = null, $content = null) {
 					'artist_id' => $artist_group->artist_id,
 					'artist_url' => (!empty($artist_group->artist_url)) ? esc_url($artist_group->artist_url) : '',
 				);
+				
+				// grab the artist's first show
+				$show = array_shift(array_slice($shows, 0, 1));
+				$showdata = gigpress_prepare($show, 'public');
+				
+				// add the show date to the array
+				$artist_id = $showdata['artist_id'];
+				$artist_order[$artist_id]['date'] = strtotime($showdata['date']);
+				
+				// activate output buffering
+				ob_start();
 			
-				include gigpress_template('shows-artist-heading');
-				include gigpress_template('shows-list-start');
+					include gigpress_template('shows-artist-heading');
+					include gigpress_template('shows-list-start');
 											
-				foreach($shows as $show) {
+					foreach($shows as $show) {
 				
-					// For each individual show
+						// For each individual show
 					
-					$showdata = gigpress_prepare($show, 'public');
+						$showdata = gigpress_prepare($show, 'public');
 					
-					if($showdata['tour'] && $showdata['tour'] != $current_tour && !$tour) {
-						$current_tour = $showdata['tour'];
-						include gigpress_template('shows-tour-heading');
+						if($showdata['tour'] && $showdata['tour'] != $current_tour && !$tour) {
+							$current_tour = $showdata['tour'];
+							include gigpress_template('shows-tour-heading');
+						}
+					
+						$class = $showdata['status'];
+						++ $i; $class .= ($i % 2) ? '' : ' gigpress-alt';
+						if(!$showdata['tour'] && $current_tour) {
+							$current_tour = '';
+							$class .= ' gigpress-divider';
+						}
+						$class .= ($showdata['tour'] && !$tour) ? ' gigpress-tour' : '';
+					
+						include gigpress_template('shows-list');
+					
+						if($gpo['output_schema_json'] == 'y'){
+							$show_markup = gigpress_json_ld($showdata);
+							array_push($shows_markup,$show_markup);
+						}
 					}
-					
-					$class = $showdata['status'];
-					++ $i; $class .= ($i % 2) ? '' : ' gigpress-alt';
-					if(!$showdata['tour'] && $current_tour) {
-						$current_tour = '';
-						$class .= ' gigpress-divider';
-					}
-					$class .= ($showdata['tour'] && !$tour) ? ' gigpress-tour' : '';
-					
-					include gigpress_template('shows-list');
-					
-					if($gpo['output_schema_json'] == 'y')
-					{
-						$show_markup = gigpress_json_ld($showdata);
-						array_push($shows_markup,$show_markup);
-					}
-				}
 				
-				include gigpress_template('shows-list-end');						
+					include gigpress_template('shows-list-end');
+				
+				// add output to array and disable buffer
+				$artist_order[$artist_id]['html'] = ob_get_clean();
 			}
 		}
+		
+		// reorder array by date
+		function order_artists($a, $b) {
+			$t1 = $a['date'];
+			$t2 = $b['date'];
+			return $t1 - $t2;
+		}
+		usort($artist_order, 'order_artists');
+		
+		// output HTML from array
+		foreach($artist_order as $listing){
+			echo $listing['html'];
+		}
+		
+		// END ARTIST ORDER HACK
 		
 		if($some_results) {
 			// After all artist groups		
