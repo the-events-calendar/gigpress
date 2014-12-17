@@ -3,7 +3,7 @@ Contributors: mrherbivore
 Donate link: http://gigpress.com/donate
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 3.0
-Tested up to: 4.0
+Tested up to: 4.1
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
