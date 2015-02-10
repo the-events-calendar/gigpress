@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GigPress 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 13:17-0600\n"
+"POT-Creation-Date: 2015-02-10 07:03-0600\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Derek Hogue <derek@gigress.com>\n"
 "Language-Team:  <derek@gigpress.com>\n"
@@ -51,22 +51,22 @@ msgstr ""
 msgid "Import/Export"
 msgstr ""
 
-#: ../gigpress.php:102
+#: ../gigpress.php:104
 msgid "You're using"
 msgstr ""
 
-#: ../gigpress.php:102
+#: ../gigpress.php:104
 msgid "Like it?"
 msgstr ""
 
-#: ../gigpress.php:102
+#: ../gigpress.php:104
 msgid "Make a donation"
 msgstr ""
 
-#: ../gigpress.php:242
-#: ../admin/handlers.php:910
-#: ../admin/handlers.php:919
-#: ../admin/handlers.php:928
+#: ../gigpress.php:241
+#: ../admin/handlers.php:914
+#: ../admin/handlers.php:923
+#: ../admin/handlers.php:932
 #: ../admin/new.php:241
 msgid "at"
 msgstr ""
@@ -79,30 +79,26 @@ msgstr ""
 
 #: ../gigpress.php:246
 #: ../admin/shows.php:274
-#: ../output/feed.php:73
+#: ../output/feed.php:74
 msgid "Box office"
 msgstr ""
 
 #: ../gigpress.php:247
 #: ../admin/new.php:462
 #: ../admin/venues.php:139
-#: ../output/feed.php:59
+#: ../output/feed.php:60
 msgid "Venue phone"
 msgstr ""
 
 #: ../gigpress.php:248
 #: ../admin/new.php:512
-#: ../admin/settings.php:136
-#: ../output/feed.php:80
+#: ../admin/settings.php:142
+#: ../output/feed.php:84
 msgid "Notes"
 msgstr ""
 
 #: ../gigpress.php:270
 msgid "Download iCal"
-msgstr ""
-
-#: ../gigpress.php:283
-msgid "Buy tickets"
 msgstr ""
 
 #: ../gigpress.php:285
@@ -124,15 +120,15 @@ msgstr ""
 msgid "Displaying %s&#8211;%s of %s"
 msgstr ""
 
-#: ../gigpress.php:496
+#: ../gigpress.php:497
 msgid "Artist order updated."
 msgstr ""
 
-#: ../gigpress.php:547
+#: ../gigpress.php:548
 msgid "Nothing to export."
 msgstr ""
 
-#: ../gigpress.php:554
+#: ../gigpress.php:555
 msgid "You are not authorized to do that. Try logging-in first."
 msgstr ""
 
@@ -384,57 +380,57 @@ msgstr ""
 msgid "We ran into some trouble restoring the tour. Sorry."
 msgstr ""
 
-#: ../admin/handlers.php:907
+#: ../admin/handlers.php:911
 msgid "shows were skipped due to errors"
 msgstr ""
 
-#: ../admin/handlers.php:910
-#: ../admin/handlers.php:919
-#: ../admin/handlers.php:928
-#: ../output/feed.php:35
+#: ../admin/handlers.php:914
+#: ../admin/handlers.php:923
+#: ../admin/handlers.php:932
+#: ../output/feed.php:36
 msgid "in"
 msgstr ""
 
-#: ../admin/handlers.php:910
-#: ../admin/handlers.php:919
-#: ../admin/handlers.php:928
-#: ../output/feed.php:35
+#: ../admin/handlers.php:914
+#: ../admin/handlers.php:923
+#: ../admin/handlers.php:932
+#: ../output/feed.php:36
 msgid "on"
 msgstr ""
 
-#: ../admin/handlers.php:916
+#: ../admin/handlers.php:920
 msgid "shows were skipped as they were deemed duplicates"
 msgstr ""
 
-#: ../admin/handlers.php:925
+#: ../admin/handlers.php:929
 msgid "shows were successfully imported"
 msgstr ""
 
-#: ../admin/handlers.php:935
+#: ../admin/handlers.php:939
 msgid "Sorry, but there was an error parsing your file. Maybe double-check your formatting and file type?"
 msgstr ""
 
-#: ../admin/handlers.php:944
+#: ../admin/handlers.php:948
 msgid "Sorry, but there was an error uploading"
 msgstr ""
 
-#: ../admin/handlers.php:963
+#: ../admin/handlers.php:967
 msgid "All shows and tours in the trash have been permanently deleted."
 msgstr ""
 
-#: ../admin/handlers.php:965
+#: ../admin/handlers.php:969
 msgid "We ran into some trouble emptying the trash. Sorry."
 msgstr ""
 
-#: ../admin/handlers.php:987
+#: ../admin/handlers.php:991
 msgid "All tours have been migrated into artists."
 msgstr ""
 
-#: ../admin/handlers.php:989
+#: ../admin/handlers.php:993
 msgid "There was an error migrating tours to artists. Sorry."
 msgstr ""
 
-#: ../admin/handlers.php:993
+#: ../admin/handlers.php:997
 msgid "There were no tours to migrate."
 msgstr ""
 
@@ -531,10 +527,10 @@ msgid "Edit this show"
 msgstr ""
 
 #: ../admin/new.php:213
-#: ../admin/settings.php:134
+#: ../admin/settings.php:140
 #: ../admin/shows.php:221
 #: ../admin/shows.php:233
-#: ../output/feed.php:42
+#: ../output/feed.php:43
 msgid "Date"
 msgstr ""
 
@@ -564,7 +560,7 @@ msgstr ""
 #: ../admin/new.php:396
 #: ../admin/shows.php:223
 #: ../admin/shows.php:235
-#: ../output/feed.php:52
+#: ../output/feed.php:53
 msgid "Venue"
 msgstr ""
 
@@ -658,6 +654,7 @@ msgid "Part of a tour?"
 msgstr ""
 
 #: ../admin/new.php:522
+#: ../admin/settings.php:194
 msgid "No"
 msgstr ""
 
@@ -775,160 +772,180 @@ msgid "External link label"
 msgstr ""
 
 #: ../admin/settings.php:93
-#: ../output/feed.php:69
+msgid "Buy tickets label"
+msgstr ""
+
+#: ../admin/settings.php:99
+#: ../output/feed.php:70
 msgid "Age restrictions"
 msgstr ""
 
-#: ../admin/settings.php:95
+#: ../admin/settings.php:101
 msgid "A pipe-separated list of available age restrictions."
 msgstr ""
 
-#: ../admin/settings.php:98
+#: ../admin/settings.php:104
 msgid "Related posts"
 msgstr ""
 
-#: ../admin/settings.php:100
+#: ../admin/settings.php:106
 msgid "Display gig info in related posts"
 msgstr ""
 
-#: ../admin/settings.php:101
+#: ../admin/settings.php:107
 msgid "before the post content"
 msgstr ""
 
-#: ../admin/settings.php:102
+#: ../admin/settings.php:108
 msgid "after the post content"
 msgstr ""
 
-#: ../admin/settings.php:103
+#: ../admin/settings.php:109
 msgid "using <code>[gigpress_related_shows]</code>"
 msgstr ""
 
-#: ../admin/settings.php:104
+#: ../admin/settings.php:110
 msgid "If a gig has a related post, that gig's details will appear at the specified position in that post."
 msgstr ""
 
-#: ../admin/settings.php:108
+#: ../admin/settings.php:114
 msgid "Related show heading"
 msgstr ""
 
-#: ../admin/settings.php:111
+#: ../admin/settings.php:117
 msgid "This appears before the gig details in your related post."
 msgstr ""
 
-#: ../admin/settings.php:115
+#: ../admin/settings.php:121
 msgid "Related posts category"
 msgstr ""
 
-#: ../admin/settings.php:117
+#: ../admin/settings.php:123
 msgid "Automatically create a related post for every new show I enter."
 msgstr ""
 
-#: ../admin/settings.php:118
+#: ../admin/settings.php:124
 msgid "When creating related posts, put them in this category"
 msgstr ""
 
-#: ../admin/settings.php:126
+#: ../admin/settings.php:132
 msgid "Exclude this category from my normal post listings."
 msgstr ""
 
-#: ../admin/settings.php:131
+#: ../admin/settings.php:137
 msgid "Related posts linking"
 msgstr ""
 
-#: ../admin/settings.php:133
+#: ../admin/settings.php:139
 msgid "Place a link to each show's related post in the following fields"
 msgstr ""
 
-#: ../admin/settings.php:135
+#: ../admin/settings.php:141
 #: ../admin/shows.php:224
 #: ../admin/shows.php:236
 #: ../admin/venues.php:183
 #: ../admin/venues.php:236
-#: ../output/feed.php:50
+#: ../output/feed.php:51
 msgid "City"
 msgstr ""
 
-#: ../admin/settings.php:140
+#: ../admin/settings.php:146
 msgid "Related post phrase"
 msgstr ""
 
-#: ../admin/settings.php:143
+#: ../admin/settings.php:149
 msgid "This appears in your shows listing."
 msgstr ""
 
-#: ../admin/settings.php:147
+#: ../admin/settings.php:153
 msgid "Artist URLs"
 msgstr ""
 
-#: ../admin/settings.php:148
+#: ../admin/settings.php:154
 msgid "Link artist names to their URLs."
 msgstr ""
 
-#: ../admin/settings.php:152
+#: ../admin/settings.php:158
 msgid "RSS/iCal"
 msgstr ""
 
-#: ../admin/settings.php:154
+#: ../admin/settings.php:160
 msgid "Make the GigPress RSS feed auto-discoverable."
 msgstr ""
 
-#: ../admin/settings.php:155
+#: ../admin/settings.php:161
 msgid "Show RSS and iCal subscription links."
 msgstr ""
 
-#: ../admin/settings.php:156
+#: ../admin/settings.php:162
 msgid "Note that the FeedBurner FeedSmith plugin will kill your GigPress RSS and iCal feeds, but the FD FeedBurner plugin will not."
 msgstr ""
 
-#: ../admin/settings.php:160
+#: ../admin/settings.php:166
 msgid "RSS/iCal feed title"
 msgstr ""
 
-#: ../admin/settings.php:166
+#: ../admin/settings.php:172
+msgid "RSS/iCal feed limit"
+msgstr ""
+
+#: ../admin/settings.php:178
 msgid "Country display"
 msgstr ""
 
-#: ../admin/settings.php:168
+#: ../admin/settings.php:180
 msgid "Display country column."
 msgstr ""
 
-#: ../admin/settings.php:168
+#: ../admin/settings.php:180
 msgid "Use full country names."
 msgstr ""
 
-#: ../admin/settings.php:172
+#: ../admin/settings.php:184
 msgid "Link behaviour"
 msgstr ""
 
-#: ../admin/settings.php:173
+#: ../admin/settings.php:185
 msgid "Open external links in new windows."
 msgstr ""
 
-#: ../admin/settings.php:177
+#: ../admin/settings.php:189
+msgid "Microdata"
+msgstr ""
+
+#: ../admin/settings.php:191
+msgid "Include Schema.org/Event structured data as JSON-LD"
+msgstr ""
+
+#: ../admin/settings.php:193
+msgid "Yes"
+msgstr ""
+
+#: ../admin/settings.php:199
 msgid "jQuery"
 msgstr ""
 
-#: ../admin/settings.php:179
+#: ../admin/settings.php:201
 msgid "Load jQuery into my theme."
 msgstr ""
 
-#: ../admin/settings.php:180
+#: ../admin/settings.php:202
 msgid "Uncheck this if you have a hard-coded link to the jQuery library in your theme."
 msgstr ""
 
-#: ../admin/settings.php:185
+#: ../admin/settings.php:207
 msgid "Advanced"
 msgstr ""
 
-#: ../admin/settings.php:187
+#: ../admin/settings.php:209
 msgid "Disable the default GigPress CSS."
 msgstr ""
 
-#: ../admin/settings.php:187
+#: ../admin/settings.php:209
 msgid "Disable the default GigPress JavaScript."
 msgstr ""
 
-#: ../admin/settings.php:206
+#: ../admin/settings.php:228
 msgid "Save Changes"
 msgstr ""
 
@@ -968,7 +985,7 @@ msgstr ""
 #: ../admin/shows.php:237
 #: ../admin/venues.php:185
 #: ../admin/venues.php:238
-#: ../output/feed.php:62
+#: ../output/feed.php:63
 msgid "Country"
 msgstr ""
 
@@ -1077,7 +1094,7 @@ msgstr ""
 
 #: ../admin/venues.php:184
 #: ../admin/venues.php:237
-#: ../output/feed.php:55
+#: ../output/feed.php:56
 msgid "Address"
 msgstr ""
 
@@ -1086,19 +1103,19 @@ msgstr ""
 msgid "Phone"
 msgstr ""
 
-#: ../output/feed.php:47
+#: ../output/feed.php:48
 msgid "Time"
 msgstr ""
 
-#: ../output/feed.php:65
+#: ../output/feed.php:66
 msgid "Admission"
 msgstr ""
 
-#: ../output/gigpress_shows.php:307
+#: ../output/gigpress_shows.php:349
 msgid "Select Month"
 msgstr ""
 
-#: ../output/gigpress_shows.php:312
+#: ../output/gigpress_shows.php:354
 msgid "Select Year"
 msgstr ""
 
@@ -1175,7 +1192,6 @@ msgid "This phrase is used to link to the page specified in your GigPress settin
 msgstr ""
 
 #: ../templates/shows-list-footer.php:15
-#: ../templates/sidebar-list-footer.php:21
 msgid "Subscribe"
 msgstr ""
 

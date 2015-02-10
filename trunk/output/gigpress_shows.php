@@ -346,12 +346,12 @@ function gigpress_menu($options = null) {
 		case 'monthly':
 			$sql_select_extra = 'MONTH(show_date) AS month, ';
 			$sql_group_extra = ', MONTH(show_date)';
-			$title = ($title) ? wptexturize(strip_tags($title)) : __('Select Month');
+			$title = ($title) ? wptexturize(strip_tags($title)) : __('Select Month', 'gigpress');
 			$current = (isset($_REQUEST['gpy']) && isset($_REQUEST['gpm'])) ? $_REQUEST['gpy'].$_REQUEST['gpm'] : '';
 			break;
 		case 'yearly':
 			$sql_select_extra = $sql_group_extra = '';
-			$title = ($title) ? wptexturize(strip_tags($title)) : __('Select Year');
+			$title = ($title) ? wptexturize(strip_tags($title)) : __('Select Year', 'gigpress');
 			$current = (isset($_REQUEST['gpy'])) ? $_REQUEST['gpy'] : '';
 	}
 	
