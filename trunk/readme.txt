@@ -20,6 +20,10 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.8 =
+
+* Fixed error which could result in GigPress' javascript being loaded too early
+
 = 2.3.7 =
 
 * Now using GMT -11 to determine expiry of shows to allow for longer display of shows in timezones earlier than the site timezone
