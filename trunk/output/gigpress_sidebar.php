@@ -294,12 +294,16 @@ function gigpress_sidebar($filter = null) {
 					// Close the previous tour if needed
 					if($show_tours && $current_tour && $showdata['tour'] != $current_tour) {
 						include gigpress_template('sidebar-tour-end');					
+					} else if(! $current_tour){
+						include gigpress_template('sidebar-single-end');	
 					}
 					
 					// Open the current tour if needed
 					if($show_tours && $showdata['tour'] && $showdata['tour'] != $current_tour && !$tour) {
 						$current_tour = $showdata['tour'];
 						include gigpress_template('sidebar-tour-heading');
+					} else if(! $current_tour){
+						include gigpress_template('sidebar-single-heading');	
 					}
 					
 					// Zero-out $current_tour
@@ -317,6 +321,8 @@ function gigpress_sidebar($filter = null) {
 				// Close the current tour if needed
 				if($show_tours && $current_tour) {
 					include gigpress_template('sidebar-tour-end');					
+				} else if(! $current_tour){
+					include gigpress_template('sidebar-single-end');	
 				}
 				
 				// Close the list
@@ -359,6 +365,8 @@ function gigpress_sidebar($filter = null) {
 				// Close the previous tour if needed
 				if($show_tours && $current_tour && $showdata['tour'] != $current_tour && !$tour) {
 					include gigpress_template('sidebar-tour-end');						
+				} else if(! $current_tour && ($i > 0)){
+					include gigpress_template('sidebar-single-end');	
 				}
 				
 				// Open the current tour if needed
@@ -367,7 +375,10 @@ function gigpress_sidebar($filter = null) {
 					include gigpress_template('sidebar-tour-heading');
 				}
 				
-				if(!$showdata['tour']) $current_tour = '';
+				if(!$showdata['tour']) {
+					$current_tour = '';
+					include gigpress_template('sidebar-single-heading');
+				}
 				
 				// Prepare the class
 				$class = ($i % 2) ? 'gigpress-alt ' : ''; $i++;
@@ -380,6 +391,8 @@ function gigpress_sidebar($filter = null) {
 			// Close the current tour if needed
 			if($show_tours && $current_tour && !$tour) {
 				include gigpress_template('sidebar-tour-end');						
+			} else if(! $current_tour){
+				include gigpress_template('sidebar-single-end');	
 			}
 			
 			// Close the list
