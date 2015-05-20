@@ -92,8 +92,12 @@ function gigpress_prepare_show_fields($context = 'new') {
 	{
 		
 		// Find the variables we need for token replacement
-		$artist = $wpdb->get_var("SELECT artist_name FROM " . GIGPRESS_ARTISTS . " WHERE artist_id = " . $show['show_artist_id'] . "");
-		$venue = $wpdb->get_results("SELECT venue_name, venue_city FROM " . GIGPRESS_VENUES . " WHERE venue_id = " . $show['show_venue_id'] . "", ARRAY_A);
+		$artist = $wpdb->get_var(
+			$wpdb->prepare("SELECT artist_name FROM " . GIGPRESS_ARTISTS . " WHERE artist_id = '%d'", $show['show_artist_id'])
+		);
+		$venue = $wpdb->get_results(
+			$wpdb->prepare("SELECT venue_name, venue_city FROM " . GIGPRESS_VENUES . " WHERE venue_id = '%d'", $show['show_venue_id']),
+		ARRAY_A);
 		
 		// Prepare the post title
 		$token_title = (isset($_POST['show_related_title'])) ? stripslashes(strip_tags(trim($_POST['show_related_title']))) : $gpo['default_title'];
@@ -863,7 +867,15 @@ function gigpress_import() {
 							
 				if($show['Time'] == FALSE) $show['Time'] = '00:00:01';
 			
-				if($wpdb->get_var("SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = " . $show['artist_id'] . " AND show_date = '" . $show['Date'] . "' AND show_time = '" . $show['Time'] . "' AND show_venue_id = " . $show['venue_id'] . " AND show_status != 'deleted'") > 0) {
+				if($wpdb->get_var(
+					$wpdb->prepare(
+						"SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = '%d' AND show_date = '%s' AND show_time = '%s' AND show_venue_id = '%d' AND show_status != 'deleted'",
+						$show['artist_id'],
+						$show['Date'],
+						$show['Time'],
+						$show['venue_id']
+						)
+					) > 0) {
 					// It's a duplicate, so log it and move on
 					$duplicates[] = $show;
 				} else {

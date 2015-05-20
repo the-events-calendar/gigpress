@@ -1,8 +1,6 @@
 <?php
 
 $gp_countries = array(
-	"US" => "United States",
-	"CA" => "Canada",
 	"AF" => "Afghanistan",
 	"AX" => "Aland Islands",
 	"AL" => "Albania",
@@ -42,6 +40,7 @@ $gp_countries = array(
 	"BI" => "Burundi",
 	"KH" => "Cambodia",
 	"CM" => "Cameroon",
+	"CA" => "Canada",
 	"CV" => "Cape Verde",
 	"KY" => "Cayman Islands",
 	"CF" => "Central African Republic",
@@ -237,6 +236,7 @@ $gp_countries = array(
 	"UA" => "Ukraine",
 	"AE" => "United Arab Emirates",
 	"UK" => "United Kingdom",
+	"US" => "United States",
 	"UM" => "United States Minor Outlying Islands",
 	"UY" => "Uruguay",
 	"UZ" => "Uzbekistan",
