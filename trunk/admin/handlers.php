@@ -802,7 +802,7 @@ function gigpress_import() {
 		if($csv->data) {
 				
 			// Looks like we parsed something
-			$inserted = array(); $skipped = array(); $duplicates = array();
+			$inserted = $skipped = $duplicates = $errors = array();
 			
 			foreach($csv->data as $key => $show) {				
 				// Check to see if we have this artist
@@ -810,20 +810,6 @@ function gigpress_import() {
 					$wpdb->prepare("SELECT artist_id FROM " . GIGPRESS_ARTISTS . " WHERE artist_name = '%s'", $show['Artist'])
 				);
 								
-				if(empty($artist_exists)) {
-					// Can't find an artist with this name, so we'll have to create them
-					$alpha = preg_replace("/^the /uix", "", strtolower($show['Artist']));
-					$new_artist = array(
-						'artist_name' => gigpress_db_in($show['Artist']),
-						'artist_alpha' => gigpress_db_in($alpha),
-						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE)
-					);
-					$addartist = $wpdb->insert(GIGPRESS_ARTISTS, $new_artist, '%s');
-					$show['artist_id'] = $wpdb->insert_id;
-				} else {
-					$show['artist_id'] = $artist_exists;
-				}
-				
 				if(!empty($show['Tour'])) {
 					// Check to see if we have this tour
 					$tour_exists = $wpdb->get_var(
@@ -841,89 +827,127 @@ function gigpress_import() {
 				else
 				{
 					$show['tour_id'] = 0;
-				}			
+				}
 
-				// Check to see if we have this venue
-				$venue_exists = $wpdb->get_var(
-					$wpdb->prepare("SELECT venue_id FROM " . GIGPRESS_VENUES . " WHERE venue_name = '%s' AND venue_city = '%s' AND venue_country = '%s'", $show['Venue'], $show['City'], $show['Country'])
-				);
-				if(empty($venue_exists)) {
-					// Can't find a venue with this name, so we'll have to create it
-					$new_venue = array(
-						'venue_name' => gigpress_db_in(@$show['Venue']),
-						'venue_address' => gigpress_db_in(@$show['Address']),
-						'venue_city' => gigpress_db_in(@$show['City']),
-						'venue_state' => gigpress_db_in(@$show['State']),
-						'venue_postal_code' => gigpress_db_in(@$show['Postal code']),
-						'venue_country' => gigpress_db_in(@$show['Country']),
-						'venue_url' => gigpress_db_in(@$show['Venue URL'], FALSE),
-						'venue_phone' => gigpress_db_in(@$show['Venue phone'])
+				if(empty($artist_exists)) {
+					// Can't find an artist with this name, so we'll have to create them
+					$alpha = preg_replace("/^the /uix", "", strtolower($show['Artist']));
+					$new_artist = array(
+						'artist_name' => gigpress_db_in($show['Artist']),
+						'artist_alpha' => gigpress_db_in($alpha),
+						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE)
 					);
-					$wpdb->insert(GIGPRESS_VENUES, $new_venue, '%s');
-					$show['venue_id'] = $wpdb->insert_id;
+					$wpdb->insert(GIGPRESS_ARTISTS, $new_artist, '%s');
+					$show['artist_id'] = $wpdb->insert_id;
 				} else {
-					$show['venue_id'] = $venue_exists;
+					$show['artist_id'] = $artist_exists;
 				}
-							
-				if($show['Time'] == FALSE) $show['Time'] = '00:00:01';
+				
+				// Make sure we now have an artist
+				if(!empty($show['artist_id']))
+				{
+					// Check to see if we have this venue
+					$venue_exists = $wpdb->get_var(
+						$wpdb->prepare("SELECT venue_id FROM " . GIGPRESS_VENUES . " WHERE venue_name = '%s' AND venue_city = '%s' AND venue_country = '%s'", $show['Venue'], $show['City'], $show['Country'])
+					);
+					if(empty($venue_exists))
+					{
+						// Can't find a venue with this name, so we'll have to create it
+						$new_venue = array(
+							'venue_name' => gigpress_db_in(@$show['Venue']),
+							'venue_address' => gigpress_db_in(@$show['Address']),
+							'venue_city' => gigpress_db_in(@$show['City']),
+							'venue_state' => gigpress_db_in(@$show['State']),
+							'venue_postal_code' => gigpress_db_in(@$show['Postal code']),
+							'venue_country' => gigpress_db_in(@$show['Country']),
+							'venue_url' => gigpress_db_in(@$show['Venue URL'], FALSE),
+							'venue_phone' => gigpress_db_in(@$show['Venue phone'])
+						);
+						$wpdb->insert(GIGPRESS_VENUES, $new_venue, '%s');
+						$show['venue_id'] = $wpdb->insert_id;
+					} else {
+						$show['venue_id'] = $venue_exists;
+					}
+					
+					// Make sure we now have a venue
+					if(!empty($show['venue_id']))
+					{
+						if($show['Time'] == FALSE) $show['Time'] = '00:00:01';
 			
-				if($wpdb->get_var(
-					$wpdb->prepare(
-						"SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = '%d' AND show_date = '%s' AND show_time = '%s' AND show_venue_id = '%d' AND show_status != 'deleted'",
-						$show['artist_id'],
-						$show['Date'],
-						$show['Time'],
-						$show['venue_id']
-						)
-					) > 0) {
-					// It's a duplicate, so log it and move on
-					$duplicates[] = $show;
-				} else {
-					if($show['End date'] == FALSE) {
-						$show['show_multi'] = 0; $show['End date'] = $show['Date'];
-					} else {
-						$show['show_multi'] = 1;
+						if($wpdb->get_var(
+							$wpdb->prepare(
+								"SELECT count(*) FROM " . GIGPRESS_SHOWS . " WHERE show_artist_id = '%d' AND show_date = '%s' AND show_time = '%s' AND show_venue_id = '%d' AND show_status != 'deleted'",
+								$show['artist_id'],
+								$show['Date'],
+								$show['Time'],
+								$show['venue_id']
+								)
+							) > 0) {
+							// It's a duplicate, so log it and move on
+							$duplicates[] = $show;
+						} else {
+							if($show['End date'] == FALSE) {
+								$show['show_multi'] = 0; $show['End date'] = $show['Date'];
+							} else {
+								$show['show_multi'] = 1;
+							}
+							
+							$new_show = array(
+								'show_date' => $show['Date'],
+								'show_time' => $show['Time'],
+								'show_multi' => $show['show_multi'],
+								'show_expire' => $show['End date'],
+								'show_artist_id' => $show['artist_id'],
+								'show_venue_id' => $show['venue_id'],
+								'show_tour_id' => $show['tour_id'],
+								'show_ages' => gigpress_db_in(@$show['Admittance']),
+								'show_price' => gigpress_db_in(@$show['Price']),
+								'show_tix_url' => gigpress_db_in(@$show['Ticket URL'], FALSE),
+								'show_tix_phone' => gigpress_db_in(@$show['Ticket phone']),
+								'show_external_url' => gigpress_db_in(@$show['External URL']),
+								'show_notes' => gigpress_db_in(@$show['Notes'], FALSE),
+								'show_status' => (!empty($show['Status'])) ? gigpress_db_in($show['Status']) : 'active',
+								'show_related' => '0'
+							);
+							
+							// Are we importing related post IDs?
+							if(isset($_POST['include_related']) && $_POST['include_related'] = 'y') {
+								$new_show['show_related'] = @$show['Related ID'];
+							}
+							
+							$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d', '%d');
+							
+							$import = $wpdb->insert(GIGPRESS_SHOWS, $new_show, $format);
+							
+							if($import != FALSE) {
+								$inserted[] = $show;
+							} else {
+								$show['error'] = __("error importing show", "gigpress");
+								$skipped[] = $show;
+							}
+						}						
 					}
-					
-					$new_show = array(
-						'show_date' => $show['Date'],
-						'show_time' => $show['Time'],
-						'show_multi' => $show['show_multi'],
-						'show_expire' => $show['End date'],
-						'show_artist_id' => $show['artist_id'],
-						'show_venue_id' => $show['venue_id'],
-						'show_tour_id' => $show['tour_id'],
-						'show_ages' => gigpress_db_in(@$show['Admittance']),
-						'show_price' => gigpress_db_in(@$show['Price']),
-						'show_tix_url' => gigpress_db_in(@$show['Ticket URL'], FALSE),
-						'show_tix_phone' => gigpress_db_in(@$show['Ticket phone']),
-						'show_external_url' => gigpress_db_in(@$show['External URL']),
-						'show_notes' => gigpress_db_in(@$show['Notes'], FALSE),
-						'show_related' => '0'
-					);
-					
-					// Are we importing related post IDs?
-					if(isset($_POST['include_related']) && $_POST['include_related'] = 'y') {
-						$new_show['show_related'] = @$show['Related ID'];
-					}
-					
-					$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d');
-					
-					$import = $wpdb->insert(GIGPRESS_SHOWS, $new_show, $format);
-					
-					if($import != FALSE) {
-						$inserted[] = $show;
-					} else {
+					else
+					{
+						// No venue
+						$show['error'] = __("error importing venue", "gigpress");
 						$skipped[] = $show;
-					}
+					}				
 				}
+				else
+				{
+					// No artist
+					$show['error'] = __("error importing artist", "gigpress");
+					$skipped[] = $show;
+				}
+				
 			} // end foreach import
 
 			if(!empty($skipped)) {
 				echo('<h4 class="error">' . count($skipped) . ' ' . __("shows were skipped due to errors", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($skipped as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>'); 
+					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . ' <strong>('.$show['error'].')</strong></li>'); 
 				}
 				echo('</ul>');
 			}

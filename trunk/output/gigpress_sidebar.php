@@ -3,10 +3,10 @@
 class Gigpress_widget extends WP_Widget
 {
 
-	function Gigpress_widget()
+	function __construct()
 	{
 		$widget_opts = array('description' => __("List upcoming GigPress shows", "gigpress") );
-		$this->WP_Widget('gigpress', 'GigPress', $widget_opts);
+		parent::__construct('gigpress', 'GigPress', $widget_opts);
 	}
 	
 	function widget($args, $instance)
