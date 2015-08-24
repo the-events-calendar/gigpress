@@ -20,6 +20,10 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.11 =
+
+* Fixed some SQL and XSS vulnerabilities in the admin
+
 = 2.3.10 =
 
 * Removed PHP 4-style class constructor from widget for compatibility with WordPress 4.3

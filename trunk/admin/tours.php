@@ -24,8 +24,8 @@ function gigpress_tours() {
 		gigpress_undo('tour');		
 	}
 
-	$url_args = (isset($_GET['gp-page'])) ? '&amp;gp-page=' . $_GET['gp-page'] : '';	
-
+	$url_args = (isset($_GET['gp-page'])) ? '&amp;gp-page=' . sanitize_text_field($_GET['gp-page']) : '';
+	
 	?>
 
 	<div class="wrap gigpress gp-tours">

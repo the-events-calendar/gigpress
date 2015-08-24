@@ -34,7 +34,7 @@ function gigpress_admin_shows() {
 	
 	if(isset($_GET['scope']))
 	{
-		$scope = $_GET['scope'];
+		$scope = sanitize_text_field($_GET['scope']);
 		update_user_meta($current_user->ID, 'gigpress_scope', $scope);
 	}
 	else
@@ -58,7 +58,7 @@ function gigpress_admin_shows() {
 
 	if(isset($_GET['sort']))
 	{
-		$sort = strtoupper($_GET['sort']);
+		$sort = strtoupper(sanitize_text_field($_GET['sort']));
 		update_user_meta($current_user->ID, 'gigpress_sort', $sort);
 	}
 	else
@@ -71,7 +71,7 @@ function gigpress_admin_shows() {
 
 	if(isset($_GET['limit']))
 	{
-		$limit = $_GET['limit'];
+		$limit = $wpdb->prepare('%d', $_GET['limit']);
 		update_user_meta($current_user->ID, 'gigpress_limit', $limit);
 	}
 	else
@@ -83,30 +83,32 @@ function gigpress_admin_shows() {
 	}
 
 		
-	if(isset($_GET['gp-page'])) $url_args .= '&amp;gp-page=' . $_GET['gp-page'];
+	if(isset($_GET['gp-page'])) $url_args .= '&amp;gp-page=' . sanitize_text_field($_GET['gp-page']);	
 	
 	if(isset($_GET['artist_id']) && $_GET['artist_id'] != '-1') {
 		$further_where .= ' AND s.show_artist_id = ' . $wpdb->prepare('%d', $_GET['artist_id']) . ' ';
-		$pagination_args['artist_id'] = $_GET['artist_id'];
-		$url_args .= '&amp;artist_id=' . $_GET['artist_id'];
+		$pagination_args['artist_id'] = absint($_GET['artist_id']);
+		$url_args .= '&amp;artist_id=' . absint($_GET['artist_id']);
 	}
 	
 	if(isset($_GET['tour_id']) && $_GET['tour_id'] != '-1') {
 		$further_where .= ' AND s.show_tour_id = ' . $wpdb->prepare('%d', $_GET['tour_id']) . ' ';
-		$pagination_args['tour_id'] = $_GET['tour_id'];		
-		$url_args .= '&amp;tour_id=' . $_GET['tour_id'];
+		$pagination_args['tour_id'] = absint($_GET['tour_id']);		
+		$url_args .= '&amp;tour_id=' . absint($_GET['tour_id']);
 	}
 	
 	if(isset($_GET['venue_id']) && $_GET['venue_id'] != '-1') {
 		$further_where .= ' AND s.show_venue_id = ' . $wpdb->prepare('%d', $_GET['venue_id']) . ' ';
-		$pagination_args['venue_id'] = $_GET['venue_id'];		
-		$url_args .= '&amp;venue_id=' . $_GET['venue_id'];
+		$pagination_args['venue_id'] = absint($_GET['venue_id']);		
+		$url_args .= '&amp;venue_id=' . absint($_GET['venue_id']);
 	}
+	
+	$orderby = sanitize_sql_orderby("show_date $sort,show_expire $sort,show_time $sort");
 		
 	// Build pagination
 	$show_count = $wpdb->get_var(
-		"SELECT COUNT(*) FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire " . $condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id " . $further_where . "ORDER BY show_date " . $sort . ",show_time " . $sort
-		);
+		"SELECT COUNT(*) FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ". $condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby
+	);
 	if($show_count) {
 		$pagination_args['page'] = 'gigpress-shows';
 		$pagination = gigpress_admin_pagination($show_count, $limit, $pagination_args);			
@@ -115,8 +117,9 @@ function gigpress_admin_shows() {
 	$limit = (isset($_GET['gp-page'])) ? $pagination['offset'].','.$pagination['records_per_page'] : $limit;
 	
 	// Build the query	
-	$shows = $wpdb->get_results("
-		SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire " . $condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id " . $further_where . "ORDER BY show_date " . $sort . ",show_expire " . $sort . ",show_time " . $sort . " LIMIT " . $limit);
+	$shows = $wpdb->get_results(
+		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ".$condition." AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby." LIMIT ".$limit
+	);
 
 	?>
 		
