@@ -12,28 +12,28 @@ function gigpress_prepare_show_fields($context = 'new') {
 	$show = array();
 	
 	
-	$show['show_date'] = $_POST['gp_yy'] . '-' . $_POST['gp_mm'] . '-' . $_POST['gp_dd'];
+	$show['show_date'] = sprintf("%02d", $_POST['gp_yy']) . '-' . sprintf("%02d", $_POST['gp_mm']) . '-' . sprintf("%02d", $_POST['gp_dd']);
 	if($_POST['gp_hh'] == "na") {
 		$show['show_time'] = "00:00:01";
 	} else {
-		$min = ($_POST['gp_min'] == "na") ? '00' : $_POST['gp_min'];
-		$show['show_time'] = $_POST['gp_hh'] . ':' . $min . ':00';
+		$min = ($_POST['gp_min'] == "na") ? '00' : sprintf("%02d", $_POST['gp_min']);
+		$show['show_time'] = sprintf("%02d", $_POST['gp_hh']) . ':' . $min . ':00';
 	}
 	// If it's not a multi-day show, we need to set the expire date to match the show date
 	if(!isset($_POST['show_multi']) || (isset($_POST['show_multi']) && empty($_POST['show_multi']) ) ) {
 		$show['show_expire'] = $show['show_date'];
 		$show['show_multi'] = 0;
 	} else {
-		$show['show_expire'] = $_POST['exp_yy'] . '-' . $_POST['exp_mm'] . '-' . $_POST['exp_dd'];
+		$show['show_expire'] = sprintf("%02d", $_POST['exp_yy']) . '-' . sprintf("%02d", $_POST['exp_mm']) . '-' . sprintf("%02d", $_POST['exp_dd']);
 		$show['show_multi'] = 1;
 	}
 	$show['show_price'] = gigpress_db_in($_POST['show_price']);
 	$show['show_tix_url'] = gigpress_db_in($_POST['show_tix_url'], FALSE);
 	$show['show_tix_phone'] = gigpress_db_in($_POST['show_tix_phone']);
 	$show['show_external_url'] = gigpress_db_in($_POST['show_external_url'], FALSE);
-	$show['show_ages'] = $_POST['show_ages'];
+	$show['show_ages'] = gigpress_db_in($_POST['show_ages']);
 	$show['show_notes'] = gigpress_db_in($_POST['show_notes'], FALSE);
-	$show['show_status'] = $_POST['show_status'];
+	$show['show_status'] = gigpress_db_in($_POST['show_status']);
 	
 	// Create a new artist
 	if($_POST['show_artist_id'] == 'new') {
@@ -52,7 +52,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 			$errors[] = __("We had trouble creating your new artist. Sorry.", "gigpress");
 		}
 	} else {
-		$show['show_artist_id'] = $_POST['show_artist_id'];
+		$show['show_artist_id'] = absint($_POST['show_artist_id']);
 	}
 	
 	// Create a new venue
@@ -66,9 +66,9 @@ function gigpress_prepare_show_fields($context = 'new') {
 		} else {
 			$errors[] = __("We had trouble creating your new venue. Sorry.", "gigpress");
 		}
-		$gpo['default_country'] = $_POST['venue_country'];
+		$gpo['default_country'] = gigpress_db_in($_POST['venue_country']);
 	} else {
-		$show['show_venue_id'] = $_POST['show_venue_id'];
+		$show['show_venue_id'] = absint($_POST['show_venue_id']);
 	}
 	
 	// Create a new tour
@@ -84,7 +84,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 			$errors[] = __("We had trouble creating your new tour. Sorry.", "gigpress");
 		}
 	} else {
-		$show['show_tour_id'] = $_POST['show_tour_id'];
+		$show['show_tour_id'] = absint($_POST['show_tour_id']);
 	}	
 	
 	// Create a new related post
@@ -132,11 +132,11 @@ function gigpress_prepare_show_fields($context = 'new') {
 		}
 		
 		$gpo['default_title'] = $token_title;
-		$gpo['related_date'] = $_POST['show_related_date'];
+		$gpo['related_date'] = gigpress_db_in($_POST['show_related_date']);
 	}
 	else
 	{
-		$show['show_related'] = $_POST['show_related'];
+		$show['show_related'] = absint($_POST['show_related']);
 	}
 	
 	if($context == 'new')
@@ -165,7 +165,7 @@ function gigpress_prepare_venue_fields() {
 		'venue_city' => gigpress_db_in($_POST['venue_city']),		
 		'venue_state' => gigpress_db_in($_POST['venue_state']),		
 		'venue_postal_code' => gigpress_db_in($_POST['venue_postal_code']),		
-		'venue_country' => $_POST['venue_country'],
+		'venue_country' => gigpress_db_in($_POST['venue_country']),
 		'venue_url' => gigpress_db_in($_POST['venue_url'], FALSE),
 		'venue_phone' => gigpress_db_in($_POST['venue_phone'])
 	);
@@ -250,8 +250,8 @@ function gigpress_add_show() {
 			
 			<div id="message" class="updated fade">
 				<p><?php echo __("Your show  on", "gigpress") . ' ' . mysql2date($gpo['date_format_long'], $show['show_date']) . ' ' . __("was successfully added.", "gigpress");
-				echo(' <a href="' . get_bloginfo('wpurl') . '/wp-admin/?page=gigpress/gigpress.php&amp;gpaction=copy&amp;show_id=' . $wpdb->insert_id . '">' . __("Add a similar show", "gigpress"). '</a>');
-				if($show['show_related']) echo(' | <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $show['show_related'] . '">' . __("Edit the related post", "gigpress"). '</a>');
+				echo(' <a href="' . admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=copy&amp;show_id=' . $wpdb->insert_id) . '">' . __("Add a similar show", "gigpress"). '</a>');
+				if($show['show_related']) echo(' | <a href="' . admin_url('post.php?action=edit&amp;post=' . $show['show_related']) . '">' . __("Edit the related post", "gigpress"). '</a>');
 				?></p>
 		<?php
 			global $errors; if($errors) {
@@ -310,7 +310,7 @@ function gigpress_update_show() {
 		{
 			$gpo = get_option('gigpress_settings');
 			?>	
-			<div id="message" class="updated fade"><p><?php echo __("Your show  on", "gigpress") . ' ' . mysql2date($gpo['date_format_long'], $show['show_date']) . ' ' . __("was successfully updated.", "gigpress"); if($show['show_related']) echo(' <a href="' . get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $show['show_related'] . '">' . __("Edit the related post", "gigpress"). '.</a>'); ?></p>
+			<div id="message" class="updated fade"><p><?php echo __("Your show  on", "gigpress") . ' ' . mysql2date($gpo['date_format_long'], $show['show_date']) . ' ' . __("was successfully updated.", "gigpress"); if($show['show_related']) echo(' <a href="' . admin_url('post.php?action=edit&amp;post=' . $show['show_related']) . '">' . __("Edit the related post", "gigpress"). '.</a>'); ?></p>
 			<?php
 				global $errors; if($errors) {
 					foreach($errors as $error) {
@@ -353,7 +353,7 @@ function gigpress_delete_show() {
 		$shows = $wpdb->prepare('%d', $_REQUEST['show_id']);
 	}
 	
-	$undo = wp_nonce_url(get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-shows&amp;gpaction=undo&amp;show_id='.$shows, 'gigpress-action');
+	$undo = wp_nonce_url(admin_url('admin.php?page=gigpress-shows&amp;gpaction=undo&amp;show_id='.$shows), 'gigpress-action');
 		
 	// Delete the show(s)
 	$trashshow = $wpdb->query("UPDATE ".GIGPRESS_SHOWS." SET show_status = 'deleted' WHERE show_id IN($shows)");
@@ -443,7 +443,7 @@ function gigpress_update_venue() {
 		// Looks like we're all here, so let's add to the DB
 		$venue = gigpress_prepare_venue_fields();
 		$format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
-		$where = array('venue_id' => $_POST['venue_id']);
+		$where = array('venue_id' => absint($_POST['venue_id']));
 		$where_format = array('%d');
 		$updatevenue = $wpdb->update(GIGPRESS_VENUES, $venue, $where, $format, $where_format);
 		
@@ -471,7 +471,7 @@ function gigpress_delete_venue() {
 	check_admin_referer('gigpress-action');	
 	
 	// Delete the venue
-	$trashvenue = $wpdb->query($wpdb->prepare("DELETE FROM ". GIGPRESS_VENUES ." WHERE venue_id = %d LIMIT 1", $_GET['venue_id']));
+	$trashvenue = $wpdb->query($wpdb->prepare("DELETE FROM ". GIGPRESS_VENUES ." WHERE venue_id = %d LIMIT 1", absint($_GET['venue_id'])));
 	if($trashvenue != FALSE) {	?>	
 		<div id="message" class="updated fade"><p><?php _e("Venue successfully deleted.", "gigpress"); ?></p></div>	
 	<?php } elseif($trashvenue === FALSE) { ?>
@@ -546,7 +546,7 @@ function gigpress_update_tour() {
 			
 		// Looks like we're all here, so let's update the DB
 		$tour = array( 'tour_name' => gigpress_db_in($_POST['tour_name']) );
-		$where = array('tour_id' => $_POST['tour_id']);	
+		$where = array('tour_id' => absint($_POST['tour_id']));	
 		$updatetour = $wpdb->update(GIGPRESS_TOURS, $tour, $where, array('%s'), array('%d'));
 		
 		// Was the query successful?
@@ -568,8 +568,7 @@ function gigpress_delete_tour() {
 
 	global $wpdb;
 	
-	$undo = get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-tours&amp;gpaction=undo&amp;tour_id='.$_GET['tour_id'];
-	$undo = wp_nonce_url($undo, 'gigpress-action');
+	$undo = wp_nonce_url(admin_url('admin.php?page=gigpress-tours&amp;gpaction=undo&amp;tour_id='.absint($_GET['tour_id'])), 'gigpress-action');
 	
 	$wpdb->show_errors();
 	
@@ -577,7 +576,7 @@ function gigpress_delete_tour() {
 	check_admin_referer('gigpress-action');	
 	
 	// Delete the tour
-	$where = array('tour_id' => $_GET['tour_id']);
+	$where = array('tour_id' => absint($_GET['tour_id']));
 	$trashtour = $wpdb->update(GIGPRESS_TOURS, array('tour_status' => 'deleted'), $where, array('%s'), array('%s'));
 	unset($where);
 		
@@ -589,7 +588,7 @@ function gigpress_delete_tour() {
 		
 		$cleanup = $wpdb->query("UPDATE ".GIGPRESS_SHOWS." SET show_tour_restore = 0 WHERE show_tour_restore != 0");
 		
-		$where = array('show_tour_id' => $_GET['tour_id']);
+		$where = array('show_tour_id' => absint($_GET['tour_id']));
 		$restore = $wpdb->update(GIGPRESS_SHOWS, array('show_tour_id' => 0, 'show_tour_restore' => 1), $where, array('%d','%d'), array('%d'));
 		unset($where);
 		?>
@@ -679,7 +678,7 @@ function gigpress_update_artist() {
 			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE)
 		);
 		$format = array('%s', '%s', '%s');
-		$where = array('artist_id' => $_POST['artist_id']);
+		$where = array('artist_id' => absint($_POST['artist_id']));
 		$updateartist = $wpdb->update(GIGPRESS_ARTISTS, $artist, $where, $format, array('%d'));
 		
 		// Was the query successful?
@@ -707,7 +706,7 @@ function gigpress_delete_artist() {
 	check_admin_referer('gigpress-action');	
 	
 	// Delete the artist
-	$trashartist = $wpdb->query($wpdb->prepare("DELETE FROM ". GIGPRESS_ARTISTS ." WHERE artist_id = %d LIMIT 1", $_GET['artist_id']));
+	$trashartist = $wpdb->query($wpdb->prepare("DELETE FROM ". GIGPRESS_ARTISTS ." WHERE artist_id = %d LIMIT 1", absint($_GET['artist_id'])));
 	if($trashartist != FALSE) {	?>	
 		<div id="message" class="updated fade"><p><?php _e("Artist successfully deleted.", "gigpress"); ?></p></div>	
 	<?php } elseif($trashartist === FALSE) { ?>
@@ -761,12 +760,12 @@ function gigpress_undo($type) {
 	if($type == "tour") {
 		
 		// Restore the tour
-		$where = array('tour_id' => $_GET['tour_id']);
+		$where = array('tour_id' => absint($_GET['tour_id']));
 		$undo = $wpdb->update(GIGPRESS_TOURS, array('tour_status' => 'active'), $where, array('%s'), array('%d'));
 		unset($where);
 		
 		// Update the shows that need it to associate with this tour
-		$data = array('show_tour_id' => $_GET['tour_id'], 'show_tour_restore' => 0);
+		$data = array('show_tour_id' => absint($_GET['tour_id']), 'show_tour_restore' => 0);
 		$restore = $wpdb->update(GIGPRESS_SHOWS, $data, array('show_tour_restore' => 1), array('%d', '%d'), array('%d'));
 		unset($data);
 		

@@ -41,11 +41,11 @@ function gigpress_artists() {
 		$artist = $wpdb->get_row("SELECT artist_name, artist_url FROM ". GIGPRESS_ARTISTS ." WHERE artist_id = ". $artist_id);
 		if($artist) {
 			
-			$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Update artist", "gigpress") . '" /></span> ' . __("or", "gigpress") . ' <a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=gigpress-artists' . $url_args . '">' . __("cancel", "gigpress") . '</a>'; ?>
+			$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Update artist", "gigpress") . '" /></span> ' . __("or", "gigpress") . ' <a href="' . admin_url('admin.php?page=gigpress-artists' . $url_args) . '">' . __("cancel", "gigpress") . '</a>'; ?>
 
 			<h3><?php _e("Edit this artist", "gigpress"); ?></h3>
 		
-			<form method="post" action="<?php echo get_bloginfo('wpurl')."/wp-admin/admin.php?page=gigpress-artists" . $url_args; ?>">
+			<form method="post" action="<?php echo admin_url("admin.php?page=gigpress-artists" . $url_args); ?>">
 			<input type="hidden" name="gpaction" value="update" />
 			<input type="hidden" name="artist_id" value="<?php echo $artist_id; ?>" />
 		
@@ -67,7 +67,7 @@ function gigpress_artists() {
 
 		<h3><?php _e("Add an artist", "gigpress"); ?></h3>
 		
-		<form method="post" action="<?php echo get_bloginfo('wpurl')."/wp-admin/admin.php?page=gigpress-artists" . $url_args; ?>">
+		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-artists' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="add" />	
 	
 	<?php
@@ -135,7 +135,7 @@ function gigpress_artists() {
 			foreach($artists as $artist) {
 			
 				if($n = $wpdb->get_var("SELECT count(*) FROM ". GIGPRESS_SHOWS ." WHERE show_artist_id = ". $artist->artist_id . " AND show_status != 'deleted'")) {
-					$count = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=gigpress-shows&amp;artist_id=' . $artist->artist_id . '">' . $n . '</a>';
+					$count = '<a href="' . admin_url('admin.php?page=gigpress-shows&amp;artist_id=' . $artist->artist_id) . '">' . $n . '</a>';
 				} else {
 					$count = 0;
 				}
@@ -150,8 +150,8 @@ function gigpress_artists() {
 					<td><?php if(!empty($artist->artist_url)) echo '<a href="'.esc_url($artist->artist_url).'">'; echo wptexturize($artist->artist_name); if(!empty($artist->artist_url)) echo '</a>';?></td>
 					<td class="gp-centre"><?php echo $count; ?></td>
 					<td class="gp-centre">
-						<a href="<?php echo get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-artists&amp;gpaction=edit&amp;artist_id='.$artist->artist_id . $url_args; ?>" class="edit"><?php _e("Edit", "gigpress"); ?></a>
-						<?php if(!$count) { ?> | <a href="<?php echo wp_nonce_url(get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-artists&amp;gpaction=delete&amp;artist_id='.$artist->artist_id . $url_args, 'gigpress-action'); ?>" class="delete"><?php _e("Delete", "gigpress"); ?></a><?php } ?>
+						<a href="<?php echo admin_url('admin.php?page=gigpress-artists&amp;gpaction=edit&amp;artist_id='.$artist->artist_id . $url_args); ?>" class="edit"><?php _e("Edit", "gigpress"); ?></a>
+						<?php if(!$count) { ?> | <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=gigpress-artists&amp;gpaction=delete&amp;artist_id='.$artist->artist_id . $url_args), 'gigpress-action'); ?>" class="delete"><?php _e("Delete", "gigpress"); ?></a><?php } ?>
 					</td>
 				</tr>
 				<?php }

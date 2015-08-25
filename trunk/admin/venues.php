@@ -41,7 +41,7 @@ function gigpress_venues() {
 		$venue_address = gigpress_db_out($_POST['venue_address']);
 		$venue_state = gigpress_db_out($_POST['venue_state']);		
 		$venue_postal_code = gigpress_db_out($_POST['venue_postal_code']);				
-		$venue_country = $_POST['venue_country'];		
+		$venue_country = gigpress_db_out($_POST['venue_country']);		
 		$venue_url = gigpress_db_out($_POST['venue_url']);		
 		$venue_phone = gigpress_db_out($_POST['venue_phone']);
 	
@@ -82,7 +82,7 @@ function gigpress_venues() {
 	?>
 		<h3><?php _e("Edit this venue", "gigpress"); ?></h3>
 	
-		<form method="post" action="<?php echo get_bloginfo('wpurl')."/wp-admin/admin.php?page=gigpress-venues" . $url_args; ?>">
+		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-venues' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="update" />
 		<input type="hidden" name="venue_id" value="<?php echo $venue_id ?>" />
 
@@ -92,7 +92,7 @@ function gigpress_venues() {
 
 		<h3><?php _e("Add an venue", "gigpress"); ?></h3>
 		
-		<form method="post" action="<?php echo get_bloginfo('wpurl')."/wp-admin/admin.php?page=gigpress-venues" . $url_args; ?>">
+		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-venues' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="add" />		
 			
 <?php } ?>
@@ -143,7 +143,7 @@ function gigpress_venues() {
 				<td>
 		<?php if(isset($_GET['gpaction']) && $_GET['gpaction'] == "edit" || isset($result) && isset($result['editing']) ) { ?>
 		
-				<span class="submit"><input type="submit" name="Submit" class="button-primary" value="<?php _e("Update venue", "gigpress") ?>" /></span> <?php _e("or", "gigpress"); ?> <a href="<?php bloginfo('wpurl'); ?>/wp-admin/admin.php?page=gigpress-venues<?php echo $url_args; ?>"><?php _e("cancel", "gigpress"); ?></a>
+				<span class="submit"><input type="submit" name="Submit" class="button-primary" value="<?php _e("Update venue", "gigpress") ?>" /></span> <?php _e("or", "gigpress"); ?> <a href="<?php echo admin_url('admin.php?page=gigpress-venues'. $url_args); ?>"><?php _e("cancel", "gigpress"); ?></a>
 		
 		<?php } else { ?>
 		
@@ -196,7 +196,7 @@ function gigpress_venues() {
 			foreach($venues as $venue) {
 			
 				if($n = $wpdb->get_var("SELECT count(*) FROM ". GIGPRESS_SHOWS ." WHERE show_venue_id = ". $venue->venue_id ." AND show_status != 'deleted'")) {
-					$count = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=gigpress-shows&amp;venue_id=' . $venue->venue_id . '">' . $n . '</a>';
+					$count = '<a href="' . admin_url('admin.php?page=gigpress-shows&amp;venue_id=' . $venue->venue_id) . '">' . $n . '</a>';
 				} else {
 					$count = 0;
 				}
@@ -216,8 +216,8 @@ function gigpress_venues() {
 					<td><?php echo $venuedata['venue_phone']; ?></td>
 					<td class="gp-centre"><?php echo $count; ?></td>
 					<td class="gp-centre">
-						<a href="<?php echo get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-venues&amp;gpaction=edit&amp;venue_id=' . $venue->venue_id . $url_args; ?>" class="edit"><?php _e("Edit", "gigpress"); ?></a>
-						<?php if(!$count) { ?> | <a href="<?php echo wp_nonce_url(get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-venues&amp;gpaction=delete&amp;venue_id='.$venue->venue_id . $url_args, 'gigpress-action'); ?>" class="delete"><?php _e("Delete", "gigpress"); ?></a><?php } ?>
+						<a href="<?php echo admin_url('admin.php?page=gigpress-venues&amp;gpaction=edit&amp;venue_id=' . $venue->venue_id . $url_args); ?>" class="edit"><?php _e("Edit", "gigpress"); ?></a>
+						<?php if(!$count) { ?> | <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=gigpress-venues&amp;gpaction=delete&amp;venue_id='.$venue->venue_id . $url_args), 'gigpress-action'); ?>" class="delete"><?php _e("Delete", "gigpress"); ?></a><?php } ?>
 					</td>
 				</tr>
 				<?php }

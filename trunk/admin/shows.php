@@ -133,13 +133,13 @@ function gigpress_admin_shows() {
 			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE show_status != 'deleted'");
 			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
 			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
-			echo('<li><a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=gigpress-shows&amp;scope=all"');
+			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=all') . '"');
 			if($scope == 'all') echo(' class="current"');
 			echo('>' . __("All", "gigpress") . '</a> <span class="count">(' . $all	. ')</span> | </li>');
-			echo('<li><a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=gigpress-shows&amp;scope=upcoming"');
+			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=upcoming') . '"');
 			if($scope == 'upcoming') echo(' class="current"');
 			echo('>' . __("Upcoming", "gigpress") . '</a> <span class="count">(' . $upcoming	. ')</span> | </li>');
-			echo('<li><a href="' . get_bloginfo('wpurl') . '/wp-admin/admin.php?page=gigpress-shows&amp;scope=past"');
+			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=past') . '"');
 			if($scope == 'past') echo(' class="current"');
 			echo('>' . __("Past", "gigpress") . '</a> <span class="count">(' . $past	. ')</span></li>');
 		?>
@@ -263,7 +263,7 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['country']; ?></td>
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
-						<a href="<?php bloginfo('wpurl') ?>/wp-admin/admin.php?page=gigpress/gigpress.php&amp;gpaction=edit&amp;show_id=<?php echo $show->show_id; ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php bloginfo('wpurl') ?>/wp-admin/admin.php?page=gigpress/gigpress.php&amp;gpaction=copy&amp;show_id=<?php echo $show->show_id; ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
+						<a href="<?php echo admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
 					</td>
 				</tr>
 				<tr class="<?php echo 'alternate' . ' gigpress-' . $showdata['status']; ?>">
@@ -305,7 +305,7 @@ function gigpress_admin_shows() {
 				if($tour_count || $show_count) {					
 					echo('<small>'. __("You have", "gigpress"). ' <strong>'. $shows .' '. __("shows", "gigpress"). '</strong> '. __("and", "gigpress"). ' <strong>'. $tours .' '. __("tours", "gigpress") .'</strong> '. __("in your trash", "gigpress").'.');
 					if($shows != 0 || $tours != 0) {
-						echo(' <a href="'. wp_nonce_url(get_bloginfo('wpurl').'/wp-admin/admin.php?page=gigpress-shows&amp;gpaction=trash' . $url_args, 'gigpress-action') .'">'. __("Take out the trash now", "gigpress") .'</a>.');
+						echo(' <a href="'. wp_nonce_url(admin_url('admin.php?page=gigpress-shows&amp;gpaction=trash' . $url_args), 'gigpress-action') .'">'. __("Take out the trash now", "gigpress") .'</a>.');
 					}
 					echo('</small>');
 				}

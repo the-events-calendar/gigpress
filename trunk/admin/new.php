@@ -30,7 +30,7 @@ function gigpress_add() {
 		<div id="message" class="updated">
 			<p>
 				<?php _e("<strong>Welcome to GigPress!</strong> Get started by adding your first show below. To display your shows, simply add the", "gigpress"); ?> [gigpress_shows] <?php _e("shortcode to any page or post.", "gigpress"); ?>
-				<?php _e("Questions?  Please check out the", "gigpress"); ?> <a href="http://gigpress.com/docs"><?php _e("documentation", "gigpress"); ?></a> <?php _e("and", "gigpress"); ?> <a href="http://gigpress.com/faq"><?php _e("FAQ", "gigpress"); ?></a> <?php _e("on the GigPress website. Enjoy!", "gigpress"); ?> <small>(<a href="<?php bloginfo('wpurl'); ?>/wp-admin/admin.php?page=gigpress/gigpress.php&amp;gpaction=killwelcome"><?php _e("Don't show this again", "gigpress"); ?>.</a>)</small>
+				<?php _e("Questions?  Please check out the", "gigpress"); ?> <a href="http://gigpress.com/docs"><?php _e("documentation", "gigpress"); ?></a> <?php _e("and", "gigpress"); ?> <a href="http://gigpress.com/faq"><?php _e("FAQ", "gigpress"); ?></a> <?php _e("on the GigPress website. Enjoy!", "gigpress"); ?> <small>(<a href="<?php echo admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=killwelcome'); ?>"><?php _e("Don't show this again", "gigpress"); ?>.</a>)</small>
 			</p>
 		</div>
 		
@@ -51,42 +51,42 @@ function gigpress_add() {
 		
 		if(isset($result)) {
 		
-			$mm = $_POST['gp_mm'];
-			$dd = $_POST['gp_dd'];
-			$yy = $_POST['gp_yy'];
+			$mm = sprintf("%02d", $_POST['gp_mm']);
+			$dd = sprintf("%02d", $_POST['gp_dd']);
+			$yy = sprintf("%02d", $_POST['gp_yy']);
 			
-			$hh = $_POST['gp_hh'];
-			$min = $_POST['gp_min'];
+			$hh = sprintf("%02d", $_POST['gp_hh']);
+			$min = sprintf("%02d", $_POST['gp_min']);
 				
-			$exp_mm = $_POST['exp_mm'];
-			$exp_dd = $_POST['exp_dd'];
-			$exp_yy = $_POST['exp_yy'];
+			$exp_mm = sprintf("%02d", $_POST['exp_mm']);
+			$exp_dd = sprintf("%02d", $_POST['exp_dd']);
+			$exp_yy = sprintf("%02d", $_POST['exp_yy']);
 			
 			$show_multi = (isset($_POST['show_multi']) && !empty($_POST['show_multi'])) ? 1 : FALSE;
-			$show_artist_id = $_POST['show_artist_id'];
-			$show_venue_id = $_POST['show_venue_id'];
-			$new_artist_name = gigpress_db_out($_POST['artist_name']);
-			$artist_url = gigpress_db_out($_POST['artist_url']);
-			$new_venue_name = gigpress_db_out($_POST['venue_name']);
-			$venue_address = gigpress_db_out($_POST['venue_address']);
-			$new_venue_city = gigpress_db_out($_POST['venue_city']);
-			$venue_state = gigpress_db_out($_POST['venue_state']);		
-			$venue_postal_code = gigpress_db_out($_POST['venue_postal_code']);					
-			$venue_country = gigpress_db_out($_POST['venue_country']);
-			$venue_url = gigpress_db_out($_POST['venue_url']);
-			$venue_phone = gigpress_db_out($_POST['venue_phone']);
-			$new_tour_name = gigpress_db_out($_POST['tour_name']);
-			$show_ages = gigpress_db_out($_POST['show_ages']);
-			$show_tix_url = gigpress_db_out($_POST['show_tix_url']);
-			$show_tix_phone = gigpress_db_out($_POST['show_tix_phone']);
-			$show_notes = gigpress_db_out($_POST['show_notes']);
-			$show_price = gigpress_db_out($_POST['show_price']);
-			$show_external_url = gigpress_db_out($_POST['show_external_url']);
-			$show_tour_id = $_POST['show_tour_id'];
-			$show_related = $_POST['show_related'];
-			$show_related_title = gigpress_db_out($_POST['show_related_title']);
-			$show_related_date = $_POST['show_related_date'];
-			$show_status = $_POST['show_status'];
+			$show_artist_id = absint($_POST['show_artist_id']);
+			$show_venue_id = absint($_POST['show_venue_id']);
+			$new_artist_name = gigpress_db_out(gigpress_db_in($_POST['artist_name']));
+			$artist_url = gigpress_db_out(gigpress_db_in($_POST['artist_url']));
+			$new_venue_name = gigpress_db_out(gigpress_db_in($_POST['venue_name']));
+			$venue_address = gigpress_db_out(gigpress_db_in($_POST['venue_address']));
+			$new_venue_city = gigpress_db_out(gigpress_db_in($_POST['venue_city']));
+			$venue_state = gigpress_db_out(gigpress_db_in($_POST['venue_state']));		
+			$venue_postal_code = gigpress_db_out(gigpress_db_in($_POST['venue_postal_code']));
+			$venue_country = gigpress_db_out(gigpress_db_in($_POST['venue_country']));
+			$venue_url = gigpress_db_out(gigpress_db_in($_POST['venue_url']));
+			$venue_phone = gigpress_db_out(gigpress_db_in($_POST['venue_phone']));
+			$new_tour_name = gigpress_db_out(gigpress_db_in($_POST['tour_name']));
+			$show_ages = gigpress_db_out(gigpress_db_in($_POST['show_ages']));
+			$show_tix_url = gigpress_db_out(gigpress_db_in($_POST['show_tix_url']));
+			$show_tix_phone = gigpress_db_out(gigpress_db_in($_POST['show_tix_phone']));
+			$show_notes = gigpress_db_out(gigpress_db_in($_POST['show_notes'], false));
+			$show_price = gigpress_db_out(gigpress_db_in($_POST['show_price']));
+			$show_external_url = gigpress_db_out(gigpress_db_in($_POST['show_external_url']));
+			$show_tour_id = absint($_POST['show_tour_id']);
+			$show_related = absint($_POST['show_related']);
+			$show_related_title = gigpress_db_out(gigpress_db_in($_POST['show_related_title']));
+			$show_related_date = gigpress_db_in(gigpress_db_in($_POST['show_related_date']));
+			$show_status = gigpress_db_in($_POST['show_status']);
 			
 			$have_data = TRUE;
 		
@@ -189,7 +189,7 @@ function gigpress_add() {
 		
 			<h2><?php _e("Edit this show", "gigpress"); ?></h2>
 		
-			<form method="post" action="<?php bloginfo('wpurl') ?>/wp-admin/admin.php?page=gigpress/gigpress.php">
+			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress/gigpress.php'); ?>">
 				<?php wp_nonce_field('gigpress-action') ?>
 				<input type="hidden" name="gpaction" value="update" />
 				<input type="hidden" name="show_id" value="<?php echo $show_id; ?>" />
@@ -200,7 +200,7 @@ function gigpress_add() {
 			
 			<?php if(isset($load_error)) echo $load_error; ?>
 					
-			<form method="post" action="<?php bloginfo('wpurl') ?>/wp-admin/admin.php?page=gigpress/gigpress.php">
+			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress/gigpress.php'); ?>">
 				<?php wp_nonce_field('gigpress-action') ?>
 				<input type="hidden" name="gpaction" value="add" />
 				<input type="hidden" name="show_status" value="active" />
@@ -593,7 +593,7 @@ function gigpress_add() {
 					<td>&nbsp;</td>
 					<td>
 				<?php if(isset($_GET['gpaction']) && $_GET['gpaction'] == "edit" || isset($result['editing'])) { ?>
-					<span class="submit"><input type="submit" name="Submit" class="button-primary" value="<?php _e("Update show", "gigpress") ?>" /></span> <?php _e("or", "gigpress"); ?> <a href="<?php bloginfo('wpurl'); ?>/wp-admin/admin.php?page=gigpress-shows"><?php _e("cancel", "gigpress"); ?></a>
+					<span class="submit"><input type="submit" name="Submit" class="button-primary" value="<?php _e("Update show", "gigpress") ?>" /></span> <?php _e("or", "gigpress"); ?> <a href="<?php echo admin_url('admin.php?page=gigpress-shows'); ?>"><?php _e("cancel", "gigpress"); ?></a>
 				
 				<?php } else { ?>
 				

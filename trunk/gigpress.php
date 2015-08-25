@@ -324,7 +324,7 @@ function gigpress_related_link($postid, $format) {
 			$output = $link;
 			break;
 		case 'edit':
-			$link = get_bloginfo('wpurl') . '/wp-admin/post.php?action=edit&amp;post=' . $postid;
+			$link = admin_url('post.php?action=edit&amp;post=' . $postid);
 			$output = '<a href="' . $link . '">' . $gpo['related'] . '</a>';
 			break;
 		case 'view':
