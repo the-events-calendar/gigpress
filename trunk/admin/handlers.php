@@ -52,7 +52,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 			$errors[] = __("We had trouble creating your new artist. Sorry.", "gigpress");
 		}
 	} else {
-		$show['show_artist_id'] = absint($_POST['show_artist_id']);
+		$show['show_artist_id'] = gigpress_db_in($_POST['show_artist_id']);
 	}
 	
 	// Create a new venue
@@ -68,7 +68,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 		}
 		$gpo['default_country'] = gigpress_db_in($_POST['venue_country']);
 	} else {
-		$show['show_venue_id'] = absint($_POST['show_venue_id']);
+		$show['show_venue_id'] = gigpress_db_in($_POST['show_venue_id']);
 	}
 	
 	// Create a new tour
@@ -84,11 +84,11 @@ function gigpress_prepare_show_fields($context = 'new') {
 			$errors[] = __("We had trouble creating your new tour. Sorry.", "gigpress");
 		}
 	} else {
-		$show['show_tour_id'] = absint($_POST['show_tour_id']);
+		$show['show_tour_id'] = gigpress_db_in($_POST['show_tour_id']);
 	}	
 	
 	// Create a new related post
-	if ($_POST['show_related'] == "new")
+	if($_POST['show_related'] == "new")
 	{
 		
 		// Find the variables we need for token replacement

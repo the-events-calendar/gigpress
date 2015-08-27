@@ -20,6 +20,10 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.12 =
+
+* Fix for bug introduced in last version where some show defaults would not be saved
+
 = 2.3.11 =
 
 * Fixed some SQL and XSS vulnerabilities in the admin
