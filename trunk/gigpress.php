@@ -3,9 +3,10 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.3.12
+Version: 2.3.13
 Author: Derek Hogue
 Author URI: http://amphibian.info
+Text Domain: gigpress
 
 Copyright 2007-2015 DEREK HOGUE
 
@@ -27,7 +28,7 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.3.12');
+define('GIGPRESS_VERSION', '2.3.13');
 define('GIGPRESS_DB_VERSION', '1.6');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
@@ -72,24 +73,35 @@ function gigpress_admin_menu() {
 	
 	$icon = ($wp_version >= 3.8) ? 'dashicons-calendar' : plugins_url('images/gigpress-icon-16.png', __FILE__);
 	
-	add_menu_page("GigPress &rsaquo; $add", "GigPress", $gpo['user_level'], __FILE__, "gigpress_add", $icon);
+	add_menu_page("GigPress &rsaquo; $add", "GigPress", $gpo['user_level'], 'gigpress', "gigpress_add", $icon);
 	// By setting the unique identifier of the submenu page to be __FILE__,
 	// we let it be the first page to load when the top-level menu item is clicked
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $add", $add, $gpo['user_level'], __FILE__, "gigpress_add");
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $shows", $shows, $gpo['user_level'], "gigpress-shows", "gigpress_admin_shows");
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $artists", $artists, $gpo['user_level'], "gigpress-artists", "gigpress_artists");
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $venues", $venues, $gpo['user_level'], "gigpress-venues", "gigpress_venues");
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $tours", $tours, $gpo['user_level'], "gigpress-tours", "gigpress_tours");
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $settings", $settings, 'manage_options', "gigpress-settings", "gigpress_settings");
-	add_submenu_page(__FILE__, "GigPress &rsaquo; $export", $export, $gpo['user_level'], "gigpress-import-export", "gigpress_import_export");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $add", $add, $gpo['user_level'], 'gigpress', "gigpress_add");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $shows", $shows, $gpo['user_level'], "gigpress-shows", "gigpress_admin_shows");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $artists", $artists, $gpo['user_level'], "gigpress-artists", "gigpress_artists");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $venues", $venues, $gpo['user_level'], "gigpress-venues", "gigpress_venues");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $tours", $tours, $gpo['user_level'], "gigpress-tours", "gigpress_tours");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $settings", $settings, 'manage_options', "gigpress-settings", "gigpress_settings");
+	add_submenu_page('gigpress', "GigPress &rsaquo; $export", $export, $gpo['user_level'], "gigpress-import-export", "gigpress_import_export");
 	
 	if(GIGPRESS_DEBUG) {
 		require('admin/debug.php');
-		add_submenu_page(__FILE__, "GigPress &rsaquo; Debug", 'Debug', 'manage_options', "gigpress-debug", "gigpress_debug");
+		add_submenu_page('gigpress', "GigPress &rsaquo; Debug", 'Debug', 'manage_options', "gigpress-debug", "gigpress_debug");
 	}	
 
 }
 
+function gigpress_toolbar($wp_admin_bar) {
+	// Not sure if this should be default, hold off for now
+	return;
+	$args = array(
+		'id'    => 'gigpress',
+		'title' => 'GigPress '.__("Show", "gigpress"),
+		'href'  => admin_url('admin.php?page=gigpress'),
+		'parent' => 'new-content'
+	);
+	$wp_admin_bar->add_node( $args );
+}
 
 function gigpress_admin_head()	{
 	wp_enqueue_script('jquery');
@@ -437,14 +449,14 @@ function register_gigpress_settings() {
 function gigpress_favorites($actions) {
 	global $gpo;
 	$level = "level_" . $gpo['user_level']; 
-	$actions['admin.php?page=gigpress/gigpress.php'] = array('Add a show', $level);
+	$actions['admin.php?page=gigpress'] = array('Add a show', $level);
     return $actions;
 }
 
 
 function custom_menu_order($menu_order) {
 	
-	if($current_position = array_search('gigpress/gigpress.php', $menu_order))
+	if($current_position = array_search('gigpress', $menu_order))
 	{
 		// Add a new separator to the menu array
 		global $menu;
@@ -463,7 +475,7 @@ function custom_menu_order($menu_order) {
 			if($menu_item == 'edit-comments.php')
 			{
 				$new_menu_order[] =  'separator-gp';
-				$new_menu_order[] = 'gigpress/gigpress.php';		
+				$new_menu_order[] = 'gigpress';		
 			}
 		}
 	}
@@ -602,6 +614,7 @@ add_action('init','add_gigpress_feeds');
 add_action('init','gigpress_intl');
 add_action('admin_init', 'register_gigpress_settings'); 
 add_action('admin_menu', 'gigpress_admin_menu');
+add_action('admin_bar_menu', 'gigpress_toolbar', 999);
 add_action('delete_post', 'gigpress_remove_related');
 if(!empty($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], 'gigpress') !== FALSE) {
 	add_action('admin_init','gigpress_admin_head');

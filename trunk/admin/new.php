@@ -30,7 +30,7 @@ function gigpress_add() {
 		<div id="message" class="updated">
 			<p>
 				<?php _e("<strong>Welcome to GigPress!</strong> Get started by adding your first show below. To display your shows, simply add the", "gigpress"); ?> [gigpress_shows] <?php _e("shortcode to any page or post.", "gigpress"); ?>
-				<?php _e("Questions?  Please check out the", "gigpress"); ?> <a href="http://gigpress.com/docs"><?php _e("documentation", "gigpress"); ?></a> <?php _e("and", "gigpress"); ?> <a href="http://gigpress.com/faq"><?php _e("FAQ", "gigpress"); ?></a> <?php _e("on the GigPress website. Enjoy!", "gigpress"); ?> <small>(<a href="<?php echo admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=killwelcome'); ?>"><?php _e("Don't show this again", "gigpress"); ?>.</a>)</small>
+				<?php _e("Questions?  Please check out the", "gigpress"); ?> <a href="http://gigpress.com/docs"><?php _e("documentation", "gigpress"); ?></a> <?php _e("and", "gigpress"); ?> <a href="http://gigpress.com/faq"><?php _e("FAQ", "gigpress"); ?></a> <?php _e("on the GigPress website. Enjoy!", "gigpress"); ?> <small>(<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=killwelcome'); ?>"><?php _e("Don't show this again", "gigpress"); ?>.</a>)</small>
 			</p>
 		</div>
 		
@@ -189,7 +189,7 @@ function gigpress_add() {
 		
 			<h2><?php _e("Edit this show", "gigpress"); ?></h2>
 		
-			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress/gigpress.php'); ?>">
+			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress'); ?>">
 				<?php wp_nonce_field('gigpress-action') ?>
 				<input type="hidden" name="gpaction" value="update" />
 				<input type="hidden" name="show_id" value="<?php echo $show_id; ?>" />
@@ -200,7 +200,7 @@ function gigpress_add() {
 			
 			<?php if(isset($load_error)) echo $load_error; ?>
 					
-			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress/gigpress.php'); ?>">
+			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress'); ?>">
 				<?php wp_nonce_field('gigpress-action') ?>
 				<input type="hidden" name="gpaction" value="add" />
 				<input type="hidden" name="show_status" value="active" />

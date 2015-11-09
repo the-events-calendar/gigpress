@@ -250,7 +250,7 @@ function gigpress_add_show() {
 			
 			<div id="message" class="updated fade">
 				<p><?php echo __("Your show  on", "gigpress") . ' ' . mysql2date($gpo['date_format_long'], $show['show_date']) . ' ' . __("was successfully added.", "gigpress");
-				echo(' <a href="' . admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=copy&amp;show_id=' . $wpdb->insert_id) . '">' . __("Add a similar show", "gigpress"). '</a>');
+				echo(' <a href="' . admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id=' . $wpdb->insert_id) . '">' . __("Add a similar show", "gigpress"). '</a>');
 				if($show['show_related']) echo(' | <a href="' . admin_url('post.php?action=edit&amp;post=' . $show['show_related']) . '">' . __("Edit the related post", "gigpress"). '</a>');
 				?></p>
 		<?php
@@ -914,7 +914,7 @@ function gigpress_import() {
 								$new_show['show_related'] = @$show['Related ID'];
 							}
 							
-							$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%d', '%d');
+							$format = array('%s','%s','%d','%s','%d','%d','%d','%s','%s','%s','%s','%s', '%s', '%s', '%d');
 							
 							$import = $wpdb->insert(GIGPRESS_SHOWS, $new_show, $format);
 							

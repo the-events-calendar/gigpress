@@ -263,7 +263,7 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['country']; ?></td>
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
-						<a href="<?php echo admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress/gigpress.php&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
+						<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
 					</td>
 				</tr>
 				<tr class="<?php echo 'alternate' . ' gigpress-' . $showdata['status']; ?>">
