@@ -125,8 +125,9 @@ function gigpress_admin_shows() {
 		
 	<div class="wrap gigpress">
 
-		<?php screen_icon('gigpress'); ?>		
-		<h2><?php _e("Shows", "gigpress"); ?></h2>
+		<h1><?php _e("Shows", "gigpress"); ?></h1>
+		
+		<h2 class="screen-reader-text"><?php _e("Filter Shows", "gigpress"); ?></h2>
 		
 		<ul class="subsubsub">
 		<?php
@@ -145,8 +146,8 @@ function gigpress_admin_shows() {
 		?>
 		</ul>
 		
-		<div class="tablenav">
-			<div class="alignleft">
+		<div class="tablenav top">
+			<div class="alignleft actions">
 				<form action="" method="get">
 					<div>
 						<input type="hidden" name="page" value="gigpress-shows" />
@@ -213,33 +214,35 @@ function gigpress_admin_shows() {
 			<div class="clear"></div>
 		</div>
 
+		<h2 class="screen-reader-text"><?php _e("Shows List", "gigpress"); ?></h2>
+
 		<form action="" method="post">
 			<?php wp_nonce_field('gigpress-action') ?>
 			<input type="hidden" name="gpaction" value="delete" />
 
-		<table class="widefat">
+		<table class="wp-list-table widefat">
 			<thead>
 				<tr>
-					<th scope="col" class="column-cb check-column"><input type="checkbox" /></th>
-					<th scope="col"><?php _e("Date", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Artist", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Venue", "gigpress"); ?></th>
-					<th scope="col"><?php _e("City", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Country", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Tour", "gigpress") ?></th>					
-					<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
+					<td scope="col" class="manage-column column-cb check-column"><input type="checkbox" /></td>
+					<th scope="col" class="manage-column"><?php _e("Date", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Artist", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Venue", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("City", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Country", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Tour", "gigpress") ?></th>					
+					<th class="manage-column gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
-					<th scope="col" class="column-cb check-column"><input type="checkbox" /></th>
-					<th scope="col"><?php _e("Date", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Artist", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Venue", "gigpress"); ?></th>
-					<th scope="col"><?php _e("City", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Country", "gigpress"); ?></th>
-					<th scope="col"><?php _e("Tour", "gigpress") ?></th>					
-					<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
+					<td scope="col" class="manage-column column-cb check-column"><input type="checkbox" /></td>
+					<th scope="col" class="manage-column"><?php _e("Date", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Artist", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Venue", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("City", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Country", "gigpress"); ?></th>
+					<th scope="col" class="manage-column"><?php _e("Tour", "gigpress") ?></th>					
+					<th class="manage-column gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
 				</tr>
 			</tfoot>			
 			<tbody>

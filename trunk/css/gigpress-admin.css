@@ -156,35 +156,11 @@ p.gp-trash {
 	float: right;
 }
 
-.optiontable th {
-	text-align: left;
-	width: 150px;
-}
-
-.optiontable td, .v25 .optiontable th {
-	padding: 10px;
-}
-
-span.submit {
-	border: none;
-	padding: 0;
-	margin: 0;	
-}
-
-
-
-
-.widefat td, .widefat th {
-	padding: 7px;
-}
-
-fieldset {
-	margin: 1em 0 0;
-	border: none;
-}
-
-legend {
-	font-weight: bold;
-	font-size: 1.2em;
+@media screen and (max-width: 780px)
+{
+	.gp-import-panel, .gp-export-panel {
+		float: none;
+		width: auto;
+	}
 }
 

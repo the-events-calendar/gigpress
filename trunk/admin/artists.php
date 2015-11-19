@@ -30,8 +30,7 @@ function gigpress_artists() {
 
 	<div class="wrap gigpress gp-artists">
 
-	<?php screen_icon('gigpress'); ?>		
-	<h2><?php _e("Artists", "gigpress"); ?></h2>	
+	<h1><?php _e("Artists", "gigpress"); ?></h1>	
 	
 	<?php
 	if(isset($_GET['gpaction']) && $_GET['gpaction'] == "edit" || isset($result) && isset($result['editing']) ) {
@@ -65,7 +64,7 @@ function gigpress_artists() {
 		$artist = array();
 		$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Add artist", "gigpress") . '" /></span>'; ?>
 
-		<h3><?php _e("Add an artist", "gigpress"); ?></h3>
+		<h2><?php _e("Add an artist", "gigpress"); ?></h2>
 		
 		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-artists' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="add" />	
@@ -97,13 +96,13 @@ function gigpress_artists() {
 		
 		</form>
 
-	<h3><?php _e("All artists", "gigpress"); ?></h3>
+	<h2><?php _e("All artists", "gigpress"); ?></h2>
 	
 	<div class="tablenav">
 		<div class="alignleft"><p><?php _e("Note that you cannot delete an artist while they have shows in the database.", "gigpress"); ?></p></div>
 	<?php
 		$artists = fetch_gigpress_artists();
-/*		Removed pagination to allow for single-page AJAX reordering. Complaints might being it back?
+/*		Removed pagination to allow for single-page AJAX reordering. Complaints might bring it back?
 		if($artists) {
 			$pagination_args['page'] = 'gigpress-artists';
 			$pagination = gigpress_admin_pagination(count($artists), 20, $pagination_args);

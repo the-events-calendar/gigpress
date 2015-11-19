@@ -181,13 +181,11 @@ function gigpress_add() {
 			$show_related_title = $gpo['default_title'];
 			$show_related_date = $gpo['related_date'];
 		}
-	
-		screen_icon('gigpress');	
-		
+			
 		// We're editing a show
 		if(isset($_GET['gpaction']) && $_GET['gpaction'] == "edit" || (isset($result['editing']))) { ?>
 		
-			<h2><?php _e("Edit this show", "gigpress"); ?></h2>
+			<h1><?php _e("Edit this show", "gigpress"); ?></h1>
 		
 			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress'); ?>">
 				<?php wp_nonce_field('gigpress-action') ?>
@@ -196,7 +194,7 @@ function gigpress_add() {
 		
 		<?php } else { // We're adding a new show ?>
 		
-			<h2><?php _e("Add a show", "gigpress"); ?></h2>
+			<h1><?php _e("Add a show", "gigpress"); ?></h1>
 			
 			<?php if(isset($load_error)) echo $load_error; ?>
 					

@@ -8,10 +8,9 @@ function gigpress_debug() {
 
 	<div class="wrap gigpress gp-options">
 
-	<?php screen_icon('gigpress'); ?>			
-	<h2>Debug</h2>
+	<h1>Debug</h1>
 	
-	<h3>GigPress Constants</h3>
+	<h2>GigPress Constants</h2>
 	
 	<ul>
 		<li><code>GIGPRESS_SHOWS</code>: <?php echo GIGPRESS_SHOWS; ?></li>
@@ -27,7 +26,7 @@ function gigpress_debug() {
 		<li><code>GIGPRESS_NOW</code>: <?php echo GIGPRESS_NOW; ?></li>
 	</ul>
 	
-	<h3>GigPress Settings</h3>
+	<h2>GigPress Settings</h2>
 	
 	<ul>
 	<?php foreach($gpo as $setting => $value) { ?>

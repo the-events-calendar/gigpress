@@ -8,12 +8,11 @@ function gigpress_import_export() {
 
 	<div class="wrap gigpress gp-options">
 
-	<?php screen_icon('gigpress'); ?>			
-	<h2><?php _e("Import/Export", "gigpress"); ?></h2>
+	<h1><?php _e("Import/Export", "gigpress"); ?></h1>
 	
 	<div class="gp-import-panel">
 	
-		<h3>Import</h3>
+		<h2>Import</h2>
 		
 		<p><?php _e("Upload a CSV (comma-separated values) file to import into your GigPress database.", "gigpress"); ?> <a href="http://gigpress.com/docs/#import"><strong><?php _e("Please review the formatting specifications to save yourself headaches!", "gigpress"); ?></strong></a></p>
 		
@@ -43,7 +42,7 @@ function gigpress_import_export() {
 	
 	<div class="gp-export-panel">
 		
-		<h3>Export</h3>
+		<h2>Export</h2>
 		
 		<p><?php _e("Download your complete show database as a CSV (comma-separated values) file, compatible with programs such as Microsoft Excel. This file is also suitable to import into another GigPress installation.", "gigpress"); ?></p>
 		

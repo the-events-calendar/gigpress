@@ -30,8 +30,7 @@ function gigpress_tours() {
 
 	<div class="wrap gigpress gp-tours">
 
-	<?php screen_icon('gigpress'); ?>		
-	<h2><?php _e("Tours", "gigpress"); ?></h2>
+	<h1><?php _e("Tours", "gigpress"); ?></h1>
 	
 	<p><?php _e("A tour is simply a named collection of shows that you want to group together.", "gigpress"); ?></p>
 	
@@ -69,7 +68,7 @@ function gigpress_tours() {
 		$tour_name = '';
 		$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Add tour", "gigpress") . '" /></span>'; ?>
 			
-		<h3><?php _e("Add a tour", "gigpress"); ?></h3>
+		<h2><?php _e("Add a tour", "gigpress"); ?></h2>
 
 		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-tours'. $url_args); ?>">
 			<input type="hidden" name="gpaction" value="add" />
@@ -85,7 +84,7 @@ function gigpress_tours() {
 			</table>		
 		</form>
 
-		<h3><?php _e("All tours", "gigpress"); ?></h3>
+		<h2><?php _e("All tours", "gigpress"); ?></h2>
 
 	<div class="tablenav">
 		<div class="alignleft">

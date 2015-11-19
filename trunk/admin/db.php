@@ -73,6 +73,8 @@ PRIMARY KEY  (tour_id)
 
 // Default settings
 global $default_settings;
+$timezone = (!empty(get_option('timezone_string'))) ? get_option('timezone_string') : date_default_timezone_get();
+
 $default_settings = array(
 	'age_restrictions' => 'All Ages | All Ages/Licensed | No Minors',
 	'alternate_clock' => 0,
@@ -86,7 +88,7 @@ $default_settings = array(
 	'date_format' => 'm/d/y',
 	'db_version' => GIGPRESS_DB_VERSION,
 	'default_country' => 'US',
-	'default_date' => GIGPRESS_NOW,
+	'default_date' => '',
 	'default_time' => '00:00:01',
 	'default_title' => '%artist% in %city% on %date%',
 	'default_tour' => '',
@@ -115,6 +117,7 @@ $default_settings = array(
 	'sidebar_link' => 0,
 	'target_blank' => 0,
 	'time_format' => 'g:ia',
+	'timezone' => $timezone,
 	'tour_label' => 'Tour',
 	'user_level' => 'edit_posts',
 	'welcome' => 'yes'
@@ -136,6 +139,13 @@ if(empty($gpo['buy_tickets_label']))
 if(empty($gpo['output_schema_json']) || (!empty($gpo['output_schema_json']) && $gpo['output_schema_json'] == 1))
 {
 	$gpo['output_schema_json'] = 'y';
+	update_option('gigpress_settings', $gpo);
+}
+
+
+if(empty($gpo['timezone']))
+{
+	$gpo['timezone'] = $timezone;
 	update_option('gigpress_settings', $gpo);
 }
 

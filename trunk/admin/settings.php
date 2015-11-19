@@ -11,13 +11,11 @@ function gigpress_settings() {
 
 	<div class="wrap gigpress gp-options">
 
-	<?php screen_icon('gigpress'); ?>			
-	<h2><?php _e("Settings", "gigpress"); ?></h2>
+	<h1><?php _e("Settings", "gigpress"); ?></h1>
 	
 	<form method="post" action="options.php">
 	
 	<table class="gp-table form-table">
-
 		<tr>
 			<th scope="row"><?php _e("Full URL to your 'Upcoming Shows' page", "gigpress") ?>:</th>
 			<td>
@@ -47,19 +45,26 @@ function gigpress_settings() {
 				</select>
 			</td>
 		</tr>
-		
+		<tr>
+			<th scope="row"><?php _e("GigPress timezone", "gigpress") ?>:</th>
+			<td>
+				<select name="gigpress_settings[timezone]">
+					<?php echo wp_timezone_choice($gpo['timezone']); ?>
+				</select>
+			</td>
+		</tr>			
 		<tr>
 			<th scope="row"><?php _e("Short date format", "gigpress") ?>:</th>
 			<td>
 				<input type="text" name="gigpress_settings[date_format]" value="<?php echo $gpo['date_format']; ?>" />
-				<span><?php _e("Output", "gigpress") ?>: <strong><?php echo mysql2date($gpo['date_format'], current_time('mysql')); ?></strong></span>
+				<span><?php _e("Output", "gigpress") ?>: <strong><?php echo mysql2date($gpo['date_format'], GIGPRESS_NOW); ?></strong></span>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><?php _e("Long date format", "gigpress") ?>:</th>
 			<td>
 				<input type="text" name="gigpress_settings[date_format_long]" value="<?php echo $gpo['date_format_long']; ?>" />
-				<span><?php _e("Output", "gigpress") ?>: <strong><?php echo mysql2date($gpo['date_format_long'], current_time('mysql')); ?></strong></span>
+				<span><?php _e("Output", "gigpress") ?>: <strong><?php echo mysql2date($gpo['date_format_long'], GIGPRESS_NOW); ?></strong></span>
 			</td>
 		</tr>			
 		<tr>

@@ -24,8 +24,7 @@ function gigpress_venues() {
 
 	<div class="wrap gigpress gp-venues">
 
-	<?php screen_icon('gigpress'); ?>		
-	<h2><?php _e("Venues", "gigpress"); ?></h2>	
+	<h1><?php _e("Venues", "gigpress"); ?></h1>	
 	
 	<?php
 	
@@ -80,7 +79,7 @@ function gigpress_venues() {
 	
 	if(isset($_GET['gpaction']) && $_GET['gpaction'] == "edit" && $venuedata || isset($result) && isset($result['editing']) ) {
 	?>
-		<h3><?php _e("Edit this venue", "gigpress"); ?></h3>
+		<h2><?php _e("Edit this venue", "gigpress"); ?></h2>
 	
 		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-venues' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="update" />
@@ -90,7 +89,7 @@ function gigpress_venues() {
 	
 		<?php if(isset($load_error)) echo $load_error; ?>
 
-		<h3><?php _e("Add an venue", "gigpress"); ?></h3>
+		<h2><?php _e("Add an venue", "gigpress"); ?></h2>
 		
 		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-venues' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="add" />		
@@ -156,7 +155,7 @@ function gigpress_venues() {
 		
 		</form>
 	
-	<h3><?php _e("All venues", "gigpress"); ?></h3>
+	<h2><?php _e("All venues", "gigpress"); ?></h2>
 		
 	<div class="tablenav">
 		<div class="alignleft">

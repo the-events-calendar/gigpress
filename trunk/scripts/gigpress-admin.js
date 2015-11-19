@@ -61,6 +61,8 @@ $gp(document).ready(function()
 		      ); 
 		    } 
 		});
-					
+		
+		// Remove the "Manual Offset" optgroup from the timezone menu 
+		$gp('select[name="gigpress_settings[timezone]"] optgroup').last().remove();			
 	}
 );
