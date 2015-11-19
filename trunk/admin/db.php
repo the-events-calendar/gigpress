@@ -73,7 +73,8 @@ PRIMARY KEY  (tour_id)
 
 // Default settings
 global $default_settings;
-$timezone = (!empty(get_option('timezone_string'))) ? get_option('timezone_string') : date_default_timezone_get();
+$timezone = get_option('timezone_string', date_default_timezone_get());
+if(empty($timezone)) $timezone = 'UTC';
 
 $default_settings = array(
 	'age_restrictions' => 'All Ages | All Ages/Licensed | No Minors',

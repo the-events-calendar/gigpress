@@ -20,6 +20,10 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.15 =
+
+* Fixed timezone bug which affected some users when upgrading to 2.3.14
+
 = 2.3.14 =
 
 * Added a new setting to choose the timezone used to determine upcoming/expired shows
