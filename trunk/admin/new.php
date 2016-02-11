@@ -556,7 +556,7 @@ function gigpress_add() {
 							<option value="0">------------------</option>
 							
 					  	<?php 
-					  	$entries = $wpdb->get_results("SELECT p.ID, p.post_title FROM " . $wpdb->prefix . "posts p WHERE (p.post_status = 'publish' OR p.post_status = 'future') AND p.post_type != 'page' ORDER BY p.post_date DESC LIMIT 500", ARRAY_A);
+					  	$entries = $wpdb->get_results("SELECT p.ID, p.post_title FROM " . $wpdb->prefix . "posts p WHERE (p.post_status = 'publish' OR p.post_status = 'future') AND p.post_type = 'post' ORDER BY p.post_date DESC LIMIT 500", ARRAY_A);
 					  	if($entries != FALSE) {				  	
 							foreach($entries as $entry) { ?>
 								<option value="<?php echo $entry['ID']; ?>"<?php if(isset($show_related) && $entry['ID'] == $show_related) { echo(' selected="selected"'); $found_related = TRUE; } ?>><?php echo gigpress_db_out($entry['post_title']); ?></option>

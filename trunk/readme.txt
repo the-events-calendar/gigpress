@@ -20,6 +20,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 
 == Changelog ==
 
+= 2.3.16 = 
+
+* The Related Posts menu will now only show posts of the "post" type
+* Updated French translations (courtesy of François Fuchs)
+
 = 2.3.15 =
 
 * Fixed timezone bug which affected some users when upgrading to 2.3.14
