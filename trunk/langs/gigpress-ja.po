@@ -4,16 +4,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-08 23:53+0900\n"
 "PO-Revision-Date: \n"
-"Last-Translator: takipone <takipone@gmail.com>\n"
+"Last-Translator: Manabu Miwa <manabumiwa_info@icloud.com>\n"
 "Language-Team: takipone <takipone@gmail.com>\n"
-"Language: Japanese\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: _e;__\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../gigpress.php:65 ../admin/new.php:199
@@ -75,7 +75,7 @@ msgstr "会場の事務所"
 #: ../output/feed.php:59 ../templates/related.php:76
 #: ../templates/shows-list.php:91
 msgid "Venue phone"
-msgstr "会場の連絡先"
+msgstr "会場の電話番号"
 
 #: ../gigpress.php:248 ../admin/new.php:512 ../admin/settings.php:136
 #: ../output/feed.php:80 ../templates/related.php:117
@@ -574,15 +574,15 @@ msgstr "未定"
 
 #: ../admin/new.php:497
 msgid "include currency symbol"
-msgstr "単位(\\)を含める"
+msgstr "通貨単位を含める"
 
 #: ../admin/new.php:500
 msgid "Ticket URL"
-msgstr "チケットについてのURL"
+msgstr "予約用URL"
 
 #: ../admin/new.php:504
 msgid "Ticket phone"
-msgstr "チケットについての問い合わせ先"
+msgstr "予約用電話番号"
 
 #: ../admin/new.php:508
 msgid "External URL"
@@ -1030,7 +1030,7 @@ msgstr "時間"
 #: ../output/feed.php:65 ../templates/related.php:88
 #: ../templates/shows-list.php:75
 msgid "Admission"
-msgstr "権限"
+msgstr "料金"
 
 #: ../output/gigpress_shows.php:307
 msgid "Select Month"
