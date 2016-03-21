@@ -1,5 +1,5 @@
 === GigPress ===
-Contributors: mrherbivore
+Contributors: mrherbivore, moderntribe
 Donate link: http://gigpress.com/donate
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.0
