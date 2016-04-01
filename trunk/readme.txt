@@ -1,6 +1,5 @@
 === GigPress ===
-Contributors: mrherbivore, moderntribe
-Donate link: http://gigpress.com/donate
+Contributors: ModernTribe, mrherbivore
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.0
 Tested up to: 4.4
@@ -18,9 +17,24 @@ GigPress is a powerful live performance listing and management plugin designed f
 * Link up a related post for each show and your show's full details will appear within your post. Automatically create new related posts with customizable titles when entering new shows.
 * No lock-in here. Import your shows from a CSV file, without fear of duplicate data. Export your shows database to CSV - filtered by artist, tour, and date.
 
+The team at <a href="http://tri.be/">Modern Tribe</a> stands by our work and offers light support to the community via the WordPress.org support forums on a weekly basis. Feel free to ask a question if you're having a problem with implementation or if you find bugs.
+
+= Submitting patches =
+
+If you've identified a bug and want to submit a patch, we'd welcome it at our <a href="https://github.com/moderntribe/gigpress" target="_blank">GitHub page for GigPress.</a> Simply cue up your proposed patch as a pull request. We'll review it as part of our release cycle and merge into the codebase if appropriate from there. (If a pull request is rejected, we'll do our best to tell you why). Users whose pull requests are accepted will receive credit in the plugin's changelog. For more information, check out the readme at our GitHub page. Happy coding!
+
+== Other information ==
+
+If you want to go beyond GigPress, we also have other plugins that could work great for you.
+
+* <a href="https://wordpress.org/plugins/the-events-calendar/">The Events Calendar</a> - a full featured calendar solution for your site.
+* <a href="https://wordpress.org/plugins/event-tickets/">Event Tickets</a> - allow your visitors to RSVP to events on your site.
+* Read how <a href="https://theeventscalendar.com/gigpress-with-the-events-calendar-and-event-tickets/">GigPress works with The Events Calendar and Event Tickets.</a>
+* Check out the full <a href="https://theeventscalendar.com/products/">list of premium plugins</a> we offer.
+
 == Changelog ==
 
-= 2.3.16 = 
+= 2.3.16 =
 
 * The Related Posts menu will now only show posts of the "post" type
 * Updated French translations (courtesy of François Fuchs)
@@ -68,14 +82,14 @@ GigPress is a powerful live performance listing and management plugin designed f
 * Now using GMT -11 to determine expiry of shows to allow for longer display of shows in timezones earlier than the site timezone
 * Updated .pot file so translators can add missing strings
 
-= 2.3.6 = 
+= 2.3.6 =
 
 * Fixed bug where disabling JSON-LD output didn't in fact disable JSON-LD output
 * Removed calls to mysql_real_escape_string during CSV import
 * Fixed a bug where existing artists, venues, and tours were not identified and used during import in some cases
 * Fixed potential PHP warnings during CSV import
 
-= 2.3.5 = 
+= 2.3.5 =
 
 * Added the state and external link values to the RSS feed output
 
@@ -113,7 +127,7 @@ GigPress is a powerful live performance listing and management plugin designed f
 * Added setting for "Buy Tickets" language
 * Updated admin menu with new icon for WordPress 3.8
 
-= 2.2.9.1 = 
+= 2.2.9.1 =
 
 * Fixed fatal typo
 
@@ -513,7 +527,7 @@ GigPress is a powerful live performance listing and management plugin designed f
 * Add option to split gigpress_sidebar output into tours
 * Added filter on all output in the admin and in the template functions to strip slashes and encode HTML entities (oops!)
 
-= 1.0 = 
+= 1.0 =
 
 * Initial release
 
