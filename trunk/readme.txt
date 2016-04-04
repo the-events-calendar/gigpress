@@ -29,6 +29,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 * <a href="https://wordpress.org/plugins/the-events-calendar/">The Events Calendar</a> - a full featured calendar solution for your site.
 * <a href="https://wordpress.org/plugins/event-tickets/">Event Tickets</a> - allow your visitors to RSVP to events on your site.
+* <a href="https://theeventscalendar.com/product/wordpress-event-tickets-plus/">Event Tickets Plus</a> - allows you to sell tickets to your events using WooCommerce, Shopp, WP eCommerce, or Easy Digital Downloads.
 * Read how <a href="https://theeventscalendar.com/gigpress-with-the-events-calendar-and-event-tickets/">GigPress works with The Events Calendar and Event Tickets.</a>
 * Check out the full <a href="https://theeventscalendar.com/products/">list of premium plugins</a> we offer.
 
@@ -37,7 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 = 2.3.16 =
 
 * The Related Posts menu will now only show posts of the "post" type
-* Updated French translations (courtesy of François Fuchs)
+* Updated French translations (courtesy of FranÃ§ois Fuchs)
 
 = 2.3.15 =
 
