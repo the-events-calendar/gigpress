@@ -30,7 +30,7 @@ function gigpress_admin_shows() {
 	$pagination_args = array();
 
 	global $current_user;
-	get_currentuserinfo();
+	wp_get_current_user();
 	
 	if(isset($_GET['scope']))
 	{
