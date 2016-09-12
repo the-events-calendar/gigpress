@@ -35,6 +35,8 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.3.17 =
+
 = 2.3.16 =
 
 * The Related Posts menu will now only show posts of the "post" type
