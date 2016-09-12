@@ -37,6 +37,8 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.17 =
 
+* Fix - Update code to avoid use of deprecated function get_currentuserinfo() (props to @leecollings)
+
 = 2.3.16 =
 
 * The Related Posts menu will now only show posts of the "post" type
