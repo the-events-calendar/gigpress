@@ -35,6 +35,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.3.18 [TBD] =
+
+* Tweak - Improvements to source code (props to @leecollings)
+
 = 2.3.17 [2016-09-15] =
 
 * Fix - Update code to avoid use of deprecated function get_currentuserinfo() (props to @leecollings)
