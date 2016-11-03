@@ -320,4 +320,4 @@ function gigpress_admin_shows() {
 		</div>
 		</form>
 	</div>
-<?php } ?>
+<?php }
