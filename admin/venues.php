@@ -43,6 +43,7 @@ function gigpress_venues() {
 		$venue_country = gigpress_db_out($_POST['venue_country']);		
 		$venue_url = gigpress_db_out($_POST['venue_url']);		
 		$venue_phone = gigpress_db_out($_POST['venue_phone']);
+		$venue_not_gigmapped = gigpress_db_out($_POST['venue_not_gigmapped']);
 	
 	} elseif (isset($_GET['gpaction']) && $_GET['gpaction'] == "edit") {
 	
@@ -62,6 +63,7 @@ function gigpress_venues() {
 				$venue_country = $venue->venue_country;		
 				$venue_url = gigpress_db_out($venue->venue_url);		
 				$venue_phone = gigpress_db_out($venue->venue_phone);		
+				$venue_not_gigmapped = gigpress_db_out($venue->venue_not_gigmapped);
 			}
 			
 		} else {
@@ -98,15 +100,15 @@ function gigpress_venues() {
 		<?php wp_nonce_field('gigpress-action') ?>
 		<table class="form-table gp-table">
 			<tr>
-				<th scope="row"><label for="venue_name"><?php _e("Venue name", "gigpress") ?>:<span class="gp-required">*</span></label></th>
+				<th scope="row"><label for="venue_name"><?php _e("Venue name or broadcast program", "gigpress") ?>:<span class="gp-required">*</span></label></th>
 				<td><input type="text" size="48" name="venue_name" id="venue_name" value="<?php if(isset($venue_name)) echo $venue_name; ?>"<?php if(isset($result) && isset($result['venue_name'])) echo(' class="gigpress-error"'); ?> /></td>
 			</tr>			  		
 			<tr>
-				<th scope="row"><label for="venue_address"><?php _e("Venue address", "gigpress") ?>:</label></th>
+				<th scope="row"><label for="venue_address"><?php _e("Venue address or 'Radio' or 'TV'", "gigpress") ?>:</label></th>
 				<td><input type="text" size="48" name="venue_address" id="venue_address" value="<?php if(isset($venue_address)) echo $venue_address; ?>" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="venue_city"><?php _e("Venue city", "gigpress") ?>:<span class="gp-required">*</span></label></th>
+				<th scope="row"><label for="venue_city"><?php _e("Venue city or broadcast station", "gigpress") ?>:<span class="gp-required">*</span></label></th>
 				<td><input type="text" size="48" name="venue_city" id="venue_city" value="<?php if(isset($venue_city)) echo $venue_city; ?>"<?php if(isset($result) && isset($result['venue_city'])) echo(' class="gigpress-error"'); ?> /></td>
 			</tr>				
 			<tr>
@@ -136,7 +138,13 @@ function gigpress_venues() {
 			<tr>
 				<th scope="row"><label for="venue_phone"><?php _e("Venue phone", "gigpress") ?>:</label></th>
 				<td><input type="text" size="48" name="venue_phone" id="venue_phone" value="<?php if(isset($venue_phone)) echo $venue_phone; ?>" /></td>
-			</tr>			  
+			</tr>	
+			<tr>
+				<?php if ($venue_address==translate("TV", "gigpress") || $venue_address==translate("Radio", "gigpress") ) $venue_not_gigmapped = 1 ?>
+				<th scope="row"><label for="venue_not_gigmapped"><?php _e("Do not display venue on overview map", "gigpress") ?>:</label></th>
+				<td><input type="checkbox" name="venue_not_gigmapped" id="venue_not_gigmapped"  value="1"<?php if( !empty($venue_not_gigmapped)) echo('checked="checked"'); ?> /></td>
+			</tr>			 
+
 			<tr>
 				<td>&nbsp;</td>
 				<td>

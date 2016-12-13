@@ -30,6 +30,8 @@ show_ages VARCHAR(255),
 show_notes TEXT,
 show_related BIGINT(20) DEFAULT 0,
 show_status VARCHAR(32) DEFAULT 'active',
+show_status_text VARCHAR(255),
+show_tour_attribute VARCHAR(255),	
 show_external_url VARCHAR(255),
 show_tour_restore INTEGER(1) DEFAULT 0,
 show_address VARCHAR(255),
@@ -37,9 +39,11 @@ show_locale VARCHAR(255),
 show_country VARCHAR(2),
 show_venue VARCHAR(255),
 show_venue_url VARCHAR(255),
-show_venue_phone VARCHAR(255),	
+show_venue_phone VARCHAR(255),
 PRIMARY KEY  (show_id)
 ) $charset_collate";
+
+// no comments allowed in db definition!!  -- 2 columns added for 2.5: show_status_text, show_tour_attribute
 
 $gp_db[] = "CREATE TABLE " . GIGPRESS_ARTISTS . " (
 artist_id INTEGER(4) AUTO_INCREMENT,
@@ -59,9 +63,14 @@ venue_state VARCHAR(255),
 venue_postal_code VARCHAR(32),
 venue_country VARCHAR(2) NOT NULL,	
 venue_url VARCHAR(255),
-venue_phone VARCHAR(255),	
+venue_phone VARCHAR(255),
+venue_not_gigmapped INTEGER(1), 
+venue_lat DOUBLE,
+venue_lng DOUBLE,
 PRIMARY KEY  (venue_id)
 ) $charset_collate";
+
+// no comments allowed in db definition!!  -- last 3 columns added for gigmap: venue_not_gigmapped,venue_lat, venue_lng
 
 $gp_db[] = "CREATE TABLE " . GIGPRESS_TOURS . " (
 tour_id INTEGER(4) AUTO_INCREMENT,
@@ -121,7 +130,10 @@ $default_settings = array(
 	'timezone' => $timezone,
 	'tour_label' => 'Tour',
 	'user_level' => 'edit_posts',
-	'welcome' => 'yes'
+	'welcome' => 'yes',
+	'overview_map' => 0,
+	'google-maps_api-key' => '',
+	'maps_latlng_updated' => 0	
 );
 
 global $gpo;
@@ -204,6 +216,20 @@ if ( $gpo['db_version'] < GIGPRESS_DB_VERSION ) {
 	update_option('gigpress_settings', $gpo);
 
 }
+	
+	if ( !empty($gpo['overview_map']) ) {                                    //gigmap is switched on
+		if ($gpo['maps_latlng_updated']==0){                                  //... but no values calculated yet!
+			gigpress_db_update_venues_latlng();                                 //calculate them
+			$gpo['maps_latlng_updated'] = 1;
+			update_option('gigpress_settings', $gpo);
+		}
+	}
+	else {                                                                  //no overview map wanted
+		if ( !empty($gpo['maps_latlng_updated']) ){
+			$gpo['maps_latlng_updated'] = 0;                                    //we will have to recalculate all latlng next time the map is switched on
+			update_option('gigpress_settings', $gpo);
+		}
+	}
 
 
 function gigpress_db_upgrade_110() {
@@ -333,6 +359,81 @@ function gigpress_db_upgrade_160() {
 	}
 
 }
+
+
+function gigpress_db_update_venues_latlng() {
+	// Add latitude and longitude to the venues
+	global $wpdb;
+	$venues = $wpdb->get_results(
+		"SELECT * FROM " . GIGPRESS_VENUES
+	);
+	if($venues)
+	{
+		foreach($venues as $venue)
+		{
+			if ( empty($venue->venue_not_gigmapped)) {     // venue not excluded from gigmap
+				if ( empty($venue->venue_lat)){              //latlng-values are empty. calculate them!
+					$address=$venue->venue_address.",".$venue->venue_city;
+					if ( !empty($venue->venue_state)) { $address = $address."(".$venue->venue_state.")";};
+					$address = $address.",".$venue->venue_postal_code;
+					$country = $venue->venue_country;
+					$loc = geocoder::getLocation($address, $country);
+					if ( $loc != FALSE ) { //success!
+						$new_venue = array('venue_lat' => $loc[lat], 'venue_lng' => $loc[lng]);
+						$where = array('venue_id' => $venue->venue_id);
+						$format = array('%f','%f');
+						$update = $wpdb->update(GIGPRESS_VENUES, $new_venue, $where, $format, array('%d'));
+					}										//else: no success, do nothing. May be we have more luck next time.
+				}
+			}
+		} //foreach($venues as $venue)
+	}		//if($venues)
+}     //function gigpress_db_update_venues_latlng()
+
+
+class geocoder{
+	static private $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=";
+
+	static public function getLocation($address, $country){
+		
+		$encodetrial=0;
+		do {																									//somtimes it works only, if not utf8_encoded, sometimes only if done so...
+			$querycount = 0;
+			do {
+				$url = self::$url.urlencode($address).'&components=country:'.urlencode($country);
+				$resp_json = self::curl_file_get_contents($url);
+				$resp = json_decode($resp_json, true);
+				$status = $resp['status'];
+				$querycount += 1;
+				if ($status == 'OVER_QUERY_LIMIT') {							//when batch-encoding we may reach the query-limit. Wait 2 seconds.
+					sleep(2); 
+				};
+	 		} while($status == 'OVER_QUERY_LIMIT' and $querycount <= 3);
+	 		$encodetrial += 1;
+	 		$address=utf8_encode($address);
+	 	} while ($status != 'OK' and $encodetrial < 2);
+ 		
+		if($status=='OK'){
+			return $resp['results'][0]['geometry']['location'];
+		}
+    else{
+			return FALSE;
+		}
+	}
+
+
+	static private function curl_file_get_contents($URL){
+		$c = curl_init();
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_URL, $URL);
+		$contents = curl_exec($c);
+		curl_close($c);
+
+		if ($contents) return $contents;
+		else return FALSE;
+	}
+}	
+
 
 function gigpress_uninstall() {
 
