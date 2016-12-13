@@ -1,8 +1,9 @@
 === GigPress ===
-Contributors: ModernTribe, mrherbivore
+Contributors: ModernTribe, mrherbivore, Res Rickli
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.0
 Tested up to: 4.6.1
+Stable tag: 4.2.7
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -35,9 +36,57 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.18 [TBD] =
 
-* Tweak - Improvements to source code (props to @leecollings)
+= 2.5.0 =
+New features for version 2.5
+Front end:
+-----------
+-	Vicinity-search: Enter a location and a distance -> only shows within this distance will be displayed.  
+  Vicinity-search requires a free 'Google Maps JavaScript API v3'-Key. See 2.4.0 below
+- Cancelled shows of the past are hidden
+
+Back end:
+------------
+- Possibility to enter a cancellation-text. If given, only this will be displayed. Examples: "Postponed to...", 
+  "Cancelled due to sickness" ...
+- Possibility to enter a tour attribute which will be appended to the tour name. Examples: "Opening night", "Première", 
+  "Parts", "Tryout"...
+
+New shortcode
+-------------
+show_vicinity_menu=[distance_units]. If [distance_units] is either 'km' or 'miles', then this unit is displayed after the 
+distance input field. If [distance_units] contains both units, then a selection box lets the user select. The first distance 
+unit in [distance_units] will be selected by default.
+Examples:
+show_vicinity_menu=km       --> km is always used as distance unit. 
+show_vicinity_menu=miles+km --> miles is the selected unit, but the user can select km as well. 
+
+
+= 2.4.0 =
+New features for version 2.4
+Front end:
+-----------
+- Now with an overview map before or after the list(s) of shows.
+- Support for Radio/TV shows: Live shows can now be displayed on one page, Radio/TV shows on a different one. 
+  
+Back end:
+------------
+The overview map can be switched off in the settings. If you want your site to display an overview map, you need to get a 
+free 'Google Maps JavaScript API v3'-Key here: - 
+"https://developers.google.com/maps/documentation/javascript/tutorial?hl=en#api_key\" 
+After having received the key you may have to wait a few minutes until it is operational.
+When the overview map is switched on for the first time, you may see a long response time before you see the first map. 
+The server is then getting the geographical coordinates ('geocodes') for each venue and writing them into the database. 
+The same process also slows down imports of not yet geocoded venues.
+
+New shortcodes:
+---------------
+- overview_map=before; overview_map=after or overview_map=none to display the map before or after the list - or not at all
+- overview_map_legend=yes or overview_map_legend=no to display a map legend or not.
+- showtypes=ALL; 'ALL' or 'LRT' = display all types of shows; 'L'= only display live shows, 'R' only display Radio shows, 
+  'T' only display TV shows, 'RT' display only Radio and TV shows etc. 
+
+The venues have a new flag: "Do not display venue on overview map". This is used either for venues which are very far away from all other venues or probably more often for radio and tv shows.
 
 = 2.3.17 [2016-09-15] =
 
@@ -46,7 +95,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 = 2.3.16 =
 
 * The Related Posts menu will now only show posts of the "post" type
-* Updated French translations (courtesy of FranÃ§ois Fuchs)
+* Updated French translations (courtesy of François Fuchs)
 
 = 2.3.15 =
 
