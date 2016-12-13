@@ -27,8 +27,13 @@
 		<?php if( (!$artist && $group_artists == 'no') && $total_artists > 1) : ?>
 			<th scope="col" class="gigpress-artist"><?php echo wptexturize($gpo['artist_label']); ?></th>
 		<?php endif; ?>
-			<th scope="col" class="gigpress-city"><?php _e("City", "gigpress"); ?></th>
+		<?php if (strpos($gshowtypes, 'L')> 0) : ?>
+			<th scope="col" class="gigpress-city"><?php _e("City", "gigpress"); ?></th> 
 			<th scope="col" class="gigpress-venue"><?php _e("Venue", "gigpress"); ?></th>
+		<?php else : ?>
+			<th scope="col" class="gigpress-city"><?php _e("Station", "gigpress"); ?></th> 
+			<th scope="col" class="gigpress-venue"><?php _e("Program", "gigpress"); ?></th>
+		<?php endif; ?>
 		<?php if(!empty($gpo['display_country'])) : ?>
 			<th scope="col" class="gigpress-country"><?php _e("Country", "gigpress"); ?></th>
 		<?php endif; ?>
