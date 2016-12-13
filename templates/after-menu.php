@@ -9,4 +9,3 @@
 // only when the menu is included as part of the [gigpress_shows] shortcode
 ?>
 
-</div>

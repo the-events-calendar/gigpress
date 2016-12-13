@@ -8,5 +8,6 @@
 // This template displays when you have no shows.
 
 ?>
-
-<p class="gigpress-empty"><?php echo $no_results_message; ?></p>
+<br />&nbsp;<br />
+<p class="gigpress-empty"><?php echo $no_results_message; ?></p>  
+<br />&nbsp;<br />

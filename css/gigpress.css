@@ -17,8 +17,32 @@ span.gigpress-artist-subscriptions {
 
 /* Default wrapper for the year/month menu */
 .gigpress-menu-container {
-	padding: 5px 0;
+	padding-top: 10px;
 	text-align: right;
+	font-size: 110%;
+}
+
+/* Default wrapper for the my location vicinity search menu, padding for small devices*/
+.gigpress-mylocation {
+	top:0px;
+	left:0px; 
+	position: relative;
+	padding-top: 0px;
+	padding-bottom:10px;
+	text-align: left;
+	font-size: 110%;
+}
+
+/* padding for desktop devices*/
+@media (min-width:768px) {
+
+	.gigpress-mylocation {
+		padding-bottom: 0px;
+	}
+	
+	.gigpress-menu-container {
+	padding-top: 0px;
+	}
 }
 
 /* Meet the table that displays our shows */
@@ -146,7 +170,6 @@ a.gigpress-tickets-link {
 
 /* Notices for Cancelled or Sold Out shows */
 strong.gigpress-cancelled, strong.gigpress-soldout {
-	text-transform: uppercase;
 	font-weight: bold;
 	padding: 1px;
 	color: #111;
@@ -155,6 +178,11 @@ strong.gigpress-cancelled, strong.gigpress-soldout {
 	background: #111;
 	color: #FFF;
 	border: none;
+}
+
+strong.gigpress-soldout {
+	text-transform: uppercase;
+	color: #FF0;
 }
 
 /* In case you want to style the Googlefied address link */
@@ -303,3 +331,87 @@ abbr {
 	text-decoration: none;
 	font-size: 100%;
 }
+.gigmap_maplegend_container
+{
+border: 0px solid #FF9933;
+padding: 5px;
+font-size: 12px;
+width: 100px;
+}
+
+.gigmap_maplegend_icon
+{
+display: block; 
+width: 22px;
+height: 39px;
+background-image: url(../images/gigmapmarkers.png);
+background-repeat: no-repeat;
+}
+
+.gigmap_maplegend_old
+{
+background-position: 0px 0px;
+}
+
+.gigmap_maplegend_recent
+{
+background-position: -22px 0px;
+}
+
+.gigmap_maplegend_today
+{
+background-position: -44px 0px;
+}
+
+.gigmap_maplegend_week
+{
+background-position: -66px 0px;
+}
+
+.gigmap_maplegend_month
+{
+background-position: -88px 0px;
+}
+
+.gigmap_maplegend_quarter
+{
+background-position: -110px 0px;
+}
+
+.gigmap_maplegend_later
+{
+background-position: -132px 0px;
+}
+
+/* this is required by gigmap. If not set, the google map controls are scrambled. */
+//.gmnoprint img { max-width: none; }
+.gmnoprint img[src*="gstatic.com/"], img[src*="googleapis.com/"] {max-width: none !important;} 
+
+.gigmap_locationreset {
+    border: none;
+    cursor: pointer; 
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+
+/* this contains the google places autocomplete proposals for small devices. Without this the proposals are hidden behind the virtual keyboard */
+.pac-container {
+	font-family: inherit;
+	width: inherit !important;
+	margin-top: -150px;
+}
+
+/* this contains the google places autocomplete proposals, for desktop devices */           
+@media (min-width:768px) {
+	.pac-container {
+		margin-top: 0px;
+	}
+}              

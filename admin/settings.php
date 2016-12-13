@@ -190,6 +190,20 @@ function gigpress_settings() {
 			<td><p><label><input type="checkbox" name="gigpress_settings[target_blank]" value="1" <?php if(!empty($gpo['target_blank'])) echo('checked="checked"'); ?> /> <?php _e("Open external links in new windows.", "gigpress") ?></label>
 			</td>
 		</tr>
+
+		<tr>
+			<th scope="row"><?php _e("Google Overview Map", "gigpress") ?></th>
+			<td><p><label><input type="checkbox" name="gigpress_settings[overview_map]" value="1" <?php if(!empty($gpo['overview_map'])) echo('checked="checked"'); ?> /> <?php _e("Enable overview map. Requires a Google Maps API-Key, see below.", "gigpress") ?></label>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><?php _e("Google Maps API-Key", "gigpress") ?></th>
+			<td><p><label>
+				<input type="text" name="gigpress_settings[google-maps_api-key]" size="48" value="<?php echo $gpo['google-maps_api-key']; ?>" /> 
+				<span class="description"><?php _e("If you want your site to display an overview map or the vicinity search filter, you need to get a free 'Google Maps JavaScript standard API- Key' <a href=\"https://developers.google.com/maps/documentation/javascript/get-api-key\" target=\"_blank\">here</a>", "gigpress") ?></span></label>
+			</td>
+		</tr>
+
 		<tr>
 			<th scope="row"><?php _e("Microdata", "gigpress") ?></th>
 			<td>
