@@ -1,5 +1,5 @@
 === GigPress ===
-Contributors: ModernTribe, mrherbivore
+Contributors: ModernTribe, mrherbivore, borkweb, zbtirrell, barry.hughes, bordoni, brianjessee, brook-tribe, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shelbelliott, shane.pearlman, aguseo, tribecari, trishasalas
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.0
 Tested up to: 4.6.1
