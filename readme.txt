@@ -37,6 +37,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.18 [TBD] =
 
+* The Show Notes field can now render shortcodes (props to @cowboyofbottrop)
 * Tweak - Improvements to source code (props to @leecollings)
 
 = 2.3.17 [2016-09-15] =
