@@ -38,6 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 = 2.3.18 [TBD] =
 
 * Tweak - Improvements to source code (props to @leecollings)
+* Fix - Prevent PHP Notice when no shows are added, but multiple artists are present [68766]
 
 = 2.3.17 [2016-09-15] =
 
