@@ -445,8 +445,14 @@ function gigpress_add() {
 						<select name="venue_country" id="venue_country">
 						<?php global $gp_countries;
 						foreach ($gp_countries as $code => $name) {
-							$sel = ($code == $venue_country) ? ' selected="selected"' : '';
-							echo('<option value="' . $code . '"' . $sel . '>' . $name . '</option>');
+							$venue_country = isset( $venue_country ) ? $venue_country : $gpo['default_country'];
+
+							printf(
+								'<option value="%1$s" %2$s>%3$s</option>',
+								$code,
+								selected( $venue_country, $code ),
+								$name
+							);
 						} ?>
 						</select>
 					</td>
