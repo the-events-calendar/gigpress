@@ -202,6 +202,7 @@ function gigpress_sidebar($filter = null) {
 	$further_where = '';
 
 	// Variables we need for conditionals
+	$some_results = FALSE;
 	
 	// Check total number of artists
 	$total_artists = $wpdb->get_var("SELECT count(*) from " . GIGPRESS_ARTISTS);
