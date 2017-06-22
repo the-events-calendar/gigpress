@@ -17,6 +17,7 @@ function gigpress_shows($filter = null, $content = null) {
 
 	global $wpdb, $gpo;
 	$further_where = $limit = '';
+	$some_results = FALSE;
 	
 	extract(shortcode_atts(array(
 			'tour' => FALSE,
