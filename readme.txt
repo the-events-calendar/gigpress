@@ -40,6 +40,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Tweak - The Show Notes field can now render shortcodes (props to @cowboyofbottrop)
 * Tweak - Improvements to source code (props to @leecollings)
 * Fix - Prevent PHP notices from appearing in log files when editing an event. [68766]
+* Fix - Prevent PHP Notice when no shows are added, but multiple artists are present. [68765]
 
 = 2.3.17 [2016-09-15] =
 
