@@ -1,5 +1,5 @@
 === GigPress ===
-Contributors: ModernTribe, mrherbivore, borkweb, zbtirrell, barry.hughes, bordoni, brianjessee, brook-tribe, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shelbelliott, shane.pearlman, aguseo, tribecari, trishasalas, courane01
+Contributors: ModernTribe, aguseo, borkweb, barry.hughes, bordoni, brianjessee, brook-tribe, cliffpaulick, courane01, GeoffBel, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shane.pearlman, shelbelliott, tribecari, vicskf, zbtirrell
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.0
 Tested up to: 4.6.1
@@ -35,7 +35,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.18 [TBD] =
+= 2.3.18 [2017-06-28] =
 
 * Tweak - The Show Notes field can now render shortcodes (props to @cowboyofbottrop)
 * Tweak - Improvements to source code (props to @leecollings)
