@@ -563,6 +563,12 @@ function gigpress_add() {
 
 					  	<?php
 					  	$related_posts_sql = "SELECT p.ID, p.post_title FROM " . $wpdb->prefix . "posts p WHERE (p.post_status = 'publish' OR p.post_status = 'future')";
+					  	/**
+						 * Provides an opportunity to specify other post types as related posts
+						 *
+						 * @param array $related_post_types
+						 * @since 2.3.19
+						 */
 					  	$related_post_types = apply_filters( 'gigpress_related_post_types', array( 'post' ) );
 					  	if ( ! empty( $related_post_types ) ) {
 					  		 $related_posts_sql .= "AND p.post_type IN( '" . implode( "','", $related_post_types ) . "' )";
