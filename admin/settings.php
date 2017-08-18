@@ -218,15 +218,15 @@ function gigpress_settings() {
 	</table>
 
 		<?php // We need to populate the form with the options not represented here, or else they'll get deleted ?>
-		<input type="hidden" name="gigpress_settings[db_version]" value="<?php esc_attr_e( $gpo['db_version'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[default_country]" value="<?php esc_attr_e( $gpo['default_country'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[default_date]" value="<?php esc_attr_e( $gpo['default_date'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[default_time]" value="<?php esc_attr_e( $gpo['default_time'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[default_tour]" value="<?php esc_attr_e( $gpo['default_tour'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[default_artist]" value="<?php isset( $gpo['default_artist'] ) ? esc_attr_e( $gpo['default_artist'] ) : ''; ?>" />
-		<input type="hidden" name="gigpress_settings[default_title]" value="<?php esc_attr_e( $gpo['default_title'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[related_date]" value="<?php esc_attr_e( $gpo['related_date'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[welcome]" value="<?php esc_attr_e( $gpo['welcome'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[db_version]" value="<?php echo esc_attr( $gpo['db_version'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[default_country]" value="<?php echo esc_attr( $gpo['default_country'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[default_date]" value="<?php echo esc_attr( $gpo['default_date'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[default_time]" value="<?php echo esc_attr( $gpo['default_time'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[default_tour]" value="<?php echo esc_attr( $gpo['default_tour'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[default_artist]" value="<?php isset( $gpo['default_artist'] ) ? echo esc_attr( $gpo['default_artist'] ) : ''; ?>" />
+		<input type="hidden" name="gigpress_settings[default_title]" value="<?php echo esc_attr( $gpo['default_title'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[related_date]" value="<?php echo esc_attr( $gpo['related_date'] ); ?>" />
+		<input type="hidden" name="gigpress_settings[welcome]" value="<?php echo esc_attr( $gpo['welcome'] ); ?>" />
 
 		<?php settings_fields('gigpress'); ?>
 
