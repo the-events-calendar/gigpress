@@ -27,7 +27,7 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.3.18');
+define('GIGPRESS_VERSION', '2.3.19');
 define('GIGPRESS_DB_VERSION', '1.6');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
