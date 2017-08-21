@@ -223,7 +223,7 @@ function gigpress_settings() {
 		<input type="hidden" name="gigpress_settings[default_date]" value="<?php echo esc_attr( $gpo['default_date'] ); ?>" />
 		<input type="hidden" name="gigpress_settings[default_time]" value="<?php echo esc_attr( $gpo['default_time'] ); ?>" />
 		<input type="hidden" name="gigpress_settings[default_tour]" value="<?php echo esc_attr( $gpo['default_tour'] ); ?>" />
-		<input type="hidden" name="gigpress_settings[default_artist]" value="<?php isset( $gpo['default_artist'] ) ? echo esc_attr( $gpo['default_artist'] ) : ''; ?>" />
+		<input type="hidden" name="gigpress_settings[default_artist]" value="<?php echo isset( $gpo['default_artist'] ) ? esc_attr( $gpo['default_artist'] ) : ''; ?>" />
 		<input type="hidden" name="gigpress_settings[default_title]" value="<?php echo esc_attr( $gpo['default_title'] ); ?>" />
 		<input type="hidden" name="gigpress_settings[related_date]" value="<?php echo esc_attr( $gpo['related_date'] ); ?>" />
 		<input type="hidden" name="gigpress_settings[welcome]" value="<?php echo esc_attr( $gpo['welcome'] ); ?>" />
