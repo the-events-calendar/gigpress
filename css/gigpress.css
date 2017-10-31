@@ -149,9 +149,6 @@ strong.gigpress-cancelled, strong.gigpress-soldout {
 	text-transform: uppercase;
 	font-weight: bold;
 	padding: 1px;
-	color: #111;
-	background: #fffdeb;
-	border: 1px solid #EEE;
 	background: #111;
 	color: #FFF;
 	border: none;
