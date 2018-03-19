@@ -35,6 +35,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.3.20 [TBD] =
+
+
+
 = 2.3.19 [2017-08-24] =
 
 * Tweak - Added filter 'gigpress_related_post_types' to allow more than just "post" for related posts [85214]
