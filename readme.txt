@@ -38,6 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 = 2.3.20 [TBD] =
 
 * Fix - Modified JSON LD output to remove HTML from the address locality field (our thanks to sinoq for flagging this problem) [101503]
+* Tweak - Demoved duplicate CSS property (props @joneiseman) 
 
 = 2.3.19 [2017-08-24] =
 
