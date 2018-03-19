@@ -37,7 +37,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.20 [TBD] =
 
-
+* Tweak - Demoved duplicate CSS property (props @joneiseman) 
 
 = 2.3.19 [2017-08-24] =
 
