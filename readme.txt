@@ -37,6 +37,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.20 [TBD] =
 
+* Tweak - Adjusted admin footer credit [85602]
 * Fix - Modified JSON LD output to remove HTML from the address locality field (our thanks to sinoq for flagging this problem) [101503]
 * Fix - Strip invalid characters from price field in JSON LD output (our thanks to dekruyff for highlighting this) [79184]
 * Tweak - Added new filter hook `gigpress_show_json_ld_markup` to make modifications to JSON LD output easier [79184]

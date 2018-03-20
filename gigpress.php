@@ -117,8 +117,12 @@ function gigpress_admin_head()	{
 
 
 function gigpress_admin_footer() {
+	$link = sprintf(
+		'<a href="http://gigpress.com" target="_blank">%1$s</a>',
+		esc_html_x( 'GigPress', 'Admin footer link label', 'gigpress' )
+	);
 
-	return (__("You're using", "gigpress").' <a href="http://gigpress.com">GigPress '.GIGPRESS_VERSION.'</a>. '. __("Like it?", "gigpress") . ' <a href="http://gigpress.com/donate">' . __("Make a donation", "gigpress") . '</a>.');
+	return sprintf( _x( 'You&#146;re using %1$s.', 'Admin footer', 'gigpress' ), $link );
 }
 
 
