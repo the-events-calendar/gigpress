@@ -537,7 +537,8 @@ function gigpress_json_ld( $showdata ) {
 
 	// Add offer attributes
 	if ( ! empty( $showdata['price'] ) ) {
-		$offer_markup['price'] = $showdata['price'];
+		// Filter out symbols like '$' per http://schema.org/PriceSpecification
+		$offer_markup['price'] = preg_replace( '/[^0-9\.,]/', '', $showdata['price'] );
 	}
 	if ( ! empty( $showdata['ticket_url'] ) ) {
 		$offer_markup['url'] = $showdata['ticket_url'];
@@ -554,5 +555,14 @@ function gigpress_json_ld( $showdata ) {
 		$show_markup['offers'] = $offer_markup;
 	}
 
-	return $show_markup;
+	/**
+	 * Provides an opportunity to customize and alter the JSON LD output for
+	 * a specific show.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $show_markup
+	 * @param array $showdata
+	 */
+	return apply_filters( 'gigpress_show_json_ld_markup', $show_markup, $showdata );
 }
