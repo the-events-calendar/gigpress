@@ -117,12 +117,12 @@ function gigpress_admin_head()	{
 
 
 function gigpress_admin_footer() {
-	return sprintf(
-		__( 'You&#146;re using %1$sGigPress %2$s%3$s.', 'gigpress' ),
-		'<a href="http://gigpress.com">',
-		GIGPRESS_VERSION,
-		'</a>'
+	$link = sprintf(
+		'<a href="http://gigpress.com" target="_blank">%1$s</a>',
+		esc_html_x( 'GigPress', 'Admin footer link label', 'gigpress' )
 	);
+
+	return sprintf( _x( 'You&#146;re using %1$s.', 'Admin footer', 'gigpress' ), $link );
 }
 
 

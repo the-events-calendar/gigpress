@@ -515,7 +515,7 @@ function gigpress_json_ld( $showdata ) {
 	if ( ! empty( $showdata['address_plain'] ) ) {
 		$address_markup['streetAddress'] = $showdata['address_plain'];
 	}
-	$address_markup['addressLocality'] = $showdata['city'];
+	$address_markup['addressLocality'] = $showdata['city_plain'];
 	if ( ! empty( $showdata['state'] ) ) {
 		$address_markup['addressRegion'] = $showdata['state'];
 	}
