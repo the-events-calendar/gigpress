@@ -559,7 +559,7 @@ function gigpress_json_ld( $showdata ) {
 	 * Provides an opportunity to customize and alter the JSON LD output for
 	 * a specific show.
 	 *
-	 * @since TBD
+	 * @since 2.3.20
 	 *
 	 * @param array $show_markup
 	 * @param array $showdata
