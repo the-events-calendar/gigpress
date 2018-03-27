@@ -35,7 +35,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.20 [2018-03-27] =
+= 2.3.20 [2018-03-28] =
 
 * Fix - Modified JSON LD output to remove HTML from the address locality field (our thanks to sinoq for flagging this problem) [101503]
 * Fix - Strip invalid characters from price field in JSON LD output (our thanks to dekruyff for highlighting this) [79184]
