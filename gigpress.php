@@ -53,6 +53,7 @@ require('admin/venues.php');
 require('admin/tours.php');
 require('admin/settings.php');
 require('admin/import-export.php');
+require('admin/privacy.php');
 
 require('output/gigpress_shows.php');
 require('output/gigpress_related.php');
@@ -644,6 +645,7 @@ register_uninstall_hook(__FILE__, 'gigpress_uninstall');
 add_action('init','add_gigpress_feeds');
 add_action('init','gigpress_intl');
 add_action('admin_init', 'register_gigpress_settings');
+add_action('admin_init', 'gigpress_privacy_policy_content');
 add_action('admin_menu', 'gigpress_admin_menu');
 add_action('admin_bar_menu', 'gigpress_toolbar', 999);
 add_action('delete_post', 'gigpress_remove_related');

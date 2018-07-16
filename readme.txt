@@ -35,6 +35,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.3.21 [TBD] =
+
+* Fix - Add Privacy Policy guide for Gigpress [108457]
+
 = 2.3.20 [2018-03-28] =
 
 * Fix - Modified JSON LD output to remove HTML from the address locality field (our thanks to sinoq for flagging this problem) [101503]
