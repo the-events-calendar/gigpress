@@ -2,7 +2,7 @@
 /**
  * Add the suggested privacy policy text to the policy postbox.
  *
- * @since TBD
+ * @since 2.3.21
  */
 function gigpress_privacy_policy_content() {
 
@@ -19,7 +19,7 @@ function gigpress_privacy_policy_content() {
  *
  * @param bool $descr Whether to include the descriptions under the section headings. Default false.
  *
- * @since TBD
+ * @since 2.3.21
  *
  * @return string The default policy content.
  */
@@ -68,7 +68,7 @@ function gigpress_default_privacy_policy_content() {
 	/**
 	 * Filters the default content suggested for inclusion in a privacy policy.
 	 *
-	 * @since TBD
+	 * @since 2.3.21
 	 *
 	 * @param $content string The default policy content.
 	 */
