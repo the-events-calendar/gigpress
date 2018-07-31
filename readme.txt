@@ -35,7 +35,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.21 [2018-07-31] =
+= 2.3.21 [2018-08-01] =
 
 * Fix - Add Privacy Policy guide for Gigpress [108457]
 
