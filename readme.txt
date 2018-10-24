@@ -37,6 +37,8 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.22 TBD =
 
+* Fix - Allow GigPress constants to be overridden if new constants are defined in a callback to the `plugins_loaded` action hook. Thanks @thomasdebruin for submitting this fix! [116319]
+
 = 2.3.21 [2018-08-01] =
 
 * Fix - Add Privacy Policy guide for Gigpress [108457]
