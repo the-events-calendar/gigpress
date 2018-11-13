@@ -3,7 +3,7 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.3.21
+Version: 2.3.22
 Author: Modern Tribe
 Text Domain: gigpress
 
@@ -23,22 +23,56 @@ GNU General Public License for more details.
 global $wpdb;
 
 // Define useful constants
-define( 'GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows' );
-define( 'GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours' );
-define( 'GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists' );
-define( 'GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues' );
-define( 'GIGPRESS_VERSION', '2.3.21' );
-define( 'GIGPRESS_DB_VERSION', '1.6' );
-define( 'GIGPRESS_RSS', get_bloginfo( 'url' ) . '/?feed=gigpress' );
-define( 'GIGPRESS_ICAL', get_bloginfo( 'url' ) . '/?feed=gigpress-ical' );
-define( 'GIGPRESS_WEBCAL', str_replace( 'http://', 'webcal://', GIGPRESS_ICAL ) );
-define( 'GIGPRESS_DEBUG', true);
+if ( ! defined( 'GIGPRESS_SHOWS' ) ) {
+	define( 'GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows' );
+}
+
+if ( ! defined( 'GIGPRESS_TOURS' ) ) {
+	define( 'GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours' );
+}
+
+if ( ! defined( 'GIGPRESS_ARTISTS' ) ) {
+	define( 'GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists' );
+}
+
+if ( ! defined( 'GIGPRESS_VENUES' ) ) {
+	define( 'GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues' );
+}
+
+if ( ! defined( 'GIGPRESS_VERSION' ) ) {
+	define( 'GIGPRESS_VERSION', '2.3.22' );
+}
+
+if ( ! defined( 'GIGPRESS_DB_VERSION' ) ) {
+	define( 'GIGPRESS_DB_VERSION', '1.6' );
+}
+
+if ( ! defined( 'GIGPRESS_RSS' ) ) {
+	define( 'GIGPRESS_RSS', get_bloginfo( 'url' ) . '/?feed=gigpress' );
+}
+
+if ( ! defined( 'GIGPRESS_ICAL' ) ) {
+	define( 'GIGPRESS_ICAL', get_bloginfo( 'url' ) . '/?feed=gigpress-ical' );
+}
+
+if ( ! defined( 'GIGPRESS_WEBCAL' ) ) {
+	define( 'GIGPRESS_WEBCAL', str_replace( 'http://', 'webcal://', GIGPRESS_ICAL ) );
+}
+
+if ( ! defined( 'GIGPRESS_DEBUG' ) ) {
+	define( 'GIGPRESS_DEBUG', true);
+}
 
 require( 'admin/db.php' );
 
-define( 'GIGPRESS_URL', ( $gpo['shows_page'] ) ? esc_url( $gpo['shows_page'] ) : get_bloginfo( 'url' ) );
+if ( ! defined( 'GIGPRESS_URL' ) ) {
+	define( 'GIGPRESS_URL', ( $gpo['shows_page'] ) ? esc_url( $gpo['shows_page'] ) : get_bloginfo( 'url' ) );
+}
 
-define( 'GIGPRESS_NOW', gmdate( 'Y-m-d', ( time() + gigpress_timezone_offset() ) ) );
+if ( ! defined( 'GIGPRESS_NOW' ) ) {
+	define( 'GIGPRESS_NOW', gmdate( 'Y-m-d', ( time() + gigpress_timezone_offset() ) ) );
+}
+
 if ( empty( $gpo['default_date'] ) ) {
 	$gpo['default_date'] = GIGPRESS_NOW;
 	update_option( 'gigpress_settings', $gpo );
@@ -62,7 +96,6 @@ require( 'output/ical.php' );
 
 global $gp_countries;
 require( 'lib/countries.php' );
-
 
 function gigpress_admin_menu() {
 
