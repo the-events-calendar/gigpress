@@ -35,7 +35,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.22 TBD =
+= 2.3.22 [2018-11-13] =
 
 * Fix - Allow GigPress constants to be overridden if new constants are defined in a callback to the `plugins_loaded` action hook. Thanks @thomasdebruin for submitting this fix! [116319]
 
