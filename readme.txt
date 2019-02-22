@@ -1,8 +1,8 @@
 === GigPress ===
-Contributors: ModernTribe, aguseo, borkweb, barry.hughes, bordoni, brianjessee, brook-tribe, cliffpaulick, courane01, GeoffBel, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shane.pearlman, shelbelliott, tribecari, vicskf, zbtirrell
+Contributors: ModernTribe, brianjessee, camwynsp, sc0ttkclark, zbtirrell
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.5
-Tested up to: 4.8.1
+Tested up to: 5.1
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -34,6 +34,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Check out the full <a href="https://theeventscalendar.com/products/">list of premium plugins</a> we offer.
 
 == Changelog ==
+
+= 2.3.23 [2019-02-25] =
+
+* Fix - Improve admin pagination accessibility and WordPress 5.1 compatibility. Thanks @jeiseman for submitting this fix! [123241]
 
 = 2.3.22 [2018-11-13] =
 
