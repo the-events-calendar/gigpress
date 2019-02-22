@@ -156,6 +156,22 @@ p.gp-trash {
 	float: right;
 }
 
+.gigpress .tablenav .tablenav-pages a,
+.gigpress .tablenav .tablenav-pages .current {
+    display: inline-block;
+    padding: 4px 5px 6px;
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+}
+
+.gigpress .tablenav .tablenav-pages a {
+    min-width: 17px;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+}
+
 @media screen and (max-width: 780px)
 {
 	.gp-import-panel, .gp-export-panel {
