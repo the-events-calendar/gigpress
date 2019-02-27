@@ -3,7 +3,7 @@
  * Plugin Name: GigPress
  * Plugin URI:  http://m.tri.be/1aca
  * Description: GigPress is a live performance listing and management plugin built for musicians and performers.
- * Version:     2.3.22
+ * Version:     2.3.23
  * Author:      Modern Tribe, Inc.
  * Author URI:  https://tri.be
  * Text Domain: gigpress
@@ -46,7 +46,7 @@ if ( ! defined( 'GIGPRESS_VENUES' ) ) {
 }
 
 if ( ! defined( 'GIGPRESS_VERSION' ) ) {
-	define( 'GIGPRESS_VERSION', '2.3.22' );
+	define( 'GIGPRESS_VERSION', '2.3.23' );
 }
 
 if ( ! defined( 'GIGPRESS_DB_VERSION' ) ) {
