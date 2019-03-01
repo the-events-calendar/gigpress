@@ -35,7 +35,7 @@ strong.gigpress-soldout {
 
 .gigpress-error {
 	background: #ffebe8 !important;
-	border: 1px solid #C00 !important;	
+	border: 1px solid #C00 !important;
 }
 
 span.gigpress-error {
@@ -44,7 +44,7 @@ span.gigpress-error {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;	
+	border-radius: 3px;
 }
 
 tbody.gigpress-addition tr {
@@ -95,7 +95,7 @@ span.gigpress-time {
 	font-size: 90%;
 	color: #666;
 	padding: 3px 0;
-	display: block;	
+	display: block;
 }
 
 
