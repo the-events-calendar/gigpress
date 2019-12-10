@@ -38,7 +38,7 @@
 		<td class="gigpress-links-cell">
 			<?php
 			// Only show these links if this show is in the future
-			if( $scope != 'past' ) :
+			if ( 'past' !== $scope ) :
                 // Only show these links if at least one of them are enabled
 			    if ( ! empty( $gpo['export_link_google'] ) || ! empty( $gpo['export_link_ical'] ) ) :
                 ?>
