@@ -179,6 +179,13 @@ function gigpress_settings() {
 				<input type="text" name="gigpress_settings[rss_limit]" size="48" value="<?php echo $gpo['rss_limit']; ?>" />
 			</td>
 		</tr>
+        <tr>
+            <th scope="row"><?php _e("Hide export links", "gigpress") ?></th>
+            <td>
+                <p><label><input type="checkbox" name="gigpress_settings[export_link_google]" value="1" <?php if(!empty($gpo['export_link_google'])) echo('checked="checked"'); ?> /> <?php _e("Hide 'Add to Google Calendar' link.", "gigpress"); ?></label></p>
+                <p><label><input type="checkbox" name="gigpress_settings[export_link_ical]" value="1" <?php if(!empty($gpo['export_link_ical'])) echo('checked="checked"'); ?> /> <?php _e("Hide 'Download iCal' link.", "gigpress"); ?></label></p>
+            </td>
+        </tr>
 		<tr>
 			<th scope="row"><?php _e("Country display", "gigpress") ?></th>
 			<td>
