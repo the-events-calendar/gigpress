@@ -46,7 +46,7 @@
                         <a class="gigpress-links-toggle" href="#calendar-links-<?php echo $showdata['id']; ?>">Add</a>
                         <div class="gigpress-calendar-links" id="calendar-links-<?php echo $showdata['id']; ?>">
                             <div class="gigpress-calendar-links-inner">
-                                <?php if( ! empty( $gpo['export_link_google'] ) ) : ?>
+                                <?php if ( ! empty( $gpo['export_link_google'] ) ) : ?>
                                     <span><?php echo $showdata['gcal']; ?></span>
                                 <?php endif; ?>
                                 <?php if( ! empty( $gpo['export_link_ical'] ) ) : ?>
