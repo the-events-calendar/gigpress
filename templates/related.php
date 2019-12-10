@@ -103,8 +103,23 @@
 			<span class="gigpress-related-label"><?php _e("Notes", "gigpress"); ?>:</span> 
 			<span class="gigpress-related-item"><?php echo $showdata['notes']; ?></span>
 		</li>
+	<?php endif;
+	// Show export links only when at least one of them is enabled
+	if ( ! empty( $gpo['export_link_google'] ) || ! empty( $gpo['export_link_ical'] ) ) :
+	?>
+		<li>
+			<?php
+			if ( ! empty( $gpo['export_link_google'] ) ) :
+				echo $showdata['gcal'];
+			endif;
+			// Show divider only if both export links are shown
+			if ( ! empty( $gpo['export_link_google'] ) && ! empty( $gpo['export_link_ical'] ) ) :
+				echo "|";
+			endif;
+			if ( ! empty( $gpo['export_link_ical'] ) ) :
+				echo $showdata['ical'];
+			endif;
+	        ?>
+		</li>
 	<?php endif; ?>
-	<li>
-		<?php echo $showdata['gcal']; ?> | <?php echo $showdata['ical']; ?> 
-	</li>
 </ul>
