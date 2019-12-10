@@ -180,10 +180,10 @@ function gigpress_settings() {
 			</td>
 		</tr>
         <tr>
-            <th scope="row"><?php _e("Hide export links", "gigpress") ?></th>
+            <th scope="row"><?php _e("Show export links", "gigpress") ?></th>
             <td>
-                <p><label><input type="checkbox" name="gigpress_settings[export_link_google]" value="1" <?php if(!empty($gpo['export_link_google'])) echo('checked="checked"'); ?> /> <?php _e("Hide 'Add to Google Calendar' link.", "gigpress"); ?></label></p>
-                <p><label><input type="checkbox" name="gigpress_settings[export_link_ical]" value="1" <?php if(!empty($gpo['export_link_ical'])) echo('checked="checked"'); ?> /> <?php _e("Hide 'Download iCal' link.", "gigpress"); ?></label></p>
+                <p><label><input type="checkbox" name="gigpress_settings[export_link_google]" value="1" <?php if(!empty($gpo['export_link_google'])) echo('checked="checked"'); ?> /> <?php _e("Show 'Add to Google Calendar' link.", "gigpress"); ?></label></p>
+                <p><label><input type="checkbox" name="gigpress_settings[export_link_ical]" value="1" <?php if(!empty($gpo['export_link_ical'])) echo('checked="checked"'); ?> /> <?php _e("Show 'Download iCal' link.", "gigpress"); ?></label></p>
             </td>
         </tr>
 		<tr>
