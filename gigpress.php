@@ -616,7 +616,7 @@ function gigpress_export() {
 	if ( $shows) {
 		$export_shows = array();
 		foreach ( $shows as $show ) {
-			$show['show_time'] = ( $show['show_time']{7} == 1 ) ? '' : $show['show_time'];
+			$show['show_time'] = ( $show['show_time'][7] == 1 ) ? '' : $show['show_time'];
 			$show['show_expire'] = ( $show['show_date'] == $show['show_expire'] ) ? '' : $show['show_expire'];
 			$show['show_related_url'] = ( $show['show_related'] ) ? gigpress_related_link( $show['show_related'], 'url' ) : '';
 			$export_shows[] = $show;
