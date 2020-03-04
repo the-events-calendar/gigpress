@@ -578,13 +578,14 @@ function gigpress_add() {
 
 					  	$entries = $wpdb->get_results($related_posts_sql, ARRAY_A);
 
-						$entries = apply_filters( 'gigpress_related_post_entries', $entries );
 						/**
-						 * Provides an opportunity to specify in details what's available as related posts
+						 * Provides an opportunity to specify in details what's available as related posts.
 						 *
-						 * @param array $entries
 						 * @since 2.3.24
+						 *
+						 * @param array $entries List of entries.
 						 */
+						$entries = apply_filters( 'gigpress_related_post_entries', $entries );
 
 						if($entries != FALSE) {
 							foreach($entries as $entry) { ?>
