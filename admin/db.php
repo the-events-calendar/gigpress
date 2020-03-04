@@ -10,8 +10,8 @@ if ( ! empty( $wpdb->collate ) )
 global $gp_db;
 $gp_db = array();
 
-// Note that the following columns are deprectated as of DB version 1.4,
-// but cannot be dropped due to the neccessities of the upgrade process:
+// Note that the following columns are deprecated as of DB version 1.4,
+// but cannot be dropped due to the necessities of the upgrade process:
 // show_address, show_locale, show_country, show_venue, show_venue_url, show_venue_phone
 
 $gp_db[] = "CREATE TABLE " . GIGPRESS_SHOWS . " (
@@ -314,7 +314,7 @@ function gigpress_db_upgrade_160() {
 		}
 	}
 
-	// Try our darndest to extract states from cities and put them in their own column
+	// Try our darnedest to extract states from cities and put them in their own column
 	$venues = $wpdb->get_results(
 		"SELECT * FROM " . GIGPRESS_VENUES
 	);
