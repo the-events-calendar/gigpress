@@ -38,7 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.24 [TBD] =
 
-* Tweak - Added options to show / hide the Google Calendar and iCalender export links [138300]
+* Tweak - Added options to show / hide the Google Calendar and iCalendar export links [GP-2]
 
 = 2.3.23 [2019-02-28] =
 
