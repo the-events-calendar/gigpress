@@ -314,7 +314,7 @@ function gigpress_db_upgrade_160() {
 		}
 	}
 
-	// Try our darnedest to extract states from cities and put them in their own column
+	// Try our hardest to extract states from cities and put them in their own column
 	$venues = $wpdb->get_results(
 		"SELECT * FROM " . GIGPRESS_VENUES
 	);
