@@ -19,7 +19,7 @@ function gigpress_settings() {
                 <tr>
                     <th scope="row"><?php _e( "Full URL to your 'Upcoming Shows' page", "gigpress" ) ?>:</th>
                     <td>
-                        <input type="text" size="48" name="gigpress_settings[shows_page]" value="<?php echo $gpo['shows_page']; ?>"/>
+                        <input type="text" size="48" name="gigpress_settings[shows_page]" value="<?php echo esc_attr( $gpo['shows_page'] ); ?>"/>
                     </td>
                 </tr>
                 <tr>
@@ -41,16 +41,16 @@ function gigpress_settings() {
                         <select name="gigpress_settings[user_level]">
                             <option value="activate_plugins"<?php if ( $gpo['user_level'] == 'activate_plugins' ) {
 								echo( ' selected="selected"' );
-							} ?>><?php _e( "Administrator", "gigpress" ); ?></option>
+							} ?>><?php esc_html_e( "Administrator", "gigpress" ); ?></option>
                             <option value="edit_published_posts"<?php if ( $gpo['user_level'] == 'edit_published_posts' ) {
 								echo( ' selected="selected"' );
-							} ?>><?php _e( "Editor", "gigpress" ); ?></option>
+							} ?>><?php esc_html_e( "Editor", "gigpress" ); ?></option>
                             <option value="publish_posts"<?php if ( $gpo['user_level'] == 'publish_posts' ) {
 								echo( ' selected="selected"' );
-							} ?>><?php _e( "Author", "gigpress" ); ?></option>
+							} ?>><?php esc_html_e( "Author", "gigpress" ); ?></option>
                             <option value="edit_posts"<?php if ( $gpo['user_level'] == 'edit_posts' ) {
 								echo( ' selected="selected"' );
-							} ?>><?php _e( "Contributor", "gigpress" ); ?></option>
+							} ?>><?php esc_html_e( "Contributor", "gigpress" ); ?></option>
                         </select>
                     </td>
                 </tr>
