@@ -40,6 +40,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 * Fix - Clean up typos in readme and code comments. (props @passoniate) [GP-4]
 * Tweak - Added options to show / hide the Google Calendar and iCalendar export links [GP-2]
+* Tweak - Added `gigpress_related_post_entries` filter to allow customizing the related post entries (props @thomasdebruin) [GP-5]
 
 = 2.3.23 [2019-02-28] =
 
