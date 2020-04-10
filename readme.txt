@@ -39,6 +39,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 = 2.3.24 [TBD] =
 
 * Fix - Clean up typos in readme and code comments. (props @passoniate) [GP-4]
+* Fix - Resolve deprecated PHP notices in PHP 7.4 when accessing array offsets. (props @leecollings) [GP-3]
 * Tweak - Added options to show / hide the Google Calendar and iCalendar export links [GP-2]
 * Tweak - Added `gigpress_related_post_entries` filter to allow customizing the related post entries (props @thomasdebruin) [GP-5]
 
