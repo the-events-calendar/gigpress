@@ -2,7 +2,7 @@
 Contributors: ModernTribe, brianjessee, camwynsp, sc0ttkclark, aguseo, barry.hughes, bordoni, borkweb, brook-tribe, cliffpaulick, courane01, GeoffBel, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shane.pearlman, shelbelliott, tribecari, vicskf, zbtirrell
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.5
-Tested up to: 5.3
+Tested up to: 5.4
 Stable tag: 2.3.24
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
