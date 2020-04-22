@@ -75,6 +75,14 @@ if ( ! defined( 'GIGPRESS_URL' ) ) {
 	define( 'GIGPRESS_URL', ( $gpo['shows_page'] ) ? esc_url( $gpo['shows_page'] ) : get_bloginfo( 'url' ) );
 }
 
+if ( ! defined( 'GIGPRESS_PLUGIN_URL' ) ) {
+	define( 'GIGPRESS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
+if ( ! defined( 'GIGPRESS_PLUGIN_DIR' ) ) {
+	define( 'GIGPRESS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
 if ( ! defined( 'GIGPRESS_NOW' ) ) {
 	define( 'GIGPRESS_NOW', gmdate( 'Y-m-d', ( time() + gigpress_timezone_offset() ) ) );
 }
@@ -217,7 +225,7 @@ function gigpress_template( $path ) {
 	} elseif ( file_exists( WP_CONTENT_DIR . '/gigpress-templates/' . $path . '.php' ) ) {
 		$load = WP_CONTENT_DIR . '/gigpress-templates/' . $path . '.php';
 	} else {
-		$load = WP_PLUGIN_DIR . '/gigpress/templates/'  . $path . '.php';
+		$load = GIGPRESS_PLUGIN_DIR . 'templates/'  . $path . '.php';
 	}
 	return $load;
 }
@@ -509,7 +517,7 @@ function gigpress_db_out( $value ) {
 
 
 function gigpress_intl() {
-	load_plugin_textdomain( 'gigpress', NULL, '/gigpress/langs/' );
+	load_plugin_textdomain( 'gigpress', NULL, GIGPRESS_PLUGIN_DIR . 'langs/' );
 }
 
 
@@ -585,7 +593,7 @@ function gigpress_export() {
 
 	check_admin_referer( 'gigpress-action' );
 	global $wpdb;
-	require_once(WP_PLUGIN_DIR . '/gigpress/lib/parsecsv.lib.php' );
+	require_once( GIGPRESS_PLUGIN_DIR . 'lib/parsecsv.lib.php' );
 
 	$further_where = '';
 	switch( $_POST['scope'] ) {
