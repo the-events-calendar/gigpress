@@ -36,7 +36,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.24 [TBD] =
+= 2.3.24 [2020-04-22] =
 
 * Fix - Clean up typos in readme and code comments. (props @passoniate) [GP-4]
 * Fix - Resolve deprecated PHP notices in PHP 7.4 when accessing array offsets. (props @leecollings) [GP-3]
