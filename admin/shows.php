@@ -28,6 +28,7 @@ function gigpress_admin_shows() {
 	$url_args = '';
 	$further_where = '';
 	$pagination_args = array();
+	$status = "show_status != 'deleted'";
 
 	global $current_user;
 	wp_get_current_user();
@@ -52,6 +53,10 @@ function gigpress_admin_shows() {
 		case 'past':
 			$condition = "< '" . GIGPRESS_NOW . "'";
 			break;
+        case 'deleted':
+            $condition = 'IS NOT NULL';
+            $status = "show_status = 'deleted'";
+            break;
 		default:
 			$condition = 'IS NOT NULL';
 	}
@@ -107,7 +112,7 @@ function gigpress_admin_shows() {
 		
 	// Build pagination
 	$show_count = $wpdb->get_var(
-		"SELECT COUNT(*) FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ". $condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby
+		"SELECT COUNT(*) FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ". $condition . " AND " . $status . " AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby
 	);
 	if($show_count) {
 		$pagination_args['page'] = 'gigpress-shows';
@@ -118,9 +123,8 @@ function gigpress_admin_shows() {
 	
 	// Build the query	
 	$shows = $wpdb->get_results(
-		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ".$condition." AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby." LIMIT ".$limit
+		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ".$condition." AND " . $status . " AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby." LIMIT ".$limit
 	);
-//var_dump( $shows );
 	?>
 		
 	<div class="wrap gigpress">
@@ -131,9 +135,9 @@ function gigpress_admin_shows() {
 		
 		<ul class="subsubsub">
 		<?php
-			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE show_status != 'deleted'");
-			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
-			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
+			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE " . $status . "");
+			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND " . $status . "");
+			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND " . $status . "");
 			$deleted = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_status = 'deleted'");
 
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=all') . '"');
