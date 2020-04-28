@@ -284,7 +284,7 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
                         <? if ( $scope == 'deleted' ) : ?>
-                            <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=gigpress-shows&amp;scope=all&amp;gpaction=restore&amp;show_id=' . $show->show_id ), 'gigpress-action' ); ?>" class="edit" title="<?php _e("Restore", "gigpress"); ?>"><?php _e("Restore", "gigpress"); ?></a>
+                            <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=gigpress-shows&amp;scope=deleted&amp;gpaction=restore&amp;show_id=' . $show->show_id ), 'gigpress-action' ); ?>" class="edit" title="<?php _e("Restore", "gigpress"); ?>"><?php _e("Restore", "gigpress"); ?></a>
                         <?php else : ?>
 	    					<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
                         <?php endif; ?>
@@ -313,7 +313,9 @@ function gigpress_admin_shows() {
 		</table>
 		<div class="tablenav">
 			<div class="alignleft">
-				<input type="submit" value="<?php _e('Trash selected shows', 'gigpress'); ?>" class="button-secondary" /> &nbsp; 
+                <?php if ( $scope != 'deleted' ) : ?>
+				<input type="submit" value="<?php _e('Trash selected shows', 'gigpress'); ?>" class="button-secondary" /> &nbsp;
+                <?php endif; ?>
 				<?php
 				if($tour_count = $wpdb->get_var("SELECT count(*) FROM ". GIGPRESS_TOURS ." WHERE tour_status = 'deleted'")) {
 					$tours = $tour_count;
