@@ -1016,14 +1016,14 @@ function gigpress_restore_show() {
 	check_admin_referer('gigpress-action');
 
 	$show = [ 'show_status' => 'active' ];
-	$where = array('show_id' => $_GET['show_id']);
+	$where = array( 'show_id' => absint( $_GET['show_id'] ) );
 
-	$restore_show = $wpdb->update(GIGPRESS_SHOWS, $show, $where);
+	$restore_show = $wpdb->update( GIGPRESS_SHOWS, $show, $where );
 
 	if( $restore_show ) { ?>
-		<div id="message" class="updated fade"><p><?php _e("The selected show has been restored.", "gigpress"); ?></p></div>
+		<div id="message" class="updated fade"><p><?php esc_html_e( 'The selected show has been restored.', 'gigpress' ); ?></p></div>
 	<?php } else { ?>
-		<div id="message" class="error fade"><p><?php _e("We ran into some trouble restoring the show. Sorry.", "gigpress"); ?></p></div>
+		<div id="message" class="error fade"><p><?php esc_html_e( 'We ran into some trouble restoring the show. The selected show was not restored.', 'gigpress' ); ?></p></div>
 	<?php }
 
 }
