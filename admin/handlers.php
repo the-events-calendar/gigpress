@@ -1013,15 +1013,14 @@ function gigpress_restore_show() {
 
 	global $wpdb;
 	$wpdb->show_errors();
+	check_admin_referer('gigpress-action');
 
     $show = [ 'show_status' => 'active' ];
 	$where = array('show_id' => $_GET['show_id']);
-var_dump($where);
-	//$undelete_show = $wpdb->query("DELETE FROM ". GIGPRESS_SHOWS ." WHERE show_status = 'deleted'");
 
-	$undelete_show = $wpdb->update(GIGPRESS_SHOWS, $show, $where);
-var_dump($undelete_show);
-	if( $undelete_show ) { ?>
+	$restore_show = $wpdb->update(GIGPRESS_SHOWS, $show, $where);
+
+	if( $restore_show ) { ?>
 		<div id="message" class="updated fade"><p><?php _e("The selected show has been restored.", "gigpress"); ?></p></div>
 	<?php } else { ?>
 		<div id="message" class="error fade"><p><?php _e("We ran into some trouble restoring the show. Sorry.", "gigpress"); ?></p></div>
