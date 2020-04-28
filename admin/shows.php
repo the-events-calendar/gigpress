@@ -21,9 +21,6 @@ function gigpress_admin_shows() {
 		require_once('handlers.php');
 		gigpress_empty_trash();		
 	}	
-	
-		gigpress_empty_trash();
-	}
 	if(isset($_GET['gpaction']) && $_GET['gpaction'] == "restore") {
 		require_once('handlers.php');
 		gigpress_restore_show();
@@ -143,9 +140,9 @@ function gigpress_admin_shows() {
 		
 		<ul class="subsubsub">
 		<?php
-			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE " . $status . "");
-			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND " . $status . "");
-			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND " . $status . "");
+			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE show_status != 'deleted'");
+			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
+			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
 			$deleted = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_status = 'deleted'");
 
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=all') . '"');
