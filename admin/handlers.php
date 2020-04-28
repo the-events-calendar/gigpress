@@ -733,7 +733,7 @@ function gigpress_undo($type) {
 		$show_ids = explode(',', $_REQUEST['show_id']);
 		
 		if(count($show_ids) > 1) {
-			// We're restoring multiple shows, so we santiize each show_id individually
+			// We're restoring multiple shows, so we sanitize each show_id individually
 			$shows = array();
 			foreach($show_ids as $show) {
 				$shows[] = $wpdb->prepare('%d', $show);

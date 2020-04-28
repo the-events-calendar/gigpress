@@ -576,8 +576,18 @@ function gigpress_add() {
 
 					  	$related_posts_sql .= " ORDER BY p.post_date DESC LIMIT 500";
 
-					  	$entries = $wpdb->get_results($related_posts_sql, ARRAY_A);
-					  	if($entries != FALSE) {
+						$entries = $wpdb->get_results( $related_posts_sql, ARRAY_A );
+
+						/**
+						 * Provides an opportunity to specify in details what's available as related posts.
+						 *
+						 * @since 2.3.24
+						 *
+						 * @param array $entries List of entries.
+						 */
+						$entries = (array) apply_filters( 'gigpress_related_post_entries', $entries );
+
+						if ( $entries !== false ) {
 							foreach($entries as $entry) { ?>
 								<option value="<?php echo $entry['ID']; ?>"<?php if(isset($show_related) && $entry['ID'] == $show_related) { echo(' selected="selected"'); $found_related = TRUE; } ?>><?php echo gigpress_db_out($entry['post_title']); ?></option>
 						<?php }

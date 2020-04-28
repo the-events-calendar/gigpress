@@ -2,8 +2,8 @@
 Contributors: ModernTribe, brianjessee, camwynsp, sc0ttkclark, aguseo, barry.hughes, bordoni, borkweb, brook-tribe, cliffpaulick, courane01, GeoffBel, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shane.pearlman, shelbelliott, tribecari, vicskf, zbtirrell
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.5
-Tested up to: 5.1
-Stable tag: 2.3.23
+Tested up to: 5.4
+Stable tag: 2.3.24
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -35,6 +35,13 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Check out the full <a href="https://theeventscalendar.com/products/">list of premium plugins</a> we offer.
 
 == Changelog ==
+
+= 2.3.24 [2020-04-22] =
+
+* Fix - Clean up typos in readme and code comments. (props @passoniate) [GP-4]
+* Fix - Resolve deprecated PHP notices in PHP 7.4 when accessing array offsets. (props @leecollings) [GP-3]
+* Tweak - Added options to show / hide the Google Calendar and iCalendar export links [GP-2]
+* Tweak - Added `gigpress_related_post_entries` filter to allow customizing the related post entries (props @thomasdebruin) [GP-5]
 
 = 2.3.23 [2019-02-28] =
 
@@ -304,7 +311,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 * Added `$showdata['related_id']` to the list of available template variables, containing the ID of the show's related post
 * Removed CDATA block from the title element of the GigPress RSS feed, as it was preventing character entities from being properly displayed in some readers
-* Now assuming a "year" paremeter of "current" when only a "month" parameter is passed to the shortcode
+* Now assuming a "year" parameter of "current" when only a "month" parameter is passed to the shortcode
 * Added "past" and "all" as valid values for the "scope" argument to the `gigpress_sidebar()` function
 * Corrected file name of the Swedish translation
 * Small bug fix for the CSV import routine
@@ -341,7 +348,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Overhauled the GigPress widget to use the new WordPress widget class for multiple-widget capability - **existing widgets will have their settings reset**
 * Added options to restrict widget listing to a single artist, tour, or venue
 * Made changes to the `gigpress_sidebar()` function to behave more like the `gigpress_shows()` function (arguments are now passed as an array, and the function must be echoed). **If you call `gigpress_sidebar()` from your template you must update your code - please see the docs for details**
-* New template variables `$link` and `$show_feeds` for the *sidebar-list-footer* template - **update your customized template if neccessary** (see default template for example use)
+* New template variables `$link` and `$show_feeds` for the *sidebar-list-footer* template - **update your customized template if necessary** (see default template for example use)
 * New `[gigpress_menu]` shortcode/function for displaying a monthly or yearly dropdown menu independent of the `[gigpress_shows]` shortcode
 * New `show_menu` parameter for `[gigpress_shows]` shortcode to display a monthly or yearly dropdown menu for filtering the shows specified by the shortcode
 * New `year` and `month` parameters for `[gigpress_shows]` shortcode for filtering shows by date
@@ -446,7 +453,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 * Fixed a typo in the database upgrade check that was leading to about 30 extra queries being performed on every page load throughout WordPress.  Oops?
 * Added the missing "notes" field to the show listings on Related Post entries and in the RSS feed
-* Added an "Add a show" link to the WordPress 2.7 favourites menu
+* Added an "Add a show" link to the WordPress 2.7 favorites menu
 * Added a new shortcode parameter "limit" that will display only a chosen number of shows (only works when *not* segmenting by tour, or when used in conjunction with displaying a specific tour using the "tour" shortcode parameter)
 * Added Bulgarian (thanks to Ivo Minchev) and Danish (thanks to Michael Tysk-Andersen) translations
 
@@ -512,7 +519,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Add visual cues for required fields on the "Add a show" screen
 * GigPress will now look for a style sheet called gigpress.css in your current theme folder in order to load custom styles
 * More styling fixes for visual compatibility with WordPress 2.5
-* Dropped official support for Wordpress 2.1.3
+* Dropped official support for WordPress 2.1.3
 
 = 1.2.7 =
 
@@ -553,7 +560,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Fixed various issues in the countries list
 * Display of the Country column can now be disabled
 * Added element IDs to the header row of each tour in shows table (eg. #tour-2)
-* Updated Options page to refelect new features
+* Updated Options page to reflect new features
 * Added a `<link>` element to each item in the RSS feed, linked to the page set on the options page
 
 = 1.1.1 =
