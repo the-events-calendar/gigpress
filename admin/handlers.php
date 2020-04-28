@@ -1015,7 +1015,7 @@ function gigpress_restore_show() {
 	$wpdb->show_errors();
 	check_admin_referer('gigpress-action');
 
-    $show = [ 'show_status' => 'active' ];
+	$show = [ 'show_status' => 'active' ];
 	$where = array('show_id' => $_GET['show_id']);
 
 	$restore_show = $wpdb->update(GIGPRESS_SHOWS, $show, $where);
