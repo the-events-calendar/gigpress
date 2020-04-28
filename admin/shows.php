@@ -1,7 +1,7 @@
 <?php
 
 function gigpress_admin_shows() {
-	
+
 	if(isset($_REQUEST['gpaction']) && $_REQUEST['gpaction'] == "delete") {
 		require_once('handlers.php');
 		gigpress_delete_show();		
@@ -22,6 +22,14 @@ function gigpress_admin_shows() {
 		gigpress_empty_trash();		
 	}	
 	
+		gigpress_empty_trash();
+	}
+	if(isset($_GET['gpaction']) && $_GET['gpaction'] == "restore") {
+		require_once('handlers.php');
+		gigpress_restore_show();
+	}
+
+
 	global $wpdb, $gpo;
 		
 	// Checks for filtering and pagination
@@ -278,7 +286,11 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['country']; ?></td>
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
-						<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
+                        <? if ( $scope == 'deleted' ) : ?>
+                            <a href="<?php echo admin_url('admin.php?page=gigpress-shows&amp;scope=all&amp;gpaction=restore&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Restore", "gigpress"); ?>"><?php _e("Restore", "gigpress"); ?></a>
+                        <?php else : ?>
+	    					<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
+                        <?php endif; ?>
 					</td>
 				</tr>
 				<tr class="<?php echo 'alternate' . ' gigpress-' . $showdata['status']; ?>">
