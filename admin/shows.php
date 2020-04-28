@@ -120,7 +120,7 @@ function gigpress_admin_shows() {
 	$shows = $wpdb->get_results(
 		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ".$condition." AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby." LIMIT ".$limit
 	);
-
+//var_dump( $shows );
 	?>
 		
 	<div class="wrap gigpress">
@@ -134,15 +134,23 @@ function gigpress_admin_shows() {
 			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE show_status != 'deleted'");
 			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
 			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
+			$deleted = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_status = 'deleted'");
+
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=all') . '"');
 			if($scope == 'all') echo(' class="current"');
 			echo('>' . __("All", "gigpress") . '</a> <span class="count">(' . $all	. ')</span> | </li>');
+
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=upcoming') . '"');
 			if($scope == 'upcoming') echo(' class="current"');
 			echo('>' . __("Upcoming", "gigpress") . '</a> <span class="count">(' . $upcoming	. ')</span> | </li>');
+
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=past') . '"');
 			if($scope == 'past') echo(' class="current"');
-			echo('>' . __("Past", "gigpress") . '</a> <span class="count">(' . $past	. ')</span></li>');
+			echo('>' . __("Past", "gigpress") . '</a> <span class="count">(' . $past	. ')</span> | </li>');
+
+    		echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=deleted') . '"');
+	    	if($scope == 'deleted') echo(' class="current"');
+		    echo('>' . __("Deleted", "gigpress") . '</a> <span class="count">(' . $deleted	. ')</span></li>');
 		?>
 		</ul>
 		
