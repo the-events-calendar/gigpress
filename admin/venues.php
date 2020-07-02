@@ -29,7 +29,12 @@ function gigpress_venues() {
 	<?php
 	
 	$venue_id = (isset($_REQUEST['venue_id'])) ? $wpdb->prepare('%d', $_REQUEST['venue_id']) : '';
-	
+
+	/**
+	 * Filter to allow the venue city field to be set as not required.
+	 */
+	$venue_city_required = apply_filters( 'gigpress_venue_city_required', true );
+
 	// Check our context to determine what we're populating
 	
 	if(isset($result)) {
@@ -106,7 +111,14 @@ function gigpress_venues() {
 				<td><input type="text" size="48" name="venue_address" id="venue_address" value="<?php if(isset($venue_address)) echo $venue_address; ?>" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="venue_city"><?php _e("Venue city", "gigpress") ?>:<span class="gp-required">*</span></label></th>
+				<th scope="row">
+					<label for="venue_city">
+						<?php _e("Venue city", "gigpress") ?>:
+						<?php if ( true === $venue_city_required ) { ?>
+							<span class="gp-required" >*</span >
+						<?php } ?>
+					</label>
+				</th>
 				<td><input type="text" size="48" name="venue_city" id="venue_city" value="<?php if(isset($venue_city)) echo $venue_city; ?>"<?php if(isset($result) && isset($result['venue_city'])) echo(' class="gigpress-error"'); ?> /></td>
 			</tr>				
 			<tr>

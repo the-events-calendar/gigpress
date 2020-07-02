@@ -175,7 +175,12 @@ function gigpress_prepare_venue_fields() {
 
 
 function gigpress_error_checking($context) {
-	
+
+	/**
+	 * Filter to allow the venue city field to be set as not required.
+	 */
+	$venue_city_required = apply_filters( 'gigpress_venue_city_required', true );
+
 	$errors = array();
 	
 	switch($context) {
@@ -188,8 +193,11 @@ function gigpress_error_checking($context) {
 				$errors['artist_name'] = __("You must enter an artist name.", "gigpress");
 			if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
-			if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_city']))
-				$errors['venue_city'] = __("You must enter a city.", "gigpress");
+			if ( true === $venue_city_required ) {
+				if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_city'])) {
+					$errors['venue_city'] = __("You must enter a city.", "gigpress");
+					}
+			}
 			if($_POST['show_tour_id'] == 'new' && empty($_POST['tour_name']))
 				$errors['tour_name'] = __("You must enter a tour name.", "gigpress");
 			if(!checkdate($_POST['gp_mm'], $_POST['gp_dd'], $_POST['gp_yy']))
@@ -208,8 +216,11 @@ function gigpress_error_checking($context) {
 		case 'venue':
 			if(empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
-			if(empty($_POST['venue_city']))
-				$errors['venue_city'] = __("You must enter a city.", "gigpress");
+			if ( true === $venue_city_required ) {
+				if ( empty( $_POST['venue_city'] ) ) {
+					$errors['venue_city'] = __( "You must enter a city.", "gigpress" );
+				}
+			}
 			break;
 	}
 
