@@ -926,6 +926,13 @@ function gigpress_country_list() {
 		"ZW" => "Zimbabwe"
 	);
 
+	/**
+	 * Filters the country list.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $gp_countries The country list.
+	 */
 	$gp_countries = apply_filters( 'gigpress_country_list', $gp_countries );
 
 	return $gp_countries;
