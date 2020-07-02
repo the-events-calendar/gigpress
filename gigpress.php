@@ -673,6 +673,13 @@ function fetch_gigpress_venues() {
 	return ( $venues !== FALSE) ? $venues : FALSE;
 }
 
+/**
+ * Gets the Gigpress country list.
+ *
+ * @since TBD
+ *
+ * @return array $gp_countries The country list.
+ */
 function gigpress_country_list() {
 	$gp_countries = array(
 		"AF" => "Afghanistan",
