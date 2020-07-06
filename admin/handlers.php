@@ -197,7 +197,7 @@ function gigpress_error_checking($context) {
 				$errors['artist_name'] = __("You must enter an artist name.", "gigpress");
 			if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
-			if ( true === $venue_city_required ) {
+			if ( ! empty( $venue_city_required ) ) {
 				if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_city'])) {
 					$errors['venue_city'] = __("You must enter a city.", "gigpress");
 					}
