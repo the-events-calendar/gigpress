@@ -119,7 +119,7 @@ function gigpress_venues() {
 					<label for="venue_city">
 						<?php esc_html_e( 'Venue city', 'gigpress' ); ?>:
 						<?php if ( ! empty( $venue_city_required ) ) { ?>
-							<span class="gp-required" >*</span >
+							<span class="gp-required" >*</span>
 						<?php } ?>
 					</label>
 				</th>
