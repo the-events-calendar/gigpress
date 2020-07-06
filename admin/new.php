@@ -437,7 +437,7 @@ function gigpress_add() {
 						<label for="venue_city">
 							<?php _e("Venue city", "gigpress") ?>:
 							<?php if ( true === $venue_city_required ) { ?>
-								<span class="gp-required" >*</span >
+								<span class="gp-required" >*</span>
 							<?php } ?>
 						</label>
 					</th>
