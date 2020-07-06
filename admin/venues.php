@@ -32,7 +32,11 @@ function gigpress_venues() {
 
 	/**
 	 * Filter to allow the venue city field to be set as not required.
-	 */
+	 *
+ 	 * @since TBD
+ 	 *
+ 	 * @param boolean If the city should be required.
+ 	 */
 	$venue_city_required = apply_filters( 'gigpress_venue_city_required', true );
 
 	// Check our context to determine what we're populating
