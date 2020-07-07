@@ -6,7 +6,11 @@ function gigpress_add() {
 
 	/**
 	 * Filter to allow the venue city field to be set as not required.
-	 */
+	 *
+ 	 * @since TBD
+ 	 *
+ 	 * @param boolean If the city should be required.
+ 	 */
 	$venue_city_required = apply_filters( 'gigpress_venue_city_required', true );
 
 	if(isset($_POST['gpaction']) && $_POST['gpaction'] == "add") {
