@@ -220,7 +220,7 @@ function gigpress_error_checking($context) {
 		case 'venue':
 			if(empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
-			if ( true === $venue_city_required ) {
+			if ( ! empty( $venue_city_required ) ) {
 				if ( empty( $_POST['venue_city'] ) ) {
 					$errors['venue_city'] = __( "You must enter a city.", "gigpress" );
 				}
