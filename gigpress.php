@@ -940,7 +940,7 @@ function gigpress_country_list() {
 	 *
 	 * @param array $gp_countries The country list.
 	 */
-	$gp_countries = apply_filters( 'gigpress_country_list', $gp_countries );
+	$gp_countries = (array) apply_filters( 'gigpress_country_list', $gp_countries );
 
 	return $gp_countries;
 }
