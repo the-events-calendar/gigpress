@@ -36,6 +36,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.3.25 [TBD] =
+
+* Tweak - Added `gigpress_venue_city_required` filter to allow setting the city as a not required field [GP-13]
+
 = 2.3.24 [2020-04-22] =
 
 * Fix - Clean up typos in readme and code comments. (props @passoniate) [GP-4]
