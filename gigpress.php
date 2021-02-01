@@ -684,7 +684,7 @@ function fetch_gigpress_venues() {
 /**
  * Gets the Gigpress country list.
  *
- * @since TBD
+ * @since 2.3.25
  *
  * @return array $gp_countries The country list.
  */
@@ -944,7 +944,7 @@ function gigpress_country_list() {
 	/**
 	 * Filters the country list.
 	 *
-	 * @since TBD
+	 * @since 2.3.25
 	 *
 	 * @param array $gp_countries The country list.
 	 */

@@ -7,7 +7,7 @@ function gigpress_add() {
 	/**
 	 * Filter to allow the venue city field to be set as not required.
 	 *
- 	 * @since TBD
+ 	 * @since 2.3.25
  	 *
  	 * @param boolean If the city should be required.
  	 */
