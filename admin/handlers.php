@@ -175,7 +175,16 @@ function gigpress_prepare_venue_fields() {
 
 
 function gigpress_error_checking($context) {
-	
+
+	/**
+	 * Filter to allow the venue city field to be set as not required.
+	 *
+ 	 * @since TBD
+ 	 *
+ 	 * @param boolean If the city should be required.
+ 	 */
+	$venue_city_required = apply_filters( 'gigpress_venue_city_required', true );
+
 	$errors = array();
 	
 	switch($context) {
@@ -188,8 +197,11 @@ function gigpress_error_checking($context) {
 				$errors['artist_name'] = __("You must enter an artist name.", "gigpress");
 			if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
-			if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_city']))
-				$errors['venue_city'] = __("You must enter a city.", "gigpress");
+			if ( ! empty( $venue_city_required ) ) {
+				if ( 'new' == $_POST['show_venue_id'] && empty( $_POST['venue_city'] ) ) {
+					$errors['venue_city'] = __( 'You must enter a city.', 'gigpress' );
+				}
+			}
 			if($_POST['show_tour_id'] == 'new' && empty($_POST['tour_name']))
 				$errors['tour_name'] = __("You must enter a tour name.", "gigpress");
 			if(!checkdate($_POST['gp_mm'], $_POST['gp_dd'], $_POST['gp_yy']))
@@ -208,8 +220,11 @@ function gigpress_error_checking($context) {
 		case 'venue':
 			if(empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
-			if(empty($_POST['venue_city']))
-				$errors['venue_city'] = __("You must enter a city.", "gigpress");
+			if ( ! empty( $venue_city_required ) ) {
+				if ( empty( $_POST['venue_city'] ) ) {
+					$errors['venue_city'] = __( "You must enter a city.", "gigpress" );
+				}
+			}
 			break;
 	}
 
@@ -1004,6 +1019,28 @@ function gigpress_empty_trash() {
 		<div id="message" class="error fade"><p><?php _e("We ran into some trouble emptying the trash. Sorry.", "gigpress"); ?></p></div>				
 	<?php }
 	
+}
+
+// HANDLER: RESTORE SHOW
+// ======================
+
+function gigpress_restore_show() {
+
+	global $wpdb;
+	$wpdb->show_errors();
+	check_admin_referer('gigpress-action');
+
+	$show = array( 'show_status' => 'active' );
+	$where = array( 'show_id' => absint( $_GET['show_id'] ) );
+
+	$restore_show = $wpdb->update( GIGPRESS_SHOWS, $show, $where );
+
+	if( $restore_show ) { ?>
+		<div id="message" class="updated fade"><p><?php esc_html_e( 'The selected show has been restored.', 'gigpress' ); ?></p></div>
+	<?php } else { ?>
+		<div id="message" class="error fade"><p><?php esc_html_e( 'We ran into some trouble restoring the show. The selected show was not restored.', 'gigpress' ); ?></p></div>
+	<?php }
+
 }
 
 
