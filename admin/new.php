@@ -4,6 +4,15 @@ function gigpress_add() {
 
 	global $wpdb, $wp_locale;
 
+	/**
+	 * Filter to allow the venue city field to be set as not required.
+	 *
+ 	 * @since TBD
+ 	 *
+ 	 * @param boolean If the city should be required.
+ 	 */
+	$venue_city_required = apply_filters( 'gigpress_venue_city_required', true );
+
 	if(isset($_POST['gpaction']) && $_POST['gpaction'] == "add") {
 		// This is for when we've just POST-ed a new show ...
 		require_once('handlers.php');
@@ -428,7 +437,14 @@ function gigpress_add() {
 					<td><input type="text" size="48" name="venue_address" id="venue_address" value="<?php if(isset($venue_address)) echo $venue_address; ?>" /></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="venue_city"><?php _e("Venue city", "gigpress") ?>:<span class="gp-required">*</span></label></th>
+					<th scope="row">
+						<label for="venue_city">
+							<?php esc_html_e( 'Venue city', 'gigpress' ) ?>:
+							<?php if ( ! empty( $venue_city_required ) ) { ?>
+								<span class="gp-required" >*</span>
+							<?php } ?>
+						</label>
+					</th>
 					<td><input type="text" size="48" name="venue_city" id="venue_city" value="<?php if(isset($new_venue_city)) echo $new_venue_city; ?>"<?php if(isset($result['venue_city'])) echo(' class="gigpress-error"'); ?> class="required" /></td>
 				</tr>
 				<tr>
