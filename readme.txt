@@ -38,6 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.25 [TBD] =
 
+* Fix - Support differently named plugin folders instead of hardcoding checks for `/gigpress/`. [GP-8]
 * Fix - Prevent PHP warnings for CSV exports. [GP-9]
 * Tweak - Added the possibility to view and restore deleted shows [GP-6]
 * Tweak - Added `gigpress_country_list` filter to allow customizing the country list. [GP-12]
