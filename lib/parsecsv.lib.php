@@ -181,7 +181,7 @@ class parseCSV {
 			$this->limit = $limit;
 		}
 		if (
-			$conditions !== null
+			is_array( $conditions )
 			&& count( $conditions ) > 0
 		) {
 			$this->conditions = $conditions;

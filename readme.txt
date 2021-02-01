@@ -1,9 +1,9 @@
 === GigPress ===
-Contributors: ModernTribe, brianjessee, camwynsp, sc0ttkclark, aguseo, barry.hughes, bordoni, borkweb, brook-tribe, cliffpaulick, courane01, GeoffBel, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shane.pearlman, shelbelliott, tribecari, vicskf, zbtirrell
+Contributors: theeventscalendar, brianjessee, camwynsp, paulkim, sc0ttkclark, aguseo, bordoni, borkweb, GeoffBel, jentheo, leahkoerper, lucatume, neillmcshea, patriciahillebrandt, vicskf, zbtirrell, juanfra
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.5
 Tested up to: 5.4
-Stable tag: 2.3.24
+Stable tag: 2.3.25
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -18,11 +18,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 * Link up a related post for each show and your show's full details will appear within your post. Automatically create new related posts with customizable titles when entering new shows.
 * No lock-in here. Import your shows from a CSV file, without fear of duplicate data. Export your shows database to CSV - filtered by artist, tour, and date.
 
-The team at <a href="http://tri.be/">Modern Tribe</a> stands by our work and offers light support to the community via the WordPress.org support forums on a weekly basis. Feel free to ask a question if you're having a problem with implementation or if you find bugs.
+The team at <a href="https://evnt.is/1aor">The Events Calendar</a> stands by our work and offers light support to the community via the WordPress.org support forums on a weekly basis. Feel free to ask a question if you're having a problem with implementation or if you find bugs.
 
 = Submitting patches =
 
-If you've identified a bug and want to submit a patch, we'd welcome it at our <a href="https://github.com/moderntribe/gigpress" target="_blank">GitHub page for GigPress.</a> Simply cue up your proposed patch as a pull request. We'll review it as part of our release cycle and merge into the codebase if appropriate from there. (If a pull request is rejected, we'll do our best to tell you why). Users whose pull requests are accepted will receive credit in the plugin's changelog. For more information, check out the readme at our GitHub page. Happy coding!
+If you've identified a bug and want to submit a patch, we'd welcome it at our <a href="https://github.com/the-events-calendar/gigpress" target="_blank">GitHub page for GigPress.</a> Simply cue up your proposed patch as a pull request. We'll review it as part of our release cycle and merge into the codebase if appropriate from there. (If a pull request is rejected, we'll do our best to tell you why). Users whose pull requests are accepted will receive credit in the plugin's changelog. For more information, check out the readme at our GitHub page. Happy coding!
 
 == Other information ==
 
@@ -35,6 +35,14 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Check out the full <a href="https://theeventscalendar.com/products/">list of premium plugins</a> we offer.
 
 == Changelog ==
+
+= 2.3.25 [TBD] =
+
+* Fix - Support differently named plugin folders instead of hardcoding checks for `/gigpress/`. [GP-8]
+* Fix - Prevent PHP warnings for CSV exports. [GP-9]
+* Tweak - Added the possibility to view and restore deleted shows [GP-6]
+* Tweak - Added `gigpress_country_list` filter to allow customizing the country list. [GP-12]
+* Tweak - Added `gigpress_venue_city_required` filter to allow setting the city as a not required field [GP-13]
 
 = 2.3.24 [2020-04-22] =
 

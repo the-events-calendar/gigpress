@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: GigPress
- * Plugin URI:  http://m.tri.be/1aca
+ * Plugin URI:  https://evnt.is/1aca
  * Description: GigPress is a live performance listing and management plugin built for musicians and performers.
- * Version:     2.3.24
- * Author:      Modern Tribe, Inc.
- * Author URI:  https://tri.be
+ * Version:     2.3.25
+ * Author:      The Events Calendar
+ * Author URI:  https://evnt.is/1aor
  * Text Domain: gigpress
  * Domain Path: /langs/
  * License:     GPLv2 or later
@@ -75,6 +75,14 @@ if ( ! defined( 'GIGPRESS_URL' ) ) {
 	define( 'GIGPRESS_URL', ( $gpo['shows_page'] ) ? esc_url( $gpo['shows_page'] ) : get_bloginfo( 'url' ) );
 }
 
+if ( ! defined( 'GIGPRESS_PLUGIN_URL' ) ) {
+	define( 'GIGPRESS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+}
+
+if ( ! defined( 'GIGPRESS_PLUGIN_DIR' ) ) {
+	define( 'GIGPRESS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
 if ( ! defined( 'GIGPRESS_NOW' ) ) {
 	define( 'GIGPRESS_NOW', gmdate( 'Y-m-d', ( time() + gigpress_timezone_offset() ) ) );
 }
@@ -99,9 +107,6 @@ require( 'output/gigpress_related.php' );
 require( 'output/gigpress_sidebar.php' );
 require( 'output/feed.php' );
 require( 'output/ical.php' );
-
-global $gp_countries;
-require( 'lib/countries.php' );
 
 function gigpress_admin_menu() {
 
@@ -217,7 +222,7 @@ function gigpress_template( $path ) {
 	} elseif ( file_exists( WP_CONTENT_DIR . '/gigpress-templates/' . $path . '.php' ) ) {
 		$load = WP_CONTENT_DIR . '/gigpress-templates/' . $path . '.php';
 	} else {
-		$load = WP_PLUGIN_DIR . '/gigpress/templates/'  . $path . '.php';
+		$load = GIGPRESS_PLUGIN_DIR . 'templates/'  . $path . '.php';
 	}
 	return $load;
 }
@@ -286,7 +291,9 @@ function gigpress_prepare( $show, $scope = 'public' ) {
 	// and returns a new array containing the show data
 	// prepared for various outputs based on context and GigPress settings
 
-	global $wpdb, $gp_countries, $gpo;
+	global $wpdb, $gpo;
+
+	$gp_countries = gigpress_country_list();
 
 	$showdata = array();
 
@@ -509,7 +516,7 @@ function gigpress_db_out( $value ) {
 
 
 function gigpress_intl() {
-	load_plugin_textdomain( 'gigpress', NULL, '/gigpress/langs/' );
+	load_plugin_textdomain( 'gigpress', NULL, GIGPRESS_PLUGIN_DIR . 'langs/' );
 }
 
 
@@ -585,7 +592,7 @@ function gigpress_export() {
 
 	check_admin_referer( 'gigpress-action' );
 	global $wpdb;
-	require_once(WP_PLUGIN_DIR . '/gigpress/lib/parsecsv.lib.php' );
+	require_once( GIGPRESS_PLUGIN_DIR . 'lib/parsecsv.lib.php' );
 
 	$further_where = '';
 	switch( $_POST['scope'] ) {
@@ -674,6 +681,277 @@ function fetch_gigpress_venues() {
 	return ( $venues !== FALSE) ? $venues : FALSE;
 }
 
+/**
+ * Gets the Gigpress country list.
+ *
+ * @since TBD
+ *
+ * @return array $gp_countries The country list.
+ */
+function gigpress_country_list() {
+	$gp_countries = array(
+		'AF' => 'Afghanistan',
+		'AX' => 'Aland Islands',
+		'AL' => 'Albania',
+		'DZ' => 'Algeria',
+		'AS' => 'American Samoa',
+		'AD' => 'Andorra',
+		'AO' => 'Angola',
+		'AI' => 'Anguilla',
+		'AQ' => 'Antarctica',
+		'AG' => 'Antigua and Barbuda',
+		'AR' => 'Argentina',
+		'AM' => 'Armenia',
+		'AW' => 'Aruba',
+		'AU' => 'Australia',
+		'AT' => 'Austria',
+		'AZ' => 'Azerbaijan',
+		'BS' => 'Bahamas',
+		'BH' => 'Bahrain',
+		'BD' => 'Bangladesh',
+		'BB' => 'Barbados',
+		'BY' => 'Belarus',
+		'BE' => 'Belgium',
+		'BZ' => 'Belize',
+		'BJ' => 'Benin',
+		'BM' => 'Bermuda',
+		'BT' => 'Bhutan',
+		'BO' => 'Bolivia',
+		'BQ' => 'Bonaire, Saint Eustatius and Saba',
+		'BA' => 'Bosnia and Herzegovina',
+		'BW' => 'Botswana',
+		'BV' => 'Bouvet Island',
+		'BR' => 'Brazil',
+		'IO' => 'British Indian Ocean Territory',
+		'BN' => 'Brunei Darussalam',
+		'BG' => 'Bulgaria',
+		'BF' => 'Burkina Faso',
+		'BI' => 'Burundi',
+		'KH' => 'Cambodia',
+		'CM' => 'Cameroon',
+		'CA' => 'Canada',
+		'CV' => 'Cape Verde',
+		'KY' => 'Cayman Islands',
+		'CF' => 'Central African Republic',
+		'TD' => 'Chad',
+		'CL' => 'Chile',
+		'CN' => 'China',
+		'CX' => 'Christmas Island',
+		'CC' => 'Cocos (Keeling) Islands',
+		'CO' => 'Colombia',
+		'KM' => 'Comoros',
+		'CG' => 'Congo',
+		'CD' => 'Congo (DR)',
+		'CK' => 'Cook Islands',
+		'CR' => 'Costa Rica',
+		'CI' => 'Cote d\'Ivoire',
+		'HR' => 'Croatia',
+		'CU' => 'Cuba',
+		'CW' => 'Curacao',
+		'CY' => 'Cyprus',
+		'CZ' => 'Czech Republic',
+		'DK' => 'Denmark',
+		'DJ' => 'Djibouti',
+		'DM' => 'Dominica',
+		'DO' => 'Dominican Republic',
+		'EC' => 'Ecuador',
+		'EG' => 'Egypt',
+		'SV' => 'El Salvador',
+		'GQ' => 'Equatorial Guinea',
+		'ER' => 'Eritrea',
+		'EE' => 'Estonia',
+		'ET' => 'Ethiopia',
+		'FK' => 'Falkland Islands (Malvinas)',
+		'FO' => 'Faroe Islands',
+		'FJ' => 'Fiji',
+		'FI' => 'Finland',
+		'FR' => 'France',
+		'GF' => 'French Guiana',
+		'PF' => 'French Polynesia',
+		'TF' => 'French Southern Territories',
+		'GA' => 'Gabon',
+		'GM' => 'Gambia',
+		'GE' => 'Georgia',
+		'DE' => 'Germany',
+		'GH' => 'Ghana',
+		'GI' => 'Gibraltar',
+		'GR' => 'Greece',
+		'GL' => 'Greenland',
+		'GD' => 'Grenada',
+		'GP' => 'Guadeloupe',
+		'GU' => 'Guam',
+		'GT' => 'Guatemala',
+		'GG' => 'Guernsey',
+		'GN' => 'Guinea',
+		'GW' => 'Guinea-Bissau',
+		'GY' => 'Guyana',
+		'HT' => 'Haiti',
+		'HM' => 'Heard and McDonald Islands',
+		'VA' => 'Holy See (Vatican City State)',
+		'HN' => 'Honduras',
+		'HK' => 'Hong Kong',
+		'HU' => 'Hungary',
+		'IS' => 'Iceland',
+		'IN' => 'India',
+		'ID' => 'Indonesia',
+		'IR' => 'Iran',
+		'IQ' => 'Iraq',
+		'IE' => 'Ireland',
+		'IM' => 'Isle of Man',
+		'IL' => 'Israel',
+		'IT' => 'Italy',
+		'JM' => 'Jamaica',
+		'JP' => 'Japan',
+		'JE' => 'Jersey',
+		'JO' => 'Jordan',
+		'KZ' => 'Kazakhstan',
+		'KE' => 'Kenya',
+		'KI' => 'Kiribati',
+		'KP' => 'Korea (North)',
+		'KR' => 'Korea (South)',
+		'KW' => 'Kuwait',
+		'KG' => 'Kyrgyzstan',
+		'LA' => 'Laos',
+		'LV' => 'Latvia',
+		'LB' => 'Lebanon',
+		'LS' => 'Lesotho',
+		'LR' => 'Liberia',
+		'LY' => 'Libya',
+		'LI' => 'Liechtenstein',
+		'LT' => 'Lithuania',
+		'LU' => 'Luxembourg',
+		'MO' => 'Macao',
+		'MK' => 'Macedonia',
+		'MG' => 'Madagascar',
+		'MW' => 'Malawi',
+		'MY' => 'Malaysia',
+		'MV' => 'Maldives',
+		'ML' => 'Mali',
+		'MT' => 'Malta',
+		'MH' => 'Marshall Islands',
+		'MQ' => 'Martinique',
+		'MR' => 'Mauritania',
+		'MU' => 'Mauritius',
+		'YT' => 'Mayotte',
+		'MX' => 'Mexico',
+		'FM' => 'Micronesia',
+		'MD' => 'Moldova',
+		'MC' => 'Monaco',
+		'MN' => 'Mongolia',
+		'ME' => 'Montenegro',
+		'MS' => 'Montserrat',
+		'MA' => 'Morocco',
+		'MZ' => 'Mozambique',
+		'MM' => 'Myanmar',
+		'NA' => 'Namibia',
+		'NR' => 'Nauru',
+		'NP' => 'Nepal',
+		'NL' => 'Netherlands',
+		'NC' => 'New Caledonia',
+		'NZ' => 'New Zealand',
+		'NI' => 'Nicaragua',
+		'NE' => 'Niger',
+		'NG' => 'Nigeria',
+		'NU' => 'Niue',
+		'NF' => 'Norfolk Island',
+		'MP' => 'Northern Mariana Islands',
+		'NO' => 'Norway',
+		'OM' => 'Oman',
+		'PK' => 'Pakistan',
+		'PW' => 'Palau',
+		'PS' => 'Palestine',
+		'PA' => 'Panama',
+		'PG' => 'Papua New Guinea',
+		'PY' => 'Paraguay',
+		'PE' => 'Peru',
+		'PH' => 'Philippines',
+		'PN' => 'Pitcairn',
+		'PL' => 'Poland',
+		'PT' => 'Portugal',
+		'PR' => 'Puerto Rico',
+		'QA' => 'Qatar',
+		'RE' => 'Reunion',
+		'RO' => 'Romania',
+		'RU' => 'Russian Federation',
+		'RW' => 'Rwanda',
+		'BL' => 'Saint Barthelemy',
+		'SH' => 'Saint Helena',
+		'KN' => 'Saint Kitts and Nevis',
+		'LC' => 'Saint Lucia',
+		'MF' => 'Saint Martin',
+		'PM' => 'Saint Pierre and Miquelon',
+		'VC' => 'Saint Vincent and the Grenadines',
+		'WS' => 'Samoa',
+		'SM' => 'San Marino',
+		'ST' => 'Sao Tome and Principe',
+		'SA' => 'Saudi Arabia',
+		'SN' => 'Senegal',
+		'RS' => 'Serbia',
+		'SC' => 'Seychelles',
+		'SL' => 'Sierra Leone',
+		'SG' => 'Singapore',
+		'SX' => 'Sint Maarten',
+		'SK' => 'Slovakia',
+		'SI' => 'Slovenia',
+		'SB' => 'Solomon Islands',
+		'SO' => 'Somalia',
+		'ZA' => 'South Africa',
+		'GS' => 'South Georgia and South Sandwich Islands',
+		'ES' => 'Spain',
+		'LK' => 'Sri Lanka',
+		'SD' => 'Sudan',
+		'SS' => 'South Sudan',
+		'SR' => 'Suriname',
+		'SJ' => 'Svalbard and Jan Mayen',
+		'SZ' => 'Swaziland',
+		'SE' => 'Sweden',
+		'CH' => 'Switzerland',
+		'SY' => 'Syria',
+		'TW' => 'Taiwan',
+		'TJ' => 'Tajikistan',
+		'TZ' => 'Tanzania',
+		'TH' => 'Thailand',
+		'TL' => 'Timor-Leste',
+		'TG' => 'Togo',
+		'TK' => 'Tokelau',
+		'TO' => 'Tonga',
+		'TT' => 'Trinidad and Tobago',
+		'TN' => 'Tunisia',
+		'TR' => 'Turkey',
+		'TM' => 'Turkmenistan',
+		'TC' => 'Turks and Caicos Islands',
+		'TV' => 'Tuvalu',
+		'UG' => 'Uganda',
+		'UA' => 'Ukraine',
+		'AE' => 'United Arab Emirates',
+		'UK' => 'United Kingdom',
+		'US' => 'United States',
+		'UM' => 'United States Minor Outlying Islands',
+		'UY' => 'Uruguay',
+		'UZ' => 'Uzbekistan',
+		'VU' => 'Vanuatu',
+		'VE' => 'Venezuela',
+		'VN' => 'Vietnam',
+		'VG' => 'Virgin Islands (British)',
+		'VI' => 'Virgin Islands (U.S.)',
+		'WF' => 'Wallis and Futuna',
+		'EH' => 'Western Sahara',
+		'YE' => 'Yemen',
+		'ZM' => 'Zambia',
+		'ZW' => 'Zimbabwe'
+	);
+
+	/**
+	 * Filters the country list.
+	 *
+	 * @since TBD
+	 *
+	 * @param array $gp_countries The country list.
+	 */
+	$gp_countries = (array) apply_filters( 'gigpress_country_list', $gp_countries );
+
+	return $gp_countries;
+}
 
 register_activation_hook( __FILE__,'gigpress_install' );
 register_uninstall_hook( __FILE__, 'gigpress_uninstall' );
