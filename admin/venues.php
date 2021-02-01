@@ -137,11 +137,15 @@ function gigpress_venues() {
 				<th scope="row"><label for="venue_country"><?php _e("Venue country", "gigpress") ?>:</label></th>
 				<td>
 					<select name="venue_country" id="venue_country">
-					<?php global $gp_countries;
+					<?php
+
+					$gp_countries = gigpress_country_list();
+
 					foreach ($gp_countries as $code => $name) {
 						$sel = ($code == $venue_country) ? ' selected="selected"' : '';
 						echo('<option value="' . $code . '"' . $sel . '>' . $name . '</option>');
-					} ?>
+					}
+					?>
 					</select>
 				</td>
 			</tr>	  
