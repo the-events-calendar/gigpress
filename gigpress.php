@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: GigPress
- * Plugin URI:  http://m.tri.be/1aca
+ * Plugin URI:  https://evnt.is/1aca
  * Description: GigPress is a live performance listing and management plugin built for musicians and performers.
  * Version:     2.3.25
- * Author:      Modern Tribe, Inc.
- * Author URI:  https://tri.be
+ * Author:      The Events Calendar
+ * Author URI:  https://evnt.is/1aor
  * Text Domain: gigpress
  * Domain Path: /langs/
  * License:     GPLv2 or later
