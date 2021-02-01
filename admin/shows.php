@@ -21,8 +21,8 @@ function gigpress_admin_shows() {
 		require_once('handlers.php');
 		gigpress_empty_trash();		
 	}	
-	if(isset($_GET['gpaction']) && $_GET['gpaction'] == "restore") {
-		require_once('handlers.php');
+	if ( isset( $_GET['gpaction'] ) && 'restore' === $_GET['gpaction'] ) {
+		require_once( 'handlers.php' );
 		gigpress_restore_show();
 	}
 
@@ -155,11 +155,11 @@ function gigpress_admin_shows() {
 
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=past') . '"');
 			if($scope == 'past') echo(' class="current"');
-			echo('>' . __("Past", "gigpress") . '</a> <span class="count">(' . $past	. ')</span> | </li>');
+			echo('>' . esc_html__( 'Past', 'gigpress' ) . '</a> <span class="count">(' . $past . ')</span> | </li>');
 
     		echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=deleted') . '"');
-	    	if($scope == 'deleted') echo(' class="current"');
-		    echo('>' . __("Deleted", "gigpress") . '</a> <span class="count">(' . $deleted	. ')</span></li>');
+	    	if ( $scope == 'deleted' ) echo( ' class="current"' );
+		    echo('>' . esc_html__( 'Deleted', 'gigpress' ) . '</a> <span class="count">(' . $deleted . ')</span></li>');
 		?>
 		</ul>
 		
@@ -283,10 +283,10 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['country']; ?></td>
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
-                        <? if ( $scope == 'deleted' ) : ?>
+                        <? if ( 'deleted' === $scope ) : ?>
                             <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=gigpress-shows&amp;scope=deleted&amp;gpaction=restore&amp;show_id=' . $show->show_id ), 'gigpress-action' ); ?>" class="edit" title="<?php _e("Restore", "gigpress"); ?>"><?php _e("Restore", "gigpress"); ?></a>
                         <?php else : ?>
-	    					<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
+	    					<a href="<?php echo admin_url( 'admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id ); ?>" class="edit" title="<?php esc_attr_e( 'Edit', 'gigpress' ); ?>"><?php esc_html_e( 'Edit', 'gigpress' ); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php esc_attr_e( 'Copy', 'gigpress' ); ?>"><?php esc_html_e( 'Copy', 'gigpress' ); ?></a>
                         <?php endif; ?>
 					</td>
 				</tr>
@@ -313,8 +313,8 @@ function gigpress_admin_shows() {
 		</table>
 		<div class="tablenav">
 			<div class="alignleft">
-                <?php if ( $scope != 'deleted' ) : ?>
-				<input type="submit" value="<?php _e('Trash selected shows', 'gigpress'); ?>" class="button-secondary" /> &nbsp;
+                <?php if ( 'deleted' !== $scope ) : ?>
+				<input type="submit" value="<?php esc_attr_e( 'Trash selected shows', 'gigpress' ); ?>" class="button-secondary" /> &nbsp;
                 <?php endif; ?>
 				<?php
 				if($tour_count = $wpdb->get_var("SELECT count(*) FROM ". GIGPRESS_TOURS ." WHERE tour_status = 'deleted'")) {
