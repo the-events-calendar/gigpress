@@ -1021,6 +1021,28 @@ function gigpress_empty_trash() {
 	
 }
 
+// HANDLER: RESTORE SHOW
+// ======================
+
+function gigpress_restore_show() {
+
+	global $wpdb;
+	$wpdb->show_errors();
+	check_admin_referer('gigpress-action');
+
+	$show = array( 'show_status' => 'active' );
+	$where = array( 'show_id' => absint( $_GET['show_id'] ) );
+
+	$restore_show = $wpdb->update( GIGPRESS_SHOWS, $show, $where );
+
+	if( $restore_show ) { ?>
+		<div id="message" class="updated fade"><p><?php esc_html_e( 'The selected show has been restored.', 'gigpress' ); ?></p></div>
+	<?php } else { ?>
+		<div id="message" class="error fade"><p><?php esc_html_e( 'We ran into some trouble restoring the show. The selected show was not restored.', 'gigpress' ); ?></p></div>
+	<?php }
+
+}
+
 
 // MAP TOURS TO ARTISTS
 // (useful for some migrations from 1.4.x to 2.0)

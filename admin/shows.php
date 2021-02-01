@@ -1,7 +1,7 @@
 <?php
 
 function gigpress_admin_shows() {
-	
+
 	if(isset($_REQUEST['gpaction']) && $_REQUEST['gpaction'] == "delete") {
 		require_once('handlers.php');
 		gigpress_delete_show();		
@@ -21,13 +21,19 @@ function gigpress_admin_shows() {
 		require_once('handlers.php');
 		gigpress_empty_trash();		
 	}	
-	
+	if ( isset( $_GET['gpaction'] ) && 'restore' === $_GET['gpaction'] ) {
+		require_once( 'handlers.php' );
+		gigpress_restore_show();
+	}
+
+
 	global $wpdb, $gpo;
 		
 	// Checks for filtering and pagination
 	$url_args = '';
 	$further_where = '';
 	$pagination_args = array();
+	$status = "show_status != 'deleted'";
 
 	global $current_user;
 	wp_get_current_user();
@@ -52,6 +58,10 @@ function gigpress_admin_shows() {
 		case 'past':
 			$condition = "< '" . GIGPRESS_NOW . "'";
 			break;
+        case 'deleted':
+            $condition = 'IS NOT NULL';
+            $status = "show_status = 'deleted'";
+            break;
 		default:
 			$condition = 'IS NOT NULL';
 	}
@@ -107,7 +117,7 @@ function gigpress_admin_shows() {
 		
 	// Build pagination
 	$show_count = $wpdb->get_var(
-		"SELECT COUNT(*) FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ". $condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby
+		"SELECT COUNT(*) FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ". $condition . " AND " . $status . " AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby
 	);
 	if($show_count) {
 		$pagination_args['page'] = 'gigpress-shows';
@@ -118,9 +128,8 @@ function gigpress_admin_shows() {
 	
 	// Build the query	
 	$shows = $wpdb->get_results(
-		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ".$condition." AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby." LIMIT ".$limit
+		"SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_expire ".$condition." AND " . $status . " AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ".$further_where." ORDER BY ".$orderby." LIMIT ".$limit
 	);
-
 	?>
 		
 	<div class="wrap gigpress">
@@ -134,15 +143,23 @@ function gigpress_admin_shows() {
 			$all = $wpdb->get_var("SELECT COUNT(show_id) FROM " . GIGPRESS_SHOWS ." WHERE show_status != 'deleted'");
 			$upcoming = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire >= '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
 			$past = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_expire < '" . GIGPRESS_NOW . "' AND show_status != 'deleted'");
+			$deleted = $wpdb->get_var("SELECT count(show_id) FROM " . GIGPRESS_SHOWS . " WHERE show_status = 'deleted'");
+
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=all') . '"');
 			if($scope == 'all') echo(' class="current"');
 			echo('>' . __("All", "gigpress") . '</a> <span class="count">(' . $all	. ')</span> | </li>');
+
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=upcoming') . '"');
 			if($scope == 'upcoming') echo(' class="current"');
 			echo('>' . __("Upcoming", "gigpress") . '</a> <span class="count">(' . $upcoming	. ')</span> | </li>');
+
 			echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=past') . '"');
 			if($scope == 'past') echo(' class="current"');
-			echo('>' . __("Past", "gigpress") . '</a> <span class="count">(' . $past	. ')</span></li>');
+			echo('>' . esc_html__( 'Past', 'gigpress' ) . '</a> <span class="count">(' . $past . ')</span> | </li>');
+
+    		echo('<li><a href="' . admin_url('admin.php?page=gigpress-shows&amp;scope=deleted') . '"');
+	    	if ( $scope == 'deleted' ) echo( ' class="current"' );
+		    echo('>' . esc_html__( 'Deleted', 'gigpress' ) . '</a> <span class="count">(' . $deleted . ')</span></li>');
 		?>
 		</ul>
 		
@@ -266,7 +283,11 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['country']; ?></td>
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
-						<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id); ?>" class="edit" title="<?php _e("Edit", "gigpress"); ?>"><?php _e("Edit", "gigpress"); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php _e("Copy", "gigpress"); ?>"><?php _e("Copy", "gigpress"); ?></a>
+                        <? if ( 'deleted' === $scope ) : ?>
+                            <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=gigpress-shows&amp;scope=deleted&amp;gpaction=restore&amp;show_id=' . $show->show_id ), 'gigpress-action' ); ?>" class="edit" title="<?php _e("Restore", "gigpress"); ?>"><?php _e("Restore", "gigpress"); ?></a>
+                        <?php else : ?>
+	    					<a href="<?php echo admin_url( 'admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id ); ?>" class="edit" title="<?php esc_attr_e( 'Edit', 'gigpress' ); ?>"><?php esc_html_e( 'Edit', 'gigpress' ); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php esc_attr_e( 'Copy', 'gigpress' ); ?>"><?php esc_html_e( 'Copy', 'gigpress' ); ?></a>
+                        <?php endif; ?>
 					</td>
 				</tr>
 				<tr class="<?php echo 'alternate' . ' gigpress-' . $showdata['status']; ?>">
@@ -292,7 +313,9 @@ function gigpress_admin_shows() {
 		</table>
 		<div class="tablenav">
 			<div class="alignleft">
-				<input type="submit" value="<?php _e('Trash selected shows', 'gigpress'); ?>" class="button-secondary" /> &nbsp; 
+                <?php if ( 'deleted' !== $scope ) : ?>
+				<input type="submit" value="<?php esc_attr_e( 'Trash selected shows', 'gigpress' ); ?>" class="button-secondary" /> &nbsp;
+                <?php endif; ?>
 				<?php
 				if($tour_count = $wpdb->get_var("SELECT count(*) FROM ". GIGPRESS_TOURS ." WHERE tour_status = 'deleted'")) {
 					$tours = $tour_count;
