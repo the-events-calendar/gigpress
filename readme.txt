@@ -38,6 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.25 [TBD] =
 
+* Fix - Prevent PHP warnings for CSV exports. [GP-9]
 * Tweak - Added the possibility to view and restore deleted shows [GP-6]
 * Tweak - Added `gigpress_country_list` filter to allow customizing the country list. [GP-12]
 * Tweak - Added `gigpress_venue_city_required` filter to allow setting the city as a not required field [GP-13]
