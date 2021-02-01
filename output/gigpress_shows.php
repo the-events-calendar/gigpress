@@ -244,12 +244,12 @@ function gigpress_shows( $filter = null, $content = null ) {
 		}
 
 		if ( $some_results ) {
-			// After all artist groups		
+			// After all artist groups
 			include gigpress_template( 'shows-list-footer' );
 			if ( ! empty( $shows_markup ) ) {
 				echo '<script type="application/ld+json">';
 				if ( ! defined( "JSON_UNESCAPED_SLASHES" ) ) {
-					require_once( WP_PLUGIN_DIR . '/gigpress/lib/upgrade.php' );
+					require_once( GIGPRESS_PLUGIN_DIR . 'lib/upgrade.php' );
 					echo up_json_encode( $shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 				} else {
 					echo json_encode( $shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
@@ -308,7 +308,7 @@ function gigpress_shows( $filter = null, $content = null ) {
 			if ( ! empty( $shows_markup ) ) {
 				echo '<script type="application/ld+json">';
 				if ( ! defined( "JSON_UNESCAPED_SLASHES" ) ) {
-					require_once( WP_PLUGIN_DIR . '/gigpress/lib/upgrade.php' );
+					require_once( GIGPRESS_PLUGIN_DIR . 'lib/upgrade.php' );
 					echo up_json_encode( $shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 				} else {
 					echo json_encode( $shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
