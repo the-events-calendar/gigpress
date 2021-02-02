@@ -320,11 +320,12 @@ function gigpress_update_show() {
 		$updateshow = $wpdb->update(GIGPRESS_SHOWS, $show, $where, $format, $where_format);
 
 		// Was the query successful?
-		if($updateshow != FALSE)
-		{
+		if ( false === $updateshow ) { ?>
+			<div id="message" class="error fade"><p><?php _e("There was an issue saving this show - please try again", "gigpress"); ?></p></div>
+	<?php } else {
 			$gpo = get_option('gigpress_settings');
 			?>
-			<div id="message" class="updated fade"><p><?php echo __("Your show  on", "gigpress") . ' ' . mysql2date($gpo['date_format_long'], $show['show_date']) . ' ' . __("was successfully updated.", "gigpress"); if($show['show_related']) echo(' <a href="' . admin_url('post.php?action=edit&amp;post=' . $show['show_related']) . '">' . __("Edit the related post", "gigpress"). '.</a>'); ?></p>
+			<div id="message" class="updated fade"><p><?php echo __("Your show on", "gigpress") . ' ' . mysql2date($gpo['date_format_long'], $show['show_date']) . ' ' . __("was successfully updated.", "gigpress"); if($show['show_related']) {echo(' <a href="' . admin_url('post.php?action=edit&amp;post=' . $show['show_related']) . '">' . __("Edit the related post", "gigpress"). '.</a>');} ?></p>
 			<?php
 				global $errors; if($errors) {
 					foreach($errors as $error) {
@@ -334,8 +335,6 @@ function gigpress_update_show() {
 				unset($errors);
 			?>
 			</div>
-		<?php } elseif($updateshow === FALSE) { ?>
-			<div id="message" class="error fade"><p><?php _e("Something ain't right - try again?", "gigpress"); ?></p></div>
 	<?php }
 	unset($_POST, $show, $where, $format, $where_format, $updateshow);
 	}

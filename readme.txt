@@ -2,7 +2,7 @@
 Contributors: theeventscalendar, brianjessee, camwynsp, paulkim, sc0ttkclark, aguseo, bordoni, borkweb, GeoffBel, jentheo, leahkoerper, lucatume, neillmcshea, patriciahillebrandt, vicskf, zbtirrell, juanfra
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.5
-Tested up to: 5.4
+Tested up to: 5.6
 Stable tag: 2.3.25
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
@@ -38,6 +38,8 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.25 [2021-02-01] =
 
+* Fix - When saving an existing show, it now correctly loads the show edit form again with success message.
+* Fix - A few jQuery problems for WordPress 5.6 compatibility.
 * Fix - Support differently named plugin folders instead of hardcoding checks for `/gigpress/`. [GP-8]
 * Fix - Prevent PHP warnings for CSV exports. [GP-9]
 * Tweak - Added the possibility to view and restore deleted shows. [GP-6]

@@ -196,7 +196,7 @@ function gigpress_add() {
 
 			<h1><?php _e("Edit this show", "gigpress"); ?></h1>
 
-			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress'); ?>">
+			<form method="post" action="<?php echo admin_url('admin.php?page=gigpress&gpaction=edit&show_id=' . (int) $show_id ); ?>">
 				<?php wp_nonce_field('gigpress-action') ?>
 				<input type="hidden" name="gpaction" value="update" />
 				<input type="hidden" name="show_id" value="<?php echo $show_id; ?>" />
