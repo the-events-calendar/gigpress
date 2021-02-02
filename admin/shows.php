@@ -283,7 +283,7 @@ function gigpress_admin_shows() {
 					<td><?php echo $showdata['country']; ?></td>
 					<td><?php echo $showdata['tour']; ?></td>
 					<td class="gp-centre">
-                        <? if ( 'deleted' === $scope ) : ?>
+                        <?php if ( 'deleted' === $scope ) : ?>
                             <a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=gigpress-shows&amp;scope=deleted&amp;gpaction=restore&amp;show_id=' . $show->show_id ), 'gigpress-action' ); ?>" class="edit" title="<?php _e("Restore", "gigpress"); ?>"><?php _e("Restore", "gigpress"); ?></a>
                         <?php else : ?>
 	    					<a href="<?php echo admin_url( 'admin.php?page=gigpress&amp;gpaction=edit&amp;show_id='.$show->show_id ); ?>" class="edit" title="<?php esc_attr_e( 'Edit', 'gigpress' ); ?>"><?php esc_html_e( 'Edit', 'gigpress' ); ?></a>&nbsp;|&nbsp;<a href="<?php echo admin_url('admin.php?page=gigpress&amp;gpaction=copy&amp;show_id='. $show->show_id); ?>" class="edit" title="<?php esc_attr_e( 'Copy', 'gigpress' ); ?>"><?php esc_html_e( 'Copy', 'gigpress' ); ?></a>
