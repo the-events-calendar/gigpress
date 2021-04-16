@@ -516,7 +516,7 @@ function gigpress_db_out( $value ) {
 
 
 function gigpress_intl() {
-	load_plugin_textdomain( 'gigpress', NULL, GIGPRESS_PLUGIN_DIR . 'langs/' );
+	load_plugin_textdomain( 'gigpress', false, dirname( plugin_basename( __FILE__ ) ) . '/langs' );
 }
 
 
