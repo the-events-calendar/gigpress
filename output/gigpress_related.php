@@ -26,7 +26,7 @@ function gigpress_show_related($args = array(), $content = '') {
 				$date_condition = "< '" . GIGPRESS_NOW . "'";
 				break;
 			case 'all':
-				$date_condition = "!= ''";
+				$date_condition = "IS NOT NULL";
 		}
 
 		$shows = $wpdb->get_results(
