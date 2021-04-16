@@ -36,6 +36,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= TBD [TBD] =
+
+* Fix - Adjust how the textdomain is loaded to make translations work again. [GTRIA-535]
+
 = 2.3.25.1 [2021-02-02] =
 
 * Fix - Resolve PHP compatibility issues with shorthand PHP tags.
