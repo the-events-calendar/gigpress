@@ -38,6 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = TBD [TBD] =
 
+* Fix - Adjust how the textdomain is loaded to make translations work again. [GTRIA-535]
 * Fix - Fixed a query which produced an error on every page. [GTRIA-534]
 
 = 2.3.25.1 [2021-02-02] =
