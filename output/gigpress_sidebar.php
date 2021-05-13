@@ -289,10 +289,11 @@ function gigpress_sidebar( $filter = null ) {
 	// Order in which to display artists if grouping
 	$artist_order = ( isset( $filter['artist_order'] ) && $filter['artist_order'] == 'custom' ) ? 'custom' : 'alphabetical';
 
-	// Filtering by artist, tour, or venue?
+	// Filtering by artist, tour, venue or related?
 	$artist = isset( $filter['artist'] ) ? $filter['artist'] : false;
 	$tour   = isset( $filter['tour'] ) ? $filter['tour'] : false;
 	$venue  = isset( $filter['venue'] ) ? $filter['venue'] : false;
+	$related = isset( $filter['related'] ) ? $filter['related'] : false;
 
 	// Display feed links and link to more shows?
 	$show_feeds = ( isset( $filter['show_feeds'] ) && $filter['show_feeds'] == 'yes' ) ? 'yes' : false;
@@ -307,6 +308,9 @@ function gigpress_sidebar( $filter = null ) {
 	}
 	if ( $venue ) {
 		$further_where .= ' AND show_venue_id IN(' . $wpdb->prepare( '%s', $venue ) . ')';
+	}
+	if ( $related ) {
+		$further_where .= ' AND show_related IN(' . $wpdb->prepare( '%s', $related ) . ')';
 	}
 	$artist_order = ( $artist_order == 'custom' ) ? "artist_order ASC," : '';
 
