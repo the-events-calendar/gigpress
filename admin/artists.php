@@ -180,7 +180,14 @@ function gigpress_artists() {
 						?>
 						<tr<?php echo $style; ?> id="artist_<?php echo $artist->artist_id; ?>">
 							<td class="gp-tiny">
-								<?php if ( isset( $pagination ) ) :
+								<?php if (
+									isset( $pagination )
+									|| isset( $_GET['orderby'] )
+									   && (
+										   'artist_id' == $_GET['orderby']
+										   || 'artist_name' == $_GET['orderby']
+									   )
+								) :
 									echo $artist->artist_order;
 								else: ?>
 									<img src="<?php echo esc_url( GIGPRESS_PLUGIN_URL . 'images/sort.png' ); ?>" alt="" class="gp-sort-handle" />
