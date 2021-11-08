@@ -103,9 +103,9 @@ function gigpress_artists() {
 	<div class="tablenav">
 		<div class="alignleft"><p><?php _e("Note that you cannot delete an artist while they have shows in the database.", "gigpress"); ?></p></div>
 	<?php
-		$artists = fetch_gigpress_artists();
+		$artists = fetch_gigpress_artists( isset( $_GET['orderby'] ) ? $_GET['orderby'] : '' );
 		//Removed pagination to allow for single-page AJAX reordering. Complaints might bring it back?
-		if ( $gpo['artist_pagination'] ) {
+		if ( isset( $gpo['artist_pagination'] ) && $gpo['artist_pagination'] ) {
 			if ( $artists ) {
 				$pagination_args['page'] = 'gigpress-artists';
 				$pagination              = gigpress_admin_pagination( count( $artists ), 5, $pagination_args );
@@ -122,9 +122,9 @@ function gigpress_artists() {
 	<table class="widefat">
 		<thead>
 			<tr>
-				<th scope="col" class="gp-tiny">&nbsp;</th>
-				<th scope="col" class="gp-tiny">ID</th>
-				<th scope="col"><?php _e("Artist name", "gigpress"); ?></th>
+				<th scope="col" class="gp-tiny"><a href="<?php echo admin_url('admin.php?page=gigpress-artists&orderby=artist_order'); ?>">Order</a></th>
+				<th scope="col" class="gp-tiny"><a href="<?php echo admin_url('admin.php?page=gigpress-artists&orderby=artist_id'); ?>">ID</a></th>
+				<th scope="col"><a href="<?php echo admin_url('admin.php?page=gigpress-artists&orderby=artist_name'); ?>"><?php _e("Artist name", "gigpress"); ?></a></th>
 				<th scope="col" class="gp-centre"><?php _e("Number of shows", "gigpress"); ?></th>
 				<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
 			</tr>

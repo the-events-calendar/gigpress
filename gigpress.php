@@ -654,11 +654,15 @@ function gigpress_save_settings()
 }
 */
 
-function fetch_gigpress_artists() {
+function fetch_gigpress_artists( $orderby = 'artist_order' ) {
 	global $wpdb;
+
+	if ( ! isset( $orderby ) || '' == $orderby ) {
+		$orderby = 'artist_order';
+	}
 	$artists = $wpdb->get_results( "
 		SELECT * FROM ". GIGPRESS_ARTISTS ."
-		ORDER BY artist_order ASC,artist_alpha ASC" );
+		ORDER BY " . $orderby . " ASC, artist_alpha ASC" );
 	return ( $artists !== FALSE) ? $artists : FALSE;
 }
 
