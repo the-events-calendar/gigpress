@@ -148,7 +148,13 @@ function gigpress_artists() {
 				// Print out our rows.
 				?>
 				<tr<?php echo $style; ?> id="artist_<?php echo $artist->artist_id; ?>">
-					<td class="gp-tiny"><img src="<?php echo esc_url( GIGPRESS_PLUGIN_URL . 'images/sort.png' ); ?>" alt="" class="gp-sort-handle" /></td>
+					<td class="gp-tiny">
+						<?php if( isset( $pagination ) ) :
+							echo $artist->artist_order;
+						else: ?>
+							<img src="<?php echo esc_url( GIGPRESS_PLUGIN_URL . 'images/sort.png' ); ?>" alt="" class="gp-sort-handle" />
+						<?php endif; ?>
+					</td>
 					<td class="gp-tiny"><?php echo $artist->artist_id; ?></td>
 					<td><?php if(!empty($artist->artist_url)) echo '<a href="'.esc_url($artist->artist_url).'">'; echo wptexturize($artist->artist_name); if(!empty($artist->artist_url)) echo '</a>';?></td>
 					<td class="gp-centre"><?php echo $count; ?></td>
