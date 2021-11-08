@@ -26,6 +26,8 @@ function gigpress_artists() {
 
 	$url_args = (isset($_GET['gp-page'])) ? '&amp;gp-page=' . sanitize_text_field($_GET['gp-page']) : '';
 
+	$gpo = get_option('gigpress_settings');
+
 	?>
 
 	<div class="wrap gigpress gp-artists">
@@ -102,16 +104,18 @@ function gigpress_artists() {
 		<div class="alignleft"><p><?php _e("Note that you cannot delete an artist while they have shows in the database.", "gigpress"); ?></p></div>
 	<?php
 		$artists = fetch_gigpress_artists();
-/*		Removed pagination to allow for single-page AJAX reordering. Complaints might bring it back?
-		if($artists) {
-			$pagination_args['page'] = 'gigpress-artists';
-			$pagination = gigpress_admin_pagination(count($artists), 20, $pagination_args);
-			if($pagination) {
-				$artists = array_slice($artists, $pagination['offset'], $pagination['records_per_page']);
-				echo $pagination['output'];
+		//Removed pagination to allow for single-page AJAX reordering. Complaints might bring it back?
+		if ( $gpo['artist_pagination'] ) {
+			if ( $artists ) {
+				$pagination_args['page'] = 'gigpress-artists';
+				$pagination              = gigpress_admin_pagination( count( $artists ), 5, $pagination_args );
+				if ( $pagination ) {
+					$artists = array_slice( $artists, $pagination['offset'], $pagination['records_per_page'] );
+					echo $pagination['output'];
+				}
 			}
 		}
-*/
+
 	?>
 	</div>
 
@@ -174,7 +178,11 @@ function gigpress_artists() {
 
 <?php if(isset($pagination)) : ?>
 	<div class="tablenav">
-	<?php // echo $pagination['output']; ?>
+	<?php
+	if ( $gpo['artist_pagination'] ) {
+		echo $pagination['output'];
+	}
+	?>
 	</div>
 <?php endif; ?>
 
