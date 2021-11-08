@@ -106,9 +106,15 @@ function gigpress_artists() {
 		$artists = fetch_gigpress_artists( isset( $_GET['orderby'] ) ? $_GET['orderby'] : '' );
 		//Removed pagination to allow for single-page AJAX reordering. Complaints might bring it back?
 		if ( isset( $gpo['artist_pagination'] ) && $gpo['artist_pagination'] ) {
+			if ( isset( $gpo['artist_per_page'] ) && intval( $gpo['artist_per_page'] ) ) {
+				$records_per_page = $gpo['artist_per_page'];
+			}
+			else {
+				$records_per_page = 20;
+			}
 			if ( $artists ) {
 				$pagination_args['page'] = 'gigpress-artists';
-				$pagination              = gigpress_admin_pagination( count( $artists ), 5, $pagination_args );
+				$pagination              = gigpress_admin_pagination( count( $artists ), $records_per_page, $pagination_args );
 				if ( $pagination ) {
 					$artists = array_slice( $artists, $pagination['offset'], $pagination['records_per_page'] );
 					echo $pagination['output'];

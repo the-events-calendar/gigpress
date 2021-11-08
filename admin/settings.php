@@ -209,7 +209,13 @@ function gigpress_settings() {
 								} ?> /> <?php _e( "Enable pagination on the Artists page. (This will disable single-page AJAX reordering.)", "gigpress" ) ?></label>
                     </td>
                 </tr>
-                <tr>
+				<tr>
+					<th scope="row"><?php _e( "Number of artists per page", "gigpress" ) ?>:</th>
+					<td>
+						<input type="text" name="gigpress_settings[artist_per_page]" size="12" value="<?php echo $gpo['artist_per_page']; ?>"/> <?php _e( 'Defaults to 20 when empty.', 'gigpress' ); ?>
+					</td>
+				</tr>
+				<tr>
                     <th scope="row"><?php _e( "RSS/iCal", "gigpress" ) ?></th>
                     <td>
                         <p>
