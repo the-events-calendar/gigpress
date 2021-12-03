@@ -148,13 +148,13 @@ function gigpress_artists() {
 				<thead>
 				<tr>
 					<th scope="col" class="gp-tiny">
-						<a href="<?php echo admin_url( 'admin.php?page=gigpress-artists&orderby=artist_order' ); ?>">Order</a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=gigpress-artists&orderby=artist_order' ) ); ?>">Order</a>
 					</th>
 					<th scope="col" class="gp-tiny">
-						<a href="<?php echo admin_url( 'admin.php?page=gigpress-artists&orderby=artist_id' ); ?>">ID</a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=gigpress-artists&orderby=artist_id' ) ); ?>">ID</a>
 					</th>
 					<th scope="col">
-						<a href="<?php echo admin_url( 'admin.php?page=gigpress-artists&orderby=artist_name' ); ?>"><?php _e( "Artist name", "gigpress" ); ?></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=gigpress-artists&orderby=artist_name' ) ); ?>"><?php _e( "Artist name", "gigpress" ); ?></a>
 					</th>
 					<th scope="col" class="gp-centre"><?php _e( "Number of shows", "gigpress" ); ?></th>
 					<th class="gp-centre" scope="col"><?php _e( "Actions", "gigpress" ); ?></th>
@@ -203,11 +203,11 @@ function gigpress_artists() {
 								} ?></td>
 							<td class="gp-centre"><?php echo $count; ?></td>
 							<td class="gp-centre">
-								<a href="<?php echo admin_url( 'admin.php?page=gigpress-artists&amp;gpaction=edit&amp;artist_id=' . $artist->artist_id . $url_args ); ?>" class="edit">
+								<a href="<?php echo esc_url( admin_url( 'admin.php?page=gigpress-artists&amp;gpaction=edit&amp;artist_id=' . $artist->artist_id . $url_args ) ); ?>" class="edit">
 									<?php _e( "Edit", "gigpress" ); ?>
 								</a>
 								<?php if ( ! $count ) { ?> |
-									<a href="<?php echo wp_nonce_url( admin_url( 'admin.php?page=gigpress-artists&amp;gpaction=delete&amp;artist_id=' . $artist->artist_id . $url_args ), 'gigpress-action' ); ?>" class="delete">
+									<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=gigpress-artists&amp;gpaction=delete&amp;artist_id=' . $artist->artist_id . $url_args ), 'gigpress-action' ) ); ?>" class="delete">
 										<?php _e( "Delete", "gigpress" ); ?>
 									</a>
 								<?php } ?>
