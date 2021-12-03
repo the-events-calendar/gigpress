@@ -683,6 +683,10 @@ function fetch_gigpress_venues() {
 
 /**
  * Fetch posts to be used for related posts on shows.
+ * 
+ * @since 2.3.27
+ * 
+ * @param array<mixed> $args Arguments to be passed to WP_Query.
  *
  * @return array|bool
  */
