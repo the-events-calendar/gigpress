@@ -93,17 +93,13 @@ function gigpress_artists() {
 					<tr>
 						<th scope="row"><label for="artist_name"><?php _e( "Artist name", "gigpress" ); ?>:</label></th>
 						<td>
-							<input name="artist_name" id="artist_name" type="text" size="48" value="<?php if ( isset( $artist->artist_name ) ) {
-								echo gigpress_db_out( $artist->artist_name );
-							} ?>" />
+							<input name="artist_name" id="artist_name" type="text" size="48" value="<?php echo isset( $artist->artist_name ) ? esc_attr( gigpress_db_out( $artist->artist_name ) ) : ''; ?>" />
 						</td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="artist_url"><?php _e( "Artist URL", "gigpress" ); ?>:</label></th>
 						<td>
-							<input name="artist_url" id="artist_url" type="text" size="48" value="<?php if ( isset( $artist->artist_url ) ) {
-								echo gigpress_db_out( $artist->artist_url );
-							} ?>" />
+							<input name="artist_url" id="artist_url" type="text" size="48" value="<?php echo isset( $artist->artist_url ) ? esc_attr( gigpress_db_out( $artist->artist_url ) ) : ''; ?>" />
 						</td>
 					</tr>
 					<tr>

@@ -204,9 +204,7 @@ function gigpress_settings() {
                 <tr>
                     <th scope="row"><?php _e( "Pagination on Artists page", "gigpress" ) ?></th>
                     <td><p>
-                            <label><input type="checkbox" name="gigpress_settings[artist_pagination]" value="1" <?php if ( ! empty( $gpo['artist_pagination'] ) ) {
-									echo( 'checked="checked"' );
-								} ?> /> <?php _e( "Enable pagination on the Artists page. (This will disable single-page AJAX reordering.)", "gigpress" ) ?></label>
+                            <label><input type="checkbox" name="gigpress_settings[artist_pagination]" value="1" <?php echo ! empty( $gpo['artist_pagination'] ) ? 'checked="checked"' : ''; ?> /> <?php _e( "Enable pagination on the Artists page. (This will disable single-page AJAX reordering.)", "gigpress" ) ?></label>
                     </td>
                 </tr>
 				<tr>
