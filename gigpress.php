@@ -681,9 +681,12 @@ function fetch_gigpress_venues() {
 	return ( $venues !== FALSE) ? $venues : FALSE;
 }
 
-function fetch_gigpress_related_posts() {
-	global $wpdb;
-
+/**
+ * Fetch posts to be used for related posts on shows.
+ *
+ * @return array|bool
+ */
+function fetch_gigpress_related_posts( $args = [] ) {
 	$related_posts_args = [
 		'post_type' => 'post',
 		'orderby' => [
@@ -693,6 +696,8 @@ function fetch_gigpress_related_posts() {
 		'posts_per_page' => 50,
 	];
 
+	$related_posts_args = wp_parse_args( $related_posts_args, $args );
+
 	/**
 	 * Allow the related posts query args to be filtered.
 	 * 
@@ -701,7 +706,7 @@ function fetch_gigpress_related_posts() {
 	$related_posts_args = apply_filters( 'gigpress_related_posts_args', $related_posts_args );
 
 	$posts = get_posts( $related_posts_args );
-	return ( $posts !== FALSE) ? $posts : FALSE;
+	return ( $posts !== false) ? $posts : false;
 }
 
 /**
