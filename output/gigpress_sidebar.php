@@ -168,7 +168,7 @@ class Gigpress_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'related' ) ); ?>">
-				<?php _e( 'Only display shows related to this post', 'gigpress' ); ?>
+				<?php esc_html_e( 'Only display shows related to this post', 'gigpress' ); ?>
 			</label>
 			<select style="width:100%;" id="<?php echo esc_attr( $this->get_field_id( 'related' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'related' ) ); ?>">
 				<option value="">--</option>
@@ -177,7 +177,7 @@ class Gigpress_widget extends WP_Widget {
 				if ( $posts != false ) :
 					foreach ( $posts as $this_post ) :
 						?>
-						<option value="<?php echo absint( $this_post->ID ); ?>" <?php echo ( $related == $this_post->ID ) ? 'selected="selected"' : ''; ?>>
+						<option value="<?php echo absint( $this_post->ID ); ?>" <?php echo ( absint( $related ) === $this_post->ID ) ? 'selected="selected"' : ''; ?>>
 							<?php echo esc_html( get_the_title( $this_post ) ); ?>
 						</option>
 					<?php endforeach; ?>
