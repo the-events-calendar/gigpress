@@ -233,9 +233,9 @@ function gigpress_artists() {
 			<?php if ( isset( $pagination ) ) : ?>
 				<div class="tablenav">
 					<?php
-					if ( $gpo['artist_pagination'] ) {
+					if ( $gpo['artist_pagination'] ) :
 						echo $pagination['output'];
-					}
+					endif;
 					?>
 				</div>
 			<?php endif; ?>
