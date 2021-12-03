@@ -28,6 +28,7 @@ class Gigpress_widget extends WP_Widget {
 			'group_artists',
 			'artist_order',
 			'artist',
+			'related',
 			'tour',
 			'venue',
 			'show_feeds',
@@ -57,6 +58,7 @@ class Gigpress_widget extends WP_Widget {
 			'group_artists' => 'no',
 			'artist_order'  => 'alphabetical',
 			'artist'        => '',
+			'related'       => '',
 			'tour'          => '',
 			'venue'         => '',
 			'show_feeds'    => 'no',
@@ -161,6 +163,25 @@ class Gigpress_widget extends WP_Widget {
 							}
 							echo ')'; ?></option>
 					<?php endforeach; endif; ?>
+			</select>
+		</p>
+
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'related' ) ); ?>">
+				<?php _e( 'Only display shows related to this post', 'gigpress' ); ?>
+			</label>
+			<select style="width:100%;" id="<?php echo esc_attr( $this->get_field_id( 'related' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'related' ) ); ?>">
+				<option value="">--</option>
+				<?php
+				$posts = fetch_gigpress_related_posts();
+				if ( $posts != false ) :
+					foreach ( $posts as $this_post ) :
+						?>
+						<option value="<?php echo absint( $this_post->ID ); ?>" <?php echo ( $related == $this_post->ID ) ? 'selected="selected"' : ''; ?>>
+							<?php echo esc_html( get_the_title( $this_post ) ); ?>
+						</option>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</select>
 		</p>
 
@@ -289,10 +310,11 @@ function gigpress_sidebar( $filter = null ) {
 	// Order in which to display artists if grouping
 	$artist_order = ( isset( $filter['artist_order'] ) && $filter['artist_order'] == 'custom' ) ? 'custom' : 'alphabetical';
 
-	// Filtering by artist, tour, or venue?
+	// Filtering by artist, tour, venue or related?
 	$artist = isset( $filter['artist'] ) ? $filter['artist'] : false;
 	$tour   = isset( $filter['tour'] ) ? $filter['tour'] : false;
 	$venue  = isset( $filter['venue'] ) ? $filter['venue'] : false;
+	$related = isset( $filter['related'] ) ? $filter['related'] : false;
 
 	// Display feed links and link to more shows?
 	$show_feeds = ( isset( $filter['show_feeds'] ) && $filter['show_feeds'] == 'yes' ) ? 'yes' : false;
@@ -308,6 +330,9 @@ function gigpress_sidebar( $filter = null ) {
 	if ( $venue ) {
 		$further_where .= ' AND show_venue_id IN(' . $wpdb->prepare( '%s', $venue ) . ')';
 	}
+	if ( $related ) {
+		$further_where .= ' AND show_related IN(' . $wpdb->prepare( '%d', $related ) . ')';
+	}
 	$artist_order = ( $artist_order == 'custom' ) ? "artist_order ASC," : '';
 
 	ob_start();
@@ -315,7 +340,7 @@ function gigpress_sidebar( $filter = null ) {
 	// If we're grouping by artist, we'll unfortunately have to first get all artists
 	// Then  make a query for each one. Looking for a better way to do this.
 
-	if ( $group_artists && ! $tour && ! $artist && ! $venue && $total_artists > 1 ) {
+	if ( $group_artists && ! $tour && ! $artist && ! $venue && ! $related && $total_artists > 1 ) {
 
 		$artists = $wpdb->get_results( "SELECT * FROM " . GIGPRESS_ARTISTS . " ORDER BY " . $artist_order . "artist_alpha ASC" );
 

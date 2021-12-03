@@ -682,6 +682,38 @@ function fetch_gigpress_venues() {
 }
 
 /**
+ * Fetch posts to be used for related posts on shows.
+ * 
+ * @since 2.3.27
+ * 
+ * @param array<mixed> $args Arguments to be passed to WP_Query.
+ *
+ * @return array|bool
+ */
+function fetch_gigpress_related_posts( $args = [] ) {
+	$related_posts_args = [
+		'post_type' => 'post',
+		'orderby' => [
+			'post_date' => 'DESC',
+			'title' => 'ASC',
+		],
+		'posts_per_page' => 50,
+	];
+
+	$related_posts_args = wp_parse_args( $related_posts_args, $args );
+
+	/**
+	 * Allow the related posts query args to be filtered.
+	 * 
+	 * @param array<mixed> $args Arguments to be passed to get_posts().
+	 */
+	$related_posts_args = apply_filters( 'gigpress_related_posts_args', $related_posts_args );
+
+	$posts = get_posts( $related_posts_args );
+	return ( $posts !== false) ? $posts : false;
+}
+
+/**
  * Gets the Gigpress country list.
  *
  * @since 2.3.25
