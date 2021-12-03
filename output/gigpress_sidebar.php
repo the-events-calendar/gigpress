@@ -167,20 +167,21 @@ class Gigpress_widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'related' ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( 'related' ) ); ?>">
 				<?php _e( 'Only display shows related to this post', 'gigpress' ); ?>
 			</label>
-			<select style="width:100%;" id="<?php echo $this->get_field_id( 'related' ); ?>"
-			        name="<?php echo $this->get_field_name( 'related' ); ?>">
+			<select style="width:100%;" id="<?php echo esc_attr( $this->get_field_id( 'related' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'related' ) ); ?>">
 				<option value="">--</option>
 				<?php
 				$posts = fetch_gigpress_related_posts();
 				if ( $posts != false ) :
-					foreach ( $posts as $this_post ) : ?>
-						<option value="<?php echo $this_post->ID; ?>"<?php if ( $related == $this_post->ID ) {
-							echo( ' selected="selected"' );
-						} ?>><?php echo esc_html( get_the_title( $this_post ) ); ?></option>
-					<?php endforeach; endif; ?>
+					foreach ( $posts as $this_post ) :
+						?>
+						<option value="<?php echo absint( $this_post->ID ); ?>" <?php echo ( $related == $this_post->ID ) ? 'selected="selected"' : ''; ?>>
+							<?php echo esc_html( get_the_title( $this_post ) ); ?>
+						</option>
+					<?php endforeach; ?>
+				<?php endif; ?>
 			</select>
 		</p>
 
