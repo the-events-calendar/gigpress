@@ -36,6 +36,11 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.3.27 [2021-12-03] =
+
+* Feature - Add the ability to filter shows by related post in the sidebar widget. (props to @thomasdebruin)
+* Tweak - Fixed some spacing issues in some admin views. (props to @NekoJonez)
+
 = 2.3.26 [2021-05-12] =
 
 * Fix - Adjust how the textdomain is loaded to make translations work again. [GTRIA-535]

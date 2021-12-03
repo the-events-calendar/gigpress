@@ -681,6 +681,19 @@ function fetch_gigpress_venues() {
 	return ( $venues !== FALSE) ? $venues : FALSE;
 }
 
+function fetch_gigpress_related_posts() {
+	global $wpdb;
+	$posts = get_posts( [
+		'post_type' => 'post',
+		'orderby' => [
+			'post_date' => 'DESC',
+			'title' => 'ASC',
+		],
+		'posts_per_page' => 50,
+	] );
+	return ( $posts !== FALSE) ? $posts : FALSE;
+}
+
 /**
  * Gets the Gigpress country list.
  *
