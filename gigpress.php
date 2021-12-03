@@ -683,14 +683,24 @@ function fetch_gigpress_venues() {
 
 function fetch_gigpress_related_posts() {
 	global $wpdb;
-	$posts = get_posts( [
+
+	$related_posts_args = [
 		'post_type' => 'post',
 		'orderby' => [
 			'post_date' => 'DESC',
 			'title' => 'ASC',
 		],
 		'posts_per_page' => 50,
-	] );
+	];
+
+	/**
+	 * Allow the related posts query args to be filtered.
+	 * 
+	 * @param array<mixed> $args Arguments to be passed to get_posts().
+	 */
+	$related_posts_args = apply_filters( 'gigpress_related_posts_args', $related_posts_args );
+
+	$posts = get_posts( $related_posts_args );
 	return ( $posts !== FALSE) ? $posts : FALSE;
 }
 
