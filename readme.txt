@@ -36,11 +36,16 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.3.27 [TBD] =
+= 2.3.28 [TBD] =
 
 * Tweak - Added setting to enable pagination on the artists page. [CCTRIA-440]
 * Tweak - Added setting for results per page for the artists page. [CCTRIA-440]
 * Tweak - Added the option to sort the artist page on the backend by order number (default), artist ID, and artist name. [CCTRIA-440]
+
+= 2.3.27 [2021-12-03] =
+
+* Feature - Add the ability to filter shows by related post in the sidebar widget. (props to @thomasdebruin)
+* Tweak - Fixed some spacing issues in some admin views. (props to @NekoJonez)
 
 = 2.3.26 [2021-05-12] =
 
