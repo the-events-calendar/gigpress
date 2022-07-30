@@ -7,7 +7,10 @@ function gigpress_ical() {
 	if(isset($_GET['show_id'])) {
 		$further_where .= $wpdb->prepare(' AND s.show_id = %d', $_GET['show_id']);
 	}
-	if(isset($_GET['artist'])) {
+	if(isset($_GET['program_id'])) {
+		$further_where .= $wpdb->prepare(' AND s.show_artist_id = %d', $_GET['program_id']);
+	}
+	else if(isset($_GET['artist'])) {
 		$further_where .= $wpdb->prepare(' AND s.show_artist_id = %d', $_GET['artist']);
 	}
 	if(isset($_GET['tour'])) {
@@ -26,7 +29,7 @@ function gigpress_ical() {
 		$total = count($shows);
 		foreach($shows as $show) {
 			$showdata = gigpress_prepare($show, 'ical');
-			if(isset($_GET['artist'])) {
+			if(isset($_GET['program_id']) OR isset($_GET['artist'])) {
 				$filename = sanitize_title($showdata['artist_plain']) . '-icalendar';
 				$title = $show->artist_name;
 			} elseif(isset($_GET['tour'])) {
