@@ -1,0 +1,17 @@
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function bc_bankhead() in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/artists-list.php:8
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/artists-list.php on line 8
+[06-Jul-2022 18:17:29 America/Boise] PHP Warning:  Use of undefined constant GIGPRESS_NOW - assumed 'GIGPRESS_NOW' (this will throw an Error in a future version of PHP) in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/related.php on line 62
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function wptexturize() in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/shows-list-empty.php:20
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/shows-list-empty.php on line 20
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function wptexturize() in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/sidebar-list-empty.php:12
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/sidebar-list-empty.php on line 12
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Call to undefined function _e() in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/sidebar-list.php:24
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/templates/sidebar-list.php on line 24

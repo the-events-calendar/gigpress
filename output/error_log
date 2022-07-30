@@ -1,0 +1,24 @@
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php:3
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php on line 3
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php:3
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php on line 3
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php:3
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php on line 3
+[06-Jul-2022 18:17:29 America/Boise] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php:3
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php on line 3
+[06-Jul-2022 18:17:30 America/Boise] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php:3
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php on line 3
+[06-Jul-2022 18:17:30 America/Boise] PHP Fatal error:  Uncaught Error: Class 'WP_Widget' not found in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php:3
+Stack trace:
+#0 {main}
+  thrown in /home3/bostonj2/public_html/2021site/wp-content/plugins/gigpress/output/gigpress_sidebar.php on line 3
