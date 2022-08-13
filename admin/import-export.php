@@ -53,14 +53,14 @@ function gigpress_import_export() {
 			</div>
 			<div style="margin-bottom:5px;">
 				<select name="artist_id">
-					<option value="-1"><?php _e("Export all artists", "gigpress"); ?></option>
+					<option value="-1"><?php _e("Export all programs", "gigpress"); ?></option>
 				<?php $artistdata = fetch_gigpress_artists();
 				if($artistdata) {
 					foreach($artistdata as $artist) {
 						echo('<option value="' . $artist->artist_id . '">' . gigpress_db_out($artist->artist_name) . '</option>');
 					}
 				} else {
-					echo('<option value="-1">' . __("No artists in the database", "gigpress") . '</option>');
+					echo('<option value="-1">' . __("No programs in the database", "gigpress") . '</option>');
 				}
 				?>
 				</select>

@@ -35,7 +35,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 	$show['show_notes'] = gigpress_db_in($_POST['show_notes'], FALSE);
 	$show['show_status'] = gigpress_db_in($_POST['show_status']);
 
-	// Create a new artist
+	// Create a new Program
 	if($_POST['show_artist_id'] == 'new') {
 
 		$alpha = preg_replace("/^the /uix", "", strtolower($_POST['artist_name']));
@@ -50,7 +50,7 @@ function gigpress_prepare_show_fields($context = 'new') {
 		if($insert_artist) {
 			$show['show_artist_id'] = $wpdb->insert_id;
 		} else {
-			$errors[] = __("We had trouble creating your new artist. Sorry.", "gigpress");
+			$errors[] = __("We had trouble creating your new Program. Sorry.", "gigpress");
 		}
 	} else {
 		$show['show_artist_id'] = gigpress_db_in($_POST['show_artist_id']);
@@ -192,9 +192,9 @@ function gigpress_error_checking($context) {
 			if(empty($_POST['show_venue_id']))
 				$errors['show_venue_id'] = __("You must select a venue.", "gigpress");
 			if(empty($_POST['show_artist_id']))
-				$errors['artist_name'] = __("You must select an artist.", "gigpress");
+				$errors['artist_name'] = __("You must select a Program.", "gigpress");
 			if($_POST['show_artist_id'] == 'new' && empty($_POST['artist_name']))
-				$errors['artist_name'] = __("You must enter an artist name.", "gigpress");
+				$errors['artist_name'] = __("You must enter a Program name.", "gigpress");
 			if($_POST['show_venue_id'] == 'new' && empty($_POST['venue_name']))
 				$errors['venue_name'] = __("You must enter a venue name.", "gigpress");
 			if ( ! empty( $venue_city_required ) ) {
@@ -211,7 +211,7 @@ function gigpress_error_checking($context) {
 			break;
 		case 'artist':
 			if(empty($_POST['artist_name']))
-				$errors['artist_name'] = __("You must enter an artist name.", "gigpress");
+				$errors['artist_name'] = __("You must enter a Program name.", "gigpress");
 			break;
 		case 'tour':
 			if(empty($_POST['tour_name']))
@@ -724,10 +724,10 @@ function gigpress_delete_artist() {
 	// Delete the artist
 	$trashartist = $wpdb->query($wpdb->prepare("DELETE FROM ". GIGPRESS_ARTISTS ." WHERE artist_id = %d LIMIT 1", absint($_GET['artist_id'])));
 	if($trashartist != FALSE) {	?>
-		<div id="message" class="updated fade"><p><?php _e("Artist successfully deleted.", "gigpress"); ?></p></div>
+		<div id="message" class="updated fade"><p><?php _e("Program successfully deleted.", "gigpress"); ?></p></div>
 	<?php } elseif($trashartist === FALSE) { ?>
 
-		<div id="message" class="error fade"><p><?php _e("We ran into some trouble deleting the artist. Sorry.", "gigpress"); ?></p></div>
+		<div id="message" class="error fade"><p><?php _e("We ran into some trouble deleting the Program. Sorry.", "gigpress"); ?></p></div>
 	<?php }
 }
 
@@ -820,9 +820,9 @@ function gigpress_import() {
 			$inserted = $skipped = $duplicates = $errors = array();
 
 			foreach($csv->data as $key => $show) {
-				// Check to see if we have this artist
+				// Check to see if we have this Program
 				$artist_exists = $wpdb->get_var(
-					$wpdb->prepare("SELECT artist_id FROM " . GIGPRESS_ARTISTS . " WHERE artist_name = '%s'", $show['Artist'])
+					$wpdb->prepare("SELECT artist_id FROM " . GIGPRESS_ARTISTS . " WHERE artist_name = '%s'", $show['Program'])
 				);
 
 				if(!empty($show['Tour'])) {
@@ -848,7 +848,7 @@ function gigpress_import() {
 					// Can't find an artist with this name, so we'll have to create them
 					$alpha = preg_replace("/^the /uix", "", strtolower($show['Artist']));
 					$new_artist = array(
-						'artist_name' => gigpress_db_in($show['Artist']),
+						'artist_name' => gigpress_db_in($show['Program']),
 						'artist_alpha' => gigpress_db_in($alpha),
 						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE),
 						'program_notes' => gigpress_db_in(@$show['program notes'], FALSE)
@@ -859,7 +859,7 @@ function gigpress_import() {
 					$show['artist_id'] = $artist_exists;
 				}
 
-				// Make sure we now have an artist
+				// Make sure we now have a Program
 				if(!empty($show['artist_id']))
 				{
 					// Check to see if we have this venue
@@ -952,8 +952,8 @@ function gigpress_import() {
 				}
 				else
 				{
-					// No artist
-					$show['error'] = __("error importing artist", "gigpress");
+					// No Program
+					$show['error'] = __("error importing Program", "gigpress");
 					$skipped[] = $show;
 				}
 
@@ -963,7 +963,7 @@ function gigpress_import() {
 				echo('<h4 class="error">' . count($skipped) . ' ' . __("shows were skipped due to errors", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($skipped as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . ' <strong>('.$show['error'].')</strong></li>');
+					echo('<li>' . wptexturize($show['Program']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . ' <strong>('.$show['error'].')</strong></li>');
 				}
 				echo('</ul>');
 			}
@@ -972,7 +972,7 @@ function gigpress_import() {
 				echo('<h4 class="error">' . count($duplicates) . ' ' . __("shows were skipped as they were deemed duplicates", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($duplicates as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
+					echo('<li>' . wptexturize($show['Program']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
 				}
 				echo('</ul>');
 			}
@@ -981,7 +981,7 @@ function gigpress_import() {
 				echo('<h4 class="updated">' . count($inserted) . ' ' . __("shows were successfully imported", "gigpress") . '.</h4>');
 				echo('<ul class="ul-square">');
 				foreach($inserted as $key => $show) {
-					echo('<li>' . wptexturize($show['Artist']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
+					echo('<li>' . wptexturize($show['Program']) . ' ' . __("in", "gigpress") . ' ' . wptexturize($show['City']) . ' ' . __("at", "gigpress") . ' ' . wptexturize($show['Venue']) . ' ' . __("on", "gigpress") . ' ' .  mysql2date($gpo['date_format'], $show['Date']) . '</li>');
 				}
 				echo('</ul>');
 			}
@@ -1062,9 +1062,9 @@ function gigpress_map_tours_to_artists() {
 			$delete = $wpdb->query("DELETE FROM " . GIGPRESS_TOURS . " WHERE tour_id = " . $tour->tour_id . " LIMIT 1");
 		}
 		if($insert && $update && $delete) {
-			echo('<div id="message" class="updated fade"><p>' . __("All tours have been migrated into artists.", "gigpress") . '</p></div>');
+			echo('<div id="message" class="updated fade"><p>' . __("All tours have been migrated into Programs.", "gigpress") . '</p></div>');
 		} else {
-			echo('<div id="message" class="error fade"><p>' . __("There was an error migrating tours to artists. Sorry.", "gigpress") . '</p></div>');
+			echo('<div id="message" class="error fade"><p>' . __("There was an error migrating tours to Programs. Sorry.", "gigpress") . '</p></div>');
 
 		}
 	} else {
