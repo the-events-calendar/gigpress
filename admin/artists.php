@@ -30,19 +30,19 @@ function gigpress_artists() {
 
 	<div class="wrap gigpress gp-artists">
 
-	<h1><?php _e("Artists", "gigpress"); ?></h1>	
+	<h1><?php _e("programs", "gigpress"); ?></h1>	
 	
 	<?php
 	if(isset($_GET['gpaction']) && $_GET['gpaction'] == "edit" || isset($result) && isset($result['editing']) ) {
 
 		$artist_id = (isset($_REQUEST['artist_id'])) ? $wpdb->prepare('%d', $_REQUEST['artist_id']) : '';
 	
-		$artist = $wpdb->get_row("SELECT artist_name, artist_url FROM ". GIGPRESS_ARTISTS ." WHERE artist_id = ". $artist_id);
+		$artist = $wpdb->get_row("SELECT artist_name, artist_url, program_notes FROM ". GIGPRESS_ARTISTS ." WHERE artist_id = ". $artist_id);
 		if($artist) {
 			
-			$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Update artist", "gigpress") . '" /></span> ' . __("or", "gigpress") . ' <a href="' . admin_url('admin.php?page=gigpress-artists' . $url_args) . '">' . __("cancel", "gigpress") . '</a>'; ?>
+			$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Update program", "gigpress") . '" /></span> ' . __("or", "gigpress") . ' <a href="' . admin_url('admin.php?page=gigpress-artists' . $url_args) . '">' . __("cancel", "gigpress") . '</a>'; ?>
 
-			<h3><?php _e("Edit this artist", "gigpress"); ?></h3>
+			<h3><?php _e("Edit this program", "gigpress"); ?></h3>
 		
 			<form method="post" action="<?php echo admin_url("admin.php?page=gigpress-artists" . $url_args); ?>">
 			<input type="hidden" name="gpaction" value="update" />
@@ -52,9 +52,9 @@ function gigpress_artists() {
 		} else {
 		?>
 		
-			<div id="message" class="error fade"><p><?php _e("Sorry, but we had trouble loading that artist for editing.", "gigpress"); ?></p></div>	
+			<div id="message" class="error fade"><p><?php _e("Sorry, but we had trouble loading that program for editing.", "gigpress"); ?></p></div>	
 			
-			<h3><?php _e("Add an artist", "gigpress"); ?></h3>
+			<h3><?php _e("Add a program", "gigpress"); ?></h3>
 		
 		<?php				
 		}
@@ -62,9 +62,9 @@ function gigpress_artists() {
 	} else {
 		
 		$artist = array();
-		$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Add artist", "gigpress") . '" /></span>'; ?>
+		$submit = '<span class="submit"><input type="submit" name="Submit" class="button-primary" value="' .  __("Add program", "gigpress") . '" /></span>'; ?>
 
-		<h2><?php _e("Add an artist", "gigpress"); ?></h2>
+		<h2><?php _e("Add a program", "gigpress"); ?></h2>
 		
 		<form method="post" action="<?php echo admin_url('admin.php?page=gigpress-artists' . $url_args); ?>">
 		<input type="hidden" name="gpaction" value="add" />	
@@ -75,15 +75,27 @@ function gigpress_artists() {
 		
 		<table class="form-table gp-table">
 			<tr>
-				<th scope="row"><label for="artist_name"><?php _e("Artist name", "gigpress"); ?>:</label></th>
+				<th scope="row"><label for="artist_name"><?php _e("program name", "gigpress"); ?>:</label></th>
 				<td>
 					<input name="artist_name" id="artist_name" type="text" size="48" value="<?php if(isset($artist->artist_name)) echo gigpress_db_out($artist->artist_name); ?>" />
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="artist_url"><?php _e("Artist URL", "gigpress"); ?>:</label></th>
+				<th scope="row"><label for="artist_url"><?php _e("Program URL", "gigpress"); ?>:</label></th>
 				<td>
 					<input name="artist_url" id="artist_url" type="text" size="48" value="<?php if(isset($artist->artist_url)) echo gigpress_db_out($artist->artist_url); ?>" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="program_notes"><?php _e("program notes", "gigpress"); ?>:</label></th>
+				<td>
+					<?php wp_editor(
+								(isset($artist->program_notes)
+									 ? $artist->program_notes
+									 : "Use this space to describe program"),
+								"program_notes",
+								array('teeny' => true,'textarea_rows' => 5)
+						   ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -96,10 +108,10 @@ function gigpress_artists() {
 		
 		</form>
 
-	<h2><?php _e("All artists", "gigpress"); ?></h2>
+	<h2><?php _e("All programs", "gigpress"); ?></h2>
 	
 	<div class="tablenav">
-		<div class="alignleft"><p><?php _e("Note that you cannot delete an artist while they have shows in the database.", "gigpress"); ?></p></div>
+		<div class="alignleft"><p><?php _e("Note that you cannot delete a program while there are associated shows in the database.", "gigpress"); ?></p></div>
 	<?php
 		$artists = fetch_gigpress_artists();
 /*		Removed pagination to allow for single-page AJAX reordering. Complaints might bring it back?
@@ -116,15 +128,7 @@ function gigpress_artists() {
 	</div>
 	
 	<table class="widefat">
-		<thead>
-			<tr>
-				<th scope="col" class="gp-tiny">&nbsp;</th>
-				<th scope="col" class="gp-tiny">ID</th>
-				<th scope="col"><?php _e("Artist name", "gigpress"); ?></th>
-				<th scope="col" class="gp-centre"><?php _e("Number of shows", "gigpress"); ?></th>
-				<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
-			</tr>
-		</thead>
+	<?php gigpress_artists_thf("thead"); ?>
 		<tbody class="gigpress-artist-sort">
 	<?php
 
@@ -158,18 +162,10 @@ function gigpress_artists() {
 
 			// We don't have any artists, so let's say so
 			?>
-			<tr><td colspan="5"><strong><?php _e("No artists in the database", "gigpress"); ?></strong></td></tr>
+			<tr><td colspan="5"><strong><?php _e("No programs in the database", "gigpress"); ?></strong></td></tr>
 	<?php } ?>
 		</tbody>
-		<tfoot>
-			<tr>
-				<th scope="col" class="gp-tiny">&nbsp;</th>
-				<th scope="col" class="gp-tiny">ID</th>
-				<th scope="col"><?php _e("Artist name", "gigpress"); ?></th>
-				<th scope="col" class="gp-centre"><?php _e("Number of shows", "gigpress"); ?></th>
-				<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
-			</tr>
-		</tfoot>
+	<?php gigpress_artists_thf("tfoot"); ?>
 	</table>
 
 <?php if(isset($pagination)) : ?>
@@ -182,3 +178,16 @@ function gigpress_artists() {
 	
 	</div>
 <?php }
+
+function gigpress_artists_thf($thf) 
+{ 
+	echo '<' . $thf .'>'; ?>
+			<tr>
+				<th scope="col" class="gp-tiny">&nbsp;</th>
+				<th scope="col" class="gp-tiny">ID</th>
+				<th scope="col"><?php _e("program name", "gigpress"); ?></th>
+				<th scope="col" class="gp-centre"><?php _e("Number of shows", "gigpress"); ?></th>
+				<th class="gp-centre" scope="col"><?php _e("Actions", "gigpress"); ?></th>
+			</tr>
+<?php 	echo '</' . $thf .'>';
+}

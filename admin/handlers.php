@@ -42,7 +42,8 @@ function gigpress_prepare_show_fields($context = 'new') {
 		$artist = array(
 			'artist_name' => gigpress_db_in($_POST['artist_name']),
 			'artist_alpha' => gigpress_db_in($alpha),
-			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE)
+			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE),
+			'program_notes' => gigpress_db_in($_POST['program_notes'], FALSE)
 		);
 		$insert_artist = $wpdb->insert(GIGPRESS_ARTISTS, $artist);
 		
@@ -631,9 +632,10 @@ function gigpress_add_artist() {
 		$artist = array(
 			'artist_name' => gigpress_db_in($_POST['artist_name']),
 			'artist_alpha' => gigpress_db_in($alpha),
-			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE)
+			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE),
+			'program_notes' => gigpress_db_in($_POST['program_notes'], FALSE)
 		);
-		$format = array('%s', '%s', '%s');
+		$format = array('%s', '%s', '%s', '%s');
 		$addartist = $wpdb->insert(GIGPRESS_ARTISTS, $artist, $format);
 		
 		// Was the query successful?
@@ -675,9 +677,10 @@ function gigpress_update_artist() {
 		$artist = array(
 			'artist_name' => gigpress_db_in($_POST['artist_name']),
 			'artist_alpha' => gigpress_db_in($alpha),
-			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE)
+			'artist_url' => gigpress_db_in($_POST['artist_url'], FALSE),
+			'program_notes' => gigpress_db_in($_POST['program_notes'], FALSE)
 		);
-		$format = array('%s', '%s', '%s');
+		$format = array('%s', '%s', '%s', '%s');
 		$where = array('artist_id' => absint($_POST['artist_id']));
 		$updateartist = $wpdb->update(GIGPRESS_ARTISTS, $artist, $where, $format, array('%d'));
 		
@@ -834,7 +837,8 @@ function gigpress_import() {
 					$new_artist = array(
 						'artist_name' => gigpress_db_in($show['Artist']),
 						'artist_alpha' => gigpress_db_in($alpha),
-						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE)
+						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE),
+						'program_notes' => gigpress_db_in(@$show['program notes'], FALSE)
 					);
 					$wpdb->insert(GIGPRESS_ARTISTS, $new_artist, '%s');
 					$show['artist_id'] = $wpdb->insert_id;

@@ -1,0 +1,131 @@
+/* fixes wptouch for gigpress calendar
+	22nov14	webmaster@bostoncamerata.org
+	# cat fixes-wptouch-for-calendar.css >> wptouch/themes/bauhaus/default/style.css
+	30apr15 colors
+        14jan16 wptouch > config > theme sttings > custom css
+    11dec16	4.7fixes
+ */
+
+.post-page-content, .post-page-content > p, .post-page-content > div, .post-page-content > div > p, 
+.gig-note, .gig-note a, .description, .description a, .post, .post a, 
+.nav-controls div, .nav-controls a, a.back-to-top, #comments, .footer, a.back-to-top
+{
+    font-family: Georgia, "Times New Roman", Times, serif ! important;
+    color: #e6ddca ! important;
+    font-size: 14px;
+    line-height: 125%;
+}
+.gig-note a, .description a, .post a
+{
+    text-decoration: underline;
+}
+
+.post-page-head-area, .gig-note, .gigpress-artist-heading, .prog-note 
+{
+    display : none; 
+}
+
+hr, hr.wpt-kludge
+{
+    border: none!important;
+	height: 32px;
+    background-image:url('/bostoncamerata.org/graphics/blogdivider.png');
+    background-size: unset;
+    background-repeat: no-repeat;
+        background-color: transparent!important;
+}
+
+.progtitle, h1, h2, #wrapper #content #main .block #scrollbar-demo h2,  .date, div.year
+{
+	font-family: Georgia, "Times New Roman", Times, serif ! important;
+	color: #FFCC66 ! important;
+}
+.progtitle, h1, h2, #wrapper #content #main .block #scrollbar-demo h2  {
+	font-size: 18pt;
+	font-variant:small-caps;
+	text-align: left;
+}
+.event {
+	 clear: both; }
+.month {
+	 font-size: 30px; font-weight: bold; clear: both; }
+.date {
+	 float: left; 
+     width: 2em; 
+	 height: 3em; 
+	 line-height: 1.2em; 
+         font-size: 24px; 
+         font-weight: bold; 
+}
+div.year {
+	 font-size: 32px; 
+         font-weight: bold; 
+}
+.description {
+         /* margin: 5px 0px 10px 0px; */
+}
+.space {
+	clear: both;
+	margin-bottom: 10px;
+	font-size: 1px;
+	line-height: 0px;
+}
+	
+.progtitle, h2 {
+	text-align: center;
+}
+.info-right {
+	margin-left:1em; 
+	float:right ! important;
+	text-align: right;
+        padding-top: 0.5em;
+        margin-bottom: 1em;
+}
+
+.tc-links img.buy-button, .tc-links img.gi-cal
+{
+        margin: 0px ! important;
+        padding: 0px ! important;
+        display : inline ! important;
+} 
+.tc-links img.buy-button
+{
+        padding-bottom: 5px ! important;
+}
+
+.info-left {
+	margin-right:1em; 
+/*	float:left ! important; */
+	width:78%;
+}
+.prog-note {
+	margin-left:3em; 
+	margin-bottom:1em;
+}
+.gig-note, .related-link, .external-link {
+	margin-left:1em; 
+	margin-right:0em; 
+	margin-top:0.5em; 
+	margin-bottom:1em; 
+	width:98%;
+}
+.heading-font, .body-font, a.title, .wptouch-menu .menu-tree span, header a, header div
+{
+	color: #FFCC66 !important;
+    font-family: Georgia,"Times New Roman",Times,serif ! important;
+}
+.synopsis {
+    border-top: 1px solid #FFCC66;
+    border-bottom: 1px solid #FFCC66;
+    min-height: 230px;
+}
+a.gigpress-tickets-link,
+button, input[type="submit"], input[type="button"], input[type="reset"]
+{
+	padding: 10px;
+	font-variant:small-caps ! important;
+	color: #870E21 !important;
+	background: #FFCC66 ! important;
+	border-radius: 20px! important;
+	border-bottom-color: #e05d22! important;
+}

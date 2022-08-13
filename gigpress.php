@@ -3,7 +3,6 @@
 Plugin Name: GigPress
 Plugin URI: http://gigpress.com
 Description: GigPress is a live performance listing and management plugin built for musicians and performers.
-Version: 2.3.17
 Author: Derek Hogue
 Author URI: http://amphibian.info
 Text Domain: gigpress
@@ -19,6 +18,11 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
+
+Version: 2.6 tomwible@cardinalglen.org
+		added Postponed
+		renamed artists to programs
+		added program_notes to artists
 */
 
 global $wpdb;
@@ -28,8 +32,8 @@ define('GIGPRESS_SHOWS', $wpdb->prefix . 'gigpress_shows');
 define('GIGPRESS_TOURS', $wpdb->prefix . 'gigpress_tours');
 define('GIGPRESS_ARTISTS', $wpdb->prefix . 'gigpress_artists');
 define('GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues');
-define('GIGPRESS_VERSION', '2.3.17');
-define('GIGPRESS_DB_VERSION', '1.6');
+define('GIGPRESS_VERSION', '2.4ad');
+define('GIGPRESS_DB_VERSION', '1.7');
 define('GIGPRESS_RSS', get_bloginfo('url') . '/?feed=gigpress');
 define('GIGPRESS_ICAL', get_bloginfo('url') . '/?feed=gigpress-ical');
 define('GIGPRESS_WEBCAL', str_replace('http://', 'webcal://', GIGPRESS_ICAL));
@@ -56,6 +60,7 @@ require('admin/settings.php');
 require('admin/import-export.php');
 
 require('output/gigpress_shows.php');
+require('output/gigpress_programs.php');
 require('output/gigpress_related.php');
 require('output/gigpress_sidebar.php');
 require('output/feed.php');
@@ -71,7 +76,7 @@ function gigpress_admin_menu() {
 	
 	$add = __("Add a show", "gigpress");
 	$shows = __("Shows", "gigpress");
-	$artists = __("Artists", "gigpress");
+	$artists = __("Programs", "gigpress"); // 2.4ad
 	$venues = __("Venues", "gigpress");
 	$tours = __("Tours", "gigpress");
 	$settings = __("Settings", "gigpress");
@@ -278,6 +283,7 @@ function gigpress_prepare($show, $scope = 'public') {
 		$showdata['artist_plain'] = wptexturize($show->artist_name);
 		$showdata['artist_id'] = $show->artist_id;
 		$showdata['artist_url'] = (!empty($show->artist_url)) ? esc_url($show->artist_url) : '';
+		if(!empty($show->program_notes)) $showdata['program_notes'] =  wptexturize( do_shortcode($show->program_notes)) . ' ';
 		$showdata['calendar_summary'] = $show->artist_name . ' ' . __("at", "gigpress") . ' ' . $show->venue_name;
 		$showdata['calendar_summary_ical'] = str_replace(array(";",","), array('\;','\,'), $showdata['calendar_summary']);
 		$showdata['calendar_details'] = '';
@@ -302,16 +308,25 @@ function gigpress_prepare($show, $scope = 'public') {
 		$showdata['date'] = ($show->show_related && !empty($gpo['relatedlink_date']) && $scope == 'public') ? '<a href="' . gigpress_related_link($show->show_related, "url") . '">' . mysql2date($gpo['date_format'], $show->show_date) . '</a>' : mysql2date($gpo['date_format'], $show->show_date);
 		$showdata['date_long'] = mysql2date($gpo['date_format_long'], $show->show_date);		
 		$showdata['date_mysql'] = $show->show_date;		
-		$showdata['end_date'] = ($show->show_date != $show->show_expire) ? mysql2date($gpo['date_format'], $show->show_expire) : '';
-		$showdata['end_date_long'] = ($show->show_date != $show->show_expire) ? mysql2date($gpo['date_format_long'], $show->show_expire) : '';
+		$showdata['end_date'] = ($show->show_date != $show->show_expire) 
+								? mysql2date($gpo['date_format'], $show->show_expire) 
+								: '';
+		$showdata['end_date_long'] = ($show->show_date != $show->show_expire) 
+								? mysql2date($gpo['date_format_long'], $show->show_expire) 
+								: '';
 		$showdata['end_date_mysql'] = $show->show_expire;		
-		$showdata['external_link'] = (!empty($show->show_external_url)) ? '<a href="'.esc_url($show->show_external_url).'"'.gigpress_target($show->show_external_url).'>'.$gpo['external_link_label'].'</a>' : '';		
+		$showdata['external_link'] = (!empty($show->show_external_url)) 
+								? '<a href="'.esc_url($show->show_external_url).'"'.gigpress_target($show->show_external_url).'>'.$gpo['external_link_label'].'</a>' 
+								: '';		
 		$showdata['external_url'] = (!empty($show->show_external_url)) ? esc_url($show->show_external_url) : '';		
-		$showdata['ical'] = '<a href="' . GIGPRESS_ICAL . '&amp;show_id=' . $show->show_id . '">' . __("Download iCal", "gigpress") . '</a>';
+$ical = __("Download iCal", "gigpress"); 
+
+$ical = '<img class="gi-cal" alt="'.$ical.'" title="'.$ical.'" src="' . plugins_url('images/ical-icon32.png', __FILE__) . '">';
+		$showdata['ical'] = '<a href="' . GIGPRESS_ICAL . '&amp;show_id=' . $show->show_id . '">' . $ical . '</a>';
 		$showdata['id'] = $show->show_id;
 		$showdata['iso_date'] = $show->show_date."T".$show->show_time;
 		$showdata['iso_end_date'] = $show->show_expire."T".$show->show_time;
-		$showdata['notes'] = wptexturize($show->show_notes);
+		$showdata['notes'] = wptexturize( do_shortcode($show->show_notes));
 		$showdata['price'] = wptexturize($show->show_price);
 		$showdata['related_id'] = (!empty($show->show_related)) ? $show->show_related : 0;
 		$showdata['related_url'] = (!empty($show->show_related)) ? gigpress_related_link($show->show_related, 'url') : '';
@@ -320,12 +335,22 @@ function gigpress_prepare($show, $scope = 'public') {
 		$showdata['rss_date'] = mysql2date('D, d M Y', $show->show_date, false). " ". $show->show_time." " . gigpress_timezone_offset('zero');
 		$showdata['status'] = $show->show_status;
 		switch($showdata['status']) {
-			case 'active': $showdata['ticket_link'] = ($show->show_tix_url && $show->show_expire >= GIGPRESS_NOW) ? '<a href="' . esc_url($show->show_tix_url)  . '"' . gigpress_target($show->show_tix_url) . ' class="gigpress-tickets-link">' . wptexturize($gpo['buy_tickets_label']) . '</a>' : '';
-			break;
-			case 'soldout' : $showdata['ticket_link'] = '<strong class="gigpress-soldout">' . __("Sold Out", "gigpress") . '</strong>';
-			break;
-			case 'cancelled' : $showdata['ticket_link'] = '<strong class="gigpress-cancelled">' . __("Cancelled", "gigpress") . '</strong>';
-			break;
+			case 'active': 
+				$showdata['ticket_link'] = ($show->show_tix_url && $show->show_expire >= GIGPRESS_NOW)
+							? '<a href="' . esc_url($show->show_tix_url)
+							 	. '"' . gigpress_target($show->show_tix_url)
+							 	 . ' class="gigpress-tickets-link"><button>' . wptexturize($gpo['buy_tickets_label'])
+							 	  . '</button></a>' 
+							: '';
+				break;
+			case 'soldout' : 
+				$showdata['ticket_link'] = '<strong class="gigpress-soldout">' . __("Sold Out", "gigpress") . '</strong>';
+				break;
+			case 'postponed' : 
+				$showdata['ticket_link'] = '<strong class="gigpress-postponed">' . __("Postponed", "gigpress") . '</strong>';
+			case 'cancelled' : 
+				$showdata['ticket_link'] = '<strong class="gigpress-cancelled">' . __("Cancelled", "gigpress") . '</strong>';
+				break;
 		}
 		$showdata['ticket_url'] = (!empty($show->show_tix_url)) ? esc_url($show->show_tix_url) : '';
 		$showdata['ticket_phone'] = wptexturize($show->show_tix_phone);
@@ -337,6 +362,8 @@ function gigpress_prepare($show, $scope = 'public') {
 			else { $showdata['permalink'] = get_bloginfo('url'); }
 		
 		// Google Calendar
+$gcal = __("Add to Google Calendar", "gigpress");
+$gcal = '<img class="gi-cal" alt="'. $gcal .'" title="'. $gcal .'" src="'. plugins_url('images/Google-Calendar-32.png', __FILE__) . '">';
 		$showdata['gcal'] = '<a href="http://www.google.com/calendar/event?action=TEMPLATE'
 			. '&amp;text=' . urlencode($showdata['calendar_summary'])
 			. '&amp;dates=' . $showdata['calendar_start'] . '/' . $showdata['calendar_end']
@@ -345,9 +372,8 @@ function gigpress_prepare($show, $scope = 'public') {
 			. '&amp;location=' . urlencode($showdata['calendar_location'])
 			. '&amp;details=' . urlencode($showdata['calendar_details'])
 			. '&amp;trp=true;'
-			. '"' . gigpress_target() . '>' . __("Add to Google Calendar", "gigpress") . '</a>';	
+			. '"' . gigpress_target() . '>' . $gcal . '</a>';	
 	}
-		
 	return $showdata;
 }
 
@@ -566,17 +592,16 @@ function gigpress_export() {
 	$name = 'gigpress-export-' . date('Y-m-d') . '.csv';
 	
 	$fields = array(
-		"Date", "Time", "End date", "Artist", "Artist URL", "Venue", "Address", "City", "State", "Postal code", "Country", "Venue phone", "Venue URL", "Admittance", "Price", "Ticket URL", "Ticket phone", "External URL", "Notes", "Tour", "Status", "Related ID", "Related URL"
+		"Date", "Time", "End date", "Program", "Program URL", "Program Notes", "Venue", "Address", "City", "State", "Postal code", "Country", "Venue phone", "Venue URL", "Admittance", "Price", "Ticket URL", "Ticket phone", "External URL", "Notes", "Tour", "Status", "Related ID", "Related URL"
 	);
 	
-	$shows = $wpdb->get_results("
-		SELECT show_date, show_time, show_expire, artist_name, artist_url, venue_name, venue_address, venue_city, venue_state, venue_postal_code, venue_country, venue_phone, venue_url, show_ages, show_price, show_tix_url, show_tix_phone, show_external_url, show_notes, tour_name, show_status, show_related FROM ". GIGPRESS_VENUES ." as v, " . GIGPRESS_ARTISTS . " as a, " . GIGPRESS_SHOWS . " as s LEFT JOIN " . GIGPRESS_TOURS . " as t ON s.show_tour_id = t.tour_id WHERE show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id" . $further_where . " ORDER BY show_date DESC,show_time DESC
+	$shows = $wpdb->get_results("SELECT show_date, show_time, show_expire, artist_name, artist_url, program_notes, venue_name, venue_address, venue_city, venue_state, venue_postal_code, venue_country, venue_phone, venue_url, show_ages, show_price, show_tix_url, show_tix_phone, show_external_url, show_notes, tour_name, show_status, show_related FROM ". GIGPRESS_VENUES ." as v, " . GIGPRESS_ARTISTS . " as a, " . GIGPRESS_SHOWS . " as s LEFT JOIN " . GIGPRESS_TOURS . " as t ON s.show_tour_id = t.tour_id WHERE show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id" . $further_where . " ORDER BY show_date DESC,show_time DESC
 		", ARRAY_A);
 	
 	if($shows) {
 		$export_shows = array();
 		foreach ( $shows as $show ) {
-			$show['show_time'] = ( $show['show_time']{7} == 1 ) ? '' : $show['show_time'];
+			$show['show_time'] = ( $show['show_time']{7} == 1 ) ? '' : $show['show_time']; // show_time.secs==1 means ignore
 			$show['show_expire'] = ( $show['show_date'] == $show['show_expire'] ) ? '' : $show['show_expire'];
 			$show['show_related_url'] = ( $show['show_related'] ) ? gigpress_related_link($show['show_related'], 'url') : '';
 			$export_shows[] = $show;
@@ -611,7 +636,7 @@ function fetch_gigpress_artists() {
 	global $wpdb;
 	$artists = $wpdb->get_results("
 		SELECT * FROM ". GIGPRESS_ARTISTS ." 
-		ORDER BY artist_order ASC,artist_alpha ASC");
+		ORDER BY artist_alpha ASC");
 	return ($artists !== FALSE) ? $artists : FALSE;
 }
 
@@ -669,6 +694,7 @@ if($gpo['related_position'] != "nowhere") {
 add_action('widgets_init', 'gigpress_load_widgets');
 
 add_shortcode('gigpress_shows','gigpress_shows');
+add_shortcode('gigpress_programs','gigpress_programs');
 add_shortcode('gigpress_menu','gigpress_menu');
 add_shortcode('gigpress_upcoming','gigpress_upcoming');
 add_shortcode('gigpress_archive','gigpress_archive');

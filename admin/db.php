@@ -47,6 +47,7 @@ artist_name VARCHAR(255) NOT NULL,
 artist_alpha VARCHAR(255) NOT NULL,
 artist_url VARCHAR(255),
 artist_order INTEGER(4) DEFAULT 0,
+program_notes TEXT,
 PRIMARY KEY  (artist_id)
 ) $charset_collate";
 
@@ -172,31 +173,17 @@ if ( $gpo['db_version'] < GIGPRESS_DB_VERSION ) {
 	switch($gpo['db_version']) {
 		case "1.0":
 			gigpress_db_upgrade_110();
-			gigpress_db_upgrade_120();
-			gigpress_db_upgrade_130();
-			gigpress_db_upgrade_140();
-			gigpress_db_upgrade_160();
-			break;		
 		case "1.1":
 			gigpress_db_upgrade_120();
-			gigpress_db_upgrade_130();
-			gigpress_db_upgrade_140();
-			gigpress_db_upgrade_160();
-			break;
 		case "1.2":
 			gigpress_db_upgrade_130();
-			gigpress_db_upgrade_140();
-			gigpress_db_upgrade_160();
-			break;
 		case "1.3":
 			gigpress_db_upgrade_140();
-			gigpress_db_upgrade_160();
-			break;
 		case "1.4":
-			gigpress_db_upgrade_160();
-			break;
 		case "1.5":
 			gigpress_db_upgrade_160();
+		case "1.6":
+			gigpress_db_upgrade_170();
 			break;
 	}
 	
@@ -332,6 +319,16 @@ function gigpress_db_upgrade_160() {
 		}
 	}
 
+}
+
+function gigpress_db_upgrade_170() {
+	
+	global $wpdb;
+	
+	// Add alpha values for all existing artists
+	$artists = $wpdb->get_results(
+		"ALTER TABLE " . GIGPRESS_ARTISTS . " ADD program_notes TEXT"
+	);
 }
 
 function gigpress_uninstall() {

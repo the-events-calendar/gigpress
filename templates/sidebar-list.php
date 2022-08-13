@@ -15,7 +15,7 @@
 		<?php if($showdata['end_date']) echo ' - '.$showdata['end_date']; ?>
 	</span>
 	<span>
-	<?php if( ! $group_artists && ! $artist && $total_artists > 1) : ?>
+	<?php if( ! $group_artists && ! $program_id && $total_programs > 1) : ?>
 		<span class="gigpress-sidebar-artist"><?php echo $showdata['artist']; ?></span> 
 		<span class="gigpress-sidebar-prep"><?php _e("in", "gigpress"); ?></span>
 	<?php endif; ?>

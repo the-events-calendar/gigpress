@@ -67,6 +67,7 @@ function gigpress_add() {
 			$show_venue_id = absint($_POST['show_venue_id']);
 			$new_artist_name = gigpress_db_out(gigpress_db_in($_POST['artist_name']));
 			$artist_url = gigpress_db_out(gigpress_db_in($_POST['artist_url']));
+			$program_notes = gigpress_db_out(gigpress_db_in($_POST['program_notes']));
 			$new_venue_name = gigpress_db_out(gigpress_db_in($_POST['venue_name']));
 			$venue_address = gigpress_db_out(gigpress_db_in($_POST['venue_address']));
 			$new_venue_city = gigpress_db_out(gigpress_db_in($_POST['venue_city']));
@@ -353,10 +354,10 @@ function gigpress_add() {
 						</td>
 					</tr>
 				<tr>
-					<th scope="row"><label for="show_artist_id"><?php _e("Artist", "gigpress") ?>:<span class="gp-required">*</span></label></th>
+					<th scope="row"><label for="show_artist_id"><?php _e("Program", "gigpress") ?>:<span class="gp-required">*</span></label></th>
 					<td>
 					<select name="show_artist_id" id="show_artist_id" class="can-add-new">
-						<option value="new"<?php if(isset($show_artist_id) && $show_artist_id == 'new') echo(' selected="selected"'); ?>><?php _e("Add a new artist", "gigpress"); ?></option>
+						<option value="new"<?php if(isset($show_artist_id) && $show_artist_id == 'new') echo(' selected="selected"'); ?>><?php _e("Add a new Program", "gigpress"); ?></option>
 						<option value="">------------------</option>
 					  	<?php $artists = fetch_gigpress_artists();
 							if($artists != FALSE) {
@@ -367,7 +368,7 @@ function gigpress_add() {
 									echo(">$artist_name</option>\n\t\t\t");
 								}
 							} else {
-								echo('<option value="0">' . __("No artists in the database", "gigpress") . '</option>');
+								echo('<option value="0">' . __("No Programs in the database", "gigpress") . '</option>');
 								$no_artists = true;
 							}
 						?>
@@ -378,13 +379,19 @@ function gigpress_add() {
 				 
 				<tbody id="show_artist_id_new" class="gigpress-addition<?php if(!isset($show_artist_id) || (isset($show_artist_id) && $show_artist_id != 'new') && !isset($no_artists)) echo(' gigpress-inactive'); ?>">
 				<tr>
-					<th scope="row"><label for="artist_name"><?php _e("Artist name", "gigpress"); ?>:<span class="gp-required">*</span></label></th>
+					<th scope="row"><label for="artist_name"><?php _e("Program name", "gigpress"); ?>:<span class="gp-required">*</span></label></th>
 					<td><input type="text" size="48" name="artist_name" id="artist_name" value="<?php if(isset($new_artist_name)) echo $new_artist_name; ?>"<?php if(isset($result['artist_name'])) echo(' class="gigpress-error"'); ?> /></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="artist_url"><?php _e("Artist URL", "gigpress"); ?>:</label></th>
+					<th scope="row"><label for="artist_url"><?php _e("Program URL", "gigpress"); ?>:</label></th>
 					<td>
 						<input name="artist_url" id="artist_url" type="text" size="48" value="<?php if(isset($artist_url)) echo $artist_url; ?>" />
+					</td>
+				</tr>				
+				<tr>
+					<th scope="row"><label for="program_notes"><?php _e("program notes", "gigpress"); ?>:</label></th>
+					<td>
+						<textarea name="program_notes" id="program_notes" cols="45" rows="5"><?php if(isset($program_notes)) echo $program_notes; ?></textarea><br /><span class="description"><?php _e("Use this space to describe program", "gigpress"); ?></span>
 					</td>
 				</tr>				
 				</tbody>
@@ -445,9 +452,13 @@ function gigpress_add() {
 						<select name="venue_country" id="venue_country">
 						<?php global $gp_countries;
 						foreach ($gp_countries as $code => $name) {
-							$sel = ($code == $venue_country) ? ' selected="selected"' : '';
-							echo('<option value="' . $code . '"' . $sel . '>' . $name . '</option>');
-						} ?>
+							$venue_country = isset( $venue_country ) ? $venue_country : $gpo['default_country'];
+							printf(
+									'<option value="%1$s" %2$s>%3$s</option>',
+									$code,
+									selected( $venue_country, $code ),
+									$name);
+                        } ?>
 						</select>
 					</td>
 				  </tr>
@@ -469,6 +480,7 @@ function gigpress_add() {
 					<td><select name="show_status" id="show_status">
 							<option value="active"<?php if($show_status == 'active') echo(' selected="selected"'); ?>><?php _e("Active", "gigpress"); ?></option>
 							<option value="soldout"<?php if($show_status == 'soldout') echo(' selected="selected"'); ?>><?php _e("Sold Out", "gigpress"); ?></option>
+							<option value="postponed"<?php if($show_status == 'postponed') echo(' selected="selected"'); ?>><?php _e("Postponed", "gigpress"); ?></option>
 							<option value="cancelled"<?php if($show_status == 'cancelled') echo(' selected="selected"'); ?>><?php _e("Cancelled", "gigpress"); ?></option>
 						</select>
 					</td>

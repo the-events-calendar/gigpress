@@ -1,5 +1,5 @@
 === GigPress ===
-Contributors: ModernTribe, mrherbivore, borkweb, zbtirrell, barry.hughes, bordoni, brianjessee, brook-tribe, geoffgraham, ggwicz, leahkoerper, neillmcshea, nicosantos, peterchester, reid.peifer, shelbelliott, shane.pearlman, aguseo, tribecari, trishasalas, courane01
+Contributors: ModernTribe, mrherbivore, airdrummer
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.0
 Tested up to: 4.6.1
@@ -35,10 +35,13 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
+= 2.6 airdrummer added Postponed status
+= 2.5 airdrummer replace artist_id with program_id
+= 2.4 airdrummer replace artist with program
+
 = 2.3.18 [TBD] =
 
 * Tweak - Improvements to source code (props to @leecollings)
-* Fix - Prevent PHP Notice when no shows are added, but multiple artists are present. [68765]
 
 = 2.3.17 [2016-09-15] =
 

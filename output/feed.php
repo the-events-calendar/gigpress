@@ -6,10 +6,14 @@ function gigpress_feed() {
 	header('Content-type: text/xml; charset='.get_bloginfo('charset'));
 	echo('<?xml version="1.0" encoding="'.get_bloginfo('charset').'"?>
 	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">');
-	
+	$program_id = FALSE;
+	if ( isset($_GET['artist']) )
+		$program_id	= $_GET['artist'];
+	if ( isset($_GET['program_id']) )
+		$program_id	= $_GET['program_id'];
 	$filter = '';		
 	$filter .= (isset($_GET['tour'])) ? $wpdb->prepare('AND s.show_tour_id = %d ',  $_GET['tour']) : '';
-	$filter .= (isset($_GET['artist'])) ? $wpdb->prepare('AND s.show_artist_id = %d ', $_GET['artist']) : '';
+	$filter .= ($program_id) ? $wpdb->prepare('AND s.show_artist_id = %d ', $program_id) : '';
 	$filter .= (isset($_GET['venue'])) ? $wpdb->prepare('AND s.show_venue_id = %d ', $_GET['venue']) : '';
 	$limit = (!empty($gpo['rss_limit'])) ? $gpo['rss_limit'] : 100;
 	
@@ -25,9 +29,9 @@ function gigpress_feed() {
 			if($count == 1) : ?>
 			
 			<channel>
-			<title><?php echo wptexturize($gpo['rss_title']); if(isset($_GET['artist'])) echo(': ' . $showdata['artist_plain']); if(isset($_GET['tour'])) echo(': ' . $showdata['tour']); if(isset($_GET['venue'])) echo(': ' . $showdata['venue_plain']); ?></title>
-			<description><?php echo wptexturize($gpo['rss_title']); if(isset($_GET['artist'])) echo(': ' . $showdata['artist_plain']); if(isset($_GET['tour'])) echo(': ' . $showdata['tour']); if(isset($_GET['venue'])) echo(': ' . $showdata['venue_plain']); ?></description>
-			<atom:link href="<?php echo GIGPRESS_RSS; if(isset($_GET['artist'])) echo('&amp;artist=' . $_GET['artist']); if(isset($_GET['tour'])) echo('&amp;tour=' . $_GET['tour']); if(isset($_GET['venue'])) echo('&amp;venue=' . $_GET['venue']); ?>" rel="self" type="application/rss+xml" />
+			<title><?php echo wptexturize($gpo['rss_title']); if($program_id) echo(': ' . $showdata['artist_plain']); if(isset($_GET['tour'])) echo(': ' . $showdata['tour']); if(isset($_GET['venue'])) echo(': ' . $showdata['venue_plain']); ?></title>
+			<description><?php echo wptexturize($gpo['rss_title']); if($program_id) echo(': ' . $showdata['artist_plain']); if(isset($_GET['tour'])) echo(': ' . $showdata['tour']); if(isset($_GET['venue'])) echo(': ' . $showdata['venue_plain']); ?></description>
+			<atom:link href="<?php echo GIGPRESS_RSS; if(isset($program_id)) echo('&amp;program_id=' . $program_id); if(isset($_GET['tour'])) echo('&amp;tour=' . $_GET['tour']); if(isset($_GET['venue'])) echo('&amp;venue=' . $_GET['venue']); ?>" rel="self" type="application/rss+xml" />
 			<link><?php echo GIGPRESS_URL; ?></link>
 			
 			<?php endif; ?>			
