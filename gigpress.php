@@ -53,7 +53,7 @@ if ( ! defined( 'GIGPRESS_VENUES' ) )
 	define( 'GIGPRESS_VENUES', $wpdb->prefix . 'gigpress_venues' );
 
 if ( ! defined( 'GIGPRESS_VERSION' ) )
-	define( 'GIGPRESS_VERSION', '2.3.26.bc' );
+	define( 'GIGPRESS_VERSION', '2.3.27.bc' );
 
 if ( ! defined( 'GIGPRESS_DB_VERSION' ) )
 	define( 'GIGPRESS_DB_VERSION', '1.7' );
@@ -358,7 +358,7 @@ function gigpress_prepare( $show, $scope = 'public' ) {
 			$showdata['calendar_end'] = ( $show->show_expire == $show->show_date) ? $showdata['calendar_start'] : str_replace(array( '-',':',' ' ), array( '','','T' ), gigpress_gmt( $show->show_expire . ' ' . $show->show_time) ) . 'Z';
 		}
 
-		$showdata['date'] = ($show->show_related && !empty($gpo['relatedlink_date']) && $scope == 'public) ? '<a href="' . gigpress_related_link($show->show_related, "url") . '">' . mysql2date($gpo['date_format'], $show->show_date) . '</a>' : mysql2date($gpo['date_format'], $show->show_date);
+		$showdata['date'] = ($show->show_related && !empty($gpo['relatedlink_date']) && $scope == 'public') ? '<a href="' . gigpress_related_link($show->show_related, "url") . '">' . mysql2date($gpo['date_format'], $show->show_date) . '</a>' : mysql2date($gpo['date_format'], $show->show_date);
 		$showdata['date_long'] = mysql2date($gpo['date_format_long'], $show->show_date);		
 		$showdata['date_mysql'] = $show->show_date;		
 		$showdata['end_date'] = ($show->show_date != $show->show_expire) 
