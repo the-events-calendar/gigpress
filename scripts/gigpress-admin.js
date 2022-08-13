@@ -1,23 +1,23 @@
 $gp=jQuery.noConflict();
 
-$gp(document).ready(function()
+$gp(function()
 	{
 		// If we're using the 12-hour clock, then do this magic
 		if ( $gp('select#gp_hh.twelve').length > 0 ) {
 			var time = $gp('select#gp_hh option:selected').parent().attr('label');
 			$gp('span#ampm').text(time);
-			
-			$gp('select#gp_hh.twelve').change(function()
+
+			$gp('select#gp_hh.twelve').on('change',function()
 				{
 					var time = $gp('select#gp_hh option:selected').parent().attr('label');
 					$gp('span#ampm').text(time);
 				}
 			);
 		}
-		
+
 		$gp('tr.gigpress-inactive, tbody.gigpress-inactive').hide();
-		
-		$gp('input#show_multi').click(function()
+
+		$gp('input#show_multi').on('click',function()
 			{
 				// $gp('tr#expire').toggle();
 				// Workaround for IE 8 nonsense
@@ -25,8 +25,8 @@ $gp(document).ready(function()
 				this.blur();
 			}
 		);
-		
-		$gp('select.can-add-new').change(function()
+
+		$gp('select.can-add-new').on('change',function()
 			{
 				var scope = $gp(this);
 				var target = $gp(this).attr('id') + '_new';
@@ -37,7 +37,7 @@ $gp(document).ready(function()
 				}
 			}
 		);
-		
+
 		// Return a helper with preserved width of cells
 		var fixHelper = function(e, ui) {
 			ui.children().each(function() {
@@ -45,24 +45,24 @@ $gp(document).ready(function()
 			});
 			return ui;
 		};
-				
+
 		// Sortable artist table
 		$gp('img.gp-sort-handle').show();
 		$gp('.gigpress-artist-sort').sortable({
-			handle: '.gp-sort-handle', 
+			handle: '.gp-sort-handle',
 			axis: 'y',
 			helper: fixHelper,
-			update : function () { 
+			update : function () {
 		      var order = $gp('.gigpress-artist-sort').sortable('serialize');
 		      $gp("#artist-sort-update").load(ajaxurl, order + '&action=gigpress_reorder_artists&cachebuster=' + Math.floor(Math.random()*99999), function()
 		      	{
-		   			$gp("#artist-sort-update").fadeIn(100, function(){$gp(this).fadeOut(1500)});  
+		   			$gp("#artist-sort-update").fadeIn(100, function(){$gp(this).fadeOut(1500)});
 		      	}
-		      ); 
-		    } 
+		      );
+		    }
 		});
-		
-		// Remove the "Manual Offset" optgroup from the timezone menu 
-		$gp('select[name="gigpress_settings[timezone]"] optgroup').last().remove();			
+
+		// Remove the "Manual Offset" optgroup from the timezone menu
+		$gp('select[name="gigpress_settings[timezone]"] optgroup').last().remove();
 	}
 );

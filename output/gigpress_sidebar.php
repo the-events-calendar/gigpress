@@ -1,103 +1,80 @@
 <?php
 
-class Gigpress_widget extends WP_Widget
-{
+class Gigpress_widget extends WP_Widget {
 
-	function __construct()
-	{
-		$widget_opts = array('description' => __("List upcoming GigPress shows", "gigpress") );
-		parent::__construct('gigpress', 'GigPress', $widget_opts);
+	function __construct() {
+		$widget_opts = array( 'description' => __( "List upcoming GigPress shows", "gigpress" ) );
+		parent::__construct( 'gigpress', 'GigPress', $widget_opts );
 	}
-	
-	function widget($args, $instance)
-	{
-		extract($args, EXTR_SKIP);
+
+	function widget( $args, $instance ) {
+		extract( $args, EXTR_SKIP );
 
 		echo $before_widget;
-		if (!empty($instance['title'])) echo $before_title . $instance['title'] . $after_title;
-		echo gigpress_sidebar($instance);
+		if ( ! empty( $instance['title'] ) ) {
+			echo $before_title . $instance['title'] . $after_title;
+		}
+		echo gigpress_sidebar( $instance );
 		echo $after_widget;
 	}
-	
-   function update($new_instance, $old_instance)
-   {
+
+	function update( $new_instance, $old_instance ) {
 		$instance = array();
-		$allowed = array(
-			'title', 
+		$allowed  = array(
+			'title',
 			'limit',
 			'scope',
-			'show_tours', 
-			'group_artists', 
+			'show_tours',
+			'group_artists',
 			'artist_order',
-			'artist', 
-			'tour', 
-			'venue',				
-			'show_feeds', 
-			'link_text'
+			'artist',
+			'related',
+			'tour',
+			'venue',
+			'show_feeds',
+			'link_text',
 		);
-		foreach($new_instance as $option => $value)
-		{
-			if(in_array($option, $allowed))
-			{
-				if($option == 'limit' && (!is_numeric($value) || $value === 0))
-				{
+		foreach ( $new_instance as $option => $value ) {
+			if ( in_array( $option, $allowed ) ) {
+				if ( $option == 'limit' && ( ! is_numeric( $value ) || $value === 0 ) ) {
 					$instance['limit'] = 5;
-				}
-				else
-				{			
-					$instance[$option] = gigpress_db_in($value);
+				} else {
+					$instance[ $option ] = gigpress_db_in( $value );
 				}
 			}
 		}
-        return $instance;
-    }
-    
-    function form($instance)
-    {
+
+		return $instance;
+	}
+
+	function form( $instance ) {
 		global $wpdb;
-		
+
 		$defaults = array(
-			'title' => 'Upcoming shows', 
-			'limit' => 5,
-			'scope' => 'upcoming',
-			'show_tours' => 'no',
+			'title'         => 'Upcoming shows',
+			'limit'         => 5,
+			'scope'         => 'upcoming',
+			'show_tours'    => 'no',
 			'group_artists' => 'no',
-			'artist_order' => 'alphabetical', 
-			'artist' => '', 
-			'tour' => '', 
-			'venue' => '', 
-			'show_feeds' => 'no', 
-			'link_text' => ''
-		);			
-		
-		$instance = wp_parse_args($instance, $defaults);
-		extract($instance);			
-		
+			'artist_order'  => 'alphabetical',
+			'artist'        => '',
+			'related'       => '',
+			'tour'          => '',
+			'venue'         => '',
+			'show_feeds'    => 'no',
+			'link_text'     => '',
+		);
+
+		$instance = wp_parse_args( $instance, $defaults );
+		extract( $instance );
+
 		?>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title'); ?>: 
-				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
-			</label>
-		</p>
-		
-		<p>
-			<select style="width:100%;" id="<?php echo $this->get_field_id('scope'); ?>" name="<?php echo $this->get_field_name('scope'); ?>">	
-				<option value="upcoming"<?php if($scope == 'upcoming') echo ' selected="selected"'; ?>> 
-					<?php _e('Display upcoming shows', 'gigpress'); ?>
-				</option>
-				<option value="today"<?php if($scope == 'today') echo ' selected="selected"'; ?>> 
-					<?php _e("Display today's shows", 'gigpress'); ?>
-				</option>
-				<option value="past"<?php if($scope == 'past') echo ' selected="selected"'; ?>> 
-					<?php _e("Display past shows", 'gigpress'); ?>
-				</option>
-			</select>
-		</p>		
 
 		<p>
-			<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Number of shows to list', 'gigpress'); ?>: 
-				<input style="width: 25px; text-align: center;" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" />
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title' ); ?>:
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
+				       name="<?php echo $this->get_field_name( 'title' ); ?>" type="text"
+				       value="<?php echo $title; ?>"/>
 			</label>
 		</p>
 
@@ -153,7 +130,7 @@ class Gigpress_widget extends WP_Widget
 				<small><?php _e('Ignored when filtering by program, tour, or venue.', 'gigpress'); ?></small>
 			</label>
 		</p>
-		
+
 		<p>
 			<select style="width:100%;" id="<?php echo $this->get_field_id('artist_order'); ?>" name="<?php echo $this->get_field_name('artist_order'); ?>">
 				<option value="alphabetical"<?php if($artist_order == 'alphabetical') echo ' selected="selected"'; ?>>
@@ -168,66 +145,115 @@ class Gigpress_widget extends WP_Widget
 
 		<p>
 			<label>
-				<input id="<?php echo $this->get_field_id('show_tours'); ?>" name="<?php echo $this->get_field_name('show_tours'); ?>" type="checkbox" value="yes"<?php if($show_tours == 'yes') echo ' checked="checked"'; ?> /> 
-				<?php _e('Group by tour', 'gigpress'); ?>
+				<input id="<?php echo $this->get_field_id( 'group_artists' ); ?>"
+				       name="<?php echo $this->get_field_name( 'group_artists' ); ?>" type="checkbox"
+				       value="yes"<?php if ( $group_artists == 'yes' ) {
+					echo ' checked="checked"';
+				} ?> />
+				<?php _e( 'Group by artist', 'gigpress' ); ?><br/>
+				<small><?php _e( 'Ignored when filtering by artist, tour, or venue.', 'gigpress' ); ?></small>
+			</label>
+		</p>
+
+		<p>
+			<select style="width:100%;" id="<?php echo $this->get_field_id( 'artist_order' ); ?>"
+			        name="<?php echo $this->get_field_name( 'artist_order' ); ?>">
+				<option value="alphabetical"<?php if ( $artist_order == 'alphabetical' ) {
+					echo ' selected="selected"';
+				} ?>>
+					<?php _e( "Order artists alphabetically", "gigpress" ); ?>
+				</option>
+				<option value="custom"<?php if ( $artist_order == 'custom' ) {
+					echo ' selected="selected"';
+				} ?>>
+					<?php _e( "Order artists by custom order", "gigpress" ); ?>
+				</option>
+			</select><br/>
+			<small><?php _e( 'Ignored when not grouping by artist.', 'gigpress' ); ?></small>
+		</p>
+
+		<p>
+			<label>
+				<input id="<?php echo $this->get_field_id( 'show_tours' ); ?>"
+				       name="<?php echo $this->get_field_name( 'show_tours' ); ?>" type="checkbox"
+				       value="yes"<?php if ( $show_tours == 'yes' ) {
+					echo ' checked="checked"';
+				} ?> />
+				<?php _e( 'Group by tour', 'gigpress' ); ?>
 			</label>
 		</p>
 
 		<p>
 			<label>
-				<input id="<?php echo $this->get_field_id('show_feeds'); ?>" name="<?php echo $this->get_field_name('show_feeds'); ?>" type="checkbox" value="yes"<?php if($show_feeds == 'yes') echo ' checked="checked"'; ?> /> 
-				<?php _e('Show RSS and iCal feeds', 'gigpress'); ?>
+				<input id="<?php echo $this->get_field_id( 'show_feeds' ); ?>"
+				       name="<?php echo $this->get_field_name( 'show_feeds' ); ?>" type="checkbox"
+				       value="yes"<?php if ( $show_feeds == 'yes' ) {
+					echo ' checked="checked"';
+				} ?> />
+				<?php _e( 'Show RSS and iCal feeds', 'gigpress' ); ?>
 			</label>
 		</p>
-										
+
 		<p>
-			<label for="<?php echo $this->get_field_id('link_text'); ?>"><?php _e('Link text'); ?>: 
-				<input class="widefat" id="<?php echo $this->get_field_id('link_text'); ?>" name="<?php echo $this->get_field_name('link_text'); ?>" type="text" value="<?php echo $link_text; ?>" /><br />
-				<small><?php _e('This phrase is used to link to the page specified in your GigPress settings. (Leave blank to disable this link.)', 'gigpress'); ?></small>
+			<label for="<?php echo $this->get_field_id( 'link_text' ); ?>"><?php _e( 'Link text' ); ?>:
+				<input class="widefat" id="<?php echo $this->get_field_id( 'link_text' ); ?>"
+				       name="<?php echo $this->get_field_name( 'link_text' ); ?>" type="text"
+				       value="<?php echo $link_text; ?>"/><br/>
+				<small><?php _e( 'This phrase is used to link to the page specified in your GigPress settings. (Leave blank to disable this link.)', 'gigpress' ); ?></small>
 			</label>
 		</p>
-<?php }
+	<?php }
 
 }
 
 // Register the widget
 function gigpress_load_widgets() {
-	register_widget('Gigpress_widget');
+	register_widget( 'Gigpress_widget' );
 }
 
 
-function gigpress_sidebar($filter = null) {
+function gigpress_sidebar( $filter = null ) {
 
 	global $wpdb, $gpo;
 	$further_where = '';
 
-	// Variables we need for conditionals
-	
+	// Variables we need for conditionals	
+	$some_results = false;
+
 	// Check total number of programs
-	$total_programs = $wpdb->get_var("SELECT count(*) from " . GIGPRESS_ARTISTS);
-	
+	$total_programs = $wpdb->get_var("SELECT count(*) from " . GIGPRESS_ARTISTS);	
+
 	// Check for sorting
-	if(isset($filter['sort'])) $sort = $filter['sort'];
-	
+	if ( isset( $filter['sort'] ) ) {
+		$sort = $filter['sort'];
+	}
+
 	// Scope
-	switch($filter['scope']) {
+	switch ( $filter['scope'] ) {
 		case 'today':
-			$date_condition = "show_expire >= '".GIGPRESS_NOW."' AND show_date <= '".GIGPRESS_NOW."'";
-			if(!isset($sort)) $sort = 'asc';
+			$date_condition = "show_expire >= '" . GIGPRESS_NOW . "' AND show_date <= '" . GIGPRESS_NOW . "'";
+			if ( ! isset( $sort ) ) {
+				$sort = 'asc';
+			}
 			break;
 		case 'past':
-			$date_condition = "show_expire < '".GIGPRESS_NOW."'";
-			if(!isset($sort)) $sort = 'desc';
+			$date_condition = "show_expire < '" . GIGPRESS_NOW . "'";
+			if ( ! isset( $sort ) ) {
+				$sort = 'desc';
+			}
 			break;
 		case 'all':
 			$date_condition = "show_date != ''";
-			if(!isset($sort)) $sort = 'desc';
+			if ( ! isset( $sort ) ) {
+				$sort = 'desc';
+			}
 			break;
 		default:
-			$date_condition = "show_expire >= '".GIGPRESS_NOW."'";
-			if(!isset($sort)) $sort = 'asc';
+			$date_condition = "show_expire >= '" . GIGPRESS_NOW . "'";
+			if ( ! isset( $sort ) ) {
+				$sort = 'asc';
+			}
 	}
-
 	
 	// Number of shows to list (per program if grouping by program)	
 	$limit = (isset($filter['limit']) && is_numeric($filter['limit'])) ? $wpdb->prepare('%d', $filter['limit']) : 5;
@@ -245,15 +271,19 @@ function gigpress_sidebar($filter = null) {
 	$program_id = isset($filter['artist']) ? $filter['artist'] : FALSE;
 	$tour = isset($filter['tour']) ? $filter['tour'] : FALSE;
 	$venue = isset($filter['venue']) ? $filter['venue'] : FALSE;
-	
+	$related = isset( $filter['related'] ) ? $filter['related'] : false;
+
 	// Display feed links and link to more shows?
-	$show_feeds = (isset($filter['show_feeds']) && $filter['show_feeds'] == 'yes') ? 'yes' : FALSE;
-	$link = (isset($filter['link_text']) && !empty($gpo['shows_page'])) ? wptexturize($filter['link_text']) : FALSE;
+	$show_feeds = ( isset( $filter['show_feeds'] ) && $filter['show_feeds'] == 'yes' ) ? 'yes' : false;
+	$link       = ( isset( $filter['link_text'] ) && ! empty( $gpo['shows_page'] ) ) ? wptexturize( $filter['link_text'] ) : false;
 
 	// Establish the variable parts of the query
-	if($program_id) $further_where .= ' AND show_artist_id IN(' . $wpdb->prepare('%s', $program_id).')';
-	if($tour) $further_where .= ' AND show_tour_id IN(' . $wpdb->prepare('%s', $tour).')';
-	if($venue) $further_where .= ' AND show_venue_id IN(' . $wpdb->prepare('%s', $venue).')';
+	if($program_id) 
+		$further_where .= ' AND show_artist_id IN(' . $wpdb->prepare('%s', $program_id).')';
+	if($tour) 
+		$further_where .= ' AND show_tour_id IN(' . $wpdb->prepare('%s', $tour).')';
+	if($venue) 
+		$further_where .= ' AND show_venue_id IN(' . $wpdb->prepare('%s', $venue).')';
 	$artist_order = ($artist_order == 'custom') ?  "artist_order ASC," : '';
 		
 	ob_start();
@@ -281,47 +311,50 @@ function gigpress_sidebar($filter = null) {
 					'artist' => wptexturize($program_group->artist_name),
 					'artist_id' => $program_group->artist_id
 				);
-			
-				include gigpress_template('sidebar-artist-heading');
-				include gigpress_template('sidebar-list-start');
-											
-				foreach($shows as $show) {
-				
+
+				include gigpress_template( 'sidebar-artist-heading' );
+				include gigpress_template( 'sidebar-list-start' );
+
+				foreach ( $shows as $show ) {
+
 					// For each individual show
-					
-					$showdata = gigpress_prepare($show, 'public');
-					
+
+					$showdata = gigpress_prepare( $show, 'public' );
+
 					// Close the previous tour if needed
-					if($show_tours && $current_tour && $showdata['tour'] != $current_tour) {
-						include gigpress_template('sidebar-tour-end');					
+					if ( $show_tours && $current_tour && $showdata['tour'] != $current_tour ) {
+						include gigpress_template( 'sidebar-tour-end' );
 					}
-					
+
 					// Open the current tour if needed
-					if($show_tours && $showdata['tour'] && $showdata['tour'] != $current_tour && !$tour) {
+					if ( $show_tours && $showdata['tour'] && $showdata['tour'] != $current_tour && ! $tour ) {
 						$current_tour = $showdata['tour'];
-						include gigpress_template('sidebar-tour-heading');
+						include gigpress_template( 'sidebar-tour-heading' );
 					}
-					
+
 					// Zero-out $current_tour
-					if(empty($showdata['tour'])) $current_tour = '';
-					
+					if ( empty( $showdata['tour'] ) ) {
+						$current_tour = '';
+					}
+
 					// Prepare the class
-					$class = ($i % 2) ? 'gigpress-alt ' : ''; $i++;
-					$class .= ($showdata['tour'] && $show_tours) ? 'gigpress-tour ' . $showdata['status'] : $showdata['status'];
-					
+					$class = ( $i % 2 ) ? 'gigpress-alt ' : '';
+					$i ++;
+					$class .= ( $showdata['tour'] && $show_tours ) ? 'gigpress-tour ' . $showdata['status'] : $showdata['status'];
+
 					// Display the show
-					include gigpress_template('sidebar-list');
-				
+					include gigpress_template( 'sidebar-list' );
+
 				}
-				
+
 				// Close the current tour if needed
-				if($show_tours && $current_tour) {
-					include gigpress_template('sidebar-tour-end');					
+				if ( $show_tours && $current_tour ) {
+					include gigpress_template( 'sidebar-tour-end' );
 				}
-				
+
 				// Close the list
-				include gigpress_template('sidebar-list-end');
-				
+				include gigpress_template( 'sidebar-list-end' );
+
 			}
 		}
 		
@@ -330,72 +363,76 @@ function gigpress_sidebar($filter = null) {
 		// After all program groups
 			
 			// Display the list footer
-			include gigpress_template('sidebar-list-footer');	
+			include gigpress_template( 'sidebar-list-footer' );
 
 		} else {
+
 			// No shows from any program
 			include gigpress_template('sidebar-list-empty');
 		}	
-			
+
 	} else {
 
 		// Not grouping by programs
 
-		$shows = $wpdb->get_results("SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE " . $date_condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id " . $further_where . " ORDER BY s.show_date " . $sort . ",s.show_expire " . $sort . ",s.show_time " . $sort . " LIMIT " . $limit);
-			
-		if($shows) {
-			
+		$shows = $wpdb->get_results( "SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS . " AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE " . $date_condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id " . $further_where . " ORDER BY s.show_date " . $sort . ",s.show_expire " . $sort . ",s.show_time " . $sort . " LIMIT " . $limit );
+
+		if ( $shows ) {
+
 			$current_tour = '';
-			$i = 0;
-			
-			include gigpress_template('sidebar-list-start');
-										
-			foreach($shows as $show) {
-			
+			$i            = 0;
+
+			include gigpress_template( 'sidebar-list-start' );
+
+			foreach ( $shows as $show ) {
+
 				// For each individual show
-				
-				$showdata = gigpress_prepare($show, 'public');
-				
+
+				$showdata = gigpress_prepare( $show, 'public' );
+
 				// Close the previous tour if needed
-				if($show_tours && $current_tour && $showdata['tour'] != $current_tour && !$tour) {
-					include gigpress_template('sidebar-tour-end');						
+				if ( $show_tours && $current_tour && $showdata['tour'] != $current_tour && ! $tour ) {
+					include gigpress_template( 'sidebar-tour-end' );
 				}
-				
+
 				// Open the current tour if needed
-				if($show_tours && $showdata['tour'] && $showdata['tour'] != $current_tour && !$tour) {
+				if ( $show_tours && $showdata['tour'] && $showdata['tour'] != $current_tour && ! $tour ) {
 					$current_tour = $showdata['tour'];
-					include gigpress_template('sidebar-tour-heading');
+					include gigpress_template( 'sidebar-tour-heading' );
 				}
-				
-				if(!$showdata['tour']) $current_tour = '';
-				
+
+				if ( ! $showdata['tour'] ) {
+					$current_tour = '';
+				}
+
 				// Prepare the class
-				$class = ($i % 2) ? 'gigpress-alt ' : ''; $i++;
-				$class .= ($showdata['tour'] && $show_tours) ? 'gigpress-tour ' . $showdata['status'] : $showdata['status'];
-				
+				$class = ( $i % 2 ) ? 'gigpress-alt ' : '';
+				$i ++;
+				$class .= ( $showdata['tour'] && $show_tours ) ? 'gigpress-tour ' . $showdata['status'] : $showdata['status'];
+
 				// Display the show
-				include gigpress_template('sidebar-list');
+				include gigpress_template( 'sidebar-list' );
 			}
-			
+
 			// Close the current tour if needed
-			if($show_tours && $current_tour && !$tour) {
-				include gigpress_template('sidebar-tour-end');						
+			if ( $show_tours && $current_tour && ! $tour ) {
+				include gigpress_template( 'sidebar-tour-end' );
 			}
-			
+
 			// Close the list
-			include gigpress_template('sidebar-list-end');
-			
+			include gigpress_template( 'sidebar-list-end' );
+
 			// Display the list footer
-			include gigpress_template('sidebar-list-footer');
-												
+			include gigpress_template( 'sidebar-list-footer' );
+
 		} else {
 			// No shows from any program
 			include gigpress_template('sidebar-list-empty');
 		}	
 	}
 
-	echo('<!-- Generated by GigPress ' . GIGPRESS_VERSION . ' -->
-	');
-	
+	echo( '<!-- Generated by GigPress ' . GIGPRESS_VERSION . ' -->
+	' );
+
 	return ob_get_clean();
 }
