@@ -850,8 +850,8 @@ function gigpress_import() {
 					$new_artist = array(
 						'artist_name' => gigpress_db_in($show['Program']),
 						'artist_alpha' => gigpress_db_in($alpha),
-						'artist_url' => gigpress_db_in(@$show['Artist URL'], FALSE),
-						'program_notes' => gigpress_db_in(@$show['program notes'], FALSE)
+						'artist_url' => gigpress_db_in(@$show['Program URL'], FALSE),
+						'program_notes' => gigpress_db_in(@$show['Program Notes'], FALSE)
 					);
 					$wpdb->insert(GIGPRESS_ARTISTS, $new_artist, '%s');
 					$show['artist_id'] = $wpdb->insert_id;
