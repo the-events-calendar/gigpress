@@ -1,8 +1,9 @@
 === GigPress ===
-Contributors: ModernTribe, mrherbivore, airdrummer
+Contributors: theeventscalendar, brianjessee, camwynsp, paulkim, sc0ttkclark, aguseo, bordoni, borkweb, GeoffBel, jentheo, leahkoerper, lucatume, neillmcshea, patriciahillebrandt, vicskf, zbtirrell, juanfra
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
-Requires at least: 4.0
-Tested up to: 4.6.1
+Requires at least: 4.5
+Tested up to: 5.7.1
+Stable tag: 2.3.26
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -17,11 +18,11 @@ GigPress is a powerful live performance listing and management plugin designed f
 * Link up a related post for each show and your show's full details will appear within your post. Automatically create new related posts with customizable titles when entering new shows.
 * No lock-in here. Import your shows from a CSV file, without fear of duplicate data. Export your shows database to CSV - filtered by artist, tour, and date.
 
-The team at <a href="http://tri.be/">Modern Tribe</a> stands by our work and offers light support to the community via the WordPress.org support forums on a weekly basis. Feel free to ask a question if you're having a problem with implementation or if you find bugs.
+The team at <a href="https://evnt.is/1aor">The Events Calendar</a> stands by our work and offers light support to the community via the WordPress.org support forums on a weekly basis. Feel free to ask a question if you're having a problem with implementation or if you find bugs.
 
 = Submitting patches =
 
-If you've identified a bug and want to submit a patch, we'd welcome it at our <a href="https://github.com/moderntribe/gigpress" target="_blank">GitHub page for GigPress.</a> Simply cue up your proposed patch as a pull request. We'll review it as part of our release cycle and merge into the codebase if appropriate from there. (If a pull request is rejected, we'll do our best to tell you why). Users whose pull requests are accepted will receive credit in the plugin's changelog. For more information, check out the readme at our GitHub page. Happy coding!
+If you've identified a bug and want to submit a patch, we'd welcome it at our <a href="https://github.com/the-events-calendar/gigpress" target="_blank">GitHub page for GigPress.</a> Simply cue up your proposed patch as a pull request. We'll review it as part of our release cycle and merge into the codebase if appropriate from there. (If a pull request is rejected, we'll do our best to tell you why). Users whose pull requests are accepted will receive credit in the plugin's changelog. For more information, check out the readme at our GitHub page. Happy coding!
 
 == Other information ==
 
@@ -35,13 +36,75 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 == Changelog ==
 
-= 2.6 airdrummer added Postponed status
-= 2.5 airdrummer replace artist_id with program_id
-= 2.4 airdrummer replace artist with program
+= 2.3.27bc [2022-08-13] @airdrummer
 
-= 2.3.18 [TBD] =
+* added Postponed status
+* replace artist_id with program_id
+* replace artist with program
 
+= 2.3.27 [2021-12-03] =
+
+* Feature - Add the ability to filter shows by related post in the sidebar widget. (props to @thomasdebruin)
+* Tweak - Fixed some spacing issues in some admin views. (props to @NekoJonez)
+
+= 2.3.26 [2021-05-12] =
+
+* Fix - Adjust how the textdomain is loaded to make translations work again. [GTRIA-535]
+* Fix - Fixed a query which produced an error on every page. [GTRIA-534]
+
+= 2.3.25.1 [2021-02-02] =
+
+* Fix - Resolve PHP compatibility issues with shorthand PHP tags.
+
+= 2.3.25 [2021-02-01] =
+
+* Fix - When saving an existing show, it now correctly loads the show edit form again with success message.
+* Fix - A few jQuery problems for WordPress 5.6 compatibility.
+* Fix - Support differently named plugin folders instead of hardcoding checks for `/gigpress/`. [GP-8]
+* Fix - Prevent PHP warnings for CSV exports. [GP-9]
+* Tweak - Added the possibility to view and restore deleted shows. [GP-6]
+* Tweak - Added `gigpress_country_list` filter to allow customizing the country list. [GP-12]
+* Tweak - Added `gigpress_venue_city_required` filter to allow setting the city as a not required field. [GP-13]
+
+= 2.3.24 [2020-04-22] =
+
+* Fix - Clean up typos in readme and code comments. (props @passoniate) [GP-4]
+* Fix - Resolve deprecated PHP notices in PHP 7.4 when accessing array offsets. (props @leecollings) [GP-3]
+* Tweak - Added options to show / hide the Google Calendar and iCalendar export links [GP-2]
+* Tweak - Added `gigpress_related_post_entries` filter to allow customizing the related post entries (props @thomasdebruin) [GP-5]
+
+= 2.3.23 [2019-02-28] =
+
+* Tweak - Update plugin header [90398]
+* Fix - Improve admin pagination accessibility and WordPress 5.1 compatibility. Thanks @jeiseman for submitting this fix! [123241]
+
+= 2.3.22 [2018-11-13] =
+
+* Fix - Allow GigPress constants to be overridden if new constants are defined in a callback to the `plugins_loaded` action hook. Thanks @thomasdebruin for submitting this fix! [116319]
+
+= 2.3.21 [2018-08-01] =
+
+* Fix - Add Privacy Policy guide for Gigpress [108457]
+
+= 2.3.20 [2018-03-28] =
+
+* Fix - Modified JSON LD output to remove HTML from the address locality field (our thanks to sinoq for flagging this problem) [101503]
+* Fix - Strip invalid characters from price field in JSON LD output (our thanks to dekruyff for highlighting this) [79184]
+* Tweak - Adjusted admin footer credit [85602]
+* Tweak - Added new filter hook `gigpress_show_json_ld_markup` to make modifications to JSON LD output easier [79184]
+* Tweak - Removed duplicate CSS property (props @joneiseman)
+
+= 2.3.19 [2017-08-24] =
+
+* Tweak - Added filter 'gigpress_related_post_types' to allow more than just "post" for related posts [85214]
+* Compatibility - Minimum supported version of WordPress is now 4.5
+
+= 2.3.18 [2017-06-28] =
+
+* Tweak - The Show Notes field can now render shortcodes (props to @cowboyofbottrop)
 * Tweak - Improvements to source code (props to @leecollings)
+* Fix - Prevent PHP notices from appearing in log files when editing an event. [68766]
+* Fix - Prevent PHP Notice when no shows are added, but multiple artists are present. [68765]
 
 = 2.3.17 [2016-09-15] =
 
