@@ -401,19 +401,28 @@ function gigpress_menu( $options = null ) {
 
 	if ( $dates ) : ?>
 
-		<select name="gigpress_menu" class="gigpress_menu" id="<?php echo $id; ?>">
-			<option value="<?php echo $base; ?>"><?php echo $title; ?></option>
-			<?php foreach ( $dates as $date ) : ?>
-				<?php $this_date = ( $type == 'monthly' ) ? $date->year . $date->month : $date->year; ?>
-				<option value="<?php echo $base . 'gpy=' . $date->year;
+		<select name="gigpress_menu" class="gigpress_menu" id="<?php echo esc_attr( $id ); ?>">
+			<option value="<?php echo esc_attr( $base ); ?>"><?php echo esc_html( $title ); ?></option>
+			<?php foreach ( $dates as $date ) :
+				$value = $base . 'gpy=' . $date->year;
 				if ( $type == 'monthly' ) {
-					echo '&amp;gpm=' . $date->month;
-				} ?>"<?php if ( $this_date == $current ) : ?> selected="selected"<?php endif; ?>>
-					<?php if ( $type == 'monthly' ) {
-						echo $wp_locale->get_month( $date->month ) . ' ';
+					$value .= '&amp;gpm=' . $date->month;
+				}
+				$this_date = ( $type == 'monthly' ) ? $date->year . $date->month : $date->year;
+				?>
+				<option
+					value="<?php echo esc_attr( $value ); ?>"
+					<?php selected( $this_date, $current ) ?>
+				>
+					<?php
+					if ( $type == 'monthly' ) {
+						echo esc_html( $wp_locale->get_month( $date->month ) . ' ' );
 					}
-					echo $date->year; ?>
-					<?php if ( $show_count && $show_count == 'yes' ) : ?>(<?php echo $date->shows; ?>)<?php endif; ?>
+					echo esc_html( $date->year );
+					if ( $show_count && $show_count == 'yes' ) {
+						echo esc_html( "({$date->shows})" );
+					}
+					?>
 				</option>
 			<?php endforeach; ?>
 		</select>
