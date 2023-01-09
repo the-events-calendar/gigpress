@@ -2060,22 +2060,22 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
          
          #-- current line length prefix
          unset($num);
-         $num = ord($line{0}) - 32;
+         $num = ord($line[0]) - 32;
          if (($num <= 0) || ($num > 62)) {  // 62 is the maximum line length
             break;          // according to uuencode(5), so we stop here too
          }
          $line = substr($line, 1);
-         
+
          #-- prepare to decode 4-char chunks
          $add = "";
          for ($n=0; strlen($add)<$num; ) {
-         
+
             #-- merge 24 bit integer from the 4 ascii characters (6 bit each)
             $x = ((ord($line[$n++]) - 32) << 18)
                + ((ord($line[$n++]) - 32) << 12)  // were saner with "& 0x3f"
                + ((ord($line[$n++]) - 32) <<  6)
                + ((ord($line[$n++]) - 32) <<  0);
-               
+
             #-- reconstruct the 3 original data chars
             $add .= chr( ($x >> 16) & 0xff )
                   . chr( ($x >>  8) & 0xff )
@@ -2095,12 +2095,12 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * return array of filenames in a given directory
  * (only works for local files)
  *
- * @param  string $dirname  
- * @param  bool   $desc  
+ * @param  string $dirname
+ * @param  bool   $desc
  * @return array
  */
    function up_scandir($dirname, $desc=0) {
-   
+
       #-- check for file:// protocol, others aren't handled
       if (strpos($dirname, "file://") === 0) {
          $dirname = substr($dirname, 7);
@@ -2108,7 +2108,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
             $dirname = substr($dirname, strpos($dirname, "/"));
          }
       }
-      
+
       #-- directory reading handle
       if ($dh = opendir($dirname)) {
          $ls = array();
@@ -2116,7 +2116,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
             $ls[] = $fn;  // add to array
          }
          closedir($dh);
-         
+
          #-- sort filenames
          if ($desc) {
             rsort($ls);
@@ -2140,17 +2140,17 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * @return integer
  */
    function up_idate($formatchar, $timestamp=NULL) {
-   
+
       #-- reject non-simple type parameters
       if (strlen($formatchar) != 1) {
          return false;
       }
-      
+
       #-- get current time, if not given
       if (!isset($timestamp)) {
          $timestamp = time();
       }
-      
+
       #-- get and turn into integer
       $str = date($formatchar, $timestamp);
       return (int)$str;
@@ -2159,8 +2159,8 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 
 
 /**
- * combined sleep() and usleep() 
- * 
+ * combined sleep() and usleep()
+ *
  */
    function up_time_nanosleep($sec, $nano) {
       sleep($sec);
@@ -2174,26 +2174,26 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * search first occourence of any of the given chars, returns rest of haystack
  * (char_list must be a string for compatibility with the real PHP func)
  *
- * @param  string $haystack  
- * @param  string $char_list  
+ * @param  string $haystack
+ * @param  string $char_list
  * @return integer
  */
    function up_strpbrk($haystack, $char_list) {
-   
+
       #-- prepare
       $len = strlen($char_list);
       $min = strlen($haystack);
-      
+
       #-- check with every symbol from $char_list
       for ($n = 0; $n < $len; $n++) {
-         $l = strpos($haystack, $char_list{$n});
-         
+         $l = strpos($haystack, $char_list[ $n ]);
+
          #-- get left-most occourence
          if (($l !== false) && ($l < $min)) {
             $min = $l;
          }
       }
-      
+
       #-- result
       if ($min) {
          return(substr($haystack, $min));
@@ -2207,7 +2207,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 
 /**
  * logo image activation URL query strings (gaga feature)
- * 
+ *
  */
    function up_php_real_logo_guid() { return php_logo_guid(); }
    function up_php_egg_logo_guid() { return zend_logo_guid(); }
@@ -2216,7 +2216,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 /**
  * no need to implement this
  * (there aren't interfaces in PHP4 anyhow)
- * 
+ *
  */
    function up_get_declared_interfaces() {
       trigger_error("up_get_declared_interfaces(): Current script won't run reliably with PHP4.", E_USER_WARNING);
@@ -2229,17 +2229,17 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * creates an array from lists of $keys and $values
  * (both should have same number of entries)
  *
- * @param  array $keys  
- * @param  array $values  
+ * @param  array $keys
+ * @param  array $values
  * @return array
  */
    function up_array_combine($keys, $values) {
-   
+
       #-- convert input arrays into lists
       $keys = array_values($keys);
       $values = array_values($values);
       $r = array();
-      
+
       #-- one from each
       foreach ($values as $i=>$val) {
          if ($key = $keys[$i]) {
@@ -2258,8 +2258,8 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * use it like:  array_walk_recursive($_POST, "stripslashes");
  * - $callback can be static function name or object/method, class/method
  *
- * @param  array  $input  
- * @param  string $callback  
+ * @param  array  $input
+ * @param  string $callback
  * @param  array  $userdata  (optional)
  * @return array
  */
@@ -2285,16 +2285,16 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 /**
  * complicated wrapper around substr() and and strncmp()
  *
- * @param  string  $haystack  
- * @param  string  $needle  
- * @param  integer $offset  
- * @param  integer $len  
- * @param  integer $ci  
+ * @param  string  $haystack
+ * @param  string  $needle
+ * @param  integer $offset
+ * @param  integer $len
+ * @param  integer $ci
  * @return mixed
  */
    function up_substr_compare($haystack, $needle, $offset=0, $len=0, $ci=0) {
 
-      #-- check params   
+      #-- check params
       if ($len <= 0) {   // not well documented
          $len = strlen($needle);
          if (!$len) { return(0); }
@@ -2323,7 +2323,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 /**
  * stub, returns empty list as usual;
  * you must load "ext/spl.php" beforehand to get this
- * 
+ *
  */
    function up_spl_classes() {
       trigger_error("up_spl_classes(): not built into this PHP version");
@@ -2335,15 +2335,15 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 /**
  * gets you list of class names the given objects class was derived from, slow
  *
- * @param  object $obj  
+ * @param  object $obj
  * @return object
  */
    function up_class_parents($obj) {
-   
+
       #-- first get full list
       $all = get_declared_classes();
       $r = array();
-      
+
       #-- filter out
       foreach ($all as $potential_parent) {
          if (is_subclass_of($obj, $potential_parent)) {
@@ -2356,7 +2356,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 
 /**
  * an alias
- * 
+ *
  */
    function up_session_commit() {
       // simple
@@ -2367,7 +2367,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
 /**
  * aliases
  *
- * @param  mixed $host  
+ * @param  mixed $host
  * @param  mixed $type  (optional)
  * @return mixed
  */
@@ -2392,7 +2392,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * setrawcookie(),
  * can this be emulated 100% exactly?
  *
- * @param  string $name 
+ * @param  string $name
  * @param  mixed  $value
  * @param  mixed  $expire
  * @param  mixed  $path
@@ -2421,8 +2421,8 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
  * write-at-once file access (counterpart to file_get_contents)
  *
  * @param  integer $filename
- * @param  mixed   $content  
- * @param  integer $flags 
+ * @param  mixed   $content
+ * @param  integer $flags
  * @param  mixed   $resource
  * @return integer
  */
@@ -2433,7 +2433,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
       $incl = $flags & FILE_USE_INCLUDE_PATH;
       $length = strlen($content);
 //      $resource && trigger_error("EMULATED up_file_put_contents does not support \$resource parameter.", E_USER_ERROR);
-      
+
       #-- write non-scalar?
       if (is_array($content) || is_object($content)) {
          $content = implode("", (array)$content);
@@ -2442,7 +2442,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
       #-- open for writing
       $f = fopen($filename, $mode, $incl);
       if ($f) {
-      
+
          // locking
          if (($flags & LOCK_EX) && !flock($f, LOCK_EX)) {
             return fclose($f) && false;
@@ -2451,7 +2451,7 @@ if (!defined("PHP_EOL")) { define("PHP_EOL", ( (DIRECTORY_SEPARATOR == "\\") ? "
          // write
          $written = fwrite($f, $content);
          fclose($f);
-         
+
          #-- only report success, if completely saved
          return($length == $written);
       }
@@ -2489,11 +2489,11 @@ if (!defined("COUNT_RECURSIVE")) { define("COUNT_RECURSIVE", 1); }    // use cou
 /**
  * @since never
  * @nonstandard
- * 
+ *
  * we introduce a new function, because we cannot emulate the
  * newly introduced second parameter to count()
- * 
- * @param  array $array 
+ *
+ * @param  array $array
  * @param  integer $mode
  * @return integer
  */
@@ -2617,7 +2617,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 /**
  * simplified file read-at-once function
  *
- * @param  string  $filename  
+ * @param  string  $filename
  * @param  integer $use_include_path  (optional)
  * @return string
  */
@@ -2651,10 +2651,10 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
    if (!defined("FNM_LEADING_DIR")) { define("FNM_LEADING_DIR", 1<<3); }  // not in PHP
    if (!defined("FNM_CASEFOLD")) { define("FNM_CASEFOLD", 0x50); }  // match case-insensitive
    if (!defined("FNM_EXTMATCH")) { define("FNM_EXTMATCH", 1<<5); }  // not in PHP
-   
+
    #-- implementation
    function up_fnmatch($pattern, $fn, $flags=0x0000) {
-      
+
       #-- 'hidden' files
       if ($flags & FNM_PERIOD) {
          if (($fn[0] == ".") && ($pattern[0] != ".")) {
@@ -2686,14 +2686,14 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
             "\\*"=>"$wild*?", "\\?"=>"$wild", "\\["=>"[", "\\]"=>"]",
          ));
          $rx = "{^" . $rx . "$}" . $rxci;
-         
+
          #-- cache
          if (count($cmp) >= 50) {
             $cmp = array();   // free
          }
          $cmp["$pattern+$flags"] = $rx;
       }
-      
+
       #-- compare
       return(preg_match($rx, $fn));
    }
@@ -2724,7 +2724,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
       $ls = array();
       $rxci = ($flags & GLOB_NOCASE) ? "i" : "";
 #echo "\n=> up_glob($pattern)...\n";
-      
+
       #-- transform up_glob pattern into regular expression
       #   (similar to fnmatch() but still different enough to require a second func)
       if ($pattern) {
@@ -2751,7 +2751,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 #echo "skip:$i, cause no pattern matching char found -> only a basedir spec\n";
                continue;
             }
-            
+
             #-- start reading dir + match filenames against current pattern
             if ($dh = opendir($dn ?$dn:'.')) {
                $with_dot = ($p[1]==".") || ($flags & GLOB_DOTS);
@@ -2790,7 +2790,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
                closedir($dh);
 
                #-- prevent scanning a 2nd part/dir in same up_glob() instance:
-               break;  
+               break;
             }
 
             #-- given dirname doesn't exist
@@ -2817,7 +2817,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 
 /**
  * redundant alias for isset()
- * 
+ *
  */
    function up_array_key_exists($key, $search) {
       return isset($search[$key]);
@@ -2826,7 +2826,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 
 /**
  * who could need that?
- * 
+ *
  */
    function up_array_intersect_assoc( /*array, array, array...*/ ) {
 
@@ -2834,7 +2834,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
       $in = func_get_args();
       $cmax = count($in);
       $whatsleftover = array();
-      
+
       #-- walk through each array pair
       #   (take first as checklist)
       foreach ($in[0] as $i => $v) {
@@ -2854,14 +2854,14 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 
 /**
  * the opposite of the above
- * 
+ *
  */
    function up_array_diff_assoc( /*array, array, array...*/ ) {
 
       #-- params
       $in = func_get_args();
       $diff = array();
-      
+
       #-- compare each array with primary/first
       foreach ($in[0] as $i=>$v) {
          for ($c=1; $c<count($in); $c++) {
@@ -2879,7 +2879,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 
 /**
  * opposite of htmlentities
- * 
+ *
  */
    function up_html_entity_decode($string, $quote_style=ENT_COMPAT, $charset="ISO-8859-1") {
       //@FIX: we fall short on anything other than Latin-1
@@ -2890,10 +2890,10 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 
 /**
  * extracts single words from a string
- * 
+ *
  */
    function up_str_word_count($string, $result=0) {
-   
+
       #-- let someone else do the work
       preg_match_all('/([\w](?:[-\'\w]?[\w]+)*)/', $string, $uu);
 
@@ -2901,7 +2901,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
       if ($result == 1) {
          return($uu[1]);
       }
-      
+
       #-- array() of $pos=>$word entries
       elseif ($result >= 2) {
          $r = array();
@@ -2924,7 +2924,7 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
 /**
  * creates a permutation of the given strings characters
  * (let's hope the random number generator was alread initialized)
- * 
+ *
  */
    function up_str_shuffle($str) {
       $r = "";
@@ -2935,9 +2935,9 @@ if (!defined("SORT_LOCALE_STRING")) { define("SORT_LOCALE_STRING", 5); }
          if ($n) {
             $n = rand(0, $n);   // glibcs` rand is ok since 2.1 at least
          }
-         
+
          #-- cut out elected char, add to result string
-         $r .= $str{$n};
+         $r .= $str[ $n ];
          $str = substr($str, 0, $n) . substr($str, $n + 1);
       }
       return($r);

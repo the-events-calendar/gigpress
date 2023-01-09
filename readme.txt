@@ -1,9 +1,9 @@
 === GigPress ===
-Contributors: theeventscalendar, brianjessee, camwynsp, paulkim, sc0ttkclark, aguseo, bordoni, borkweb, GeoffBel, jentheo, leahkoerper, lucatume, neillmcshea, patriciahillebrandt, vicskf, zbtirrell, juanfra
+Contributors: theeventscalendar, brianjessee, camwynsp, aguseo, bordoni, borkweb, GeoffBel, jentheo, leahkoerper, lucatume, neillmcshea, vicskf, zbtirrell, juanfra
 Tags: concerts, bands, tours, shows, record labels, music, musicians, performers, artists
 Requires at least: 4.5
-Tested up to: 5.7.1
-Stable tag: 2.3.26
+Tested up to: 6.1.1
+Stable tag: 2.3.28
 
 GigPress is a live performance listing and management plugin that's been serving musicians and performers since 2007.
 
@@ -35,6 +35,10 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 * Check out the full <a href="https://theeventscalendar.com/products/">list of premium plugins</a> we offer.
 
 == Changelog ==
+
+= 2.3.28 [2022-12-27] =
+
+* Tweak - Resolve a problematic usaged of the shortcode `[gigpress_menu]` improving the safety of the plugin.
 
 = 2.3.27 [2021-12-03] =
 
