@@ -406,8 +406,6 @@ function gigpress_prepare( $show, $scope = 'public' ) {
 
 function gigpress_sanitize_sort($sort_value, $default = false, $safe_values = array('asc', 'desc')) {
     if (!in_array($sort_value, $safe_values, true)) {
-        // DEBUG
-        debug_log('hui, seems, to have an SQL injection attempt here? "'. $sort_value . '"');
         return $default;
     }
     return $sort_value;
