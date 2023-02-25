@@ -38,7 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.29 [2023-02-25] =
 
-* Tweak - Imporving safety for all shortcoe parameters
+* Tweak - Improving safety for all shortcode parameters
 
 = 2.3.28 [2022-12-27] =
 
