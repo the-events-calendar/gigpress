@@ -404,6 +404,14 @@ function gigpress_prepare( $show, $scope = 'public' ) {
 }
 
 
+function gigpress_sanitize_sort($sort_value, $default = false, $safe_values = array('asc', 'desc')) {
+    if (!in_array($sort_value, $safe_values, true)) {
+        return $default;
+    }
+    return $sort_value;
+}
+
+
 function gigpress_related_link( $postid, $format) {
 
 	if ( $postid == 0 ) return;

@@ -44,6 +44,8 @@ function gigpress_shows( $filter = null, $content = null ) {
 		), $filter )
 	);
 
+	$sort = gigpress_sanitize_sort($sort);
+	
 	$total_artists = $wpdb->get_var( "SELECT count(*) from " . GIGPRESS_ARTISTS );
 
 	// Date conditionals and sorting based on scope
@@ -346,6 +348,8 @@ function gigpress_menu( $options = null ) {
 		'venue'      => false,
 		'sort'       => 'desc',
 	), $options ) );
+
+	$sort = gigpress_sanitize_sort($sort, $default='desc');
 
 	$base .= ( strpos( $base, '?' ) === false ) ? '?' : '&amp;';
 

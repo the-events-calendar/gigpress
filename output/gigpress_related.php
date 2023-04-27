@@ -23,6 +23,8 @@ function gigpress_show_related( $args = [], $content = '' ) {
 			$sort = 'asc';
 		}
 
+		$sort = gigpress_sanitize_sort($sort, $default = 'asc');
+
 		// Date conditionals based on scope
 		switch ( $arguments['scope'] ) {
 			case 'upcoming':
