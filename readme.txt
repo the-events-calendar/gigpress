@@ -38,7 +38,7 @@ If you want to go beyond GigPress, we also have other plugins that could work gr
 
 = 2.3.29 [2023-04-27] =
 
-* Tweak - Resolve a problematic usage of the shortcode `[gigpress_menu]` improving the safety of the plugin.
+* Tweak - Resolve a problematic usage of the shortcode `[gigpress_related]` improving the safety of the plugin.
 
 = 2.3.28 [2022-12-27] =
 
