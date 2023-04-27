@@ -1,26 +1,32 @@
 <?php
 
-function gigpress_show_related_auto($content = '') {
-	return gigpress_show_related(null, $content);
+function gigpress_show_related_auto( $content = '' ) {
+	return gigpress_show_related( null, $content );
 }
 
-function gigpress_show_related($args = array(), $content = '') {
+function gigpress_show_related( $args = [], $content = '' ) {
 
 	global $is_excerpt, $wpdb, $gpo, $post;
-	if( $is_excerpt == TRUE || !is_object($post) ) {
-		$is_excerpt = FALSE;
+	if ( $is_excerpt == true || ! is_object( $post ) ) {
+		$is_excerpt = false;
+
 		return $content;
 	} else {
-
-		extract(shortcode_atts(array(
+		$default_args = [
 			'scope' => 'all',
-			'sort' => 'asc'
-		), $args));
+			'sort'  => 'asc',
+		];
+		$arguments    = shortcode_atts( $default_args, $args );
+
+		$sort = strtolower( sanitize_key( $arguments['sort'] ) );
+		if ( ! in_array( $sort, [ 'asc', 'desc' ] ) ) {
+			$sort = 'asc';
+		}
 
 		$sort = gigpress_sanitize_sort($sort, $default = 'asc');
 
 		// Date conditionals based on scope
-		switch($scope) {
+		switch ( $arguments['scope'] ) {
 			case 'upcoming':
 				$date_condition = ">= '" . GIGPRESS_NOW . "'";
 				break;
@@ -31,26 +37,45 @@ function gigpress_show_related($args = array(), $content = '') {
 				$date_condition = "IS NOT NULL";
 		}
 
+		$artists_table = GIGPRESS_ARTISTS;
+		$venues_table  = GIGPRESS_VENUES;
+		$shows_table   = GIGPRESS_SHOWS;
+		$tours_table   = GIGPRESS_TOURS;
+
 		$shows = $wpdb->get_results(
-			$wpdb->prepare("SELECT * FROM " . GIGPRESS_ARTISTS . " AS a, " . GIGPRESS_VENUES . " as v, " . GIGPRESS_SHOWS ." AS s LEFT JOIN  " . GIGPRESS_TOURS . " AS t ON s.show_tour_id = t.tour_id WHERE show_related = %d AND show_expire " . $date_condition . " AND show_status != 'deleted' AND s.show_artist_id = a.artist_id AND s.show_venue_id = v.venue_id ORDER BY show_date " . $sort . ",show_expire " . $sort . ",show_time " . $sort, $post->ID)
+			$wpdb->prepare(
+				"
+				SELECT * 
+					FROM {$artists_table} AS a,
+					     {$venues_table} as v,
+					     {$shows_table} AS s 
+					     LEFT JOIN {$tours_table} AS t 
+					         ON s.show_tour_id = t.tour_id 
+					WHERE show_related = %d 
+					  AND show_expire {$date_condition}
+					  AND show_status != 'deleted' 
+					  AND s.show_artist_id = a.artist_id 
+					  AND s.show_venue_id = v.venue_id 
+					  ORDER BY show_date {$sort}, show_expire {$sort}, show_time {$sort}",
+				$post->ID
+			)
 		);
 
-		if($shows != FALSE) {
+		if ( $shows != false ) {
 
-			$shows_markup = array();
+			$shows_markup = [];
 			ob_start();
 
-			$count = 1;
-			$total_shows = count($shows);
-			foreach ($shows as $show) {
-				$showdata = gigpress_prepare($show, 'related');
-				include gigpress_template('related');
-				if($gpo['output_schema_json'] == 'y')
-				{
-					$show_markup = gigpress_json_ld($showdata);
-					array_push($shows_markup,$show_markup);
+			$count       = 1;
+			$total_shows = count( $shows );
+			foreach ( $shows as $show ) {
+				$showdata = gigpress_prepare( $show, 'related' );
+				include gigpress_template( 'related' );
+				if ( $gpo['output_schema_json'] == 'y' ) {
+					$show_markup = gigpress_json_ld( $showdata );
+					array_push( $shows_markup, $show_markup );
 				}
-				$count++;
+				$count ++;
 			}
 
 			$giginfo = ob_get_clean();
@@ -61,17 +86,13 @@ function gigpress_show_related($args = array(), $content = '') {
 				$output = $content . $giginfo;
 			}
 
-			if(!empty($shows_markup))
-			{
+			if ( ! empty( $shows_markup ) ) {
 				$output .= '<script type="application/ld+json">';
-				if (!defined("JSON_UNESCAPED_SLASHES"))
-				{
+				if ( ! defined( "JSON_UNESCAPED_SLASHES" ) ) {
 					require_once( GIGPRESS_PLUGIN_DIR . 'lib/upgrade.php' );
-					$output .= up_json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-				}
-				else
-				{
-					$output .= json_encode($shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+					$output .= up_json_encode( $shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
+				} else {
+					$output .= json_encode( $shows_markup, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 				}
 				$output .= '</script>';
 			}
