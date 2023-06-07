@@ -617,6 +617,9 @@ function gigpress_export() {
 	if (isset( $_POST['tour_id'] ) && $_POST['tour_id'] != '-1' ) {
 		$further_where .= ' AND s.show_tour_id = ' . $wpdb->prepare( '%d', $_POST['tour_id'] ) . ' ';
 	}
+	if (isset( $_POST['venue_id'] ) && $_POST['venue_id'] != '-1' ) {
+		$further_where .= ' AND s.show_venue_id = ' . $wpdb->prepare( '%d', $_POST['venue_id'] ) . ' ';
+	}
 
 	$name = 'gigpress-export-' . date( 'Y-m-d' ) . '.csv';
 
