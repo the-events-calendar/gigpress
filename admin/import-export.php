@@ -45,7 +45,9 @@ function gigpress_import_export() {
 		<h2>Export</h2>
 		
 		<p><?php _e("Download your complete show database as a CSV (comma-separated values) file, compatible with programs such as Microsoft Excel. This file is also suitable to import into another GigPress installation.", "gigpress"); ?></p>
-		
+
+		<p><?php _e("Use the below dropdowns to filter your gigs.", "gigpress"); ?></p>
+
 		<form action="admin-post.php" method="post">
 			<div>
 				<?php wp_nonce_field('gigpress-action'); ?>
@@ -75,6 +77,20 @@ function gigpress_import_export() {
 					}
 				} else {
 					echo('<option value="-1">' . __("No tours in the database", "gigpress") . '</option>');
+				}
+				?>
+				</select>
+			</div>
+			<div style="margin-bottom:5px;">
+				<select name="venue_id">
+					<option value="-1"><?php _e("Export all venues", "gigpress"); ?></option>
+				<?php $venuedata = fetch_gigpress_venues();
+				if($venuedata) {
+					foreach($venuedata as $venue) {
+						echo('<option value="' . $venue->venue_id . '">' . gigpress_db_out($venue->venue_name) . '</option>');
+					}
+				} else {
+					echo('<option value="-1">' . __("No venues in the database", "gigpress") . '</option>');
 				}
 				?>
 				</select>
